@@ -76,109 +76,22 @@
             }
         };
 
-        var zNodes = [{
-                id: 1,
-                pId: 0,
-                name: "전 체",
-                open: true
-            },
-            {
-                id: 11,
-                pId: 1,
-                name: "중구"
-            },
-            {
-                id: 111,
-                pId: 11,
-                name: "서울역(한국공항철도)",
-                nocheck: true
-            },
-            {
-                id: 112,
-                pId: 11,
-                name: "서울역(서울교통공사)",
-                nocheck: true
-            },
-            {
-                id: 12,
-                pId: 1,
-                name: "구로구"
-            },
-            {
-                id: 121,
-                pId: 12,
-                name: "신도림역",
-                nocheck: true
-            },
-            {
-                id: 122,
-                pId: 12,
-                name: "(구로)롯데마트 구로점",
-                nocheck: true
-            },
-            {
-                id: 123,
-                pId: 12,
-                name: "(구로)현대백화점 디큐브시티",
-                nocheck: true
-            },
-            {
-                id: 124,
-                pId: 12,
-                name: "(구로)CGV",
-                nocheck: true
-            },
-            {
-                id: 13,
-                pId: 1,
-                name: "영등포구"
-            },
-            {
-                id: 131,
-                pId: 13,
-                name: "(영등포)로데오 왁",
-                nocheck: true
-            },
-            {
-                id: 132,
-                pId: 13,
-                name: "(영등포)아이에프씨몰(IFC Mall)",
-                nocheck: true
-            },
-            {
-                id: 14,
-                pId: 1,
-                name: "서초구"
-            },
-            {
-                id: 141,
-                pId: 14,
-                name: "서울남부터미널",
-                nocheck: true
-            },
-            {
-                id: 142,
-                pId: 14,
-                name: "서울고속버스터미널",
-                nocheck: true
-            }
-        ];
-
+        var zNodes;
         var code;
 
         function nocheckNode(e) {
-			var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
-			nocheck = e.data.nocheck,
-			nodes = zTree.getSelectedNodes();
-			if (nodes.length == 0) {
-				alert("Please select one node at first...");
-			}
+            var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
+                nocheck = e.data.nocheck,
+                nodes = zTree.getSelectedNodes();
+            if (nodes.length == 0) {
+                alert("Please select one node at first...");
+            }
 
-			for (var i=0, l=nodes.length; i<l; i++) {
-				nodes[i].nocheck = nocheck;
-				zTree.updateNode(nodes[i]);
-			}
-		}
+            for (var i = 0, l = nodes.length; i < l; i++) {
+                nodes[i].nocheck = nocheck;
+                zTree.updateNode(nodes[i]);
+            }
+        }
 
         function setCheck() {
             var zTree = newJquery.fn.zTree.getZTreeObj("#treeDemo"),
@@ -265,25 +178,25 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.ejs" style="text-align: center;">
+                    <a class="nav-link" href="/check_terminal" style="text-align: center;">
                         <i class="fas fa-fw fa-wrench"></i>
                         <span>장비 검사</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.ejs" style="text-align: center;">
+                    <a class="nav-link" href="history" style="text-align: center;">
                         <i class="fas fa-fw fa-history"></i>
                         <span>이력 조회</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.ejs" style="text-align: center;">
+                    <a class="nav-link" href="/add_group" style="text-align: center;">
                         <i class="fas fa-fw fa-folder-plus"></i>
                         <span>그룹 추가</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.ejs" style="text-align: center;">
+                    <a class="nav-link" href="/edit_tts" style="text-align: center;">
                         <i class="fas fa-fw fa-microphone"></i>
                         <span>TTS 편집</span>
                     </a>
@@ -420,69 +333,60 @@
                                     </div>
 
                                     <div class="tabcontent" id="location">
-
-                                        <% if(locals.user){%>
-                                        <% if((locals.user.area) == 0 ){%>
-                                        <p class="btn-group-toggle" style="padding: 10px;">
-                                            <label class="btn btn-default">
-                                                <input type="checkbox" name="checkAll">전 체
-                                            </label> <br />
-                                            <script>
-                                                for (var i = 0; i <= 16; i++) {
-                                                    document.write("<label class='btn btn-default'>");
-                                                    document.write("<input type='checkbox' name='checkOne'>");
-                                                    var data = "{{gridOption1[" + i + "].location}}"
-                                                    document.write(data);
-                                                    document.write("</label>")
-                                                }
-                                            </script>
-                                        </p>
-                                        <% }%>
-                                        <% }  %>
-
                                         <% if(locals.user){%>
                                         <% if((locals.user.area) == 1 ){%>
-                                            {{gridOption3}}
-                                            <ul id="treeDemo" class="ztree">
-                                                </ul>
-                                       
+                                        {{gridOption1}}
                                         <% }%>
-                                        <% }  %>
 
-                                        <% if(locals.user){%>
                                         <% if((locals.user.area) == 4 ){%>
-                                        <p class="btn-group-toggle" style="padding: 10px;">
-                                            <label class="btn btn-default">
-                                                <input type="checkbox" name="checkAll">전 체
-                                            </label> <br />
-                                            <script>
-                                                for (var i = 42; i <= 51; i++) {
-                                                    document.write("<label class='btn btn-default'>");
-                                                    document.write("<input type='checkbox' name='checkOne'>");
-                                                    var data = "{{gridOption1[" + i + "].detail_location}}"
-                                                    document.write(data);
-                                                    document.write("</label>")
-                                                }
-                                            </script>
-                                        </p>
+                                        {{gridOption2}}
+                                        <% }%>
+
+                                        <% if((locals.user.area) == 10 ){%>
+                                        {{gridOption3}}
+                                        <% }%>
+
+                                        <% if((locals.user.area) == 15 ){%>
+                                        {{gridOption4}}
+                                        <% }%>
+
+                                        <% if((locals.user.area) == 17 ){%>
+                                        {{gridOption5}}
                                         <% }%>
                                         <% }  %>
                                     </div>
 
                                     <!-- 분류별 -->
                                     <div class="tabcontent" id="devide">
-                                        {{gridOption2}}
+                                        <% if(locals.user){%>
+                                        <% if((locals.user.area) == 1 ){%>
+                                        {{gridOption6}}
+                                        <% }%>
+
+                                        <% if((locals.user.area) == 4 ){%>
+                                        {{gridOption7}}
+                                        <% }%>
+
+                                        <% if((locals.user.area) == 10 ){%>
+                                        {{gridOption8}}
+                                        <% }%>
+
+                                        <% if((locals.user.area) == 15 ){%>
+                                        {{gridOption9}}
+                                        <% }%>
+
+                                        <% if((locals.user.area) == 17 ){%>
+                                        {{gridOption10}}
+                                        <% }%>
+                                        <% }  %>
+
                                         <!-- <ul id="treeDemo" class="ztree">
                                         </ul> -->
                                     </div>
 
-                                    <script>
-                                    </script>
-
                                     <!-- 그룹별 -->
                                     <div class="tabcontent" id="group">
-                                        <ul id="treeDemo" class="ztree">
-                                        </ul>
+
                                     </div>
                                 </div>
                             </div>

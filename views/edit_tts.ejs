@@ -13,7 +13,8 @@
 
     <!-- Custom fonts for this template-->
     <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!--     Custom styles for this template-->
@@ -21,24 +22,25 @@
 
     <script language="javascript">
         function printTime() {
-              var clock = document.getElementById("clock");            // 출력할 장소 선택
-              var now = new Date();                                                  // 현재시간
-              var nowTime = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate() + "&nbsp;&nbsp;" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-              clock.innerHTML = nowTime;           // 현재시간을 출력
-              setTimeout("printTime()",1000);         // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
-            }
-            window.onload = function() {                         // 페이지가 로딩되면 실행
+            var clock = document.getElementById("clock"); // 출력할 장소 선택
+            var now = new Date(); // 현재시간
+            var nowTime = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + "&nbsp;&nbsp;" + now
+                .getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+            clock.innerHTML = nowTime; // 현재시간을 출력
+            setTimeout("printTime()", 1000); // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
+        }
+        window.onload = function () { // 페이지가 로딩되면 실행
             printTime();
-            }
+        }
 
 
-               /*   접속 지역에 따라 달라지는 CI 표현 */
-    function logo_info() {
-    var user_area = <%=user.area%>;
-    var img_src;
-        for (var i = 1; i <= 18; i++) {
-            if (user_area == i) {
-                img_src = '../public/img/' + i + '_logo.png';
+        /*   접속 지역에 따라 달라지는 CI 표현 */
+        function logo_info() {
+            var user_area = <%=user.area%>;
+            var img_src;
+            for (var i = 1; i <= 18; i++) {
+                if (user_area == i) {
+                    img_src = '../public/img/' + i + '_logo.png';
                 }
             }
             return img_src;
@@ -50,13 +52,11 @@
             for (var i = 1; i <= 18; i++) {
                 if (user_area == i) {
                     img_src = '../public/img/' + i + '_title.png';
-                    }
                 }
-                return img_src;
-                }
-            
-
-</script>
+            }
+            return img_src;
+        }
+    </script>
 
 </head>
 
@@ -69,15 +69,19 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-           
+
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
                 <div class="sidebar-brand-icon">
                     <img id="logo" src="" style="height: 50px;">
-                    <script>document.getElementById('logo').src=logo_info()</script>
+                    <script>
+                        document.getElementById('logo').src = logo_info()
+                    </script>
                 </div>
                 <div class="sidebar-brand-text mx-3">
                     <img id="title" src="" style="height: 40px; margin-left:-10px;">
-                    <script>document.getElementById('title').src=title_info()</script>
+                    <script>
+                        document.getElementById('title').src = title_info()
+                    </script>
                 </div>
             </a>
 
@@ -86,38 +90,43 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item" style="margin-top:30px;">
+            <li class="nav-item" style="margin-top:30px; border-left: 5px solid #4e73df; background-color:#eff1f2">
                 <a class="nav-link" href="/index" style="text-align: center;">
                     <i class="fas fa-fw fa-exclamation-triangle"></i>
-                    <span>경보 발령</span></a>
+                    <span>경보 발령</span>
+                </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="/result" style="text-align: center;">
                     <i class="fas fa-fw fa-chart-bar"></i>
-                    <span>발령 결과</span></a>
+                    <span>발령 결과</span>
+                </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link" href="/check_terminal" style="text-align: center;">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>장비 검사</span></a>
+                    <span>장비 검사</span>
+                </a>
             </li>
-
             <li class="nav-item">
-                <a class="nav-link" href="/history" style="text-align: center;">
+                <a class="nav-link" href="history" style="text-align: center;">
                     <i class="fas fa-fw fa-history"></i>
-                    <span>이력 조회</span></a>
+                    <span>이력 조회</span>
+                </a>
             </li>
-
-            <li class="nav-item" style="border-left: 5px solid #4e73df; background-color:#eff1f2;">
+            <li class="nav-item">
+                <a class="nav-link" href="/add_group" style="text-align: center;">
+                    <i class="fas fa-fw fa-folder-plus"></i>
+                    <span>그룹 추가</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="/edit_tts" style="text-align: center;">
                     <i class="fas fa-fw fa-microphone"></i>
-                    <span>TTS 편집</span></a>
+                    <span>TTS 편집</span>
+                </a>
             </li>
-
-
-
+            
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block" style="margin-top: 30px;">
 
@@ -152,16 +161,18 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                            aria-label="Search" aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -173,9 +184,10 @@
                         </li>
 
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <span class="text-s font-weight-bold text-primary text-uppercase mb-1" id="clock"></span>
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="text-s font-weight-bold text-primary text-uppercase mb-1"
+                                    id="clock"></span>
                             </a></li>
 
 
@@ -184,14 +196,15 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     <%=user.username%> 님
                                     <i class="fas fa-fw fa-chevron-down"></i></span>
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
 
                                 <a class="dropdown-item" href="/logout">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -210,7 +223,8 @@
                     <br />
                     <!-- Content Row -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary" style="float: left;">TTS
+                        <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary"
+                                style="float: left;">TTS
                                 편집</span>
                         </div>
                         <div class="card-body">
@@ -219,7 +233,8 @@
                                 <div class="container">
                                     <p> </p>
                                     <div class="text-right">
-                                        <button type="submit" class="btn btn-primary" ng-click="pushData()" style="width:120px;">Edit</button>
+                                        <button type="submit" class="btn btn-primary" ng-click="pushData()"
+                                            style="width:120px;">Edit</button>
                                     </div>
                                 </div>
                                 <br />
