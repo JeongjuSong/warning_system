@@ -211,7 +211,7 @@
         </div>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
-        <div class="d-flex flex-column" id="content-wrapper">
+        <div ng-app="myapp" ng-controller="myCtrl" class="d-flex flex-column" id="content-wrapper">
             <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
@@ -318,7 +318,7 @@
                             </div>
                             <!-- Modify janjune Tab -->
                             <!-- <div class="col-12" style="float: left;"> -->
-                            <div ng-app="myapp" ng-controller="myCtrl" class="card shadow mb-4">
+                            <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <span class="m-0 font-weight-bold text-primary" style="float: left;">지역 선택</span>
                                 </div>
@@ -398,27 +398,9 @@
                                 </div>
                                 <div class="col-12" id="checkboxTest" style="padding: 10px;">
                                     <p class="btn-group-toggle">
-                                        <label class="btn btn-default">
-                                            <input type="checkbox" name="check" id="1">기상특보
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="checkbox" name="check" id="2">전국
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="checkbox" name="check" id="3">지역
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="checkbox" name="check" id="4">기타경보
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="checkbox" name="check" ie="5">민방위
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="checkbox" name="check" id="6">테스트
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="checkbox" name="check" id="7">기상추가
-                                        </label>
+                                        <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
+                                            data-target="#Modal" data-title="data">기상특보</button>
+
                                     </p>
                                 </div>
                             </div>
@@ -493,6 +475,28 @@
             <!-- End of Main Content -->
 
             <!--modal-->
+            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLable">상세 선택</h5>
+                        </div>
+                        <div class='modal-body'>
+                            <script>
+                                for (var i = 0; i <= 19; i++) {
+                                    document.write("<input type='checkbox'>");
+                                    var data = "{{gridOption11[" + i + "].situation}}";
+                                    document.write(data);
+                                }
+                            </script>
+                        </div>
+                        <!-- <div class="modal-body">
+                            <input type="checkbox"> {{gridOption11[0].situation}}
+                        </div> -->
+                    </div>
+                </div>
+            </div>
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
