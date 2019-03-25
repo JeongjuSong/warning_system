@@ -12,32 +12,27 @@
 {
     "id": 111,
     "pId": 11,
-    "name": "KTX 인천국제공항역",
-    "nocheck": true
+    "name": "KTX 인천국제공항역"
 },
 {
     "id": 112,
     "pId": 11,
-    "name": "인천역 1호선",
-    "nocheck": true
+    "name": "인천역 1호선"
 },
 {
     "id": 113,
     "pId": 11,
-    "name": "인천국제공항",
-    "nocheck": true
+    "name": "인천국제공항"
 },
 {
     "id": 114,
     "pId": 11,
-    "name": "인천항 여객터미널",
-    "nocheck": true
+    "name": "인천항 여객터미널"
 },
 {
     "id": 115,
     "pId": 11,
-    "name": "(중구)이마트",
-    "nocheck": true
+    "name": "(중구)이마트"
 },
 {
     "id": 12,
@@ -47,14 +42,12 @@
 {
     "id": 121,
     "pId": 12,
-    "name": "인천종합터미널",
-    "nocheck": true
+    "name": "인천종합터미널"
 },
 {
     "id": 122,
     "pId": 12,
-    "name": "(남구)신세계 인천점",
-    "nocheck": true
+    "name": "(남구)신세계 인천점"
 },
 {
     "id": 13,
@@ -64,14 +57,12 @@
 {
     "id": 131,
     "pId": 13,
-    "name": "(연수구)LF네트웍스",
-    "nocheck": true
+    "name": "(연수구)LF네트웍스"
 },
 {
     "id": 132,
     "pId": 13,
-    "name": "(연수구)스퀘어원",
-    "nocheck": true
+    "name": "(연수구)스퀘어원"
 },
 {
     "id": 14,
@@ -81,7 +72,6 @@
 {
     "id": 141,
     "pId": 14,
-    "name": "(인천)롯데시네마",
-    "nocheck": true
+    "name": "(인천)롯데시네마"
 }
 ]

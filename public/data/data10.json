@@ -12,8 +12,7 @@
 {
     "id": 111,
     "pId": 11,
-    "name": "(남원주)롯데시네마",
-    "nocheck": true
+    "name": "(남원주)롯데시네마"
 },
 {
     "id": 12,
@@ -23,26 +22,22 @@
 {
     "id": 121,
     "pId": 12,
-    "name": "춘천터미널",
-    "nocheck": true
+    "name": "춘천터미널"
 },
 {
     "id": 122,
     "pId": 12,
-    "name": "(춘천)이마트",
-    "nocheck": true
+    "name": "(춘천)이마트"
 },
 {
     "id": 123,
     "pId": 12,
-    "name": "(춘천)CGV",
-    "nocheck": true
+    "name": "(춘천)CGV"
 },
 {
     "id": 124,
     "pId": 12,
-    "name": "(남춘천)메가박스",
-    "nocheck": true
+    "name": "(남춘천)메가박스"
 },
 {
     "id": 13,
@@ -52,14 +47,12 @@
 {
     "id": 131,
     "pId": 13,
-    "name": "동해항 국제여객터미널",
-    "nocheck": true
+    "name": "동해항 국제여객터미널"
 },
 {
     "id": 132,
     "pId": 13,
-    "name": "(동해)이마트",
-    "nocheck": true
+    "name": "(동해)이마트"
 },
 {
     "id": 14,

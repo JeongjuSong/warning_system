@@ -12,50 +12,42 @@
 {
     "id": 111,
     "pId": 11,
-    "name": "제주시외버스터미널",
-    "nocheck": true
+    "name": "제주시외버스터미널"
 },
 {
     "id": 112,
     "pId": 11,
-    "name": "제주국제공항",
-    "nocheck": true
+    "name": "제주국제공항"
 },
 {
     "id": 113,
     "pId": 11,
-    "name": "제주항 연안 여객터미널",
-    "nocheck": true
+    "name": "제주항 연안 여객터미널"
 },
 {
     "id": 114,
     "pId": 11,
-    "name": "제주항 국제 여객터미널",
-    "nocheck": true
+    "name": "제주항 국제 여객터미널"
 },
 {
     "id": 115,
     "pId": 11,
-    "name": "이마트 제주점",
-    "nocheck": true
+    "name": "이마트 제주점"
 },
 {
     "id": 116,
     "pId": 11,
-    "name": "이마트 신제주점",
-    "nocheck": true
+    "name": "이마트 신제주점"
 },
 {
     "id": 117,
     "pId": 11,
-    "name": "(제주시)롯데마트",
-    "nocheck": true
+    "name": "(제주시)롯데마트"
 },
 {
     "id": 118,
     "pId": 11,
-    "name": "(제주)CGV",
-    "nocheck": true
+    "name": "(제주)CGV"
 },
 {
     "id": 12,
@@ -65,13 +57,11 @@
 {
     "id": 121,
     "pId": 12,
-    "name": "홈플러스 서귀포점",
-    "nocheck": true
+    "name": "홈플러스 서귀포점"
 },
 {
     "id": 122,
     "pId": 12,
-    "name": "이마트 서귀포점",
-    "nocheck": true
+    "name": "이마트 서귀포점"
 }
 ]

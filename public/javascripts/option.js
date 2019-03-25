@@ -125,5 +125,62 @@ function clear_onclick() {
     $("[name=checkAll]").parent().removeClass('selected');
     $("[name=check]").parent().removeClass('selected');
     $("[name=checkOne]").parent().removeClass('selected');
+    
 
+}
+
+function weather1() {
+    var w = 570;
+    var h = 400;
+    var LeftPosition = (screen.width-w)/2;
+    var TopPosition = (screen.height-h)/2;
+
+    window.name="parentForm";
+    openWin = window.open("/detail_weather", "childForm", "width="+w+",height="+h+",top="+TopPosition+",left="+LeftPosition+", scrollbars=no");
+}
+
+function nocheckNode(e) {
+    var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
+        nocheck = e.data.nocheck,
+        nodes = zTree.getSelectedNodes();
+    if (nodes.length == 0) {
+        alert("Please select one node at first...");
+    }
+
+    for (var i = 0, l = nodes.length; i < l; i++) {
+        nodes[i].nocheck = nocheck;
+        zTree.updateNode(nodes[i]);
+    }
+}
+
+function setCheck() {
+    var zTree = newJquery.fn.zTree.getZTreeObj("#treeDemo"),
+        py = $("#py").attr("checked") ? "p" : "",
+        sy = $("#sy").attr("checked") ? "s" : "",
+        pn = $("#pn").attr("checked") ? "p" : "",
+        sn = $("#sn").attr("checked") ? "s" : "",
+        type = {
+            "Y": s,
+            "N": ps
+        };
+    zTree.setting.check.chkboxType = type;
+    showCode('setting.check.chkboxType = { "Y" : "s", "N" : "ps" }');
+}
+
+function showCode(str) {
+    if (!code) code = $("#code");
+    code.empty();
+    code.append("<li>" + str + "</li>");
+}
+
+function beforeDrag(treeId, treeNodes) {
+    for (var i=0,l=treeNodes.length; i<l; i++) {
+        if (treeNodes[i].drag === false) {
+            return false;
+        }
+    }
+    return true;
+}
+function beforeDrop(treeId, treeNodes, targetNode, moveType) {
+    return targetNode ? targetNode.drop !== false : true;
 }

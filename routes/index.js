@@ -57,6 +57,7 @@ router.get('/city', function(req, res, next) {
     });
 });
 
+
 router.get('/user_area', function(req, res, next) {
 
     connection.query('SELECT area FROM users', function(err, rows) {

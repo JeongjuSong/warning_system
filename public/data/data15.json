@@ -12,26 +12,22 @@
 {
     "id": 111,
     "pId": 11,
-    "name": "포항 여객선터미널",
-    "nocheck": true
+    "name": "포항 여객선터미널"
 },
 {
     "id": 112,
     "pId": 11,
-    "name": "이마트 포항점",
-    "nocheck": true
+    "name": "이마트 포항점"
 },
 {
     "id": 113,
     "pId": 11,
-    "name": "롯데백화점 포항점",
-    "nocheck": true
+    "name": "롯데백화점 포항점"
 },
 {
     "id": 114,
     "pId": 11,
-    "name": "효자프라자 웰빙아울렛",
-    "nocheck": true
+    "name": "효자프라자 웰빙아울렛"
 },
 {
     "id": 12,
@@ -41,20 +37,17 @@
 {
     "id": 121,
     "pId": 12,
-    "name": "김천터미널",
-    "nocheck": true
+    "name": "김천터미널"
 },
 {
     "id": 122,
     "pId": 12,
-    "name": "KTX 김천(구미)",
-    "nocheck": true
+    "name": "KTX 김천(구미)"
 },
 {
     "id": 123,
     "pId": 12,
-    "name": "모다아울렛 김천구미점",
-    "nocheck": true
+    "name": "모다아울렛 김천구미점"
 },
 {
     "id": 13,
@@ -64,19 +57,16 @@
 {
     "id": 131,
     "pId": 13,
-    "name": "구미터미널",
-    "nocheck": true
+    "name": "구미터미널"
 },
 {
     "id": 132,
     "pId": 13,
-    "name": "동아백화점 구미점",
-    "nocheck": true
+    "name": "동아백화점 구미점"
 },
 {
     "id": 133,
     "pId": 13,
-    "name": "롯데시네마 구미점",
-    "nocheck": true
+    "name": "롯데시네마 구미점"
 }
 ]

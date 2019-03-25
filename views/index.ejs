@@ -37,11 +37,13 @@
     <script type="text/javascript" src="../public/javascripts/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../public/javascripts/jquery.ztree.core-3.5.js"></script>
     <script type="text/javascript" src="../public/javascripts/jquery.ztree.excheck-3.5.js"></script>
+    <script type="text/javascript" src="../public/javascripts/jquery.ztree.exedit-3.5.js"></script>
 
     <script language="javascript">
+        var user_area = <%=user.area%>;
+
         function logo_info() {
             /*   접속 지역에 따라 달라지는 CI 표현 */
-            var user_area = <%=user.area%>;
             var img_src;
             for (var i = 0; i <= 17; i++) {
                 if (user_area == i) {
@@ -52,7 +54,6 @@
         }
 
         function title_info() {
-            var user_area = <%=user.area%>;
             var img_src;
             for (var i = 0; i <= 17; i++) {
                 if (user_area == i) {
@@ -64,7 +65,56 @@
 
         // ztree 선언
         var newJquery = $.noConflict(true);
+        var zNodes;
+        var zNodes2;
+
+        newJquery(document).ready(function () {
+            for (var i = 1; i <= 17; i++) {
+                if ((user_area) == i) {
+                    var url = '/data/data' + i + '.json';
+                    // console.log(url);
+                }
+            }
+            newJquery.ajax({
+                type: "GET",
+                url: url,
+                async: false,
+                success: function (data) {
+                    zNodes = data;
+                    console.log(zNodes);
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                }
+            })
+        });
+
+        newJquery(document).ready(function () {
+            for (var i = 1; i <= 17; i++) {
+                if ((user_area) == i) {
+                    var url = '/data/device_' + i + '.json';
+                }
+            }
+            newJquery.ajax({
+                type: "GET",
+                url: url,
+                async: false,
+                success: function (data) {
+                    zNodes2 = data;
+                    console.log(zNodes2);
+                },
+                error: function (e) {
+                    console.log(e.responseText);
+                }
+            })
+        });
+
         var setting = {
+            edit: {
+                enable: true,
+                showRemoveBtn: false,
+                showRenameBtn: false
+            },
             check: {
                 enable: true,
                 nocheckInherit: true
@@ -73,60 +123,22 @@
                 simpleData: {
                     enable: true
                 }
+            },
+            callback: {
+                beforeDrag: beforeDrag,
+                beforeDrop: beforeDrop
             }
         };
-
-        var zNodes;
         var code;
 
-        function nocheckNode(e) {
-            var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
-                nocheck = e.data.nocheck,
-                nodes = zTree.getSelectedNodes();
-            if (nodes.length == 0) {
-                alert("Please select one node at first...");
-            }
+        // zTree 초기화
 
-            for (var i = 0, l = nodes.length; i < l; i++) {
-                nodes[i].nocheck = nocheck;
-                zTree.updateNode(nodes[i]);
-            }
-        }
-
-        function setCheck() {
-            var zTree = newJquery.fn.zTree.getZTreeObj("#treeDemo"),
-                py = $("#py").attr("checked") ? "p" : "",
-                sy = $("#sy").attr("checked") ? "s" : "",
-                pn = $("#pn").attr("checked") ? "p" : "",
-                sn = $("#sn").attr("checked") ? "s" : "",
-                type = {
-                    "Y": py + sy,
-                    "N": pn + sn
-                };
-            zTree.setting.check.chkboxType = type;
-            showCode('setting.check.chkboxType = { "Y" : "' + type.Y + '", "N" : "' + type.N + '" };');
-        }
-
-        function showCode(str) {
-            if (!code) code = $("#code");
-            code.empty();
-            code.append("<li>" + str + "</li>");
-        }
-
+        // treeDemo
         newJquery(document).ready(function () {
             newJquery.fn.zTree.init($("#treeDemo"), setting, zNodes);
-            setCheck();
-            newJquery("#nocheckTrue").bind("click", {
-                nocheck: true
-            }, nocheckNode);
-            newJquery("#nocheckFalse").bind("click", {
-                nocheck: false
-            }, nocheckNode);
-            newJquery("#py").bind("change", setCheck);
-            newJquery("#sy").bind("change", setCheck);
-            newJquery("#pn").bind("change", setCheck);
-            newJquery("#sn").bind("change", setCheck);
+            newJquery.fn.zTree.init($("#treeDemo2"), setting, zNodes2);
         });
+
     </script>
 
     <style>
@@ -333,55 +345,14 @@
                                     </div>
 
                                     <div class="tabcontent" id="location">
-                                        <% if(locals.user){%>
-                                        <% if((locals.user.area) == 1 ){%>
-                                        {{gridOption1}}
-                                        <% }%>
-
-                                        <% if((locals.user.area) == 4 ){%>
-                                        {{gridOption2}}
-                                        <% }%>
-
-                                        <% if((locals.user.area) == 10 ){%>
-                                        {{gridOption3}}
-                                        <% }%>
-
-                                        <% if((locals.user.area) == 15 ){%>
-                                        {{gridOption4}}
-                                        <% }%>
-
-                                        <% if((locals.user.area) == 17 ){%>
-                                        {{gridOption5}}
-                                        <% }%>
-                                        <% }  %>
+                                        <ul id="treeDemo" class="ztree">
+                                        </ul>
                                     </div>
 
                                     <!-- 분류별 -->
                                     <div class="tabcontent" id="devide">
-                                        <% if(locals.user){%>
-                                        <% if((locals.user.area) == 1 ){%>
-                                        {{gridOption6}}
-                                        <% }%>
-
-                                        <% if((locals.user.area) == 4 ){%>
-                                        {{gridOption7}}
-                                        <% }%>
-
-                                        <% if((locals.user.area) == 10 ){%>
-                                        {{gridOption8}}
-                                        <% }%>
-
-                                        <% if((locals.user.area) == 15 ){%>
-                                        {{gridOption9}}
-                                        <% }%>
-
-                                        <% if((locals.user.area) == 17 ){%>
-                                        {{gridOption10}}
-                                        <% }%>
-                                        <% }  %>
-
-                                        <!-- <ul id="treeDemo" class="ztree">
-                                        </ul> -->
+                                        <ul id="treeDemo2" class="ztree">
+                                        </ul>
                                     </div>
 
                                     <!-- 그룹별 -->
@@ -394,14 +365,24 @@
 
                             <div class="col-5 card shadow mb-4" style="float: left; height: 230px;">
                                 <div class="card-header py-3">
-                                    <span class="m-0 font-weight-bold text-primary">방송 종류</span>
+                                    <span class="m-0 font-weight-bold text-primary">재난 종류</span>
                                 </div>
-                                <div class="col-12" id="checkboxTest" style="padding: 10px;">
-                                    <p class="btn-group-toggle">
-                                        <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
-                                            data-target="#Modal" data-title="data">기상특보</button>
-
-                                    </p>
+                                <div class="col-12" style="padding: 10px;">
+                                    <button type="button" id="OpenModal" class="btn btn-default"
+                                        onclick="weather1()">기상특보</button>
+                                    <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
+                                        data-target="#Modal" data-title="data">기타경보</button>
+                                    <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
+                                        data-target="#Modal" data-title="data">민방위</button>
+                                    <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
+                                        data-target="#Modal" data-title="data">전국</button>
+                                    <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
+                                        data-target="#Modal" data-title="data">지역</button>
+                                    <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
+                                        data-target="#Modal" data-title="data">테스트</button>
+                                    <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
+                                        data-target="#Modal" data-title="data">기상추가</button>
+                                    <input type="text" id="pInput">
                                 </div>
                             </div>
 
@@ -480,20 +461,23 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLable">상세 선택</h5>
+                            <h5 class="modal-title" id="exampleModalLable">방송 종류 상세 선택</h5>
                         </div>
                         <div class='modal-body'>
                             <script>
-                                for (var i = 0; i <= 19; i++) {
-                                    document.write("<input type='checkbox'>");
+                                function setParentText() {
+                                    opener.document.getElementById("pInput").value = document.getElementById("cInput")
+                                        .value
+                                }
+
+                                for (var i = 0; i <= 18; i++) {
+                                    document.write("<input type='checkbox' id='cInput'>");
                                     var data = "{{gridOption11[" + i + "].situation}}";
                                     document.write(data);
                                 }
                             </script>
+                            <input type="button" value="전달하기" onclick="setParentText()" class="btn btn-primary">
                         </div>
-                        <!-- <div class="modal-body">
-                            <input type="checkbox"> {{gridOption11[0].situation}}
-                        </div> -->
                     </div>
                 </div>
             </div>
