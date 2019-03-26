@@ -24,14 +24,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
-    <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
-    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
-    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.2.6/ui-grid.js"></script>
-    <link rel="styleSheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.2.6/ui-grid.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-aria.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/js/xeditable.js"></script>
-    <link rel="styleSheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/css/xeditable.css">
     <script src="/javascripts/table.js"></script>
     <script src="/javascripts/option.js"></script>
     <script type="text/javascript" src="../public/javascripts/jquery-1.4.4.min.js"></script>
@@ -81,7 +73,6 @@
                 async: false,
                 success: function (data) {
                     zNodes = data;
-                    console.log(zNodes);
                 },
                 error: function (e) {
                     console.log(e.responseText);
@@ -101,7 +92,6 @@
                 async: false,
                 success: function (data) {
                     zNodes2 = data;
-                    console.log(zNodes2);
                 },
                 error: function (e) {
                     console.log(e.responseText);
@@ -127,6 +117,9 @@
             callback: {
                 beforeDrag: beforeDrag,
                 beforeDrop: beforeDrop
+            },
+            view: {
+                showIcon: showIconForTree
             }
         };
         var code;
@@ -138,7 +131,6 @@
             newJquery.fn.zTree.init($("#treeDemo"), setting, zNodes);
             newJquery.fn.zTree.init($("#treeDemo2"), setting, zNodes2);
         });
-
     </script>
 
     <style>
@@ -363,15 +355,15 @@
                             </div>
                             <!-- </div> -->
 
-                            <div class="col-5 card shadow mb-4" style="float: left; height: 230px;">
+                            <div class="col-5 card shadow mb-4" style="float: left; height: 260px;">
                                 <div class="card-header py-3">
                                     <span class="m-0 font-weight-bold text-primary">재난 종류</span>
                                 </div>
                                 <div class="col-12" style="padding: 10px;">
                                     <button type="button" id="OpenModal" class="btn btn-default"
                                         onclick="weather1()">기상특보</button>
-                                    <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
-                                        data-target="#Modal" data-title="data">기타경보</button>
+                                    <button type="button" id="OpenModal" class="btn btn-default"
+                                    onclick="weather2()">기타경보</button>
                                     <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
                                         data-target="#Modal" data-title="data">민방위</button>
                                     <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
@@ -382,11 +374,12 @@
                                         data-target="#Modal" data-title="data">테스트</button>
                                     <button type="button" id="OpenModal" class="btn btn-default" data-toggle="modal"
                                         data-target="#Modal" data-title="data">기상추가</button>
-                                    <input type="text" id="pInput">
+                                        <br>
+                                        확인 : <input type="text" id="pInput">
                                 </div>
                             </div>
 
-                            <div class="col-4 card shadow mb-4" style="float: left; height: 230px;">
+                            <div class="col-4 card shadow mb-4" style="float: left; height: 260px;">
                                 <div class="card-header py-3">
                                     <span class="m-0 font-weight-bold text-primary">통신 종류</span>
                                 </div>
@@ -408,7 +401,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-3 card shadow mb-4" style="float: right; height: 230px;">
+                            <div class="col-3 card shadow mb-4" style="float: right; height: 260px;">
                                 <div class="card-header py-3">
                                     <span class="m-0 font-weight-bold text-primary">방송 종류</span>
                                 </div>
@@ -440,8 +433,8 @@
                                 <div id="map" style="height: 600px;"></div>
                             </div>
                             <div class="col-12" style="text-align:center;"> <button class="btn btn-primary"
-                                    name="command">선택
-                                    내용 확인</button>
+                                    name="command" id="OpenModal" data-toggle="modal" data-target="#Modal"
+                                    data-title="data">선택 내용 확인</button>
                                 <button class="btn btn-primary" name="checkCancel" onclick="clear_onclick()">조작
                                     초기화</button>
                                 <button class="btn btn-primary">시험 방송 전송</button>
@@ -461,22 +454,10 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLable">방송 종류 상세 선택</h5>
+                            <h5 class="modal-title" id="exampleModalLable">선택한 내용 확인하기</h5>
                         </div>
                         <div class='modal-body'>
-                            <script>
-                                function setParentText() {
-                                    opener.document.getElementById("pInput").value = document.getElementById("cInput")
-                                        .value
-                                }
-
-                                for (var i = 0; i <= 18; i++) {
-                                    document.write("<input type='checkbox' id='cInput'>");
-                                    var data = "{{gridOption11[" + i + "].situation}}";
-                                    document.write(data);
-                                }
-                            </script>
-                            <input type="button" value="전달하기" onclick="setParentText()" class="btn btn-primary">
+                            <input type="text" id="pInput">
                         </div>
                     </div>
                 </div>

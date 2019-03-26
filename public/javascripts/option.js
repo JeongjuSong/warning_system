@@ -11,7 +11,7 @@ function printTime() {
 //     printTime();
 // }
 
-/* select의 년/월/일 시간 선택 */
+// select의 년/월/일 시간 선택
 window.onload = function () {
     printTime();
     var sMonth = 1
@@ -89,7 +89,7 @@ $(function () {
     });
 });
 
-/* 나머지 항목들 따로 선택 */
+// 나머지 항목들 따로 선택 
 function CheckFunc(obj) {
     var allObj = $("[name=checkAll]");
     var objName = $(obj).attr("name");
@@ -125,20 +125,40 @@ function clear_onclick() {
     $("[name=checkAll]").parent().removeClass('selected');
     $("[name=check]").parent().removeClass('selected');
     $("[name=checkOne]").parent().removeClass('selected');
-    
+
 
 }
 
-function weather1() {
+// 재난 종류 클릭 시 팝업 창 생성
+function weather1(){
     var w = 570;
     var h = 400;
-    var LeftPosition = (screen.width-w)/2;
-    var TopPosition = (screen.height-h)/2;
+    var LeftPosition = (screen.width - w) / 2;
+    var TopPosition = (screen.height - h) / 2;
 
-    window.name="parentForm";
-    openWin = window.open("/detail_weather", "childForm", "width="+w+",height="+h+",top="+TopPosition+",left="+LeftPosition+", scrollbars=no");
+    window.name = "parentForm";
+    openWin = window.open("/detail_weather", "childForm", "width=" + w + ",height=" + h + ",top=" + TopPosition + ",left=" + LeftPosition + ", scrollbars=no");
 }
 
+function weather2(){
+    var w = 570;
+    var h = 400;
+    var LeftPosition = (screen.width - w) / 2;
+    var TopPosition = (screen.height - h) / 2;
+
+    window.name = "parentForm";
+    openWin = window.open("/detail_weather", "childForm", "width=" + w + ",height=" + h + ",top=" + TopPosition + ",left=" + LeftPosition + ", scrollbars=no");
+}
+
+var openWin;
+
+function setParentText() {
+    opener.document.getElementById("pInput").value = document.getElementById("cInput").value
+}
+
+// 받은 값 : <input type="text" id="pInput">
+
+// ztree 관련 코드
 function nocheckNode(e) {
     var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
         nocheck = e.data.nocheck,
@@ -174,13 +194,30 @@ function showCode(str) {
 }
 
 function beforeDrag(treeId, treeNodes) {
-    for (var i=0,l=treeNodes.length; i<l; i++) {
+    for (var i = 0, l = treeNodes.length; i < l; i++) {
         if (treeNodes[i].drag === false) {
             return false;
         }
     }
     return true;
 }
+
 function beforeDrop(treeId, treeNodes, targetNode, moveType) {
     return targetNode ? targetNode.drop !== false : true;
+}
+
+// 아이콘 숨김
+function showIconForTree(treeId, treeNode) {
+    return !treeNode.isParent;
+};
+
+
+function setChildValue(name) {
+    document.getElementById("ParentInput").value = name;
+}
+
+function sendChildValue(name) {
+    console.log("sendChildValue Open");
+    opener.setChildValue(name);
+    window.close();
 }

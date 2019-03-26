@@ -142,21 +142,65 @@ myapp.controller('myCtrl', function ($scope, $http) {
     // console.log(response.data.weather_special);
   });
 
-});
-
-myapp.controller('myCtrl2', function ($scope, $http) {
-
-  // 방송 종류
-
-  // 기상특보 gridOption11
+  //  기타 경보 gridOption12
   $http({
     method: "GET",
     url: "/data/type.json",
     contentType: "application/json",
   }).then(function data(response) {
-    $scope.gridOption11 = response.data.weather_special;
-    // console.log("option11 "+ response.data);
-    // console.log(response.data.weather_special);
+    $scope.gridOption12 = response.data.other_alarm;
+    // console.log("option12 "+ response.data);
+    // console.log(response.data.other_alarm);
+  });
+
+  // 민방위 gridoption13
+  $http({
+    method: "GET",
+    url: "/data/type.json",
+    contentType: "application/json",
+  }).then(function data(response) {
+    $scope.gridOption13 = response.data.civil_defence;
+    // console.log(response.data.civil_defence);
+  });
+
+  // 전국 gridoption14
+  $http({
+    method: "GET",
+    url: "/data/type.json",
+    contentType: "application/json",
+  }).then(function data(response) {
+    $scope.gridOption14 = response.data.national;
+    // console.log(response.data.national);
+  });
+
+  // 지역 gridOption15
+  $http({
+    method: "GET",
+    url: "/data/type.json",
+    contentType: "application/json",
+  }).then(function data(response) {
+    $scope.gridOption15 = response.data.local;
+    // console.log(response.data.local);
+  });
+
+  // 테스트 gridoption16
+  $http({
+    method: "GET",
+    url: "/data/type.json",
+    contentType: "application/json",
+  }).then(function data(response) {
+    $scope.gridOption16 = response.data.test;
+    // console.log(response.data.test);
+  });
+
+  // 기상 추가 gridOption17
+  $http({
+    method: "GET",
+    url: "/data/type.json",
+    contentType: "application/json",
+  }).then(function data(response) {
+    $scope.gridOption17 = response.data.other_weather;
+    // console.log(response.data.other_weather);
   });
 
 });

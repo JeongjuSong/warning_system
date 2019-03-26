@@ -79,71 +79,127 @@
 
     "other_alarm": [{
             "id": 1,
-            "situation": "강풍 경보"
+            "situation": "긴급 홍수 경보"
         },
         {
             "id": 1,
-            "situation": "강풍 주의보"
+            "situation": "긴급 홍수 상황"
         },
         {
             "id": 1,
-            "situation": "건조 경보"
+            "situation": "긴급 홍수 주의보"
         },
         {
-            "id": 3,
-            "situation": "대설 경보"
+            "id": 2,
+            "situation": "뇌우 경보"
         },
         {
-            "id": 3,
-            "situation": "대설 주의보"
+            "id": 2,
+            "situation": "뇌우 주의보"
+        },
+        {
+            "id": 2,
+            "situation": "눈 폭풍 경보"
+        },
+        {
+            "id": 2,
+            "situation": "눈 폭풍 주의보"
+        },
+        {
+            "id": 5,
+            "situation": "모래 폭풍 경보"
+        },
+        {
+            "id": 6,
+            "situation": "방사능 위험 경보"
+        },
+        {
+            "id": 7,
+            "situation": "산간계곡 경보"
+        },
+        {
+            "id": 7,
+            "situation": "산간계곡 주의보"
+        },
+        {
+            "id": 8,
+            "situation": "악기상 정보"
+        },
+        {
+            "id": 8,
+            "situation": "안개 경보"
+        },
+        {
+            "id": 8,
+            "situation": "안개 주의보"
+        },
+        {
+            "id": 8,
+            "situation": "열대 폭풍(태풍) 경보"
+        },
+        {
+            "id": 8,
+            "situation": "열대 폭풍(태풍) 주의보"
+        },
+        {
+            "id": 8,
+            "situation": "위험 물질 경보"
         },
         {
             "id": 9,
-            "situation": "지진 해일 주의보"
+            "situation": "지진 경보"
         },
         {
             "id": 12,
-            "situation": "태풍 경보"
+            "situation": "토네이도 경보"
         },
         {
             "id": 12,
-            "situation": "태풍 정보"
+            "situation": "토네이도 주의보"
         },
         {
             "id": 12,
-            "situation": "태풍 주의보"
+            "situation": "특수 해양 경보"
+        },
+        {
+            "id": 12,
+            "situation": "특이 기상 정보"
         },
         {
             "id": 13,
-            "situation": "폭풍 해일 경보"
-        },
-        {
-            "id": 13,
-            "situation": "폭풍 해일 주의보"
-        },
-        {
-            "id": 13,
-            "situation": "폭풍 경보"
+            "situation": "폭풍설경보"
         },
         {
             "id": 14,
-            "situation": "한파 경보"
+            "situation": "해안 침수 경보"
         },
         {
             "id": 14,
-            "situation": "한파 주의보"
+            "situation": "해안 침수 주의보"
         },
         {
             "id": 14,
-            "situation": "호우 경보"
+            "situation": "핵 발전소 관련 경보"
         },
         {
             "id": 14,
-            "situation": "호우 주의보"
+            "situation": "홍수 경보"
         },
         {
             "id": 14,
-            "situation": "황사 경보"
+            "situation": "홍수 상황"
+        },
+        {
+            "id": 14,
+            "situation": "홍수 주의보"
+        },
+        {
+            "id": 14,
+            "situation": "화산 경보"
+        },
+        {
+            "id": 14,
+            "situation": "화재 경보"
         }
     ],
 
