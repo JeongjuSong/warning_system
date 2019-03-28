@@ -103,7 +103,14 @@ module.exports = function (app, passport) {
 			user: req.user,
 			area: req.area
 		});
-	})
+	});
+
+	app.get('/add_group', isLoggedIn, function (req, res) {
+		res.render('add_group.ejs', {
+			user: req.user,
+			area: req.area
+		});
+	});
 
 	app.get('/check_terminal', isLoggedIn, function (req, res) {
 		res.render('check_terminal.ejs', {

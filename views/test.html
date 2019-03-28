@@ -1,23 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-  <head>
-    <link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <link data-require="bootstrap-css@3.*" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css" />
-    <script data-require="angular.js@1.6.5" data-semver="1.6.5" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
-    <script data-require="angular-animate@1.6.*" data-semver="1.6.5" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
-    <script data-require="angular-touch@1.6.*" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular-touch.js"></script>
-    <script data-require="ui-bootstrap@*" data-semver="2.5.0" src="https://cdn.rawgit.com/angular-ui/bootstrap/gh-pages/ui-bootstrap-tpls-2.5.0.js"></script>
-    <script src="../public/javascripts/group.js"></script>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+  <meta content="" name="description">
+  <meta content="" name="author">
+  <title>다중이용시설 긴급경보방송시스템</title>
+  <!-- Bootstrap -->
+  <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../public/css/zTreeStyle.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- 원하는 라이브러리 추가 -->
+
+  <style>
+    @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+    body {
+      padding: 50px;
+    }
+
+    label {
+      position: relative;
+      cursor: pointer;
+      color: #666;
+      font-size: 30px;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      position: absolute;
+      right: 9000px;
+    }
+
+    /*Check box*/
+    input[type="checkbox"]+.label-text:before {
+      content: "\f096";
+      font-family: "FontAwesome";
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      width: 1em;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    input[type="checkbox"]:checked+.label-text:before {
+      content: "\f14a";
+      color: #2980b9;
+      animation: effect 250ms ease-in;
+    }
+
+    input[type="checkbox"]:disabled+.label-text {
+      color: #aaa;
+    }
+
+    input[type="checkbox"]:disabled+.label-text:before {
+      content: "\f0c8";
+      color: #ccc;
+    }
 
 
-  <body ng-app="plunker">
-    <div ng-controller="ModalCtrl">
-      <button class="btn btn-info" ng-click="open()" style="margin: 15px;">Open Modal</button>
-      
-      <h2 style="color: red;">{{result}}</h2>
+    @keyframes effect {
+      0% {
+        transform: scale(0);
+      }
+
+      25% {
+        transform: scale(1.3);
+      }
+
+      75% {
+        transform: scale(1.4);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+
+<body>
+
+
+  <div class="container">
+    <div class="col-md-4">
+      <form>
+        <h2>1. Customs Checkboxes</h2>
+        <div class="form-check">
+          <label>
+            <input type="checkbox" name="check" checked> <span class="label-text">Option 01</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label>
+            <input type="checkbox" name="check"> <span class="label-text">Option 02</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label>
+            <input type="checkbox" name="check"> <span class="label-text">Option 03</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label>
+            <input type="checkbox" name="check" disabled> <span class="label-text">Option 04</span>
+          </label>
+        </div>
+      </form>
+
     </div>
-  </body>
+    <div class="col-md-4">
+      <form>
+        <h2>2. Customs Radios</h2>
+        <div class="form-check">
+          <label>
+            <input type="radio" name="radio" checked> <span class="label-text">Option 01</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label>
+            <input type="radio" name="radio"> <span class="label-text">Option 02</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label>
+            <input type="radio" name="radio"> <span class="label-text">Option 03</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label>
+            <input type="radio" name="radio" disabled> <span class="label-text">Option 04</span>
+          </label>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <form>
+        <h2>3.Radios Toggles</h2>
+        <div class="form-check">
+          <label class="toggle">
+            <input type="radio" name="toggle" checked> <span class="label-text">Option 01</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="toggle">
+            <input type="radio" name="toggle"> <span class="label-text">Option 02</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="toggle">
+            <input type="radio" name="toggle"> <span class="label-text">Option 03</span>
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="toggle">
+            <input type="radio" name="toggle" disabled> <span class="label-text">Option 04</span>
+          </label>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+<!-- Bootstrap core JavaScript-->
+<script src="../public/vendor/jquery/jquery.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="../public/javascripts/sb-admin-2.min.js"></script>
+</body>
 
 </html>
