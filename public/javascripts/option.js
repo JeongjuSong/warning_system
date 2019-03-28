@@ -115,6 +115,17 @@ $(function () {
             CheckFunc($(this));
         });
     });
+    $("[name=check1]").each(function () {
+        $(this).click(function () {
+            CheckFunc($(this));
+        });
+    });
+
+    // 전체선택해제ㅐ 체크박스 클릭 
+    $("#allClear").click(function () {
+        //해당화면에 모든 checkbox들의 체크를해제시킨다. 
+        $("input[type=checkbox]").prop("checked", false);
+    })
 });
 
 function buttonclick() {
@@ -125,99 +136,30 @@ function clear_onclick() {
     $("[name=checkAll]").parent().removeClass('selected');
     $("[name=check]").parent().removeClass('selected');
     $("[name=checkOne]").parent().removeClass('selected');
-
-
+    $("[name=check1]").parent().removeClass('selected');
 }
 
-// 재난 종류 클릭 시 팝업 창 생성
-function weather1(){
-    var w = 570;
-    var h = 400;
-    var LeftPosition = (screen.width - w) / 2;
-    var TopPosition = (screen.height - h) / 2;
-
-    window.name = "parentForm";
-    openWin = window.open("/detail_weather", "childForm", "width=" + w + ",height=" + h + ",top=" + TopPosition + ",left=" + LeftPosition + ", scrollbars=no");
+// 재난 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
+function closecheck() {
+    $("[name=check1]").parent().removeClass('selected');
+    $("input[type=checkbox]").prop("checked", false);
 }
 
-function weather2(){
-    var w = 570;
-    var h = 400;
-    var LeftPosition = (screen.width - w) / 2;
-    var TopPosition = (screen.height - h) / 2;
-
-    window.name = "parentForm";
-    openWin = window.open("/detail_weather", "childForm", "width=" + w + ",height=" + h + ",top=" + TopPosition + ",left=" + LeftPosition + ", scrollbars=no");
-}
-
-var openWin;
-
-function setParentText() {
-    opener.document.getElementById("pInput").value = document.getElementById("cInput").value
-}
-
-// 받은 값 : <input type="text" id="pInput">
-
-// ztree 관련 코드
-function nocheckNode(e) {
-    var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
-        nocheck = e.data.nocheck,
-        nodes = zTree.getSelectedNodes();
-    if (nodes.length == 0) {
-        alert("Please select one node at first...");
+function openTab(evt, select) {
+    var i,
+        tabcontent,
+        tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
     }
-
-    for (var i = 0, l = nodes.length; i < l; i++) {
-        nodes[i].nocheck = nocheck;
-        zTree.updateNode(nodes[i]);
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
-}
-
-function setCheck() {
-    var zTree = newJquery.fn.zTree.getZTreeObj("#treeDemo"),
-        py = $("#py").attr("checked") ? "p" : "",
-        sy = $("#sy").attr("checked") ? "s" : "",
-        pn = $("#pn").attr("checked") ? "p" : "",
-        sn = $("#sn").attr("checked") ? "s" : "",
-        type = {
-            "Y": s,
-            "N": ps
-        };
-    zTree.setting.check.chkboxType = type;
-    showCode('setting.check.chkboxType = { "Y" : "s", "N" : "ps" }');
-}
-
-function showCode(str) {
-    if (!code) code = $("#code");
-    code.empty();
-    code.append("<li>" + str + "</li>");
-}
-
-function beforeDrag(treeId, treeNodes) {
-    for (var i = 0, l = treeNodes.length; i < l; i++) {
-        if (treeNodes[i].drag === false) {
-            return false;
-        }
-    }
-    return true;
-}
-
-function beforeDrop(treeId, treeNodes, targetNode, moveType) {
-    return targetNode ? targetNode.drop !== false : true;
-}
-
-// 아이콘 숨김
-function showIconForTree(treeId, treeNode) {
-    return !treeNode.isParent;
-};
-
-
-function setChildValue(name) {
-    document.getElementById("ParentInput").value = name;
-}
-
-function sendChildValue(name) {
-    console.log("sendChildValue Open");
-    opener.setChildValue(name);
-    window.close();
+    document
+        .getElementById(select)
+        .style
+        .display = "block";
+    evt.currentTarget.className += " active";
 }

@@ -55,17 +55,7 @@
             }
             return img_src;
         }
-
-        // ztree 선언
-        var newJquery = $.noConflict(true);
-
-        // // treeDemo 생성
-        // newJquery(document).ready(function () {
-        //     newJquery.fn.zTree.init($("#treeDemo"), setting, zNodes);
-        //     newJquery.fn.zTree.init($("#treeDemo2"), setting, zNodes2);
-        // });
     </script>
-
 </head>
 
 <body id="page-top" class="sidebar-toggled">
@@ -337,7 +327,8 @@
                                                     <label class="btn btn-default" style="width:100px;">
                                                         <input type="checkbox" id="OpenModal" name="check1"
                                                             data-toggle="modal" data-target="#Modal" data-title="data"
-                                                            style="position: absolute; clip: rect(0,0,0,0);" data-param="8">기상추가
+                                                            style="position: absolute; clip: rect(0,0,0,0);"
+                                                            data-param="8">기상추가
                                                     </label>
                                                 </td>
                                             </tr>
@@ -477,9 +468,9 @@
             </div>
 
             <script>
-                $('#Modal').on('show.bs.modal', function(event) {
+                // $('#Modal').on('show.bs.modal', function (event) {
 
-                })
+                // })
             </script>
 
             <!--modal2 : 선택내용확인 버튼 클릭 시 발동-->
@@ -517,37 +508,17 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-    <!-- Modify janjune DAUM Map add Makers -->
 
-    <!-- Modify janjune DAUM Map add Makers -->
     <script>
-        function openTab(evt, select) {
-            var i,
-                tabcontent,
-                tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document
-                .getElementById(select)
-                .style
-                .display = "block";
-            evt.currentTarget.className += " active";
-        }
-        // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
     </script>
 
     <!-- Bootstrap core JavaScript-->
+    <script src="/javascripts/test_ztree.js"></script>
     <script src="/javascripts/map_read.js"></script>
     <script src="../public/vendor/jquery/jquery.min.js"></script>
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <!-- <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> -->
     <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
     <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>

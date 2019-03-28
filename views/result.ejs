@@ -13,33 +13,23 @@
 
     <!-- Custom fonts for this template-->
     <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="/javascripts/option.js"></script>
 
     <!--     Custom styles for this template-->
     <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
 
     <script language="javascript">
-        function printTime() {
-              var clock = document.getElementById("clock");            // 출력할 장소 선택
-              var now = new Date();                                                  // 현재시간
-              var nowTime = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate() + "&nbsp;&nbsp;" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-              clock.innerHTML = nowTime;           // 현재시간을 출력
-              setTimeout("printTime()",1000);         // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
-            }
-            window.onload = function() {                         // 페이지가 로딩되면 실행
-            printTime();
-            }
-
-            
-               /*   접속 지역에 따라 달라지는 CI 표현 */
-    function logo_info() {
-    var user_area = <%=user.area%>;
-    var img_src;
-        for (var i = 1; i <= 18; i++) {
-            if (user_area == i) {
-                img_src = '../public/img/' + i + '_logo.png';
+        /*   접속 지역에 따라 달라지는 CI 표현 */
+        function logo_info() {
+            var user_area = <%=user.area%>;
+            var img_src;
+            for (var i = 1; i <= 18; i++) {
+                if (user_area == i) {
+                    img_src = '../public/img/' + i + '_logo.png';
                 }
             }
             return img_src;
@@ -51,32 +41,36 @@
             for (var i = 1; i <= 18; i++) {
                 if (user_area == i) {
                     img_src = '../public/img/' + i + '_title.png';
-                    }
                 }
-                return img_src;
             }
+            return img_src;
+        }
 
-            google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
 
-            // Draw the chart and set the chart values
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                    ['Result', 'All Result Record'],
-                    ['Success', 27],
-                    ['failure', 8],
-                    ['waiting', 15]
-                    ]);
-                    
-                    // Optional; add a title and set the width and height of the chart
-                    var options = {'title':'Result Record', 'width':550, 'height':400};
-                    // Display the chart inside the <div> element with id="piechart"
-                        var chart = new google.visualization.PieChart
-                        (document.getElementById('piechart'));
-                        chart.draw(data, options);
-                        }
-            
-</script>
+        // Draw the chart and set the chart values
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Result', 'All Result Record'],
+                ['Success', 27],
+                ['failure', 8],
+                ['waiting', 15]
+            ]);
+
+            // Optional; add a title and set the width and height of the chart
+            var options = {
+                'title': 'Result Record',
+                'width': 550,
+                'height': 400
+            };
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+    </script>
 
 </head>
 
@@ -105,13 +99,13 @@
                 <!-- Divider -->
                 <hr class="sidebar-divider my-0">
                 <!-- Nav Item - Dashboard -->
-                <li class="nav-item" style="margin-top:30px; border-left: 5px solid #4e73df; background-color:#eff1f2">
+                <li class="nav-item" style="margin-top:30px;">
                     <a class="nav-link" href="/index" style="text-align: center;">
                         <i class="fas fa-fw fa-exclamation-triangle"></i>
                         <span>경보 발령</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="border-left: 5px solid #4e73df; background-color:#eff1f2">
                     <a class="nav-link collapsed" href="/result" style="text-align: center;">
                         <i class="fas fa-fw fa-chart-bar"></i>
                         <span>발령 결과</span>
@@ -225,7 +219,8 @@
                     <!-- Content Row -->
                     <div class="col-12">
                         <div class="card shadow mb-4">
-                            <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary" style="float: left;">발령
+                            <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary"
+                                    style="float: left;">발령
                                     결과</span>
                             </div>
                             <div class="card-body">
@@ -237,7 +232,8 @@
 
                     <div class="col-8">
                         <div class="card shadow mb-4">
-                            <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary" style="float: left;">방송
+                            <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary"
+                                    style="float: left;">방송
                                     통계</span>
                             </div>
                             <div class="card-body">

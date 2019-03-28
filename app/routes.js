@@ -73,14 +73,6 @@ module.exports = function (app, passport) {
 	});
 
 	// 추가
-
-	app.get('/detail_weather', isLoggedIn, function (req, res) {
-		res.render('detail_weather.ejs', {
-			user: req.user,
-			area: req.area
-
-		});
-	});
 	
 	app.get('/result', isLoggedIn, function (req, res) {
 		res.render('result.ejs', {
