@@ -88,7 +88,7 @@
                 <li class="nav-item" style="border-left: 5px solid #4e73df; background-color:#eff1f2">
                     <a class="nav-link" href="/check_terminal" style="text-align: center;">
                         <i class="fas fa-fw fa-wrench"></i>
-                        <span>장비 검사</span>
+                        <span>장비 관리</span>
                     </a>
                 </li>
                 <li class="nav-item" >
@@ -193,7 +193,42 @@
                     <!-- Content Row -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary"
-                                style="float: left;">단말기 확인</span>
+                                style="float: left;">단말기 추가/수정/삭제</span>
+                        </div>
+                        <div class="card-body">
+
+                            <div>
+                                <div class="container">
+                                    <p> </p>
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-primary" ng-click="pushData()"
+                                            style="width:120px;">Edit</button>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="container">
+                                    <div class="table-responsive">
+                                        <table border="1" style="text-align:center;">
+                                            <tr>
+                                                <th style="width:250px;">지역</th>
+                                                <th style="width:350px;">장비명</th>
+                                                <th style="width:350px;">IP 주소</th>
+                                                <th style="width:200px;">확인/삭제</th>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td> </td>
+                                                <td></td>
+                                                <td><input type="button" value="확인" class="btn btn-primary"> <input
+                                                        type="button" value="삭제" class="btn btn-danger"></td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+
                         </div>
                     </div>
 

@@ -2369,8 +2369,8 @@ pre code {
 }
 
 .form-control {
-    display: block;
-    width: 100%;
+    /* display: block; */
+    width: 70%;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -2388,8 +2388,8 @@ pre code {
 }
 
 .form-control2 {
-    display: block;
-    width: 100%;
+    /* display: block; */
+    width: 70%;
     height: calc(1.5em + .75rem + 2px);
     padding: .375rem .75rem;
     font-size: 1rem;
@@ -9698,7 +9698,9 @@ button.bg-dark:hover {
 }
 
 .p-5 {
-    padding: 3rem !important
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+    padding: 1rem !important
 }
 
 .pt-5,
@@ -13176,6 +13178,8 @@ form.register .custom-checkbox.small label {
 }
 
 form.register .form-control-user {
+    height: calc(1.5em + .75rem + 2px);
+    border: 1px solid #d1d3e2;
     font-size: .8rem;
     border-radius: 10rem;
     padding: 1.5rem 1rem

@@ -97,7 +97,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/check_terminal" style="text-align: center;">
                         <i class="fas fa-fw fa-wrench"></i>
-                        <span>장비 검사</span>
+                        <span>장비 관리</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -279,16 +279,14 @@
                                             <tr>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" id="OpenModal" name="check1"
-                                                            class="btn-group-toggle" data-toggle="modal"
-                                                            data-target="#Modal" data-title="data" data-param="1">기상특보
+                                                        <input type="checkbox" name="check1" class="btn-group-toggle"
+                                                            onclick="weather1()">기상특보
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" id="OpenModal" name="check1"
-                                                            class="btn-group-toggle" data-toggle="modal"
-                                                            data-target="#Modal" data-title="data" data-param="2">기타경보
+                                                        <input type="checkbox" name="check1" class="btn-group-toggle"
+                                                            onclick="weather2()">기타경보
                                                     </label>
                                                 </td>
                                                 <td>
@@ -342,13 +340,14 @@
                                     <div class="card-header py-3">
                                         <span class="m-0 font-weight-bold text-primary">통신 종류</span>
                                     </div>
+                                    <form action="/test" method="GET">
                                     <div class="col-12" id="checkboxTest" style="margin-top:15px;">
                                         <table style="margin:auto;">
                                             <tr>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
                                                         <input type="checkbox" class="btn-group-toggle" name="check"
-                                                            id="internet">인터넷
+                                                            id="internet" value="인터넷">인터넷
                                                     </label>
                                                 </td>
                                             </tr>
@@ -356,7 +355,7 @@
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
                                                         <input type="checkbox" class="btn-group-toggle" name="check"
-                                                            id="internet">위성
+                                                            id="satelite">위성
                                                     </label>
                                                 </td>
                                             </tr>
@@ -364,7 +363,7 @@
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
                                                         <input type="checkbox" class="btn-group-toggle" name="check"
-                                                            id="internet">DMB
+                                                            id="dmb">DMB
                                                     </label>
                                                 </td>
                                             </tr>
@@ -372,12 +371,14 @@
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
                                                         <input type="checkbox" class="btn-group-toggle" name="check"
-                                                            id="internet">CDMA
+                                                            id="cdma">CDMA
                                                     </label>
                                                 </td>
                                             </tr>
                                         </table>
+                                        <!-- <input type="submit" value="전송"> -->
                                     </div>
+                                </form>
                                 </div>
                             </div>
 
@@ -391,7 +392,9 @@
                                             <tr>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle" name="check">TTS
+                                                        <input type="checkbox" id="OpenModal" name="check1"
+                                                        data-toggle="modal" data-target="#Modal3" data-title="data"
+                                                        class="btn-group-toggle">TTS
                                                     </label>
                                                 </td>
                                             </tr>
@@ -447,16 +450,23 @@
             <!-- End of Main Content -->
 
             <!--modal : 재난 종류 선택 시 발동 -->
-            <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable"
-                aria-hidden="true">
+            <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLable">재난 종류 상세 선택</h5>
+                            <h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>
                         </div>
-                        <div class='modal-body'>
-                            <label for="recipient-name" class="control-label"> 내용 : </label>
-                            <input type="text" class="form-control" id="recipient-name">
+                        <div class='modal-body' id="modal-body">
+                            <!-- for(var i=0; i<='{{gridOption11}}'.length); i++ ) {
+                                '{{gridOption11['+i+'].situation}}'
+                            } 
+                            gridOption11부터 17까지 .situation 의 내용들이 출력되어야 함
+
+                            기상특보 선택 시 gridOption11,
+                            기타경보 선택 시 gridOption12, ...
+                            기상추가 선택 시 gridOption17
+                        
+                        -->
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"
@@ -467,11 +477,6 @@
                 </div>
             </div>
 
-            <script>
-                // $('#Modal').on('show.bs.modal', function (event) {
-
-                // })
-            </script>
 
             <!--modal2 : 선택내용확인 버튼 클릭 시 발동-->
             <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable"
@@ -486,6 +491,25 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
                             <button type="button" class="btn btn-primary">확인</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- modal3 : 방송 종류 선택 시 발동 -->
+            <div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLable">TTS 방송 설정</h5>
+                        </div>
+                        <div class='modal-body'>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                onclick="closecheck()">닫기</button>
+                            <button type="button" class="btn btn-primary">선택 완료</button>
                         </div>
                     </div>
                 </div>

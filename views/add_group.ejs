@@ -88,7 +88,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/check_terminal" style="text-align: center;">
                         <i class="fas fa-fw fa-wrench"></i>
-                        <span>장비 검사</span>
+                        <span>장비 관리</span>
                     </a>
                 </li>
                 <li class="nav-item" >
@@ -192,10 +192,45 @@
                     <br />
                     <!-- Content Row -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary"
-                                style="float: left;">그룹 추가</span>
+                            <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary"
+                                    style="float: left;">그룹 추가/수정/삭제</span>
+                            </div>
+                            <div class="card-body">
+    
+                                <div ng-app="myapp" ng-controller="BasicCtrl16">
+                                    <div class="container">
+                                        <p> </p>
+                                        <div class="text-right">
+                                            <button type="submit" class="btn btn-primary" ng-click="pushData()"
+                                                style="width:120px;">Edit</button>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="container">
+                                            <div class="table-responsive">
+                                                    <table border="1" style="text-align:center; margin: auto;">
+                                                        <tr>
+                                                            <th style="width:200px;">그룹명</th>
+                                                            <th style="width:700px;">단말기 선택</th>
+                                                            <th style="width:200px;">확인/삭제</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td></td>
+                                                            <td><input type="checkbox">(구로)롯데마트 구로점
+                                                            <input type="checkbox">(영등포)로데오 왁 
+                                                        <br> ...</td>
+                                                            <td><input type="button" value="확인" class="btn btn-primary"> <input
+                                                                    type="button" value="삭제" class="btn btn-danger"></td>
+            
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                    </div>
+                                    <hr>
+                                </div>
+    
+                            </div>
                         </div>
-                    </div>
 
                 </div>
                 <!-- /.container-fluid -->

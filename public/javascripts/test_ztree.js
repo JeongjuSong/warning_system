@@ -61,6 +61,7 @@ var setting = {
         }
     },
     callback: {
+        onCheck: zTreeOnCheck,
         beforeDrag: beforeDrag,
         beforeDrop: beforeDrop
     },
@@ -73,20 +74,14 @@ var code;
 
 // treeDemo 생성
 newJquery(document).ready(function () {
-    newJquery.fn.zTree.init($("#treeDemo"), setting, zNodes);
-    newJquery.fn.zTree.init($("#treeDemo2"), setting, zNodes2);
+    newJquery.fn.zTree.init(newJquery("#treeDemo"), setting, zNodes);
+    newJquery.fn.zTree.init(newJquery("#treeDemo2"), setting, zNodes2);
 });
 
 // 아이콘 숨김
 function showIconForTree(treeId, treeNode) {
     return !treeNode.isParent;
 };
-
-newJquery(document).ready(function () {
-    newJquery.fn.zTree.init($("#treeDemo"), setting, zNodes);
-    newJquery.fn.zTree.init($("#treeDemo2"), setting, zNodes2);
-});
-
 
 function nocheckNode(e) {
     var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
@@ -104,21 +99,21 @@ function nocheckNode(e) {
 
 
 function setCheck() {
-    var zTree = newJquery.fn.zTree.getZTreeObj("#treeDemo"),
-        py = $("#py").attr("checked") ? "p" : "",
-        sy = $("#sy").attr("checked") ? "s" : "",
-        pn = $("#pn").attr("checked") ? "p" : "",
-        sn = $("#sn").attr("checked") ? "s" : "",
+    var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
+        py = newJquery("#py").attr("checked") ? "p" : "",
+        sy = newJquery("#sy").attr("checked") ? "s" : "",
+        pn = newJquery("#pn").attr("checked") ? "p" : "",
+        sn = newJquery("#sn").attr("checked") ? "s" : "",
         type = {
             "Y": s,
-            "N": ps
+            "N": s
         };
     zTree.setting.check.chkboxType = type;
-    showCode('setting.check.chkboxType = { "Y" : "s", "N" : "ps" }');
+    showCode('setting.check.chkboxType = { "Y" : "s", "N" : "s" }');
 }
 
 function showCode(str) {
-    if (!code) code = $("#code");
+    if (!code) code = newJquery("#code");
     code.empty();
     code.append("<li>" + str + "</li>");
 }
@@ -135,3 +130,18 @@ function beforeDrag(treeId, treeNodes) {
 function beforeDrop(treeId, treeNodes, targetNode, moveType) {
     return targetNode ? targetNode.drop !== false : true;
 }
+
+// 지역별 selected value 값 받기
+function zTreeOnCheck(event, treeId, treeNode) {
+    var treeObj = newJquery.fn.zTree.getZTreeObj("treeDemo");
+    var nodes = treeObj.getCheckedNodes(true);
+    if (nodes.length != 0) {
+        console.log(nodes);
+    }
+
+    var treeObj2 = newJquery.fn.zTree.getZTreeObj("treeDemo2");
+    var nodes2 = treeObj2.getCheckedNodes(true);
+    if (nodes2.length != 0) {
+        console.log(nodes2);
+    }
+};
