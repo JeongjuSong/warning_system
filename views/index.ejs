@@ -277,55 +277,54 @@
                                             <tr>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" id="OpenModal" name="check1"
-                                                            data-toggle="modal" data-target="#Modal" data-title="data"
-                                                            class="btn-group-toggle" data-param="1">기상특보
+                                                        <input type="checkbox" name="check1" data-toggle="modal"
+                                                            data-target="#Modal1" data-backdrop="static"
+                                                            class="btn-group-toggle">기상특보
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="btn btn-default" style="width:100px;">
+                                                        <input type="checkbox" name="check1" data-toggle="modal"
+                                                            data-target="#Modal1" data-backdrop="static"
+                                                            class="btn-group-toggle">기타경보
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <label class="btn btn-default" style="width:100px;">
+                                                        <input type="checkbox" name="check1" data-toggle="modal"
+                                                            data-target="#Modal1" data-backdrop="static"
+                                                            class="btn-group-toggle">민방위
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label class="btn btn-default" style="width:100px;">
+                                                        <input type="checkbox" name="check1" data-toggle="modal"
+                                                            data-target="#Modal1" data-backdrop="static"
+                                                            class="btn-group-toggle">전국
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
                                                         <input type="checkbox" name="check1" class="btn-group-toggle"
-                                                            onclick="weather2()">기타경보
+                                                            data-toggle="modal" data-target="#Modal1"
+                                                            data-backdrop="static">지역
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" id="OpenModal" name="check1"
-                                                            data-toggle="modal" data-target="#Modal" data-title="data"
-                                                            class="btn-group-toggle" data-param="3">민방위
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" id="OpenModal" name="check1"
-                                                            data-toggle="modal" data-target="#Modal" data-title="data"
-                                                            class="btn-group-toggle" data-param="4">전국
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" id="OpenModal" name="check1"
-                                                            class="btn-group-toggle" data-toggle="modal"
-                                                            data-target="#Modal" data-title="data" data-param="5">지역
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" id="OpenModal" name="check1"
-                                                            data-toggle="modal" data-target="#Modal" data-title="data"
-                                                            class="btn-group-toggle" data-param="6">테스트
+                                                        <input type="checkbox" name="check1" data-toggle="modal"
+                                                            data-target="#Modal1" data-backdrop="static"
+                                                            class="btn-group-toggle">테스트
                                                     </label>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" id="OpenModal" name="check1"
-                                                            data-toggle="modal" data-target="#Modal" data-title="data"
-                                                            style="position: absolute; clip: rect(0,0,0,0);"
-                                                            data-param="8">기상추가
+                                                        <input type="checkbox" name="check1" data-toggle="modal"
+                                                            data-target="#Modal1" class="btn-group-toggle">기상추가
                                                     </label>
                                                 </td>
                                             </tr>
@@ -375,7 +374,6 @@
                                                     </td>
                                                 </tr>
                                             </table>
-                                            <!-- <input type="submit" value="전송"> -->
                                         </div>
                                     </form>
                                 </div>
@@ -391,27 +389,24 @@
                                             <tr>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" id="OpenModal" name="check1"
-                                                            data-toggle="modal" data-target="#Modal3" data-title="data"
-                                                            class="btn-group-toggle">TTS
+                                                        <input type="checkbox" name="check1" data-toggle="modal"
+                                                            data-target="#Modal2" class="btn-group-toggle" data-backdrop="static">TTS
                                                     </label>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" id="OpenModal" name="check1"
-                                                            data-toggle="modal" data-target="#Modal3" data-title="data"
-                                                            class="btn-group-toggle">메시지
+                                                        <input type="checkbox" name="check1" data-toggle="modal"
+                                                            data-target="#Modal3" class="btn-group-toggle" data-backdrop="static">메시지
                                                     </label>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
                                                     <label class="btn btn-default" style="width:100px;">
-                                                            <input type="checkbox" id="OpenModal" name="check1"
-                                                            data-toggle="modal" data-target="#Modal3" data-title="data"
-                                                            class="btn-group-toggle">사이렌
+                                                        <input type="checkbox" name="check1" data-toggle="modal"
+                                                            data-target="#Modal4" class="btn-group-toggle" data-backdrop="static">사이렌
                                                     </label></td>
                                             </tr>
                                         </table>
@@ -438,8 +433,8 @@
                                     <button class="btn btn-primary" name="checkCancel" id="allClear"
                                         onclick="clear_onclick()" style="width:150px;">조작
                                         초기화</button>
-                                    <button class="btn btn-primary" name="command" id="OpenModal" data-toggle="modal"
-                                        data-target="#Modal2" data-title="data" style="width:150px;">선택 내용 확인</button>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#Modal5"
+                                        style="width:150px;">선택 내용 확인</button>
                                     <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
                                     <button class="btn btn-danger" style="width:150px;" type="submit">실제 방송 전송</button>
                                 </div>
@@ -452,8 +447,8 @@
             </div>
             <!-- End of Main Content -->
 
-            <!--modal : 재난 종류 선택 시 발동 -->
-            <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
+            <!--modal1 : 재난 종류 선택 시 발동 -->
+            <div class="modal fade" id="Modal1">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -471,33 +466,34 @@
                 </div>
             </div>
 
-
-            <!--modal2 : 선택내용확인 버튼 클릭 시 발동-->
-            <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable"
-                aria-hidden="true">
+            <!-- modal3 : 메시지 선택 시 발동 -->
+            <div class="modal fade" id="Modal2">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLable">선택 내용 확인</h5>
+                            <h5 class="modal-title" id="exampleModalLable">저장 메시지 선택</h5>
                         </div>
                         <div class='modal-body'>
-                            시간 : [2019-04-01 14:00:00]<br/>
-                            장소 : [롯데마트 구로점, (영등포)로데오 왁, 고속버스터미널]<br/>
-                            재난 종류 : [미세먼지 경보]<br/>
-                            통신 종류 : [인터넷, CDMA] <br/>
-                            방송 종류 : [TTS , 방송문안 2]
+                            저장 메시지 선택 : <select>
+                                <option value="0">사이렌 1번</option>
+                                <option value="1">사이렌 2번</option>
+                                <option value="2">사이렌 3번</option>
+                                <option value="3">사이렌 4번</option>
+                            </select>
+                            <i class="fas fa-play-circle" style="color:#4e73df;"></i>
+                            <br /><br />
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                            <button type="button" class="btn btn-primary">확인</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"
+                                onclick="closecheck()">닫기</button>
+                            <button type="button" class="btn btn-primary">선택 완료</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- modal3 : 방송 종류 선택 시 발동 -->
-            <div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable"
-                aria-hidden="true">
+            <!-- modal4 : 사이렌 선택 시 발동 -->
+            <div class="modal fade" id="Modal2">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -511,7 +507,7 @@
                                 <option value="3">사이렌 4번</option>
                             </select>
                             <i class="fas fa-play-circle" style="color:#4e73df;"></i>
-                            <br/><br/>
+                            <br /><br />
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"
@@ -522,15 +518,27 @@
                 </div>
             </div>
 
-            <!-- Footer -->
-            <!-- <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; KETI 2019</span>
+            <!--modal5 : 선택내용확인 버튼 클릭 시 발동-->
+            <div class="modal fade" id="Modal5">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLable">선택 내용 확인</h5>
+                        </div>
+                        <div class='modal-body'>
+                            시간 : [2019-04-01 14:00:00]<br />
+                            장소 : [롯데마트 구로점, (영등포)로데오 왁, 고속버스터미널]<br />
+                            재난 종류 : [미세먼지 경보]<br />
+                            통신 종류 : [인터넷, CDMA] <br />
+                            방송 종류 : [TTS , 방송문안 2]
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+                        </div>
                     </div>
                 </div>
-            </footer> -->
-            <!-- End of Footer -->
+            </div>
         </div>
         <!-- End of Content Wrapper -->
     </div>

@@ -145,6 +145,7 @@ function closecheck() {
     $("input[type=checkbox]").prop("checked", false);
 }
 
+
 function openTab(evt, select) {
     var i,
         tabcontent,
