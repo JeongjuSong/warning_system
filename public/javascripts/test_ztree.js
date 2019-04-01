@@ -73,17 +73,25 @@ var setting = {
         nocheckInherit: true
     },
     data: {
+        keep: {
+            parent: true,
+            leaf: true
+        },
         simpleData: {
             enable: true
         }
     },
     callback: {
-        onCheck: zTreeOnCheck,
         beforeDrag: beforeDrag,
+        beforeRemove: beforeRemove,
+        beforeRename: beforeRename,
+        onRemove: onRemove,
+        onCheck: zTreeOnCheck,
         beforeDrop: beforeDrop
     },
     view: {
-        showIcon: showIconForTree
+        showIcon: showIconForTree,
+        selectMulti: false
     }
 };
 var code;
@@ -94,7 +102,119 @@ newJquery(document).ready(function () {
     newJquery.fn.zTree.init(newJquery("#treeDemo"), setting, zNodes);
     newJquery.fn.zTree.init(newJquery("#treeDemo2"), setting, zNodes2);
     newJquery.fn.zTree.init(newJquery("#treeDemo3"), setting, zNodes3);
+    newJquery("#addParent").bind("click", {isParent: true}, add);
+    newJquery("#addLeaf").bind("click", {isParent: false}, add);
+    newJquery("#edit").bind("click", edit);
+    newJquery("#remove").bind("click", remove);
+    newJquery("#clearChildren").bind("click", clearChildren);
 });
+
+// 노드 삭제하기
+function beforeRemove(treeId, treeNode) {
+    className = (className === "dark" ? "" : "dark");
+    showLog("[ " + getTime() + " beforeRemove ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+    return confirm("Confirm delete node '" + treeNode.name + "' it?");
+}
+
+function onRemove(e, treeId, treeNode) {
+    showLog("[ " + getTime() + " onRemove ]&nbsp;&nbsp;&nbsp;&nbsp; " + treeNode.name);
+}
+
+// node 이름 바꾸기
+function beforeRename(treeId, treeNode, newName) {
+    if (newName.length == 0) {
+        alert("Node name can not be empty.");
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        setTimeout(function () {
+            zTree.editName(treeNode)
+        }, 10);
+        return false;
+    }
+    return true;
+}
+
+// Log 보여주기
+function showLog(str) {
+    if (!log) log = $("#log");
+    log.append("<li class='" + className + "'>" + str + "</li>");
+    if (log.children("li").length > 8) {
+        log.get(0).removeChild(log.children("li")[0]);
+    }
+}
+
+// Log에 시간 표시
+function getTime() {
+    var now = new Date(),
+        h = now.getHours(),
+        m = now.getMinutes(),
+        s = now.getSeconds(),
+        ms = now.getMilliseconds();
+    return (h + ":" + m + ":" + s + " " + ms);
+}
+
+var newCount = 1;
+
+function add(e) {
+    var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo3"),
+        isParent = e.data.isParent,
+        nodes = zTree.getSelectedNodes(),
+        treeNode = nodes[0];
+    if (treeNode) {
+        treeNode = zTree.addNodes(treeNode, {
+            id: (100 + newCount),
+            pId: treeNode.id,
+            isParent: isParent,
+            name: "new node" + (newCount++)
+        });
+    } else {
+        treeNode = zTree.addNodes(null, {
+            id: (100 + newCount),
+            pId: 0,
+            isParent: isParent,
+            name: "new node" + (newCount++)
+        });
+    }
+    if (treeNode) {
+        zTree.editName(treeNode[0]);
+    } else {
+        alert("Leaf node is locked and can not add child node.");
+    }
+};
+
+function edit() {
+    var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo3"),
+        nodes = zTree.getSelectedNodes(),
+        treeNode = nodes[0];
+    if (nodes.length == 0) {
+        alert("Please select one node at first...");
+        return;
+    }
+    zTree.editName(treeNode);
+};
+
+function remove(e) {
+    var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo3"),
+        nodes = zTree.getSelectedNodes(),
+        treeNode = nodes[0];
+    if (nodes.length == 0) {
+        alert("Please select one node at first...");
+        return;
+    }
+    var callbackFlag = $("#callbackTrigger").attr("checked");
+    zTree.removeNode(treeNode, callbackFlag);
+};
+
+function clearChildren(e) {
+    var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo3"),
+        nodes = zTree.getSelectedNodes(),
+        treeNode = nodes[0];
+    if (nodes.length == 0 || !nodes[0].isParent) {
+        alert("Please select one parent node at first...");
+        return;
+    }
+    zTree.removeChildNodes(treeNode);
+};
+// edit 기능 여기까지
 
 // 아이콘 숨김
 function showIconForTree(treeId, treeNode) {

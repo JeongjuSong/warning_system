@@ -466,22 +466,48 @@
                 </div>
             </div>
 
+             <!-- modal2 : TTS 선택 시 발동 -->
+             <div class="modal fade" id="Modal2">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLable">TTS 방송 설정</h5>
+                        </div>
+                        <div class='modal-body'>
+                           TTS 방송 설정 <select>
+                                <option>직접 입력</option>
+                            </select>
+                            <button>불러오기</button>
+                            <button>저장하기</button>
+                            <br /><br />
+                            방송 반복 횟수  <select id="repeat_num"></select>
+                            방송시작음 선택 <select></select> <i class="fas fa-play-circle" style="color:#4e73df;"></i><br/><br/>
+                            TTS 방송 문안 : <br/>
+                            <textarea style="width: 400px; height: 300px;"></textarea>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"
+                                onclick="closecheck()">닫기</button>
+                            <button type="button" class="btn btn-primary">선택 완료</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- modal3 : 메시지 선택 시 발동 -->
-            <div class="modal fade" id="Modal2">
+            <div class="modal fade" id="Modal3">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLable">저장 메시지 선택</h5>
                         </div>
                         <div class='modal-body'>
-                            저장 메시지 선택 : <select>
-                                <option value="0">사이렌 1번</option>
-                                <option value="1">사이렌 2번</option>
-                                <option value="2">사이렌 3번</option>
-                                <option value="3">사이렌 4번</option>
+                            저장 메시지 설정  <select>
+                                <option>직접 입력</option>
                             </select>
-                            <i class="fas fa-play-circle" style="color:#4e73df;"></i>
                             <br /><br />
+                            메시지 문안 : <br/>
+                            <textarea style="width: 400px; height: 300px;"></textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"
@@ -493,7 +519,7 @@
             </div>
 
             <!-- modal4 : 사이렌 선택 시 발동 -->
-            <div class="modal fade" id="Modal2">
+            <div class="modal fade" id="Modal4">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

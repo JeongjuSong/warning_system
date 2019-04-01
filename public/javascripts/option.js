@@ -22,11 +22,14 @@ window.onload = function () {
     var eHour = 23
     var sMinute = 00
     var eMinute = 59
+    var sNum = 1
+    var eNum = 10
 
     var strMonth = "";
     var strDay = "";
     var strHour = "";
     var strMinute = "";
+    var strNum = "";
 
     for (var i = sMonth; i < eMonth; i++) {
         strMonth += "<option value=" + i + ">" + i + "</option>";
@@ -41,10 +44,15 @@ window.onload = function () {
         strMinute += "<option value=" + i + ">" + i + "</option>";
     }
 
+    for (var i = sNum; i<= eNum; i++) {
+        strNum += "<option value="+ i + ">" + i + "</option>";
+    }
+
     document.getElementById("amonth").innerHTML = strMonth;
     document.getElementById("aday").innerHTML = strDay;
     document.getElementById("ahour").innerHTML = strHour;
     document.getElementById("aminute").innerHTML = strMinute;
+    document.getElementById("repeat_num").innerHTML = strNum;
 }
 
 // 전체 선택 시 하위 항목 선택
