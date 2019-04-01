@@ -38,9 +38,6 @@ $.get("/map/location.json", function(data) {
         '</div>';
           
           
-         
-
-
         var maks = new daum.maps.Marker({
             map: map,
             position : new daum.maps.LatLng(position.lat, position.lng)

@@ -2,6 +2,7 @@
 var newJquery = $.noConflict(true);
 var zNodes;
 var zNodes2;
+var zNodes3;
 
 // ztree 지역별 데이터 가져오기
 newJquery(document).ready(function () {
@@ -44,6 +45,22 @@ newJquery(document).ready(function () {
     })
 });
 
+// ztree3 그룹별 데이터 가져오기
+newJquery(document).ready(function () {
+    var url = '/data/group.json';
+    newJquery.ajax({
+        type: "GET",
+        url: url,
+        async: false,
+        success: function (data) {
+            zNodes3 = data;
+        },
+        error: function (e) {
+            console.log(e.responseText);
+        }
+    })
+});
+
 
 var setting = {
     edit: {
@@ -76,6 +93,7 @@ var code;
 newJquery(document).ready(function () {
     newJquery.fn.zTree.init(newJquery("#treeDemo"), setting, zNodes);
     newJquery.fn.zTree.init(newJquery("#treeDemo2"), setting, zNodes2);
+    newJquery.fn.zTree.init(newJquery("#treeDemo3"), setting, zNodes3);
 });
 
 // 아이콘 숨김
@@ -143,5 +161,11 @@ function zTreeOnCheck(event, treeId, treeNode) {
     var nodes2 = treeObj2.getCheckedNodes(true);
     if (nodes2.length != 0) {
         console.log(nodes2);
+    }
+
+    var treeObj3 = newJquery.fn.zTree.getZTreeObj("treeDemo3");
+    var nodes3 = treeObj3.getCheckedNodes(true);
+    if (nodes3.length != 0) {
+        console.log(nodes3);
     }
 };
