@@ -1,206 +1,239 @@
-var myapp = angular.module('myapp', []);
+var myapp = angular.module('myapp', [
+  // 'ngTouch', 'ngAria', 'ui.grid', 'ui.grid.edit', 'ui.grid.resizeColumns', 'ui.grid.pagination', 'ui.grid.cellNav', 'xeditable'
+]);
 
 myapp.controller('myCtrl', function ($scope, $http) {
   //  console.log('myCtrl Open');
-  $http({
-    method: "GET",
-    url: "/city",
-    contentType: "application/json",
-  }).then(function data(response) {
-    $scope.gridOption = response.data;
-    // console.log("option1 "+ response.data);
-    //  console.log(response.data[0].location);
-
-  });
-
-  // 지역별 데이터 출력
-
-  // 서울 gridOption1
   // $http({
   //   method: "GET",
-  //   url: "/data/data1.json",
+  //   url: "/city",
   //   contentType: "application/json",
   // }).then(function data(response) {
-  //   $scope.gridOption1 = response.data;
+  //   $scope.gridOption = response.data;
   //   // console.log("option1 "+ response.data);
-  //   //  console.log(response.data[3].name);
+  //   //  console.log(response.data[0].location);
+
   // });
 
-  // // 인천 gridOption2
-  // $http({
-  //   method: "GET",
-  //   url: "/data/data4.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-  //   $scope.gridOption2 = response.data;
-  //   // console.log("option2 "+ response.data);
-  //   //  console.log(response.data[3].name);
-  // });
+  // 선택 내용 보내기
+  $scope.warning = function () {
+    console.log('warning() open!')
+    var selected = $("#communication:checked").val();
+    var url = "warning?"
+    console.log(selected);
 
-  // // 강원 gridOption3
-  // $http({
-  //   method: "GET",
-  //   url: "/data/data10.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-  //   $scope.gridOption3 = response.data;
-  //   // console.log("option3 "+ response.data);
-  //   //  console.log(response.data[3].name);
-  // });
+    if (selected == '인터넷') {
+      url += 'communication=internet';
+    }
 
-  // // 경북 gridOption4
-  // $http({
-  //   method: "GET",
-  //   url: "/data/data15.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-  //   $scope.gridOption4 = response.data;
-  //   // console.log("option4 "+ response.data);
-  //   //  console.log(response.data[3].name);
-  // });
+    if (selected == '위성') {
+      url += 'communication=satellite';
+    }
 
-  // // 제주 gridOption5
-  // $http({
-  //   method: "GET",
-  //   url: "/data/data17.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-  //   $scope.gridOption5 = response.data;
-  //   // console.log("option5 "+ response.data);
-  //   //  console.log(response.data[3].name);
-  // });
+    if (selected == 'DMB') {
+      url += 'communication=dmb';
+    }
 
+    if (selected == 'CDMA') {
+      url += 'communication=cdma';
+    }
 
-  // // 분류별 데이터 출력
-
-  // // 서울 gridOption6
-  // $http({
-  //   method: "GET",
-  //   url: "/data/device_1.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-  //   $scope.gridOption6 = response.data;
-  //   // console.log("option6 "+ response.data);
-  //   //  console.log(response.data[1].pId);
-  // });
-
-  // // 인천 gridOption7
-  // $http({
-  //   method: "GET",
-  //   url: "/data/device_4.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-  //   $scope.gridOption7 = response.data;
-  //   // console.log("option7 "+ response.data);
-  //   //  console.log(response.data[1].pId);
-  // });
-
-  // // 강원 gridOption8
-  // $http({
-  //   method: "GET",
-  //   url: "/data/device_10.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-  //   $scope.gridOption8 = response.data;
-  //   // console.log("option8 "+ response.data);
-  //   //  console.log(response.data[1].pId);
-  // });
-
-  // // 경북 gridOption9
-  // $http({
-  //   method: "GET",
-  //   url: "/data/device_15.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-  //   $scope.gridOption9 = response.data;
-  //   // console.log("option9 "+ response.data);
-  //   //  console.log(response.data[1].pId);
-  // });
-
-  // // 제주 gridOption10
-  // $http({
-  //   method: "GET",
-  //   url: "/data/device_17.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-  //   $scope.gridOption10 = response.data;
-  //   // console.log("option10 "+ response.data);
-  //   //  console.log(response.data[1].pId);
-  // });
-
-
-  // 방송 종류
-
-  // 기상특보 gridOption11
-  $http({
-    method: "GET",
-    url: "/data/type.json",
-    contentType: "application/json",
-  }).then(function data(response) {
-    $scope.gridOption11 = response.data.weather_special;
-    // console.log("option11 "+ response.data);
-    // console.log(response.data.weather_special);
-  });
-
-  //  기타 경보 gridOption12
-  $http({
-    method: "GET",
-    url: "/data/type.json",
-    contentType: "application/json",
-  }).then(function data(response) {
-    $scope.gridOption12 = response.data.other_alarm;
-    // console.log("option12 "+ response.data);
-    // console.log(response.data.other_alarm);
-  });
-
-  // 민방위 gridoption13
-  $http({
-    method: "GET",
-    url: "/data/type.json",
-    contentType: "application/json",
-  }).then(function data(response) {
-    $scope.gridOption13 = response.data.civil_defence;
-    // console.log(response.data.civil_defence);
-  });
-
-  // 전국 gridoption14
-  $http({
-    method: "GET",
-    url: "/data/type.json",
-    contentType: "application/json",
-  }).then(function data(response) {
-    $scope.gridOption14 = response.data.national;
-    // console.log(response.data.national);
-  });
-
-  // 지역 gridOption15
-  $http({
-    method: "GET",
-    url: "/data/type.json",
-    contentType: "application/json",
-  }).then(function data(response) {
-    $scope.gridOption15 = response.data.local;
-    // console.log(response.data.local);
-  });
-
-  // 테스트 gridoption16
-  $http({
-    method: "GET",
-    url: "/data/type.json",
-    contentType: "application/json",
-  }).then(function data(response) {
-    $scope.gridOption16 = response.data.test;
-    // console.log(response.data.test);
-  });
-
-  // 기상 추가 gridOption17
-  $http({
-    method: "GET",
-    url: "/data/type.json",
-    contentType: "application/json",
-  }).then(function data(response) {
-    $scope.gridOption17 = response.data.other_weather;
-    // console.log(response.data.other_weather);
-  });
+    alert(url);
+  }
 
 });
+
+myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editableOptions', function ($scope, $http, $q, uiGridConstants, editableOptions) {
+  console.log('myCtrl2 Open');
+  editableOptions.theme = 'bs3'
+  var canceler = $q.defer();
+  $scope.submit = function (row) {
+    var tmp = true;
+    $http({
+      method: 'POST',
+      url: '/ttsinsert',
+      contentType: "application/json",
+      data: {
+        no: row.no,
+        title: row.title,
+        text: row.text
+      }
+    }).success(function (data, status, headers, config) {
+      alert("insert success");
+    }).error(function (data, status, headers, config) {
+      tmp = false;
+      alert("insert fail");
+    });
+    $http({
+      method: 'POST',
+      url: '/ttsupdate',
+      contentType: "application/json",
+      data: {
+        no: row.no,
+        title: row.title,
+        text: row.text
+      }
+    }).success(function (data, status, headers, config) {
+      alert('update success');
+    }).error(function (data, status, headers, config) {
+      tmp = false;
+      alert("update fail");
+    });
+    if (tmp) alert("Success");
+  }
+  $scope.remove = function (row) {
+    // console.log(row);
+    //TODO
+    $http({
+      method: 'POST',
+      url: '/ttsdelete',
+      contentType: "application/json",
+      data: {
+        no: row.no,
+      }
+    }).success(function (data, status, headers, config) {
+      alert("success");
+    }).error(function (data, status, headers, config) {
+      alert("fail");
+    });
+  }
+  var tableData = [];
+  var getData = function () {
+    $http({
+      method: 'GET',
+      url: '/tts',
+      contentType: "application/json",
+      data: {}
+    }).success(function (data, status, headers, config) {
+      // console.log(data);
+      $scope.virtualGridOptions.data = data;
+      $scope.paginationGridOptions.data = data;
+    }).error(function (data, status, headers, config) {});
+  }
+
+  // 여기서 부터 수정 !!!!!!!!!!
+   $scope.pushData = function () {
+        // console.log("pushData");
+        $scope.virtualGridOptions.data.push(tmpData);
+        // $scope.paginationGridOptions.data.push(tmpData);
+    }
+    // { name: 'shape', enableFiltering: true, width: 200, enableCellEdit: false },
+    getData();
+    $scope.paginationGridOptions = {
+        paginationPageSizes: [10, 25, 50, 75],
+        paginationPageSize: 10,
+    };
+    angular.extend($scope.paginationGridOptions, $scope.gridOptionsComplex);
+    $scope.virtualGridOptions = {
+        enableSorting: true,
+        showGridFooter: true,
+        enableFiltering: true,
+        rowHeight: 36,
+        modifierKeysToMultiSelectCells: true,
+        columnDefs: [{
+                name: 'no',
+                aggregationType: uiGridConstants.aggregationTypes.count,
+                width: 50
+            },
+            {
+                name: 'class',
+                width: 180,
+                enableCellEdit: true
+            },
+            {
+                name: 'main_href',
+                width: 230,
+                enableCellEdit: true
+            },
+            {
+                name: 'imgsrc',
+                width: 300,
+                enableCellEdit: true,
+                //cellTemplate: '<div> <a href="{{row.entity.link}}" target="_blank">Web Site</a> </div>'
+            },
+            {
+                name: 'name',
+                width: 120,
+                enableCellEdit: true
+            },
+            {
+                name: 'Buttons',
+                width: 160,
+                enableCellEdit: false,
+                cellTemplate: '<button type="submit" class="btn btn-primary" style ="width:80px;" ng-click="grid.appScope.submit(row.entity)">Save</button><button type="button" type="remove" class="btn btn-danger"style ="width:80px;" ng-click="grid.appScope.remove(row.entity)">Delete</button>'
+            },
+
+        ],
+        onRegisterApi: function (gridApi) {
+            $scope.gridApi = gridApi;
+            $scope.gridApi.core.on.sortChanged($scope, function (grid, sort) {
+                $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
+            })
+        }
+    };
+    $scope.paginationGridOptions = {
+        enablePaging: true,
+        paginationPageSizes: [10, 25, 50, 75],
+        paginationPageSize: 10,
+    };
+    angular.extend($scope.paginationGridOptions, $scope.virtualGridOptions);
+    $scope.updategrid = {
+        toolbar: [{
+            text: "Add new record",
+            name: "popup",
+            iconClass: "k-icon k-add"
+        }],
+        enableSorting: false,
+        showGridFooter: false,
+        enableFiltering: false,
+        rowHeight: 36,
+        modifierKeysToMultiSelectCells: false,
+        columnDefs: [{
+                name: 'no',
+                aggregationType: uiGridConstants.aggregationTypes.count,
+                width: 50
+            },
+            {
+                name: 'class',
+                width: 180,
+                enableCellEdit: true
+            },
+            {
+                name: 'main_href',
+                width: 230,
+                enableCellEdit: true
+            },
+            {
+                name: 'imgsrc',
+                width: 300,
+                enableCellEdit: true,
+                //cellTemplate: '<div> <a href="{{row.entity.link}}" target="_blank">Web Site</a> </div>'
+            },
+            {
+                name: 'name',
+                width: 120,
+                enableCellEdit: true
+            },
+            {
+                name: 'Buttons',
+                width: 160,
+                enableCellEdit: false,
+                cellTemplate: '<button type="submit" class="btn btn-primary" style ="width:80px;" ng-click="grid.appScope.submit(row.entity)">Save</button><button type="button" type="remove" class="btn btn-danger"style ="width:80px;" ng-click="grid.appScope.remove(row.entity)">Delete</button>'
+            },
+
+        ],
+        onRegisterApi: function (gridApi) {
+            $scope.gridApi = gridApi;
+            $scope.gridApi.core.on.sortChanged($scope, function (grid, sort) {
+                $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
+            })
+        }
+    };
+    var tmpData = [{
+        no: '',
+        class: '',
+        main_href: '',
+        imgsrc: '',
+        name: '',
+                }]
+}]);

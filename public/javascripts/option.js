@@ -7,9 +7,6 @@ function printTime() {
     clock.innerHTML = nowTime; // 현재시간을 출력
     setTimeout("printTime()", 1000); // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
 }
-// window.onload = function () { // 페이지가 로딩되면 실행
-//     printTime();
-// }
 
 // select의 년/월/일 시간 선택
 window.onload = function () {
@@ -55,47 +52,6 @@ window.onload = function () {
     document.getElementById("repeat_num").innerHTML = strNum;
 }
 
-// 전체 선택 시 하위 항목 선택
-function allCheckFunc(obj) {
-    $("[name=checkOne]").prop("checked", $(obj).prop("checked"));
-    if ($(obj).prop("checked")) {
-        $(obj).parent().addClass('selected');
-        $("[name=checkOne]").parent().addClass('selected');
-    } else {
-        $(obj).parent().removeClass('selected');
-        $("[name=checkOne]").parent().removeClass('selected');
-    }
-}
-
-function oneCheckFunc(obj) {
-    var allObj = $("[name=checkAll]");
-    // var objName = $(obj).attr("id");
-    var objName = $(obj).attr("name");
-    if ($(obj).prop("checked")) {
-        checkBoxLength = $("[name=" + objName + "]").length;
-        checkedLength = $("[name=" + objName + "]:checked").length;
-        $(obj).parent().addClass('selected');
-        if (checkBoxLength == checkedLength) {
-            allObj.prop("checked", true);
-            $(obj).parent().addClass('selected');
-        } else {
-            allObj.prop("checked", false);
-        }
-    } else {
-        $(obj).parent().removeClass('selected');
-        allObj.prop("checked", false);
-    }
-}
-$(function () {
-    $("[name=checkAll]").click(function () {
-        allCheckFunc(this);
-    });
-    $("[name=checkOne]").each(function () {
-        $(this).click(function () {
-            oneCheckFunc($(this));
-        });
-    });
-});
 
 // 나머지 항목들 따로 선택 
 function CheckFunc(obj) {
@@ -118,18 +74,18 @@ function CheckFunc(obj) {
 }
 
 $(function () {
-    $("[name=check]").each(function () {
+    $("input[type=checkbox]").each(function () {
         $(this).click(function () {
             CheckFunc($(this));
         });
     });
-    $("[name=check1]").each(function () {
+    $("input[type=checkbox]").each(function () {
         $(this).click(function () {
             CheckFunc($(this));
         });
     });
 
-    // 전체선택해제ㅐ 체크박스 클릭 
+    // 전체선택해제 체크박스 클릭 
     $("#allClear").click(function () {
         //해당화면에 모든 checkbox들의 체크를해제시킨다. 
         $("input[type=checkbox]").prop("checked", false);
@@ -137,20 +93,17 @@ $(function () {
 });
 
 function buttonclick() {
-    document.getElementById("check").style.borderColor = "#4e73df";
+    $("input[type=checkbox]").style.borderColor = "#4e73df";
 }
 
 function clear_onclick() {
-    $("[name=checkAll]").parent().removeClass('selected');
-    $("[name=check]").parent().removeClass('selected');
-    $("[name=checkOne]").parent().removeClass('selected');
-    $("[name=check1]").parent().removeClass('selected');
+    $("input[type=checkbox]").parent().removeClass('selected');
 }
 
 // 재난 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
 function closecheck() {
-    $("[name=check1]").parent().removeClass('selected');
-    $("input[type=checkbox]").prop("checked", false);
+    $("[name=broadcast]").parent().removeClass('selected');
+    $("[name=broadcast]").prop("checked", false);
 }
 
 

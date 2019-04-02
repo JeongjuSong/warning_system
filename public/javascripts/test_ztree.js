@@ -124,7 +124,7 @@ function onRemove(e, treeId, treeNode) {
 function beforeRename(treeId, treeNode, newName) {
     if (newName.length == 0) {
         alert("Node name can not be empty.");
-        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo3");
         setTimeout(function () {
             zTree.editName(treeNode)
         }, 10);
@@ -133,24 +133,6 @@ function beforeRename(treeId, treeNode, newName) {
     return true;
 }
 
-// Log 보여주기
-function showLog(str) {
-    if (!log) log = $("#log");
-    log.append("<li class='" + className + "'>" + str + "</li>");
-    if (log.children("li").length > 8) {
-        log.get(0).removeChild(log.children("li")[0]);
-    }
-}
-
-// Log에 시간 표시
-function getTime() {
-    var now = new Date(),
-        h = now.getHours(),
-        m = now.getMinutes(),
-        s = now.getSeconds(),
-        ms = now.getMilliseconds();
-    return (h + ":" + m + ":" + s + " " + ms);
-}
 
 var newCount = 1;
 
@@ -165,7 +147,7 @@ function add(e) {
             pId: treeNode.id,
             isParent: isParent,
             name: "new node" + (newCount++)
-        });
+        })
     } else {
         treeNode = zTree.addNodes(null, {
             id: (100 + newCount),
@@ -177,7 +159,7 @@ function add(e) {
     if (treeNode) {
         zTree.editName(treeNode[0]);
     } else {
-        alert("Leaf node is locked and can not add child node.");
+        alert("하위 노드를 추가할 수 없습니다.");
     }
 };
 
@@ -186,7 +168,7 @@ function edit() {
         nodes = zTree.getSelectedNodes(),
         treeNode = nodes[0];
     if (nodes.length == 0) {
-        alert("Please select one node at first...");
+        alert("수정할 노드를 먼저 선택하여 주십시오.");
         return;
     }
     zTree.editName(treeNode);
@@ -197,10 +179,10 @@ function remove(e) {
         nodes = zTree.getSelectedNodes(),
         treeNode = nodes[0];
     if (nodes.length == 0) {
-        alert("Please select one node at first...");
+        alert("삭제할 노드를 먼저 선택하여 주십시오.");
         return;
     }
-    var callbackFlag = $("#callbackTrigger").attr("checked");
+    var callbackFlag = newJquery("#callbackTrigger").attr("checked");
     zTree.removeNode(treeNode, callbackFlag);
 };
 
@@ -209,7 +191,7 @@ function clearChildren(e) {
         nodes = zTree.getSelectedNodes(),
         treeNode = nodes[0];
     if (nodes.length == 0 || !nodes[0].isParent) {
-        alert("Please select one parent node at first...");
+        alert("하위 노드를 삭제 할 부모 노드를 먼저 선택하여 주십시오.");
         return;
     }
     zTree.removeChildNodes(treeNode);
@@ -220,21 +202,6 @@ function clearChildren(e) {
 function showIconForTree(treeId, treeNode) {
     return !treeNode.isParent;
 };
-
-function nocheckNode(e) {
-    var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
-        nocheck = e.data.nocheck,
-        nodes = zTree.getSelectedNodes();
-    if (nodes.length == 0) {
-        alert("Please select one node at first...");
-    }
-
-    for (var i = 0, l = nodes.length; i < l; i++) {
-        nodes[i].nocheck = nocheck;
-        zTree.updateNode(nodes[i]);
-    }
-}
-
 
 function setCheck() {
     var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
@@ -273,7 +240,7 @@ function beforeDrop(treeId, treeNodes, targetNode, moveType) {
 function zTreeOnCheck(event, treeId, treeNode) {
     var treeObj = newJquery.fn.zTree.getZTreeObj("treeDemo");
     var nodes = treeObj.getCheckedNodes(true);
-    if (nodes.length != 0) {
+    if (nodes.id != 0) {
         console.log(nodes);
     }
 
