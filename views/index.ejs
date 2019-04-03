@@ -21,10 +21,17 @@
         src="//dapi.kakao.com/v2/maps/sdk.js?appkey=500dc6eafdab7edec53ec66384f94f3e&libraries=services,clusterer,drawing"
         type="text/javascript"></script>
     <!-- 원하는 라이브러리 추가 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.2.6/ui-grid.js"></script>
+    <link rel="styleSheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/3.2.6/ui-grid.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular-aria.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/js/xeditable.js"></script>
+    <link rel="styleSheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/css/xeditable.css">
     <script src="/javascripts/function_modal.js"></script>
     <script src="/javascripts/table.js"></script>
     <script src="/javascripts/option.js"></script>
@@ -60,514 +67,527 @@
 </head>
 
 <body id="page-top" class="sidebar-toggled">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-        <div class="navbar-default sidebar toggled" role="navigation">
-            <!-- Sidebar -->
-            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
-                <!-- Sidebar - Brand -->
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
-                    <div class="sidebar-brand-icon">
-                        <img id="logo" src="" style="height: 50px;">
-                        <script>
-                            document.getElementById('logo').src = logo_info()
-                        </script>
-                    </div>
-                    <div class="sidebar-brand-text mx-3">
-                        <img id="title" src="" style="height: 40px; margin-left:-10px;">
-                        <script>
-                            document.getElementById('title').src = title_info()
-                        </script>
-                    </div>
-                </a>
-                <!-- Divider -->
-                <hr class="sidebar-divider my-0">
-                <!-- Nav Item - Dashboard -->
-                <li class="nav-item" style="margin-top:30px; border-left: 5px solid #4e73df; background-color:#eff1f2">
-                    <a class="nav-link" href="/index" style="text-align: center;">
-                        <i class="fas fa-fw fa-exclamation-triangle"></i>
-                        <span>경보 발령</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="/result" style="text-align: center;">
-                        <i class="fas fa-fw fa-chart-bar"></i>
-                        <span>발령 결과</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/check_terminal" style="text-align: center;">
-                        <i class="fas fa-fw fa-wrench"></i>
-                        <span>장비 관리</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="history" style="text-align: center;">
-                        <i class="fas fa-fw fa-history"></i>
-                        <span>이력 조회</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/add_group" style="text-align: center;">
-                        <i class="fas fa-fw fa-folder-plus"></i>
-                        <span>그룹 추가</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/edit_tts" style="text-align: center;">
-                        <i class="fas fa-fw fa-microphone"></i>
-                        <span>TTS 편집</span>
-                    </a>
-                </li>
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block" style="margin-top: 30px;">
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
-            </ul>
-        </div>
-        <!-- End of Sidebar -->
-        <!-- Content Wrapper -->
-        <div ng-app="myapp" ng-controller="myCtrl" class="d-flex flex-column" id="content-wrapper">
-            <!-- Main Content -->
-            <div id="content">
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold; margin-left:10px;">다중이용시설
-                        긴급경보방송시스템</h1>
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
-                                data-toggle="dropdown" href="#" id="searchDropdown" role="button">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown no-arrow">
-                            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
-                                data-toggle="dropdown" href="#" id="searchDropdown" role="button">
-                                <span class="text-s font-weight-bold text-primary text-uppercase mb-1"
-                                    id="clock"></span>
-                            </a>
-                        </li>
-                        <div class="topbar-divider d-none d-sm-block"></div>
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
-                                data-toggle="dropdown" href="#" id="userDropdown" role="button">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:inherit;">
-                                    접속자:
-                                    <%=user.username%>
-                                    님
-                                    <i class="fas fa-fw fa-chevron-down"></i>
-                                </span>
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div aria-labelledby="userDropdown"
-                                class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
-                                <a class="dropdown-item" href="/logout">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End of Topbar -->
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-                    <script>
-                        <% if(locals.user){%>
-                        var userId =
-                            <%=user.id%>;
-                        var idDesc = document.getElementById("loginDesc");
-
-                        window.user = {};
-                        window.user.id = userId;
-                        <% }%>
-                    </script>
-                    <!-- Content Row -->
-
-                    <!-- <form action='/warning' method="GET"> -->
-                    <div class="row">
-                        <div class="col-6">
-                            <!-- 화면 반 나누기 -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <span class="m-0 font-weight-bold text-primary">발령 시간</span>
-                                </div>
-                                <div class="col-12 btn-group-toggle"
-                                    style="padding: 7px;  text-align: center; margin-top:3px; " id="checkboxTest">
-                                    <label class="btn btn-default"
-                                        style="height: 53px; line-height: 35px; margin-right: 10px;">
-                                        <input type="checkbox" name="time" value="right_now">즉시 발령
-                                    </label>
-                                    <label class="btn btn-default"> 예약 발령 :
-                                        <select id="year">
-                                            <option value="2019">2019</option>
-                                            <option value="2020">2020</option>
-                                        </select>년
-                                        <select id="amonth"></select>월
-                                        <select id="aday"></select>일
-                                        <select id="ahour"></select>시
-                                        <select id="aminute"></select>분
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <span class="m-0 font-weight-bold text-primary" style="float: left;">지역
-                                        선택</span>
-                                </div>
-                                <div class="col-12" style="padding: 10px;" id="checkboxTest" name="checkboxTest">
-                                    <div class="tab">
-                                        <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'location')"
-                                            style="width: 94%;" type="button">지역별</button>
-                                        <button class="tablinks" onclick="openTab(event, 'devide')" style="width: 94%;"
-                                            type="button">분류별</button>
-                                        <button class="tablinks" onclick="openTab(event, 'group')" style="width: 94%;"
-                                            type="button">그룹별</button>
-                                    </div>
-
-                                    <div class="tabcontent" id="location">
-                                        <ul id="treeDemo" class="ztree"></ul>
-                                    </div>
-
-                                    <!-- 분류별 -->
-                                    <div class="tabcontent" id="devide">
-                                        <ul id="treeDemo2" class="ztree"></ul>
-                                    </div>
-
-                                    <!-- 그룹별 -->
-                                    <div class="tabcontent" id="group">
-                                        <ul id="treeDemo3" class="ztree"></ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-6" style="float:left;">
-                                <div class="card shadow mb-4" style="height: 290px;">
-                                    <div class="card-header py-3">
-                                        <span class="m-0 font-weight-bold text-primary">재난 종류</span>
-                                    </div>
-                                    <div class="col-12" style="margin-top:15px;">
-                                        <table style="margin:auto; width: 100%;">
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle custom-modal1"
-                                                            id="popup_show1" data-target="#modal">기상특보
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle custom-modal2"
-                                                            id="popup_show2" data-target="#modal">기타경보
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle custom-modal3"
-                                                            id="popup_show3" data-target="#modal">민방위
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle custom-modal4"
-                                                            id="popup_show4" data-target="#modal">전국
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle custom-modal5"
-                                                            id="popup_show5" data-target="#modal">지역
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle custom-modal6"
-                                                            id="popup_show6" data-target="#modal">테스트
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle custom-modal7"
-                                                            id="popup_show7" data-target="#modal">기상추가
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-3" style="float:left;">
-                                <div class="card shadow mb-4" style="height: 290px;">
-                                    <div class="card-header py-3">
-                                        <span class="m-0 font-weight-bold text-primary">통신 종류</span>
-                                    </div>
-                                    <div class="col-12" id="checkboxTest" style="margin-top:15px;">
-                                        <table style="margin:auto;">
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle"
-                                                            id="communication" value="인터넷">인터넷
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle"
-                                                            id="communication" value="위성">위성
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle"
-                                                            id="communication" value="DMB">DMB
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" class="btn-group-toggle"
-                                                            id="communication" value="CDMA">CDMA
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-3" style="float:right;">
-                                <div class="card shadow mb-4" style="height: 290px;">
-                                    <div class="card-header py-3">
-                                        <span class="m-0 font-weight-bold text-primary">방송 종류</span>
-                                    </div>
-                                    <div class="col-12" id="checkboxTest" style="margin-top: 15px;">
-                                        <table style="margin:auto;">
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" name="broadcast" data-toggle="modal"
-                                                            data-target="#Modal2" class="btn-group-toggle"
-                                                            data-backdrop="static">TTS
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" name="broadcast" data-toggle="modal"
-                                                            data-target="#Modal3" class="btn-group-toggle"
-                                                            data-backdrop="static">메시지
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <label class="btn btn-default" style="width:100px;">
-                                                        <input type="checkbox" name="broadcast" data-toggle="modal"
-                                                            data-target="#Modal4" class="btn-group-toggle"
-                                                            data-backdrop="static">사이렌
-                                                    </label></td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
+    <form action="/warning" method="GET">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+            <div class="navbar-default sidebar toggled" role="navigation">
+                <!-- Sidebar -->
+                <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+                    <!-- Sidebar - Brand -->
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
+                        <div class="sidebar-brand-icon">
+                            <img id="logo" src="" style="height: 50px;">
+                            <script>
+                                document.getElementById('logo').src = logo_info()
+                            </script>
                         </div>
-                        <div class="col-6">
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <span class="m-0 font-weight-bold text-primary" style="float: left;">GIS로
-                                        선택</span>
-                                </div>
-                                <div id="map" style="width:100%;height:525px;"></div>
-                                <p>
-                                    <button onclick="selectOverlay('POLYLINE')">선</button>
-                                    <button onclick="selectOverlay('CIRCLE')">원</button>
-                                    <button onclick="selectOverlay('RECTANGLE')">사각형</button>
-                                    <button onclick="selectOverlay('POLYGON')">다각형</button>
-                                </p>
-                            </div>
-
-                            <div class="card shadow mb-4" style="margin-top:-10px;">
-                                <div class="card-header py-3">
-                                    <span class="m-0 font-weight-bold text-primary" style="float: left;">발령
-                                        확인</span>
-                                </div>
-                                <div class="col-12" style="text-align:center; padding: 10px;">
-                                    <button class="btn btn-primary" type="button" name="checkCancel" id="allClear"
-                                        onclick="clear_onclick()" style="width:150px;">조작
-                                        초기화</button>
-                                    <button class="btn btn-primary" type="button" data-toggle="modal"
-                                        data-target="#Modal5" style="width:150px;">선택 내용 확인</button>
-                                    <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
-                                    <button class="btn btn-danger" style="width:150px;" ng-click="warning()">실제 방송
-                                        전송</button>
-                                </div>
-                            </div>
+                        <div class="sidebar-brand-text mx-3">
+                            <img id="title" src="" style="height: 40px; margin-left:-10px;">
+                            <script>
+                                document.getElementById('title').src = title_info()
+                            </script>
                         </div>
+                    </a>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider my-0">
+                    <!-- Nav Item - Dashboard -->
+                    <li class="nav-item"
+                        style="margin-top:30px; border-left: 5px solid #4e73df; background-color:#eff1f2">
+                        <a class="nav-link" href="/index" style="text-align: center;">
+                            <i class="fas fa-fw fa-exclamation-triangle"></i>
+                            <span>경보 발령</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="/result" style="text-align: center;">
+                            <i class="fas fa-fw fa-chart-bar"></i>
+                            <span>발령 결과</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/check_terminal" style="text-align: center;">
+                            <i class="fas fa-fw fa-wrench"></i>
+                            <span>장비 관리</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="history" style="text-align: center;">
+                            <i class="fas fa-fw fa-history"></i>
+                            <span>이력 조회</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/add_group" style="text-align: center;">
+                            <i class="fas fa-fw fa-folder-plus"></i>
+                            <span>그룹 추가</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/edit_tts" style="text-align: center;">
+                            <i class="fas fa-fw fa-microphone"></i>
+                            <span>TTS 편집</span>
+                        </a>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block" style="margin-top: 30px;">
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
                     </div>
-                    <!-- </form> -->
-                </div>
-                <!-- /.container-fluid -->
+                </ul>
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Sidebar -->
+            <!-- Content Wrapper -->
+            <div ng-app="myapp" ng-controller="myCtrl" class="d-flex flex-column" id="content-wrapper">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold; margin-left:10px;">다중이용시설
+                            긴급경보방송시스템</h1>
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                                    data-toggle="dropdown" href="#" id="searchDropdown" role="button">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown no-arrow">
+                                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                                    data-toggle="dropdown" href="#" id="searchDropdown" role="button">
+                                    <span class="text-s font-weight-bold text-primary text-uppercase mb-1"
+                                        id="clock"></span>
+                                </a>
+                            </li>
+                            <div class="topbar-divider d-none d-sm-block"></div>
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                                    data-toggle="dropdown" href="#" id="userDropdown" role="button">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                                        style="font-size:inherit;">
+                                        접속자:
+                                        <%=user.username%>
+                                        님
+                                        <i class="fas fa-fw fa-chevron-down"></i>
+                                    </span>
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div aria-labelledby="userDropdown"
+                                    class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+                                    <a class="dropdown-item" href="/logout">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- End of Topbar -->
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+                        <script>
+                            <% if(locals.user){%>
+                            var userId =
+                                <%=user.id%>;
+                            var idDesc = document.getElementById("loginDesc");
 
-            <!--modal : 재난 종류 선택 시 발동 -->
+                            window.user = {};
+                            window.user.id = userId;
+                            <% }%>
+                        </script>
+                        <!-- Content Row -->
 
-            <div class="modal" id="popup" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <form id="myForm">
+                        <!-- <form action='/warning' method="GET"> -->
+                        <div class="row">
+                            <div class="col-6">
+                                <!-- 화면 반 나누기 -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <span class="m-0 font-weight-bold text-primary">발령 시간</span>
+                                    </div>
+                                    <div class="col-12 btn-group-toggle"
+                                        style="padding: 7px;  text-align: center; margin-top:3px; " id="checkboxTest">
+                                        <label class="btn btn-default"
+                                            style="height: 53px; line-height: 35px; margin-right: 10px;">
+                                            <input type="checkbox" name="time" value="right_now">즉시 발령
+                                        </label>
+                                        <label class="btn btn-default"> 예약 발령 :
+                                            <select id="year">
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                            </select>년
+                                            <select id="amonth"></select>월
+                                            <select id="aday"></select>일
+                                            <select id="ahour"></select>시
+                                            <select id="aminute"></select>분
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <span class="m-0 font-weight-bold text-primary" style="float: left;">지역
+                                            선택</span>
+                                    </div>
+                                    <div class="col-12" style="padding: 10px;" id="checkboxTest" name="checkboxTest">
+                                        <div class="tab">
+                                            <button class="tablinks" id="defaultOpen"
+                                                onclick="openTab(event, 'location')" style="width: 94%;"
+                                                type="button">지역별</button>
+                                            <button class="tablinks" onclick="openTab(event, 'devide')"
+                                                style="width: 94%;" type="button">분류별</button>
+                                            <button class="tablinks" onclick="openTab(event, 'group')"
+                                                style="width: 94%;" type="button">그룹별</button>
+                                        </div>
+
+                                        <div class="tabcontent" id="location">
+                                            <ul id="treeDemo" class="ztree"></ul>
+                                        </div>
+
+                                        <!-- 분류별 -->
+                                        <div class="tabcontent" id="devide">
+                                            <ul id="treeDemo2" class="ztree"></ul>
+                                        </div>
+
+                                        <!-- 그룹별 -->
+                                        <div class="tabcontent" id="group">
+                                            <ul id="treeDemo3" class="ztree"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6" style="float:left;">
+                                    <div class="card shadow mb-4" style="height: 290px;">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">재난 종류</span>
+                                        </div>
+                                        <div class="col-12" style="margin-top:15px;">
+                                            <table style="margin:auto; width: 100%;">
+                                                <tr>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox"
+                                                                class="btn-group-toggle custom-modal1" id="popup_show1"
+                                                                data-target="#modal">기상특보
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox"
+                                                                class="btn-group-toggle custom-modal2" id="popup_show2"
+                                                                data-target="#modal">기타경보
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox"
+                                                                class="btn-group-toggle custom-modal3" id="popup_show3"
+                                                                data-target="#modal">민방위
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox"
+                                                                class="btn-group-toggle custom-modal4" id="popup_show4"
+                                                                data-target="#modal">전국
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox"
+                                                                class="btn-group-toggle custom-modal5" id="popup_show5"
+                                                                data-target="#modal">지역
+                                                        </label>
+                                                    </td>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox"
+                                                                class="btn-group-toggle custom-modal6" id="popup_show6"
+                                                                data-target="#modal">테스트
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox"
+                                                                class="btn-group-toggle custom-modal7" id="popup_show7"
+                                                                data-target="#modal">기상추가
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-3" style="float:left;">
+                                    <div class="card shadow mb-4" style="height: 290px;">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">통신 종류</span>
+                                        </div>
+                                        <div class="col-12" id="checkboxTest" style="margin-top:15px;">
+                                            <table style="margin:auto;">
+                                                <tr>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox" class="btn-group-toggle"
+                                                                name="communication" value="인터넷">인터넷
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox" class="btn-group-toggle"
+                                                                name="communication" value="위성">위성
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox" class="btn-group-toggle"
+                                                                name="communication" value="DMB">DMB
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox" class="btn-group-toggle"
+                                                                name="communication" value="CDMA">CDMA
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-3" style="float:right;">
+                                    <div class="card shadow mb-4" style="height: 290px;">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">방송 종류</span>
+                                        </div>
+                                        <div class="col-12" id="checkboxTest" style="margin-top: 15px;">
+                                            <table style="margin:auto;">
+                                                <tr>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox" name="broadcast" data-toggle="modal"
+                                                                data-target="#Modal2" class="btn-group-toggle"
+                                                                data-backdrop="static">TTS
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox" name="broadcast" data-toggle="modal"
+                                                                data-target="#Modal3" class="btn-group-toggle"
+                                                                data-backdrop="static">메시지
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="btn btn-default" style="width:100px;">
+                                                            <input type="checkbox" name="broadcast" data-toggle="modal"
+                                                                data-target="#Modal4" class="btn-group-toggle"
+                                                                data-backdrop="static">사이렌
+                                                        </label></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- Project Card Example -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <span class="m-0 font-weight-bold text-primary" style="float: left;">GIS로
+                                            선택</span>
+                                    </div>
+                                    <div id="map" style="width:100%;height:525px;"></div>
+                                    <p>
+                                        <button onclick="selectOverlay('POLYLINE')">선</button>
+                                        <button onclick="selectOverlay('CIRCLE')">원</button>
+                                        <button onclick="selectOverlay('RECTANGLE')">사각형</button>
+                                        <button onclick="selectOverlay('POLYGON')">다각형</button>
+                                    </p>
+                                </div>
+
+                                <div class="card shadow mb-4" style="margin-top:-10px;">
+                                    <div class="card-header py-3">
+                                        <span class="m-0 font-weight-bold text-primary" style="float: left;">발령
+                                            확인</span>
+                                    </div>
+                                    <div class="col-12" style="text-align:center; padding: 10px;">
+                                        <button class="btn btn-primary" type="button" name="checkCancel" id="allClear"
+                                            onclick="clear_onclick()" style="width:150px;">조작
+                                            초기화</button>
+                                        <button class="btn btn-primary" type="button" data-toggle="modal"
+                                            data-target="#Modal5" style="width:150px;">선택 내용 확인</button>
+                                        <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
+                                        <button type="submit" class="btn btn-danger" style="width:150px;" >실제 방송
+                                            전송</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </form> -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- End of Main Content -->
+
+                <!--modal : 재난 종류 선택 시 발동 -->
+
+                <div class="modal" id="popup" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <form id="myForm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>
+                                </div>
+                                <div class='modal-body'>
+                                    <p></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                    <button type="button" class="btn btn-primary">선택 완료</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <!-- modal2 : TTS 선택 시 발동 -->
+                <div class="modal fade" id="Modal2">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>
+                                <h5 class="modal-title" id="exampleModalLable">TTS 방송 설정</h5>
                             </div>
                             <div class='modal-body'>
-                                <p></p>
+                                TTS 방송 설정 <select>
+                                    <option>
+                                          </option>
+                                </select>
+                                <button>불러오기</button>
+                                <button>저장하기</button>
+                                <br /><br />
+                                방송 반복 횟수 <select id="repeat_num"></select>
+                                방송시작음 선택 <select></select> <i class="fas fa-play-circle"
+                                    style="color:#4e73df;"></i><br /><br />
+                                TTS 방송 문안 : <br />
+                                <textarea style="width: 400px; height: 300px;"></textarea>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                    onclick="closecheck()">닫기</button>
                                 <button type="button" class="btn btn-primary">선택 완료</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
 
+                <!-- modal3 : 메시지 선택 시 발동 -->
+                <div class="modal fade" id="Modal3">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLable">저장 메시지 선택</h5>
+                            </div>
+                            <div class='modal-body'>
+                                저장 메시지 설정 <select>
+                                    <option>직접 입력</option>
+                                </select>
+                                <br /><br />
+                                메시지 문안 : <br />
+                                <textarea style="width: 400px; height: 300px;"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                    onclick="closecheck()">닫기</button>
+                                <button type="button" class="btn btn-primary">선택 완료</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- modal2 : TTS 선택 시 발동 -->
-            <div class="modal fade" id="Modal2">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLable">TTS 방송 설정</h5>
+                <!-- modal4 : 사이렌 선택 시 발동 -->
+                <div class="modal fade" id="Modal4">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLable">사이렌 선택</h5>
+                            </div>
+                            <div class='modal-body'>
+                                사이렌 선택 : <select>
+                                    <option value="0">사이렌 1번</option>
+                                    <option value="1">사이렌 2번</option>
+                                    <option value="2">사이렌 3번</option>
+                                    <option value="3">사이렌 4번</option>
+                                </select>
+                                <i class="fas fa-play-circle" style="color:#4e73df;"></i>
+                                <br /><br />
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                    onclick="closecheck()">닫기</button>
+                                <button type="button" class="btn btn-primary">선택 완료</button>
+                            </div>
                         </div>
-                        <div class='modal-body'>
-                            TTS 방송 설정 <select>
-                                <option>직접 입력</option>
-                            </select>
-                            <button>불러오기</button>
-                            <button>저장하기</button>
-                            <br /><br />
-                            방송 반복 횟수 <select id="repeat_num"></select>
-                            방송시작음 선택 <select></select> <i class="fas fa-play-circle"
-                                style="color:#4e73df;"></i><br /><br />
-                            TTS 방송 문안 : <br />
-                            <textarea style="width: 400px; height: 300px;"></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"
-                                onclick="closecheck()">닫기</button>
-                            <button type="button" class="btn btn-primary">선택 완료</button>
+                    </div>
+                </div>
+
+                <!--modal5 : 선택내용확인 버튼 클릭 시 발동-->
+                <div class="modal fade" id="Modal5">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLable">선택 내용 확인</h5>
+                            </div>
+                            <div class='modal-body'>
+                                시간 : [2019-04-01 14:00:00]<br />
+                                장소 : [롯데마트 구로점, (영등포)로데오 왁, 고속버스터미널]<br />
+                                재난 종류 : [미세먼지 경보]<br />
+                                통신 종류 : [인터넷, CDMA] <br />
+                                방송 종류 : [TTS , 방송문안 2]
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- modal3 : 메시지 선택 시 발동 -->
-            <div class="modal fade" id="Modal3">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLable">저장 메시지 선택</h5>
-                        </div>
-                        <div class='modal-body'>
-                            저장 메시지 설정 <select>
-                                <option>직접 입력</option>
-                            </select>
-                            <br /><br />
-                            메시지 문안 : <br />
-                            <textarea style="width: 400px; height: 300px;"></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"
-                                onclick="closecheck()">닫기</button>
-                            <button type="button" class="btn btn-primary">선택 완료</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- modal4 : 사이렌 선택 시 발동 -->
-            <div class="modal fade" id="Modal4">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLable">사이렌 선택</h5>
-                        </div>
-                        <div class='modal-body'>
-                            사이렌 선택 : <select>
-                                <option value="0">사이렌 1번</option>
-                                <option value="1">사이렌 2번</option>
-                                <option value="2">사이렌 3번</option>
-                                <option value="3">사이렌 4번</option>
-                            </select>
-                            <i class="fas fa-play-circle" style="color:#4e73df;"></i>
-                            <br /><br />
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"
-                                onclick="closecheck()">닫기</button>
-                            <button type="button" class="btn btn-primary">선택 완료</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--modal5 : 선택내용확인 버튼 클릭 시 발동-->
-            <div class="modal fade" id="Modal5">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLable">선택 내용 확인</h5>
-                        </div>
-                        <div class='modal-body'>
-                            시간 : [2019-04-01 14:00:00]<br />
-                            장소 : [롯데마트 구로점, (영등포)로데오 왁, 고속버스터미널]<br />
-                            재난 종류 : [미세먼지 경보]<br />
-                            통신 종류 : [인터넷, CDMA] <br />
-                            방송 종류 : [TTS , 방송문안 2]
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- End of Content Wrapper -->
         </div>
-        <!-- End of Content Wrapper -->
-    </div>
-    <!-- End of Page Wrapper -->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+        <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <script>
-        document.getElementById("defaultOpen").click();
-    </script>
+        <script>
+            document.getElementById("defaultOpen").click();
+        </script>
+    </form>
 
     <!-- Bootstrap core JavaScript-->
     <script src="/javascripts/test_ztree.js"></script>

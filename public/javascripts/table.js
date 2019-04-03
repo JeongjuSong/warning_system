@@ -1,19 +1,8 @@
 var myapp = angular.module('myapp', [
-  // 'ngTouch', 'ngAria', 'ui.grid', 'ui.grid.edit', 'ui.grid.resizeColumns', 'ui.grid.pagination', 'ui.grid.cellNav', 'xeditable'
+  'ngTouch', 'ngAria', 'ui.grid', 'ui.grid.edit', 'ui.grid.resizeColumns', 'ui.grid.pagination', 'ui.grid.cellNav', 'xeditable'
 ]);
 
-myapp.controller('myCtrl', function ($scope, $http) {
-  //  console.log('myCtrl Open');
-  // $http({
-  //   method: "GET",
-  //   url: "/city",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-  //   $scope.gridOption = response.data;
-  //   // console.log("option1 "+ response.data);
-  //   //  console.log(response.data[0].location);
-
-  // });
+myapp.controller('myCtrl',  ['$window', '$scope', '$http', '$q', function ($window, $scope, $http, $q) {
 
   // 선택 내용 보내기
   $scope.warning = function () {
@@ -23,25 +12,25 @@ myapp.controller('myCtrl', function ($scope, $http) {
     console.log(selected);
 
     if (selected == '인터넷') {
-      url += 'communication=internet';
+      url += '&communication=internet';
     }
 
     if (selected == '위성') {
-      url += 'communication=satellite';
+      url += '&communication=satellite';
     }
 
     if (selected == 'DMB') {
-      url += 'communication=dmb';
+      url += '&communication=dmb';
     }
 
     if (selected == 'CDMA') {
-      url += 'communication=cdma';
+      url += '&communication=cdma';
     }
 
     alert(url);
   }
 
-});
+}]);
 
 myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editableOptions', function ($scope, $http, $q, uiGridConstants, editableOptions) {
   console.log('myCtrl2 Open');
@@ -59,11 +48,12 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         text: row.text
       }
     }).success(function (data, status, headers, config) {
-      alert("insert success");
+      // alert("insert success");
     }).error(function (data, status, headers, config) {
       tmp = false;
       alert("insert fail");
     });
+
     $http({
       method: 'POST',
       url: '/ttsupdate',
@@ -74,7 +64,7 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         text: row.text
       }
     }).success(function (data, status, headers, config) {
-      alert('update success');
+      // alert('update success');
     }).error(function (data, status, headers, config) {
       tmp = false;
       alert("update fail");
@@ -110,8 +100,6 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       $scope.paginationGridOptions.data = data;
     }).error(function (data, status, headers, config) {});
   }
-
-  // 여기서 부터 수정 !!!!!!!!!!
    $scope.pushData = function () {
         // console.log("pushData");
         $scope.virtualGridOptions.data.push(tmpData);
@@ -128,39 +116,28 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         enableSorting: true,
         showGridFooter: true,
         enableFiltering: true,
-        rowHeight: 36,
+        rowHeight: 40,
         modifierKeysToMultiSelectCells: true,
         columnDefs: [{
                 name: 'no',
                 aggregationType: uiGridConstants.aggregationTypes.count,
-                width: 50
+                width: 70
             },
             {
-                name: 'class',
-                width: 180,
+                name: 'title',
+                width: 200,
                 enableCellEdit: true
             },
             {
-                name: 'main_href',
-                width: 230,
+                name: 'text',
+                width: 600,
                 enableCellEdit: true
             },
             {
-                name: 'imgsrc',
-                width: 300,
-                enableCellEdit: true,
-                //cellTemplate: '<div> <a href="{{row.entity.link}}" target="_blank">Web Site</a> </div>'
-            },
-            {
-                name: 'name',
-                width: 120,
-                enableCellEdit: true
-            },
-            {
-                name: 'Buttons',
-                width: 160,
+                name: 'buttons',
+                width: 200,
                 enableCellEdit: false,
-                cellTemplate: '<button type="submit" class="btn btn-primary" style ="width:80px;" ng-click="grid.appScope.submit(row.entity)">Save</button><button type="button" type="remove" class="btn btn-danger"style ="width:80px;" ng-click="grid.appScope.remove(row.entity)">Delete</button>'
+                cellTemplate: '<button type="submit" class="btn-sm btn-primary" style ="width:80px;" ng-click="grid.appScope.submit(row.entity)">Save</button><button type="button" type="remove" class="btn-sm btn-danger"style ="width:80px;" ng-click="grid.appScope.remove(row.entity)">Delete</button>'
             },
 
         ],
@@ -186,39 +163,28 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         enableSorting: false,
         showGridFooter: false,
         enableFiltering: false,
-        rowHeight: 36,
+        rowHeight: 40,
         modifierKeysToMultiSelectCells: false,
         columnDefs: [{
                 name: 'no',
                 aggregationType: uiGridConstants.aggregationTypes.count,
-                width: 50
+                width: 70
             },
             {
-                name: 'class',
-                width: 180,
+                name: 'title',
+                width: 200,
                 enableCellEdit: true
             },
             {
-                name: 'main_href',
-                width: 230,
+                name: 'Text',
+                width: 600,
                 enableCellEdit: true
-            },
-            {
-                name: 'imgsrc',
-                width: 300,
-                enableCellEdit: true,
-                //cellTemplate: '<div> <a href="{{row.entity.link}}" target="_blank">Web Site</a> </div>'
-            },
-            {
-                name: 'name',
-                width: 120,
-                enableCellEdit: true
-            },
+            },          
             {
                 name: 'Buttons',
-                width: 160,
+                width: 200,
                 enableCellEdit: false,
-                cellTemplate: '<button type="submit" class="btn btn-primary" style ="width:80px;" ng-click="grid.appScope.submit(row.entity)">Save</button><button type="button" type="remove" class="btn btn-danger"style ="width:80px;" ng-click="grid.appScope.remove(row.entity)">Delete</button>'
+                cellTemplate: '<button type="submit" class="btn-sm btn-primary" style ="width:80px;" ng-click="grid.appScope.submit(row.entity)">Save</button><button type="button" type="remove" class="btn-sm btn-danger"style ="width:80px;" ng-click="grid.appScope.remove(row.entity)">Delete</button>'
             },
 
         ],
@@ -231,9 +197,7 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     };
     var tmpData = [{
         no: '',
-        class: '',
-        main_href: '',
-        imgsrc: '',
-        name: '',
+        title: '',
+        text: ''
                 }]
 }]);
