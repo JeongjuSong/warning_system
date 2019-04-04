@@ -4,13 +4,13 @@
 // });
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
+    mapOption = {
         center: new daum.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
         level: 14 // 지도의 확대 레벨
     };
 
 // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-var map = new daum.maps.Map(mapContainer, mapOption); 
+var map = new daum.maps.Map(mapContainer, mapOption);
 var clusterer = new daum.maps.MarkerClusterer({
     map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
     averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
@@ -29,7 +29,7 @@ var options = { // Drawing Manager를 생성할 때 사용할 옵션입니다
     ],
     // 사용자에게 제공할 그리기 가이드 툴팁입니다
     // 사용자에게 도형을 그릴때, 드래그할때, 수정할때 가이드 툴팁을 표시하도록 설정합니다
-    guideTooltip: ['draw', 'drag', 'edit'], 
+    guideTooltip: ['draw', 'drag', 'edit'],
     // markerOptions: { // 마커 옵션입니다 
     //     draggable: true, // 마커를 그리고 나서 드래그 가능하게 합니다 
     //     removable: true // 마커를 삭제 할 수 있도록 x 버튼이 표시됩니다  
@@ -40,7 +40,7 @@ var options = { // Drawing Manager를 생성할 때 사용할 옵션입니다
         editable: true, // 그린 후 수정할 수 있도록 설정합니다 
         strokeColor: '#39f', // 선 색
         hintStrokeStyle: 'dash', // 그리중 마우스를 따라다니는 보조선의 선 스타일
-        hintStrokeOpacity: 0.5  // 그리중 마우스를 따라다니는 보조선의 투명도
+        hintStrokeOpacity: 0.5 // 그리중 마우스를 따라다니는 보조선의 투명도
     },
     rectangleOptions: {
         draggable: true,
@@ -124,8 +124,11 @@ $.get("/map/location.json", function (data) {
             removable: true
         });
 
+        var coordinate_data = maks.getPosition();
+        var store_name = position.content;
+        var store_num = position.num;
 
-        daum.maps.event.addListener(maks, 'click', makeOverListener(map, maks, infowindow));
+        daum.maps.event.addListener(maks, 'click', makeOverListener(map, maks, infowindow, coordinate_data, store_name, store_num));
 
         return maks;
 
@@ -137,10 +140,14 @@ $.get("/map/location.json", function (data) {
 });
 
 // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-function makeOverListener(map, markers, infowindow) {
+function makeOverListener(map, markers, infowindow, coordinate_data, store_name, store_num) {
     infowindow.close();
     return function () {
         infowindow.open(map, markers);
+        // alert(coordinate_data);
+        console.log(coordinate_data);
+        console.log(store_name);
+        console.log(store_num);
     };
 }
 

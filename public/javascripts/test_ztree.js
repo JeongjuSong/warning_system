@@ -5,19 +5,23 @@ var zNodes2;
 var zNodes3;
 
 // ztree 지역별 데이터 가져오기
-newJquery(document).ready(function () {
-    for (var i = 1; i <= 17; i++) {
-        if ((user_area) == i) {
-            var url = '/data/data' + i + '.json';
-            // console.log(url);
-        }
-    }
+newJquery(document).ready(function (data) {
+    var url = '/data/region.json';
     newJquery.ajax({
         type: "GET",
         url: url,
         async: false,
         success: function (data) {
-            zNodes = data;
+            if (user_area == 1)
+                zNodes = data.seoul;
+            if (user_area == 4)
+                zNodes = data.incheon;
+            if (user_area == 10)
+                zNodes = data.gangwon;
+            if (user_area == 15)
+                zNodes = data.gyeongbuk;
+            if (user_area == 17)
+                zNodes = data.jeju;
         },
         error: function (e) {
             console.log(e.responseText);
@@ -26,18 +30,23 @@ newJquery(document).ready(function () {
 });
 
 // ztree2 분류별 데이터 가져오기
-newJquery(document).ready(function () {
-    for (var i = 1; i <= 17; i++) {
-        if ((user_area) == i) {
-            var url = '/data/device_' + i + '.json';
-        }
-    }
+newJquery(document).ready(function (data) {
+    var url = '/data/facility.json';
     newJquery.ajax({
         type: "GET",
         url: url,
         async: false,
         success: function (data) {
-            zNodes2 = data;
+            if (user_area == 1)
+                zNodes2 = data.seoul;
+            if (user_area == 4)
+                zNodes2 = data.incheon;
+            if (user_area == 10)
+                zNodes2 = data.gangwon;
+            if (user_area == 15)
+                zNodes2 = data.gyeongbuk;
+            if (user_area == 17)
+                zNodes2 = data.jeju;
         },
         error: function (e) {
             console.log(e.responseText);
@@ -102,8 +111,12 @@ newJquery(document).ready(function () {
     newJquery.fn.zTree.init(newJquery("#treeDemo"), setting, zNodes);
     newJquery.fn.zTree.init(newJquery("#treeDemo2"), setting, zNodes2);
     newJquery.fn.zTree.init(newJquery("#treeDemo3"), setting, zNodes3);
-    newJquery("#addParent").bind("click", {isParent: true}, add);
-    newJquery("#addLeaf").bind("click", {isParent: false}, add);
+    newJquery("#addParent").bind("click", {
+        isParent: true
+    }, add);
+    newJquery("#addLeaf").bind("click", {
+        isParent: false
+    }, add);
     newJquery("#edit").bind("click", edit);
     newJquery("#remove").bind("click", remove);
     newJquery("#clearChildren").bind("click", clearChildren);

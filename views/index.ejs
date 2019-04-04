@@ -474,12 +474,13 @@
                             <h5 class="modal-title" id="exampleModalLable">TTS 방송 설정</h5>
                         </div>
                         <div class='modal-body'>
-                            TTS 방송 설정 <select>
+                            TTS 방송 설정 <select id="tts_title">
                                 <option value="" disabled selected>방송 선택</option>
                                 <option value="">직접 입력</option>
                                 <script>
-                                    for (var i = 0; i <= '{{gridOption11}}'.length; i++) {
-                                        document.write("<option> {{gridOption1[" + i + "].title}} </option>");
+                                    for (var i = 0; i <= '{{gridOption1}}'.length; i++) {
+                                        document.write("<option value=" + i + "> {{gridOption1[" + i +
+                                            "].title}} </option>");
                                     }
                                 </script>
                             </select>
@@ -489,12 +490,17 @@
                             방송시작음 선택 <select></select> <i class="fas fa-play-circle"
                                 style="color:#4e73df;"></i><br /><br />
                             TTS 방송 문안 : <br />
-                            <textarea  style="width: 400px; height: 300px; padding:10px;"></textarea>
-                            <script language="javascript">
+                            <textarea id="test" style="width: 400px; height: 300px; padding:10px;"></textarea>
+                            <script>
                                 function tts_event() {
-                                   document.getElementById
+                                    var tts_title = $("select#tts_title").val();
+                                    for (var i = 0; i <= '{{gridOption1}}'.length; i++) {
+                                        if (tts_title == i) {
+                                            document.getElementById("test").value = "{{gridOption1[0].text}}";
+                                        } 
+                                    }
                                 }
-                                </script>
+                            </script>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"

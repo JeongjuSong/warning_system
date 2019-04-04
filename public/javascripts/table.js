@@ -14,7 +14,7 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     // console.log(response.data[0].text);
   });
 
-  var url = 'warning?'
+  var url = ''
 
   // 선택 내용 보내기
   $scope.warning = function () {
@@ -25,35 +25,35 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     // console.log("사이렌 종류 : " + siren);
 
     if (communication== '인터넷') {
-      url += '&communication=internet';
+      url += '방송 종류 : 인터넷 & ';
     }
 
     if (communication== '위성') {
-      url += '&communication=satellite';
+      url += '방송 종류 : 위성 & ';
     }
 
     if (communication== 'DMB') {
-      url += '&communication=dmb';
+      url += '방송 종류 : DMB & ';
     }
 
     if (communication== 'CDMA') {
-      url += '&communication=cdma';
+      url += '방송 종류 : CDMA & ';
     }
 
     if(siren == '1번') {
-      url += '&siren=1';
+      url += '사이렌 종류 : 1번';
     }
 
     if(siren == '2번') {
-      url += '&siren=2';
+      url += '사이렌 종류 : 2번';
     }
 
     if(siren == '3번') {
-      url += '&siren=3';
+      url += '사이렌 종류 : 3번';
     }
 
     if(siren == '4번') {
-      url += '&siren=4';
+      url += '사이렌 종류 : 4번';
     }
 
     alert(url);
