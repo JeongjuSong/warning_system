@@ -102,8 +102,9 @@ function clear_onclick() {
 
 // 재난 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
 function closecheck() {
-    $("[name=broadcast]").parent().removeClass('selected');
-    $("[name=broadcast]").prop("checked", false);
+    $("[id=broadcast]").parent().removeClass('selected');
+    $("[id=broadcast]").prop("checked", false);
+    $
 }
 
 
@@ -125,3 +126,4 @@ function openTab(evt, select) {
         .display = "block";
     evt.currentTarget.className += " active";
 }
+

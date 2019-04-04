@@ -15,7 +15,7 @@ $(document).ready(function () {
             var showText ="";
             weather_special.map(function(weather_special){
                
-               showText+= weather_special+"<br>";
+               showText+= "<input type='checkbox' name='alarm_type' value="+weather_special.situation+">"+weather_special+"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);

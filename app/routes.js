@@ -67,7 +67,7 @@ module.exports = function (app, passport) {
 	app.get('/index', isLoggedIn, function (req, res) {
 		res.render('index.ejs', {
 			user: req.user,
-			area: req.area
+			tts: req.tts
 			// get the user out of session and pass to template
 		});
 	});
@@ -76,38 +76,31 @@ module.exports = function (app, passport) {
 	
 	app.get('/result', isLoggedIn, function (req, res) {
 		res.render('result.ejs', {
-			user: req.user,
-			area: req.area
-
+			user: req.user
 		});
 	});
 
 	app.get('/edit_tts', isLoggedIn, function (req, res) {
 		res.render('edit_tts.ejs', {
-			user: req.user,
-			area: req.area
-
+			user: req.user
 		});
 	});
 
 	app.get('/history', isLoggedIn, function (req, res) {
 		res.render('history.ejs', {
-			user: req.user,
-			area: req.area
+			user: req.user
 		});
 	});
 
 	app.get('/add_group', isLoggedIn, function (req, res) {
 		res.render('add_group.ejs', {
-			user: req.user,
-			area: req.area
+			user: req.user
 		});
 	});
 
 	app.get('/check_terminal', isLoggedIn, function (req, res) {
 		res.render('check_terminal.ejs', {
-			user: req.user,
-			area: req.area
+			user: req.user
 		});
 	})
 

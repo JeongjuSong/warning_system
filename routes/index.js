@@ -94,6 +94,28 @@ router.post('/login', function(req, res, next) {
     });
 });
 
+router.get('/index', function(req, res, next) {
+
+    connection.query('SELECT * from tts', function(err, rows) {
+        if (err) throw err;
+
+      console.log('The solution is: ', rows);
+
+        res.send(rows);
+    });
+});
+
+
+router.get('/message', function(req, res, next) {
+    connection.query('SELECT * from message', function(err, rows) {
+        if (err) throw err;
+
+        // console.log('The solution is: ', rows);
+
+        res.send(rows);
+    });
+});
+
 
 // edit_tts db insert
 router.get('/tts', function(req, res, next) {
