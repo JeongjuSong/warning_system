@@ -7,7 +7,7 @@ $(document).ready(function () {
           console.log(data.weather_special);
           
       var weather_special = data.weather_special.map(function (weather_special) {
-         return weather_special.id + ': ' + weather_special.situation;
+         return weather_special.situation;
        });
       //  mymodal.empty();
        if (weather_special.length) {
@@ -32,7 +32,7 @@ $(document).ready(function () {
           console.log(data.other_alarm);
           
       var other_alarm = data.other_alarm.map(function (other_alarm) {
-         return other_alarm.id + ': ' + other_alarm.situation;
+         return other_alarm.situation;
        });
       //  mymodal.empty();
        if (other_alarm.length) {
@@ -40,7 +40,7 @@ $(document).ready(function () {
             var showText ="";
             other_alarm.map(function(other_alarm){
                
-               showText+= other_alarm+"<br>";
+               showText+=  "<input type='checkbox' name='alarm_type' value="+other_alarm.situation+">"+other_alarm+"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -57,7 +57,7 @@ $(document).ready(function () {
           console.log(data.civil_defence);
           
       var civil_defence = data.civil_defence.map(function (civil_defence) {
-         return civil_defence.id + ': ' + civil_defence.situation;
+         return civil_defence.situation;
        });
       //  mymodal.empty();
        if (civil_defence.length) {
@@ -65,7 +65,7 @@ $(document).ready(function () {
             var showText ="";
             civil_defence.map(function(civil_defence){
                
-               showText+= civil_defence+"<br>";
+               showText+= "<input type='checkbox' name='alarm_type' value="+civil_defence.situation+">"+ civil_defence+"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -82,7 +82,7 @@ $(document).ready(function () {
           console.log(data.national);
           
       var national = data.national.map(function (national) {
-         return national.id + ': ' + national.situation;
+         return national.situation;
        });
       //  mymodal.empty();
        if (national.length) {
@@ -90,7 +90,7 @@ $(document).ready(function () {
             var showText ="";
             national.map(function(national){
                
-               showText+= national+"<br>";
+               showText+= "<input type='checkbox' name='alarm_type' value="+national.situation+">"+ national +"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -107,7 +107,7 @@ $(document).ready(function () {
           console.log(data.local);
           
       var local = data.local.map(function (local) {
-         return local.id + ': ' + local.situation;
+         return local.situation;
        });
       //  mymodal.empty();
        if (local.length) {
@@ -115,7 +115,7 @@ $(document).ready(function () {
             var showText ="";
             local.map(function(local){
                
-               showText+= local+"<br>";
+               showText+= "<input type='checkbox' name='alarm_type' value="+ local.situation+">"+ local +"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -132,7 +132,7 @@ $(document).ready(function () {
           console.log(data.test);
           
       var test = data.test.map(function (test) {
-         return test.id + ': ' + test.situation;
+         return test.situation;
        });
       //  mymodal.empty();
        if (test.length) {
@@ -140,7 +140,7 @@ $(document).ready(function () {
             var showText ="";
             test.map(function(test){
                
-               showText+= test+"<br>";
+               showText+= "<input type='checkbox' name='alarm_type' value="+ test.situation+">"+ test+"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -154,18 +154,18 @@ $(document).ready(function () {
       var mymodal = $('#popup');
 
       $.getJSON('/data/type.json', function (data) {
-          console.log(data.other_weather);
+          console.log(data.weather);
           
-      var other_weather = data.other_weather.map(function (other_weather) {
-         return other_weather.id + ': ' + other_weather.situation;
+      var weather = data.weather.map(function (weather) {
+         return weather.situation;
        });
       //  mymodal.empty();
-       if (other_weather.length) {
-            // console.log(other_weather);
+       if (weather.length) {
+            // console.log(weather);
             var showText ="";
-            other_weather.map(function(other_weather){
+            weather.map(function(weather){
                
-               showText+= weather_sother_weatherpother_weatherecial+"<br>";
+               showText+= "<input type='checkbox' name='alarm_type' value="+ weather.situation+">"+ weather+"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
