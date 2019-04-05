@@ -4,7 +4,7 @@ var myapp = angular.module('myapp', [
 
 myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($window, $scope, $http, $q) {
 
-  // TTS 방송 불러오기 gridOption1
+  // TTS 방송 title 불러오기 gridOption1
   $http({
     method: "GET",
     url: '/tts',
@@ -15,6 +15,7 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     // console.log(response.data[0].text);
   });
 
+  // TTS 방송 text 불러오기 gridOption2
   $scope.tts_event = function () {
     var selected = $("select#tts_title").val();
     $http({
@@ -31,12 +32,40 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     });
   }
 
+  // 저장 메시지 title 불러오기 gridOption3
+  $http({
+    method: "GET",
+    url: '/message',
+    contentType: "application/json",
+  }).then(function data(response) {
+    $scope.gridOption3 = response.data;
+    // console.log("option3 : "+response.data);
+    // console.log(response.data[0].title);
+  });
+
+  // 저장 메시지 text 불러오기 gridOption4
+  $scope.message_event = function () {
+    var selected = $("select#message_title").val();
+    $http({
+      method: "GET",
+      url: '/message',
+      contentType: "application/json",
+    }).then(function data(response) {
+      for (var i = 0; i <= 10; i++) {
+        if (selected == i) {
+          // console.log(response.data[i].text);
+          $scope.gridOption4 = response.data[i].text;
+        }
+      }
+    });
+  }
+
   var url = ''
   // 선택 내용 보내기
   $scope.warning = function () {
     console.log('warning() open!')
     var communication = $("#communication:checked").val();
-    var siren = $("select#selectOptions").val();
+    var siren = $("select#siren").val();
     var tts = $("select#tts_title").val();
     // console.log("통신 종류 : " + selected);
     // console.log("사이렌 종류 : " + siren);
@@ -58,23 +87,13 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     }
     
     if(tts == '0') {
-      url += 'tts 방송 : 강풍 대피방송'; 
+      url += 'tts 방송 : 강풍 대피방송 & '; 
     }
 
-    if (siren == '1번') {
-      url += '사이렌 종류 : 1번';
-    }
-
-    if (siren == '2번') {
-      url += '사이렌 종류 : 2번';
-    }
-
-    if (siren == '3번') {
-      url += '사이렌 종류 : 3번';
-    }
-
-    if (siren == '4번') {
-      url += '사이렌 종류 : 4번';
+    for(var i=1; i<=10; i++) {
+      if( siren == (i + '번')) {
+        url += '사이렌 종류 : ' + i + '번';
+      }
     }
 
     alert(url);

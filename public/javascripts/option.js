@@ -41,8 +41,8 @@ window.onload = function () {
         strMinute += "<option value=" + i + ">" + i + "</option>";
     }
 
-    for (var i = sNum; i<= eNum; i++) {
-        strNum += "<option value="+ i + ">" + i + "</option>";
+    for (var i = sNum; i <= eNum; i++) {
+        strNum += "<option value=" + i + ">" + i + "</option>";
     }
 
     document.getElementById("amonth").innerHTML = strMonth;
@@ -87,8 +87,11 @@ $(function () {
 
     // 전체선택해제 체크박스 클릭 
     $("#allClear").click(function () {
-        //해당화면에 모든 checkbox들의 체크를해제시킨다. 
+        //해당화면에 모든 checkbox와 select들의 체크를해제시킨다. 
         $("input[type=checkbox]").prop("checked", false);
+        document.getElementById("tts_title").selectedIndex = -1;
+        document.getElementById("message_title").selectedIndex = -1;
+        document.getElementById("siren").selectedIndex = -1;
     })
 });
 
@@ -104,7 +107,9 @@ function clear_onclick() {
 function closecheck() {
     $("[id=broadcast]").parent().removeClass('selected');
     $("[id=broadcast]").prop("checked", false);
-    $
+    document.getElementById("tts_title").selectedIndex = -1;
+    document.getElementById("message_title").selectedIndex = -1;
+    document.getElementById("siren").selectedIndex = -1;
 }
 
 
@@ -126,4 +131,3 @@ function openTab(evt, select) {
         .display = "block";
     evt.currentTarget.className += " active";
 }
-
