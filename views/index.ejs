@@ -212,16 +212,17 @@
                                     style="padding: 7px;  text-align: center; margin-top:3px; " id="checkboxTest">
                                     <label class="btn btn-default"
                                         style="height: 53px; line-height: 35px; margin-right: 10px;">
-                                        <input type="checkbox" name="time" value="right_now">즉시 발령
+                                        <input type="checkbox" id="time" value="right_now">즉시 발령
                                     </label>
                                     <label class="btn btn-default"> 예약 발령 :
                                         <select id="year">
+                                            <option value="" disabled selected>년</option>
                                             <option value="2019">2019</option>
                                             <option value="2020">2020</option>
                                         </select>년
                                         <select id="amonth"></select>월
                                         <select id="aday"></select>일
-                                        <select id="ahour"></select>시
+                                        <select id="ahour"> </select>시
                                         <select id="aminute"></select>분
                                     </label>
                                 </div>
@@ -429,8 +430,7 @@
                                     <button class="btn btn-primary" type="button" name="checkCancel" id="allClear"
                                         onclick="clear_onclick()" style="width:150px;">조작
                                         초기화</button>
-                                    <button class="btn btn-primary" type="button" data-toggle="modal"
-                                        data-target="#Modal5" style="width:150px;">선택 내용 확인</button>
+                                    <button class="btn btn-primary" type="button" style="width:150px;" ng-click='confirm()' id='confirm'>선택 내용 확인</button>
                                     <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
                                     <button type="button" class="btn btn-danger" style="width:150px;"
                                         ng-click='warning()' id='warning'>실제 방송
@@ -568,7 +568,7 @@
                             <h5 class="modal-title" id="exampleModalLable">선택 내용 확인</h5>
                         </div>
                         <div class='modal-body'>
-                            시간 : [2019-04-01 14:00:00]<br />
+                            시간 : {{gridOption5}}<br />
                             장소 : [롯데마트 구로점, (영등포)로데오 왁, 고속버스터미널]<br />
                             재난 종류 : [미세먼지 경보]<br />
                             통신 종류 : [인터넷, CDMA] <br />

@@ -216,19 +216,19 @@ function showIconForTree(treeId, treeNode) {
     return !treeNode.isParent;
 };
 
-function setCheck() {
-    var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
-        py = newJquery("#py").attr("checked") ? "p" : "",
-        sy = newJquery("#sy").attr("checked") ? "s" : "",
-        pn = newJquery("#pn").attr("checked") ? "p" : "",
-        sn = newJquery("#sn").attr("checked") ? "s" : "",
-        type = {
-            "Y": s,
-            "N": s
-        };
-    zTree.setting.check.chkboxType = type;
-    showCode('setting.check.chkboxType = { "Y" : "s", "N" : "s" }');
-}
+// function setCheck() {
+//     var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
+//         py = newJquery("#py").attr("checked") ? "p" : "",
+//         sy = newJquery("#sy").attr("checked") ? "s" : "",
+//         pn = newJquery("#pn").attr("checked") ? "p" : "",
+//         sn = newJquery("#sn").attr("checked") ? "s" : "",
+//         type = {
+//             "Y": s,
+//             "N": s
+//         };
+//     zTree.setting.check.chkboxType = type;
+//     showCode('setting.check.chkboxType = { "Y" : "s", "N" : "s" }');
+// }
 
 function showCode(str) {
     if (!code) code = newJquery("#code");
@@ -253,8 +253,9 @@ function beforeDrop(treeId, treeNodes, targetNode, moveType) {
 function zTreeOnCheck(event, treeId, treeNode) {
     var treeObj = newJquery.fn.zTree.getZTreeObj("treeDemo");
     var nodes = treeObj.getCheckedNodes(true);
-    if (nodes.id != 0) {
-        console.log(nodes);
+
+    if (nodes.legnth != 0) {
+        console.log(nodes[nodes.length-1]);        
     }
 
     var treeObj2 = newJquery.fn.zTree.getZTreeObj("treeDemo2");

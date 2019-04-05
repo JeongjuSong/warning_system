@@ -28,6 +28,11 @@ window.onload = function () {
     var strMinute = "";
     var strNum = "";
 
+    strMonth += "<option value='' disabled selected>월</option>"
+    strDay += "<option value='' disabled selected>일</option>"
+    strHour += "<option value='' disabled selected>시</option>"
+    strMinute += "<option value='' disabled selected>분</option>"
+
     for (var i = sMonth; i < eMonth; i++) {
         strMonth += "<option value=" + i + ">" + i + "</option>";
     }
@@ -111,7 +116,6 @@ function closecheck() {
     document.getElementById("message_title").selectedIndex = -1;
     document.getElementById("siren").selectedIndex = -1;
 }
-
 
 function openTab(evt, select) {
     var i,
