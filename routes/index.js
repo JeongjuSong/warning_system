@@ -94,17 +94,6 @@ router.post('/login', function(req, res, next) {
     });
 });
 
-// router.get('/index', function(req, res, next) {
-
-//     connection.query('SELECT * from tts', function(err, rows) {
-//         if (err) throw err;
-
-//       console.log('The solution is: ', rows);
-
-//         res.send(rows);
-//     });
-// });
-
 
 router.get('/message', function(req, res, next) {
     connection.query('SELECT * from message', function(err, rows) {
@@ -139,8 +128,6 @@ router.get('/tts/all', function(req, res, next) {
     });
 });
 
-
-
 router.all('/ttsinsert', function(req, res, next) {
 
 
@@ -152,6 +139,7 @@ router.all('/ttsinsert', function(req, res, next) {
 
     res.send("okay");
 });
+
 router.all('/ttsupdate', function(req, res, next) {
 
     /* update 쿼리문수정 */
@@ -201,8 +189,6 @@ router.get('/terminal/all', function(req, res, next) {
     });
 });
 
-
-
 router.all('/terminalinsert', function(req, res, next) {
 
 
@@ -214,6 +200,7 @@ router.all('/terminalinsert', function(req, res, next) {
 
     res.send("okay");
 });
+
 router.all('/terminalupdate', function(req, res, next) {
 
     /* update 쿼리문수정 */
@@ -242,8 +229,6 @@ router.all('/terminaldelete', function(req, res, next) {
 
     res.send("okay");
 });
-
-
 
 // router.post('/index', function(req, res, next) {
         

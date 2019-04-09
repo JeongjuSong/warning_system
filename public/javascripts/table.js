@@ -63,47 +63,76 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
   // 선택 내용 확인
   $scope.confirm = function () {
     console.log('confirm() open!')
-    var communication = $("#communication:checked").val();
     var siren = $("select#siren").val();
     var tts = $("select#tts_title").val();
-    var ayear = $('select#year');
-    var amonth = $('select#amonth');
-    var aday= $('select#aday');
-    var aminute = $('select#aminute');
+    var ayear = $('select#year').val();
+    var amonth = $('select#amonth').val();
+    var aday = $('select#aday').val();
+    var ahour = $('select#ahour').val();
+    var aminute = $('select#aminute').val();
     // console.log("통신 종류 : " + selected);
     // console.log("사이렌 종류 : " + siren);
 
-    if($('#time:checked').val() == 'right_now'){
+    if ($('#time:checked').val() == 'right_now') {
       var dt = new Date();
       var month = dt.getUTCMonth() + 1;
       var hour = dt.getUTCHours() + 9;
-      var time = (dt.getUTCFullYear() + "." + month + "." + dt.getUTCDate() + " " + hour +":"+dt.getUTCMinutes()+":"+dt.getUTCSeconds());
+      var time = (dt.getUTCFullYear() + "." + month + "." + dt.getUTCDate() + " " + hour + ":" + dt.getUTCMinutes() + ":" + dt.getUTCSeconds());
       url += '발령 시간 : ' + time + " & ";
-      $scope.gridOption5 == time;
+      $scope.gridOption5 = time;
     }
 
-    if (communication == '인터넷') {
-      url += '방송 종류 : 인터넷 & ';
+    if (ayear == 2019) {
+      url += '2019.';
     }
 
-    if (communication == '위성') {
-      url += '방송 종류 : 위성 & ';
+    if (ayear == 2020) {
+      url += '2020.';
     }
 
-    if (communication == 'DMB') {
-      url += '방송 종류 : DMB & ';
+    for (var i = 1; i <= 12; i++) {
+      if (amonth == i) {
+        url += i + '.'
+      }
     }
 
-    if (communication == 'CDMA') {
-      url += '방송 종류 : CDMA & ';
-    }
-    
-    if(tts == '0') {
-      url += 'tts 방송 : 강풍 대피방송 & '; 
+    for (var i = 1; i <= 31; i++) {
+      if (aday == i) {
+        url += i + ' '
+      }
     }
 
-    for(var i=1; i<=10; i++) {
-      if( siren == (i + '번')) {
+    for (var i = 0; i <= 59; i++) {
+      if (ahour == i) {
+        url += i + ':'
+      }
+    }
+
+    for (var i = 0; i <= 59; i++) {
+      if (aminute == i) {
+        url += i
+      }
+    }
+
+    var val2 = [];
+    $('#alarm_type:checked').each(function (i) {
+      val2[i] = $(this).val();
+      url += '재난 종류 : ' + val2[i];
+    });
+
+    var val = [];
+    $('#communication:checked').each(function (i) {
+      val[i] = $(this).val();
+      url += ' 통신 종류 : ' + val[i];
+    });
+
+
+    if (tts == '0') {
+      url += 'tts 방송 : 강풍 대피방송 & ';
+    }
+
+    for (var i = 1; i <= 10; i++) {
+      if (siren == (i + '번')) {
         url += '사이렌 종류 : ' + i + '번';
       }
     }
@@ -114,55 +143,35 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
   var url = ''
   // 실제 방송 전송
   $scope.warning = function () {
-    console.log('warning() open!')
-    var communication = $("#communication:checked").val();
+    console.log('warning() open!');
+    var alarm_type = $('#alarm_type:checked').val();
+    console.log(alarm_type);
     var siren = $("select#siren").val();
     var tts = $("select#tts_title").val();
-    var ayear = $('select#year');
-    var amonth = $('select#amonth');
-    var aday= $('select#aday');
-    var aminute = $('select#aminute');
-    // console.log("통신 종류 : " + selected);
-    // console.log("사이렌 종류 : " + siren);
+    var ayear = $('select#year').val();
+    var amonth = $('select#amonth').val();
+    var aday = $('select#aday').val();
+    var ahour = $('select#ahour').val();
+    var aminute = $('select#aminute').val();
 
-    if($('#time:checked').val() == 'right_now'){
-      var dt = new Date();
-      var month = dt.getUTCMonth() + 1;
-      var hour = dt.getUTCHours() + 9;
-      var time = (dt.getUTCFullYear() + "." + month + "." + dt.getUTCDate() + " " + hour +":"+dt.getUTCMinutes()+":"+dt.getUTCSeconds());
-      url += '발령 시간 : ' + time + " & ";
-      $scope.gridOption5 == time;
+    var val = [];
+    $('#communication:checked').each(function (i) {
+      val[i] = $(this).val();
+      url += ' 통신 종류 : ' + val[i];
+    });
+
+
+    if (tts == '0') {
+      url += ' tts 방송 : 강풍 대피방송 & ';
     }
 
-    if (communication == '인터넷') {
-      url += '방송 종류 : 인터넷 & ';
-    }
-
-    if (communication == '위성') {
-      url += '방송 종류 : 위성 & ';
-    }
-
-    if (communication == 'DMB') {
-      url += '방송 종류 : DMB & ';
-    }
-
-    if (communication == 'CDMA') {
-      url += '방송 종류 : CDMA & ';
-    }
-    
-    if(tts == '0') {
-      url += 'tts 방송 : 강풍 대피방송 & '; 
-    }
-
-    for(var i=1; i<=10; i++) {
-      if( siren == (i + '번')) {
+    for (var i = 1; i <= 10; i++) {
+      if (siren == (i + '번')) {
         url += '사이렌 종류 : ' + i + '번';
       }
     }
 
-    alert(url);
   }
-
 }]);
 
 // tts 추가/수정/삭제 
@@ -532,3 +541,39 @@ myapp.controller('myCtrl3', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     status: ''
   }]
 }]);
+
+// myapp.directive("filterTree", function () {
+//       return {
+//         restrict: "AE",
+//         controller: function ($scope, $http, $element) {
+//           $scope.treeNodes = [];
+//           var filterItemsUrl = "/data/region.json";
+//           //save httpPromise
+//           var httpPromise = $http.get(filterItemsUrl);
+//           //chain from httpPromise
+//           httpPromise.then(function (response) {
+//               var filterItems = response.data["data"]["filter_nodes"];
+//               filterItems.map(function (item) {
+//                 $scope.treeNodes.push({
+//                   id: item.seoul.id,
+//                   pId: item.seoul.pid,
+//                   name: item.seoul.name,
+//                   open: item.seoul.open
+//                 });
+//               });
+//               //return treeNodes for chaining zTree.init
+//               return $scope.treeNodes;
+//             }).then (function onFulfilled (treeNodes) {
+//               var setting= {
+//                 check: {enable: true},
+//                 data: {sinpleData: {enable: true}
+//               }
+//               };
+//               $.fn.zTree.init($element, setting, treeNodes);
+//             })
+//           },
+//           link : function(scope,element,attributes,controller) {
+
+//           }
+//         }
+//       });

@@ -216,19 +216,6 @@ function showIconForTree(treeId, treeNode) {
     return !treeNode.isParent;
 };
 
-// function setCheck() {
-//     var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo"),
-//         py = newJquery("#py").attr("checked") ? "p" : "",
-//         sy = newJquery("#sy").attr("checked") ? "s" : "",
-//         pn = newJquery("#pn").attr("checked") ? "p" : "",
-//         sn = newJquery("#sn").attr("checked") ? "s" : "",
-//         type = {
-//             "Y": s,
-//             "N": s
-//         };
-//     zTree.setting.check.chkboxType = type;
-//     showCode('setting.check.chkboxType = { "Y" : "s", "N" : "s" }');
-// }
 
 function showCode(str) {
     if (!code) code = newJquery("#code");
@@ -254,19 +241,69 @@ function zTreeOnCheck(event, treeId, treeNode) {
     var treeObj = newJquery.fn.zTree.getZTreeObj("treeDemo");
     var nodes = treeObj.getCheckedNodes(true);
 
-    if (nodes.legnth != 0) {
-        console.log(nodes[nodes.length-1]);        
+    if (nodes.length != 0) {
+        console.log(treeNode.name)
     }
 
     var treeObj2 = newJquery.fn.zTree.getZTreeObj("treeDemo2");
     var nodes2 = treeObj2.getCheckedNodes(true);
     if (nodes2.length != 0) {
-        console.log(nodes2);
+        for (var i = 0; i <= nodes2.length; i++) {
+            if (nodes2[i].id == "1111") {
+                console.log(nodes2[i].name);
+            }
+            if (nodes2[i].id == "1112") {
+                console.log(nodes2[i].name);
+            }
+            if (nodes2[i].id == "1121") {
+                console.log(nodes2[i].name);
+            }
+            if (nodes2[i].id == "1122") {
+                console.log(nodes2[i].name);
+            }
+            if (nodes2[i].id == "1131") {
+                console.log(nodes2[i].name);
+            }
+            if (nodes2[i].id == "1211") {
+                console.log(nodes2[i].name);
+            }
+            if (nodes2[i].id == "1221") {
+                console.log(nodes2[i].name);
+            }
+            if (nodes2[i].id == "1231") {
+                console.log(nodes2[i].name);
+            }
+            if (nodes2[i].id == "1241") {
+                console.log(nodes2[i].name);
+            }
+            if (nodes2[i].id == "131") {
+                console.log(nodes2[i].name);
+            }
+        }
     }
 
     var treeObj3 = newJquery.fn.zTree.getZTreeObj("treeDemo3");
     var nodes3 = treeObj3.getCheckedNodes(true);
     if (nodes3.length != 0) {
-        console.log(nodes3);
+        for (var i = 0; i <= nodes3.length; i++) {
+            if (nodes3[i].id == "111") {
+                console.log(nodes3[i].name);
+            }
+            if (nodes3[i].id == "112") {
+                console.log(nodes3[i].name);
+            }
+            if (nodes3[i].id == "113") {
+                console.log(nodes3[i].name);
+            }
+            if (nodes3[i].id == "121") {
+                console.log(nodes3[i].name);
+            }
+            if (nodes3[i].id == "122") {
+                console.log(nodes3[i].name);
+            }
+            if (nodes3[i].id == "123") {
+                console.log(nodes3[i].name);
+            }
+        }
     }
 };

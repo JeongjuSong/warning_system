@@ -33,7 +33,7 @@ window.onload = function () {
     strHour += "<option value='' disabled selected>시</option>"
     strMinute += "<option value='' disabled selected>분</option>"
 
-    for (var i = sMonth; i < eMonth; i++) {
+    for (var i = sMonth; i <= eMonth; i++) {
         strMonth += "<option value=" + i + ">" + i + "</option>";
     }
     for (var i = sDay; i <= eDay; i++) {
@@ -135,3 +135,14 @@ function openTab(evt, select) {
         .display = "block";
     evt.currentTarget.className += " active";
 }
+
+
+// $(function(){
+//     $('#save_value').click(function(){
+//       var val = [];
+//       $('#communication:checked').each(function(i){
+//         val[i] = $(this).val();
+//         console.log(val[i]);
+//       });
+//     });
+//   });

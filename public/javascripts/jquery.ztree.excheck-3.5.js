@@ -45,8 +45,8 @@
 			chkDisabledInherit: false,
 			radioType: _consts.radio.TYPE_LEVEL,
 			chkboxType: {
-				"Y": "ps",
-				"N": "ps"
+				"Y": "s",
+				"N": "s"
 			}
 		},
 		data: {

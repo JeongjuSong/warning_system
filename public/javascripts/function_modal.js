@@ -9,13 +9,14 @@ $(document).ready(function () {
       var weather_special = data.weather_special.map(function (weather_special) {
          return weather_special.situation;
        });
+
       //  mymodal.empty();
        if (weather_special.length) {
             // console.log(weather_special);
             var showText ="";
             weather_special.map(function(weather_special){
                
-               showText+= "<input type='checkbox' name='alarm_type' value="+weather_special.situation+">"+weather_special+"<br>";
+               showText+= "<input type='checkbox' id='alarm_type' name='alarm_type' value='"+weather_special+"'>"+weather_special+"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -40,7 +41,7 @@ $(document).ready(function () {
             var showText ="";
             other_alarm.map(function(other_alarm){
                
-               showText+=  "<input type='checkbox' name='alarm_type' value="+other_alarm.situation+">"+other_alarm+"<br>";
+               showText+=  "<input type='checkbox' id='alarm_type' name='alarm_type' value='"+other_alarm+"'>"+other_alarm+"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -65,7 +66,7 @@ $(document).ready(function () {
             var showText ="";
             civil_defence.map(function(civil_defence){
                
-               showText+= "<input type='checkbox' name='alarm_type' value="+civil_defence.situation+">"+ civil_defence+"<br>";
+               showText+= "<input type='checkbox' id='alarm_type' name='alarm_type' value='"+civil_defence+"'>"+ civil_defence+"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -90,7 +91,7 @@ $(document).ready(function () {
             var showText ="";
             national.map(function(national){
                
-               showText+= "<input type='checkbox' name='alarm_type' value="+national.situation+">"+ national +"<br>";
+               showText+= "<input type='checkbox' id='alarm_type' name='alarm_type' value='"+national+"'>"+ national +"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -115,7 +116,7 @@ $(document).ready(function () {
             var showText ="";
             local.map(function(local){
                
-               showText+= "<input type='checkbox' name='alarm_type' value="+ local.situation+">"+ local +"<br>";
+               showText+= "<input type='checkbox' id='alarm_type' name='alarm_type' value="+ local+">"+ local +"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -140,7 +141,7 @@ $(document).ready(function () {
             var showText ="";
             test.map(function(test){
                
-               showText+= "<input type='checkbox' name='alarm_type' value="+ test.situation+">"+ test+"<br>";
+               showText+= "<input type='checkbox' id='alarm_type' name='alarm_type' value="+ test+">"+ test+"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
@@ -165,19 +166,81 @@ $(document).ready(function () {
             var showText ="";
             weather.map(function(weather){
                
-               showText+= "<input type='checkbox' name='alarm_type' value="+ weather.situation+">"+ weather+"<br>";
+               showText+= "<input type='checkbox' id='alarm_type' name='alarm_type' value="+ weather+">"+ weather+"<br>";
                
             });
             mymodal.find('.modal-body').html(showText);
        }   
-  
       });
-   
+   });
+
+   $('.custom-modal8').click(function () {
+      var mymodal = $('#popup2');
+      var showText="";
+      var ayear = $('select#year').val();
+      var amonth = $('select#amonth').val();
+      var aday = $('select#aday').val();
+      var ahour = $('select#ahour').val();
+      var aminute = $('select#aminute').val();
+      var siren = $("select#siren").val();
+      var tts = $("select#tts_title").val();
+
+      if ($('#time:checked').val() == 'right_now') {
+         var dt = new Date();
+         var month = dt.getUTCMonth() + 1;
+         var hour = dt.getUTCHours() + 9;
+         var time = (dt.getUTCFullYear() + "." + month + "." + dt.getUTCDate() + " " + hour + ":" + dt.getUTCMinutes() + ":" + dt.getUTCSeconds());
+         showText += '발령 시간 : ' + time + " <br/> ";
+       }
+
+       if (ayear != null) {
+          showText += '발령 시간 : '+ ayear + '.';
+       }
+
+       if (amonth != null) {
+          showText += amonth + '.'
+       }
+
+       if (aday != null) {
+         showText += aday + '. '
+      }
+
+      if (ahour != null) {
+         showText += ahour + ':'
+      }
+
+      if (aminute != null) {
+         showText += aminute + '<br/>'
+      }
+
+      // 기상 특보, 기타 경보, 민방위, 전국, 지역, 테스트, 기상추가 나오도록
+      var val2 = [];
+      $('#alarm_type:checked').each(function (i) {
+        val2[i] = $(this).val();
+        showText += '재난 종류 : ' + val2[i] +'<br/>';
+      });
+
+      var val = [];
+      $('#communication:checked').each(function (i) {
+        val[i] = $(this).val();
+        showText += '통신 종류 : ' + val[i] + '<br/>';
+      });
+
+      
+      showText += 'TTS 방송 종류 : ' +tts + '<br/>';
+
+      
+       mymodal.find('.modal-body').html(showText);
+      
    });
 
 
-
    $("#popup").modal({
+      show: false,
+      backdrop: 'static'
+   });
+
+   $("#popup2").modal({
       show: false,
       backdrop: 'static'
    });
@@ -203,5 +266,8 @@ $(document).ready(function () {
    $("#popup_show7").click(function () {
       $("#popup").modal("show");
    });
+   $("#warning").click(function() {
+      $("#popup2").modal('show');
+   })
 
 });
