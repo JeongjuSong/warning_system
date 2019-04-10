@@ -48,16 +48,6 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 
-router.get('/city', function(req, res, next) {
-
-    connection.query('SELECT * FROM city', function(err, rows) {
-        if (err) throw err;
-
-        res.send(rows);
-    });
-});
-
-
 router.get('/user_area', function(req, res, next) {
 
     connection.query('SELECT area FROM users', function(err, rows) {

@@ -1,8 +1,3 @@
-// var map = new daum.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
-//     center: new daum.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표 
-//     level: 14 // 지도의 확대 레벨 
-// });
-
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new daum.maps.LatLng(36.2683, 127.6358), // 지도의 중심좌표
@@ -20,36 +15,13 @@ var clusterer = new daum.maps.MarkerClusterer({
 
 var options = { // Drawing Manager를 생성할 때 사용할 옵션입니다
     map: map, // Drawing Manager로 그리기 요소를 그릴 map 객체입니다
-    drawingMode: [ // drawing manager로 제공할 그리기 요소 모드입니다
-        // daum.maps.drawing.OverlayType.MARKER,
-        daum.maps.drawing.OverlayType.POLYLINE,
-        daum.maps.drawing.OverlayType.RECTANGLE,
-        daum.maps.drawing.OverlayType.CIRCLE,
-        daum.maps.drawing.OverlayType.POLYGON
+    drawingMode: [
+        daum.maps.drawing.OverlayType.CIRCLE
     ],
     // 사용자에게 제공할 그리기 가이드 툴팁입니다
     // 사용자에게 도형을 그릴때, 드래그할때, 수정할때 가이드 툴팁을 표시하도록 설정합니다
     guideTooltip: ['draw', 'drag', 'edit'],
-    // markerOptions: { // 마커 옵션입니다 
-    //     draggable: true, // 마커를 그리고 나서 드래그 가능하게 합니다 
-    //     removable: true // 마커를 삭제 할 수 있도록 x 버튼이 표시됩니다  
-    // },
-    polylineOptions: { // 선 옵션입니다
-        draggable: true, // 그린 후 드래그가 가능하도록 설정합니다
-        removable: true, // 그린 후 삭제 할 수 있도록 x 버튼이 표시됩니다
-        editable: true, // 그린 후 수정할 수 있도록 설정합니다 
-        strokeColor: '#39f', // 선 색
-        hintStrokeStyle: 'dash', // 그리중 마우스를 따라다니는 보조선의 선 스타일
-        hintStrokeOpacity: 0.5 // 그리중 마우스를 따라다니는 보조선의 투명도
-    },
-    rectangleOptions: {
-        draggable: true,
-        removable: true,
-        editable: true,
-        strokeColor: '#39f', // 외곽선 색
-        fillColor: '#39f', // 채우기 색
-        fillOpacity: 0.5 // 채우기색 투명도
-    },
+
     circleOptions: {
         draggable: true,
         removable: true,
@@ -58,20 +30,13 @@ var options = { // Drawing Manager를 생성할 때 사용할 옵션입니다
         fillColor: '#39f',
         fillOpacity: 0.5
     },
-    polygonOptions: {
-        draggable: true,
-        removable: true,
-        editable: true,
-        strokeColor: '#39f',
-        fillColor: '#39f',
-        fillOpacity: 0.5,
-        hintStrokeStyle: 'dash',
-        hintStrokeOpacity: 0.5
-    }
+
 };
 
 // 위에 작성한 옵션으로 Drawing Manager를 생성합니다
 var manager = new daum.maps.drawing.DrawingManager(options);
+
+
 
 // 버튼 클릭 시 호출되는 핸들러 입니다
 function selectOverlay(type) {
@@ -80,6 +45,8 @@ function selectOverlay(type) {
 
     // 클릭한 그리기 요소 타입을 선택합니다
     manager.select(daum.maps.drawing.OverlayType[type]);
+
+
 }
 
 // 데이터를 가져오기 위해 jQuery를 사용합니다
@@ -109,10 +76,6 @@ $.get("/map/location.json", function (data) {
             '    </div>' +
             '</div>';
 
-
-
-
-
         var maks = new daum.maps.Marker({
             map: map,
             position: new daum.maps.LatLng(position.lat, position.lng)
@@ -124,20 +87,83 @@ $.get("/map/location.json", function (data) {
             removable: true
         });
 
-        var coordinate_data = maks.getPosition();
-        var store_name = position.content;
-        var store_num = position.num;
+        var coordinate_data = maks.getPosition(); // 좌표값
+        var store_name = position.content; // 장소명
+        var store_num = position.num; // 장소구분 코드
 
         daum.maps.event.addListener(maks, 'click', makeOverListener(map, maks, infowindow, coordinate_data, store_name, store_num));
 
         return maks;
 
+
+    });
+
+
+
+    var range = null; // 반경 검색을 위해 그린 원 객체 참조
+    var markersInCircle = []; // 결과를 담을 배열
+
+    manager.addListener('select', function (e) {
+        if (e.overlayType === daum.maps.drawing.OverlayType.CIRCLE) {
+            if (range) {
+                console.log("1 :" + range);
+                manager.remove(range); // 기존에 지도위에 그려진 원은 삭제
+            }
+        }
+    });
+
+
+
+    manager.addListener('drawend', function (e) {
+        markersInCircle.length = 0; // 기존 결과 초기화
+
+
+        if (e.overlayType === daum.maps.drawing.OverlayType.CIRCLE) {
+
+            var circle = e.target;
+            var center = circle.getPosition();
+            var radius = circle.getRadius(); // m 단위
+
+            var line = new daum.maps.Polyline(); // for calculating length
+
+
+            markers.each(function (_, marker) { // jQuery.each 를 사용하는 방식으로 변경
+                var path = [marker.getPosition(), center];
+                line.setPath(path);
+
+                var dist = line.getLength();
+
+                if (dist < radius) {
+                    markersInCircle.push(marker);
+                }
+            });
+
+            range = circle; // 다음 반경 선택시 지워주기 위해 참조 저장
+            console.log("2 :" + markers);
+            // for(var i=0; i <= 50; i++)
+            // {
+            console.log('result2: ', markersInCircle); // 결과  
+    
+            // }
+            // console.log('result2: ', markersInCircle[0].k); // 결과  
+
+
+            // console.log('result: ',); // 결과  
+
+
+        }
+
+
+
     });
 
     // 클러스터러에 마커들을 추가합니다
     clusterer.addMarkers(markers);
+    // console.log(markers[0]);
+    // console.log(data[0]);
 
 });
+
 
 // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
 function makeOverListener(map, markers, infowindow, coordinate_data, store_name, store_num) {

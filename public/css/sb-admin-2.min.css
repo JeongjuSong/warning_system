@@ -13771,3 +13771,21 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
+
+/* angular tree css 부분 */
+.tree-view-wrapper, .tree-view-wrapper ul { 
+    list-style:none;
+    margin-top: 10px;
+}
+.show-hide, .edit{cursor:pointer;}
+.tree-checkbox{margin: 6px !important;}
+.edit{margin-right: 6px !important;}
+
+.edit i {color: #D77105;}
+.hide{display:none;}
+.show{display:block;}
+.ng-binding{
+    font-size: 14px !important;
+}
+
+/* angular tree css 종료 */

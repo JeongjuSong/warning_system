@@ -78,37 +78,31 @@ function CheckFunc(obj) {
     }
 }
 
+// 체크박스 선택 시, CheckFucn() 함수 실행
 $(function () {
     $("input[type=checkbox]").each(function () {
         $(this).click(function () {
             CheckFunc($(this));
         });
     });
-    $("input[type=checkbox]").each(function () {
-        $(this).click(function () {
-            CheckFunc($(this));
-        });
-    });
-
-    // 전체선택해제 체크박스 클릭 
-    $("#allClear").click(function () {
-        //해당화면에 모든 checkbox와 select들의 체크를해제시킨다. 
-        $("input[type=checkbox]").prop("checked", false);
-        document.getElementById("tts_title").selectedIndex = -1;
-        document.getElementById("message_title").selectedIndex = -1;
-        document.getElementById("siren").selectedIndex = -1;
-    })
 });
 
-function buttonclick() {
-    $("input[type=checkbox]").style.borderColor = "#4e73df";
-}
-
+// 버튼 클릭 시 초기화
 function clear_onclick() {
+    alert("모든 선택 내용이 초기화 됩니다.");
     $("input[type=checkbox]").parent().removeClass('selected');
+    $("input[type=checkbox]").prop('checked', false);
+    document.getElementById("year").selectedIndex = -1;
+    document.getElementById("amonth").selectedIndex = -1;
+    document.getElementById("aday").selectedIndex = -1;
+    document.getElementById("ahour").selectedIndex = -1;
+    document.getElementById("aminute").selectedIndex = -1;
+    document.getElementById("tts_title").selectedIndex = -1;
+    document.getElementById("message_title").selectedIndex = -1;
+    document.getElementById("siren").selectedIndex = -1;
 }
 
-// 재난 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
+// 방송 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
 function closecheck() {
     $("[id=broadcast]").parent().removeClass('selected');
     $("[id=broadcast]").prop("checked", false);
@@ -117,6 +111,17 @@ function closecheck() {
     document.getElementById("siren").selectedIndex = -1;
 }
 
+// 재난 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
+function closecheck2() {
+    $("[id=alarm_type]").prop("checked", false);
+    for (var i = 1; i <= 7; i++) {
+        $("[id=popup_show" + i + "]").prop("checked", false);
+        $("[id=popup_show" + i + "]").parent().removeClass('selected');
+    }
+}
+
+
+// 지역 선택 3개 TAB 설정
 function openTab(evt, select) {
     var i,
         tabcontent,
@@ -135,14 +140,3 @@ function openTab(evt, select) {
         .display = "block";
     evt.currentTarget.className += " active";
 }
-
-
-// $(function(){
-//     $('#save_value').click(function(){
-//       var val = [];
-//       $('#communication:checked').each(function(i){
-//         val[i] = $(this).val();
-//         console.log(val[i]);
-//       });
-//     });
-//   });

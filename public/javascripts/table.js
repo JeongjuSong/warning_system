@@ -2,6 +2,93 @@ var myapp = angular.module('myapp', [
   'ngTouch', 'ngAria', 'ui.grid', 'ui.grid.edit', 'ui.grid.resizeColumns', 'ui.grid.pagination', 'ui.grid.cellNav', 'xeditable'
 ]);
 
+
+myapp.directive('treeView', function ($compile) {
+  return {
+    restrict: 'E',
+    scope: {
+      localNodes: '=model',
+      localClick: '&click'
+    },
+    link: function (scope, tElement, tAttrs, transclude) {
+
+      var maxLevels = (angular.isUndefined(tAttrs.maxlevels)) ? 10 : tAttrs.maxlevels;
+      var hasCheckBox = (angular.isUndefined(tAttrs.checkbox)) ? false : true;
+      scope.showItems = [];
+
+      scope.showHide = function (ulId) {
+        var hideThis = document.getElementById(ulId);
+        var showHide = angular.element(hideThis).attr('class');
+        angular.element(hideThis).attr('class', (showHide === 'show' ? 'hide' : 'show'));
+      }
+
+      scope.showIcon = function (node) {
+        if (!angular.isUndefined(node.children)) return true;
+      }
+
+      scope.checkIfChildren = function (node) {
+        if (!angular.isUndefined(node.children)) return true;
+      }
+
+      /////////////////////////////////////////////////
+      /// SELECT ALL CHILDRENS
+      // as seen at: http://jsfiddle.net/incutonez/D8vhb/5/
+      function parentCheckChange(item) {
+        for (var i in item.children) {
+          item.children[i].checked = item.checked;
+          if (item.children[i].children) {
+            parentCheckChange(item.children[i]);
+          }
+        }
+      }
+
+      scope.checkChange = function (node) {
+        if (node.children) {
+          parentCheckChange(node);
+        }
+      }
+      /////////////////////////////////////////////////
+
+      function renderTreeView(collection, level, max) {
+        var text = '';
+        text += '<li ng-repeat="n in ' + collection + '" >';
+        text += '<span ng-show=showIcon(n) class="show-hide" ng-click=showHide(n.id)><i class="fa fa-plus-square"></i></span>';
+        text += '<span ng-show=!showIcon(n) style="padding-right: 13px"></span>';
+
+        if (hasCheckBox) {
+          text += '<input class="tree-checkbox" type=checkbox ng-model=n.checked ng-change=checkChange(n)>';
+        }
+
+
+        text += '<span class="edit" ng-click=localClick({node:n})></span>'
+
+
+        text += '<label>{{n.name}}</label>';
+
+        if (level < max) {
+          text += '<ul id="{{n.id}}" class="hide" ng-if=checkIfChildren(n)>' + renderTreeView('n.children', level + 1, max) + '</ul></li>';
+        } else {
+          text += '</li>';
+        }
+
+        return text;
+      } // end renderTreeView();
+
+      try {
+        var text = '<ul class="tree-view-wrapper">';
+        text += renderTreeView('localNodes', 1, maxLevels);
+        text += '</ul>';
+        tElement.html(text);
+        $compile(tElement.contents())(scope);
+      } catch (err) {
+        tElement.html('<b>ERROR!!!</b> - ' + err);
+        $compile(tElement.contents())(scope);
+      }
+    }
+  };
+});
+
+
 myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($window, $scope, $http, $q) {
 
   // TTS 방송 title 불러오기 gridOption1
@@ -17,14 +104,15 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
 
   // TTS 방송 text 불러오기 gridOption2
   $scope.tts_event = function () {
-    var selected = $("select#tts_title").val();
+    var index = $("#tts_title option").index($("#tts_title option:selected"));
+    // console.log(index);
     $http({
       method: "GET",
       url: '/tts',
       contentType: "application/json",
     }).then(function data(response) {
       for (var i = 0; i <= 10; i++) {
-        if (selected == i) {
+        if (index == i+1) {
           // console.log(response.data[i].text);
           $scope.gridOption2 = response.data[i].text;
         }
@@ -45,14 +133,14 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
 
   // 저장 메시지 text 불러오기 gridOption4
   $scope.message_event = function () {
-    var selected = $("select#message_title").val();
+    var index = $("#message_title option").index($("#message_title option:selected"));
     $http({
       method: "GET",
       url: '/message',
       contentType: "application/json",
     }).then(function data(response) {
       for (var i = 0; i <= 10; i++) {
-        if (selected == i) {
+        if (index == i+1) {
           // console.log(response.data[i].text);
           $scope.gridOption4 = response.data[i].text;
         }
@@ -60,118 +148,58 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     });
   }
 
-  // 선택 내용 확인
-  $scope.confirm = function () {
-    console.log('confirm() open!')
-    var siren = $("select#siren").val();
-    var tts = $("select#tts_title").val();
-    var ayear = $('select#year').val();
-    var amonth = $('select#amonth').val();
-    var aday = $('select#aday').val();
-    var ahour = $('select#ahour').val();
-    var aminute = $('select#aminute').val();
-    // console.log("통신 종류 : " + selected);
-    // console.log("사이렌 종류 : " + siren);
-
-    if ($('#time:checked').val() == 'right_now') {
-      var dt = new Date();
-      var month = dt.getUTCMonth() + 1;
-      var hour = dt.getUTCHours() + 9;
-      var time = (dt.getUTCFullYear() + "." + month + "." + dt.getUTCDate() + " " + hour + ":" + dt.getUTCMinutes() + ":" + dt.getUTCSeconds());
-      url += '발령 시간 : ' + time + " & ";
-      $scope.gridOption5 = time;
-    }
-
-    if (ayear == 2019) {
-      url += '2019.';
-    }
-
-    if (ayear == 2020) {
-      url += '2020.';
-    }
-
-    for (var i = 1; i <= 12; i++) {
-      if (amonth == i) {
-        url += i + '.'
+    $http({
+      method: "GET",
+      url: "/data/region.json",
+      contentType: "application/json",
+    }).then(function data(response) {
+  
+      if (user_area == 1) {
+        $scope.region = response.data.seoul;
+        // console.log(response.data.seoul)
+      } else if (user_area == 4) {
+        $scope.region = response.data.incheon;
+        // console.log(response.data.incheon);
+      } else if (user_area == 10) {
+        $scope.region = response.data.gyeongbuk;
+        // console.log(response.data.gyeongbuk);
+      } else if (user_area == 15) {
+        $scope.region = response.data.gangwon;
+        // console.log(response.data.gangwon);
+      } else if (user_area == 17) {
+        $scope.region = response.data.jeju;
+        // console.log(response.data.jeju);
+      }else{
+        alert("Please Check user_area Value");
       }
-    }
-
-    for (var i = 1; i <= 31; i++) {
-      if (aday == i) {
-        url += i + ' '
-      }
-    }
-
-    for (var i = 0; i <= 59; i++) {
-      if (ahour == i) {
-        url += i + ':'
-      }
-    }
-
-    for (var i = 0; i <= 59; i++) {
-      if (aminute == i) {
-        url += i
-      }
-    }
-
-    var val2 = [];
-    $('#alarm_type:checked').each(function (i) {
-      val2[i] = $(this).val();
-      url += '재난 종류 : ' + val2[i];
     });
-
-    var val = [];
-    $('#communication:checked').each(function (i) {
-      val[i] = $(this).val();
-      url += ' 통신 종류 : ' + val[i];
-    });
-
-
-    if (tts == '0') {
-      url += 'tts 방송 : 강풍 대피방송 & ';
-    }
-
-    for (var i = 1; i <= 10; i++) {
-      if (siren == (i + '번')) {
-        url += '사이렌 종류 : ' + i + '번';
+    
+    $http({
+      method: "GET",
+      url: "/data/facility.json",
+      contentType: "application/json",
+    }).then(function data(response) {
+  
+      if (user_area == 1) {
+        $scope.facility = response.data.seoul;
+        // console.log(response.data.seoul)
+      } else if (user_area == 4) {
+        $scope.facility = response.data.incheon;
+        // console.log(response.data.incheon);
+      } else if (user_area == 10) {
+        $scope.facility = response.data.gyeongbuk;
+        // console.log(response.data.gyeongbuk);
+      } else if (user_area == 15) {
+        $scope.facility = response.data.gangwon;
+        // console.log(response.data.gangwon);
+      } else if (user_area == 17) {
+        $scope.facility = response.data.jeju;
+        // console.log(response.data.jeju);
+      } else{
+        alert("Please Check user_area Value");
       }
-    }
-
-    alert(url);
-  }
-
-  var url = ''
-  // 실제 방송 전송
-  $scope.warning = function () {
-    console.log('warning() open!');
-    var alarm_type = $('#alarm_type:checked').val();
-    console.log(alarm_type);
-    var siren = $("select#siren").val();
-    var tts = $("select#tts_title").val();
-    var ayear = $('select#year').val();
-    var amonth = $('select#amonth').val();
-    var aday = $('select#aday').val();
-    var ahour = $('select#ahour').val();
-    var aminute = $('select#aminute').val();
-
-    var val = [];
-    $('#communication:checked').each(function (i) {
-      val[i] = $(this).val();
-      url += ' 통신 종류 : ' + val[i];
+  
     });
-
-
-    if (tts == '0') {
-      url += ' tts 방송 : 강풍 대피방송 & ';
-    }
-
-    for (var i = 1; i <= 10; i++) {
-      if (siren == (i + '번')) {
-        url += '사이렌 종류 : ' + i + '번';
-      }
-    }
-
-  }
 }]);
 
 // tts 추가/수정/삭제 
@@ -541,39 +569,3 @@ myapp.controller('myCtrl3', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     status: ''
   }]
 }]);
-
-// myapp.directive("filterTree", function () {
-//       return {
-//         restrict: "AE",
-//         controller: function ($scope, $http, $element) {
-//           $scope.treeNodes = [];
-//           var filterItemsUrl = "/data/region.json";
-//           //save httpPromise
-//           var httpPromise = $http.get(filterItemsUrl);
-//           //chain from httpPromise
-//           httpPromise.then(function (response) {
-//               var filterItems = response.data["data"]["filter_nodes"];
-//               filterItems.map(function (item) {
-//                 $scope.treeNodes.push({
-//                   id: item.seoul.id,
-//                   pId: item.seoul.pid,
-//                   name: item.seoul.name,
-//                   open: item.seoul.open
-//                 });
-//               });
-//               //return treeNodes for chaining zTree.init
-//               return $scope.treeNodes;
-//             }).then (function onFulfilled (treeNodes) {
-//               var setting= {
-//                 check: {enable: true},
-//                 data: {sinpleData: {enable: true}
-//               }
-//               };
-//               $.fn.zTree.init($element, setting, treeNodes);
-//             })
-//           },
-//           link : function(scope,element,attributes,controller) {
-
-//           }
-//         }
-//       });

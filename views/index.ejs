@@ -10,7 +10,6 @@
     <title>다중이용시설 긴급경보방송시스템</title>
     <!-- Bootstrap -->
     <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../public/css/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="../public/css/map_info_close.css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -35,10 +34,10 @@
     <script src="/javascripts/function_modal.js"></script>
     <script src="/javascripts/table.js"></script>
     <script src="/javascripts/option.js"></script>
-    <script type="text/javascript" src="../public/javascripts/jquery-1.4.4.min.js"></script>
-    <script type="text/javascript" src="../public/javascripts/jquery.ztree.core-3.5.js"></script>
-    <script type="text/javascript" src="../public/javascripts/jquery.ztree.excheck-3.5.js"></script>
-    <script type="text/javascript" src="../public/javascripts/jquery.ztree.exedit-3.5.js"></script>
+    <script data-require="angular.js@1.2.16" data-semver="1.2.16" src="https://code.angularjs.org/1.2.16/angular.js">
+    </script>
+    <script data-require="angular-ui-bootstrap@*" data-semver="0.10.0"
+        src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
 
     <script language="javascript">
         var user_area = <%=user.area%>;
@@ -203,86 +202,86 @@
 
                     <div class="row">
                         <div class="col-12">
-                        <div class="col-6" style="float:left;">
-                            <!-- 화면 반 나누기 -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <span class="m-0 font-weight-bold text-primary">발령 시간</span>
-                                </div>
-                                <div class="col-12 btn-group-toggle"
-                                    style="padding: 7px;  text-align: center; margin-top:3px; " id="checkboxTest">
-                                    <label class="btn btn-default"
-                                        style="height: 53px; line-height: 35px; margin-right: 10px;">
-                                        <input type="checkbox" id="time" value="right_now">즉시 발령
-                                    </label>
-                                    <label class="btn btn-default"> 예약 발령 :
-                                        <select id="year">
-                                            <option value="" disabled selected>년</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2020">2020</option>
-                                        </select>년
-                                        <select id="amonth"></select>월
-                                        <select id="aday"></select>일
-                                        <select id="ahour"> </select>시
-                                        <select id="aminute"></select>분
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <span class="m-0 font-weight-bold text-primary" style="float: left;">지역
-                                        선택</span>
-                                </div>
-                                <div class="col-12" style="padding: 10px;" id="checkboxTest" name="checkboxTest">
-                                    <div class="tab">
-                                        <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'location')"
-                                            style="width: 94%;" type="button">지역별</button>
-                                        <button class="tablinks" onclick="openTab(event, 'devide')" style="width: 94%;"
-                                            type="button">분류별</button>
-                                        <button class="tablinks" onclick="openTab(event, 'group')" style="width: 94%;"
-                                            type="button">그룹별</button>
+                            <div class="col-6" style="float:left;">
+                                <!-- 화면 반 나누기 -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <span class="m-0 font-weight-bold text-primary">발령 시간</span>
                                     </div>
-
-                                    <div class="tabcontent" id="location">
-                                        <ul id="treeDemo" class="ztree"></ul>
-                                    </div>
-
-                                    <!-- 분류별 -->
-                                    <div class="tabcontent" id="devide">
-                                        <ul id="treeDemo2" class="ztree"></ul>
-                                    </div>
-
-                                    <!-- 그룹별 -->
-                                    <div class="tabcontent" id="group">
-                                        <ul id="treeDemo3" class="ztree"></ul>
+                                    <div class="col-12 btn-group-toggle"
+                                        style="padding: 7px;  text-align: center; margin-top:3px; " id="checkboxTest">
+                                        <label class="btn btn-default"
+                                            style="height: 53px; line-height: 35px; margin-right: 10px;">
+                                            <input type="checkbox" id="time" value="right_now">즉시 발령
+                                        </label>
+                                        <label class="btn btn-default"> 예약 발령 :
+                                            <select id="year">
+                                                <option value="" disabled selected>년</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                            </select>년
+                                            <select id="amonth"></select>월
+                                            <select id="aday"></select>일
+                                            <select id="ahour"> </select>시
+                                            <select id="aminute"></select>분
+                                        </label>
                                     </div>
                                 </div>
-                            </div>
+
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <span class="m-0 font-weight-bold text-primary" style="float: left;">지역
+                                            선택</span>
+                                    </div>
+                                    <div class="col-12" style="padding: 10px;" id="checkboxTest" name="checkboxTest">
+                                        <div class="tab">
+                                            <button class="tablinks" id="defaultOpen"
+                                                onclick="openTab(event, 'location')" style="width: 94%;"
+                                                type="button">지역별</button>
+                                            <button class="tablinks" onclick="openTab(event, 'devide')"
+                                                style="width: 94%;" type="button">분류별</button>
+                                            <button class="tablinks" onclick="openTab(event, 'group')"
+                                                style="width: 94%;" type="button">그룹별</button>
+                                        </div>
+
+                                        <div class="tabcontent" id="location">
+                                            <tree-view checkbox model="region"></tree-view>
+                                        </div>
+
+                                        <!-- 분류별 -->
+                                        <div class="tabcontent" id="devide">
+                                            <tree-view checkbox model="facility"></tree-view>
+                                        </div>
+
+                                        <!-- 그룹별 -->
+                                        <div class="tabcontent" id="group">
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="col-5 card shadow mb-4" style="float:left;">
                                     <div class="card-header py-3">
                                         <span class="m-0 font-weight-bold text-primary">재난 종류</span>
                                     </div>
-                                    <div class="col-12" style="margin-top:15px;">
+                                    <div class="col-12" id="checkboxTest" style="margin-top:15px;">
                                         <table style="margin-left: -14px; width: 100%;">
                                             <tr>
                                                 <td>
                                                     <label class="btn btn-default" style="width: 94px">
                                                         <input type="checkbox" class="btn-group-toggle custom-modal1"
-                                                            id="popup_show1" data-target="#modal">기상특보
+                                                            id="popup_show1" value='기상특보' data-target="#modal">기상특보
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="btn btn-default" style="width: 94px">
                                                         <input type="checkbox" class="btn-group-toggle custom-modal2"
-                                                            id="popup_show2" data-target="#modal">기타경보
+                                                            id="popup_show2" value='기타경보' data-target="#modal">기타경보
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="btn btn-default" style="width: 94px">
                                                         <input type="checkbox" class="btn-group-toggle custom-modal3"
-                                                            id="popup_show3" data-target="#modal">민방위
+                                                            id="popup_show3" value='민방위' data-target="#modal">민방위
                                                     </label>
                                                 </td>
                                             </tr>
@@ -290,19 +289,19 @@
                                                 <td>
                                                     <label class="btn btn-default" style="width: 94px">
                                                         <input type="checkbox" class="btn-group-toggle custom-modal4"
-                                                            id="popup_show4" data-target="#modal">전국
+                                                            id="popup_show4" value='전국' data-target="#modal">전국
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="btn btn-default" style="width: 94px">
                                                         <input type="checkbox" class="btn-group-toggle custom-modal5"
-                                                            id="popup_show5" data-target="#modal">지역
+                                                            id="popup_show5" value='지역' data-target="#modal">지역
                                                     </label>
                                                 </td>
                                                 <td>
                                                     <label class="btn btn-default" style="width: 94px">
                                                         <input type="checkbox" class="btn-group-toggle custom-modal6"
-                                                            id="popup_show6" data-target="#modal">테스트
+                                                            id="popup_show6" value='테스트' data-target="#modal">테스트
                                                     </label>
                                                 </td>
                                             </tr>
@@ -310,7 +309,7 @@
                                                 <td>
                                                     <label class="btn btn-default" style="width: 94px">
                                                         <input type="checkbox" class="btn-group-toggle custom-modal7"
-                                                            id="popup_show7" data-target="#modal">기상추가
+                                                            id="popup_show7" value='기상추가' data-target="#modal">기상추가
                                                     </label>
                                                 </td>
                                             </tr>
@@ -356,9 +355,9 @@
                                     </div>
                                 </div>
 
-                            <script>
+                                <script>
 
-                            </script>
+                                </script>
 
                                 <div class="col-3 card shadow mb-4" style="float:right;">
                                     <div class="card-header py-3">
@@ -396,37 +395,35 @@
                                     </div>
                                 </div>
                                 <div class="col-12 card shadow mb-4" style="margin-top:-10px; float:left;">
-                                        <div class="card-header py-3">
-                                            <span class="m-0 font-weight-bold text-primary" style="float: left;">발령 확인</span>
-                                        </div>
-                                        <div class="col-12" style="text-align:center; padding: 10px;">
-                                            <button class="btn btn-primary" type="button" name="checkCancel" id="allClear"
-                                                onclick="clear_onclick()" style="width:150px;">조작
-                                                초기화</button>
-                                            <button class="btn btn-primary" type="button" style="width:150px;" ng-click='confirm()' id='confirm'>선택 내용 확인</button>
-                                            <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
-                                            <button type="button" class="btn btn-danger custom-modal8" style="width:150px;" id='warning'>실제 방송
-                                                전송</button>
-                                        </div>
+                                    <div class="card-header py-3">
+                                        <span class="m-0 font-weight-bold text-primary" style="float: left;">발령
+                                            확인</span>
                                     </div>
-                        </div>
-                        <div class="col-6" style="float: right;">
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <span class="m-0 font-weight-bold text-primary" >GIS로
-                                        선택</span>
+                                    <div class="col-12" style="text-align:center; padding: 10px;">
+                                        <button class="btn btn-primary" type="button" name="checkCancel"
+                                            onclick="clear_onclick()" style="width:150px;">조작 초기화</button>
+                                        <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
+                                            ng-click='confirm()' id='confirm'>선택 내용 확인</button>
+                                        <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
+                                        <button type="button" class="btn btn-danger custom-modal8" style="width:150px;"
+                                            id='warning'>실제 방송 전송</button>
+                                    </div>
                                 </div>
-                                <div id="map" style="width:100%;height:692px;"></div>
-                                <p>
-                                    <button type="button" onclick="selectOverlay('POLYLINE')">선</button>
-                                    <button type="button" onclick="selectOverlay('CIRCLE')">원</button>
-                                    <button type="button" onclick="selectOverlay('RECTANGLE')">사각형</button>
-                                    <button type="button" onclick="selectOverlay('POLYGON')">다각형</button>
-                                </p>
+                            </div>
+                            <div class="col-6" style="float: right;">
+                                <!-- Project Card Example -->
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <span class="m-0 font-weight-bold text-primary">GIS로
+                                            선택</span>
+                                    </div>
+                                    <div id="map" style="width:100%;height:692px;"></div>
+                                    <p>
+                                        <button type="button" onclick="selectOverlay('CIRCLE')">원</button>        
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 </div>
                 <!-- /.container-fluid -->
@@ -446,7 +443,8 @@
                                 <p></p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                <button type="button" class="btn btn-default" onclick="closecheck2()"
+                                    data-dismiss="modal">닫기</button>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">선택 완료</button>
                             </div>
                         </div>
@@ -456,24 +454,46 @@
 
             <!-- 실제 방송 전송 -->
             <div class="modal" id="popup2" role="dialog">
-                    <div class="modal-dialog" role="document">
-                        <form id="myForm">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modal_title">실제 방송 전송</h5>
-                                </div>
-                                <div class='modal-body'>
-                                    <p>
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clear_onclick()">닫기</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">선택 완료</button>
-                                </div>
+                <div class="modal-dialog" role="document">
+                    <form id="myForm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_title">실제 방송 전송</h5>
                             </div>
-                        </form>
-                    </div>
+                            <div class='modal-body'>
+                                <p>
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                    onclick="clear_onclick()">닫기</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">선택 완료</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
+            </div>
+
+            <!-- 선택 내용 확인 -->
+            <div class="modal" id="popup3" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <form id="myForm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal_title">선택 내용 확인</h5>
+                            </div>
+                            <div class='modal-body'>
+                                <p>
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">선택 완료</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
 
             <!-- modal2 : TTS 선택 시 발동 -->
@@ -488,7 +508,8 @@
                                 <option value="" disabled selected>방송 선택</option>
                                 <script>
                                     for (var i = 0; i <= '{{gridOption1}}'.length; i++) {
-                                        document.write("<option value=" + '{{gridOption1['+i+'].title}}' + "> {{gridOption1[" + i +
+                                        document.write("<option value=" + '{{gridOption1[' + i + '].title}}' +
+                                            "> {{gridOption1[" + i +
                                             "].title}} </option>");
                                     }
                                 </script>
@@ -523,7 +544,8 @@
                                 <option value="" disabled selected>저장 메시지 선택</option>
                                 <script>
                                     for (var i = 0; i <= '{{gridOption3}}'.length; i++) {
-                                        document.write("<option value=" + i + "> {{gridOption3[" + i +
+                                        document.write("<option value=" + '{{gridOption3[' + i + '].title}}' +
+                                            "> {{gridOption3[" + i +
                                             "].title}} </option>");
                                     }
                                 </script>
@@ -553,10 +575,10 @@
                         <div class='modal-body'>
                             사이렌 선택 : <select id='siren'>
                                 <option value="" disabled selected>사이렌 선택</option>
-                                <option value="1번">사이렌 1번</option>
-                                <option value="2번">사이렌 2번</option>
-                                <option value="3번">사이렌 3번</option>
-                                <option value="4번">사이렌 4번</option>
+                                <option value="1">사이렌 1번</option>
+                                <option value="2">사이렌 2번</option>
+                                <option value="3">사이렌 3번</option>
+                                <option value="4">사이렌 4번</option>
                             </select>
                             <i class="fas fa-play-circle" style="color:#4e73df;"></i>
                             <br /><br />
@@ -578,7 +600,7 @@
                             <h5 class="modal-title" id="exampleModalLable">선택 내용 확인</h5>
                         </div>
                         <div class='modal-body'>
-                    
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -586,7 +608,7 @@
                         </div>
                     </div>
                 </div>
-            </div>    
+            </div>
         </div>
         <!-- End of Content Wrapper -->
     </div>
@@ -601,7 +623,6 @@
     </script>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/javascripts/test_ztree.js"></script>
     <script src="/javascripts/map_read.js"></script>
     <script src="../public/vendor/jquery/jquery.min.js"></script>
     <!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
