@@ -246,6 +246,18 @@
 
                                         <div class="tabcontent" id="location">
                                             <tree-view checkbox model="region"></tree-view>
+                                            {{region}}
+                                            <script>
+                                                for (i = 0; i <= 100; i++) {
+                                                    for (a = 0; a <= 100; a++) {
+                                                        if ('{{region[0].children[' + i + '].children[' + a +
+                                                            '].name}}' == '서울역(한국공항철도)') {
+                                                            document.write('{{region[0].children[' + i + '].children[' +
+                                                                a + '].name}}')
+                                                        }
+                                                    }
+                                                }
+                                            </script>
                                         </div>
 
                                         <!-- 분류별 -->
@@ -354,11 +366,6 @@
                                         </table>
                                     </div>
                                 </div>
-
-                                <script>
-
-                                </script>
-
                                 <div class="col-3 card shadow mb-4" style="float:right;">
                                     <div class="card-header py-3">
                                         <span class="m-0 font-weight-bold text-primary">방송 종류</span>
@@ -419,7 +426,7 @@
                                     </div>
                                     <div id="map" style="width:100%;height:692px;"></div>
                                     <p>
-                                        <button type="button" onclick="selectOverlay('CIRCLE')">원</button>        
+                                        <button type="button" onclick="selectOverlay('CIRCLE')">원</button>
                                     </p>
                                 </div>
                             </div>
@@ -431,29 +438,18 @@
             <!-- End of Main Content -->
 
             <!--modal : 재난 종류 선택 시 발동 -->
-
-            <div class="modal" id="popup" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <form id="myForm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>
-                            </div>
-                            <div class='modal-body'>
-                                <p></p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" onclick="closecheck2()"
-                                    data-dismiss="modal">닫기</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">선택 완료</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            <script>
+                document.write(content1);
+                document.write(content2);
+                document.write(content3);
+                document.write(content4);
+                document.write(content5);
+                document.write(content6);
+                document.write(content7);
+            </script>
 
             <!-- 실제 방송 전송 -->
-            <div class="modal" id="popup2" role="dialog">
+            <div class="modal" id="popup8" role="dialog">
                 <div class="modal-dialog" role="document">
                     <form id="myForm">
                         <div class="modal-content">
@@ -475,7 +471,7 @@
             </div>
 
             <!-- 선택 내용 확인 -->
-            <div class="modal" id="popup3" role="dialog">
+            <div class="modal" id="popup9" role="dialog">
                 <div class="modal-dialog" role="document">
                     <form id="myForm">
                         <div class="modal-content">

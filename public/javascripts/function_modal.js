@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
    $('.custom-modal1').click(function () {
-      var mymodal = $('#popup');
+      var mymodal = $('#popup1');
 
       $.getJSON('/data/type.json', function (data) {
          console.log(data.weather_special);
@@ -16,7 +16,7 @@ $(document).ready(function () {
             var showText = "";
             weather_special.map(function (weather_special) {
 
-               showText += "<input type='checkbox' id='alarm_type' name='alarm_type' value='" + weather_special + "'>" + weather_special + "<br>";
+               showText += "<input type='checkbox' id='alarm_type1' name='alarm_type' value='" + weather_special + "'>" + weather_special + "<br>";
 
             });
             mymodal.find('.modal-body').html(showText);
@@ -27,7 +27,7 @@ $(document).ready(function () {
    });
 
    $('.custom-modal2').click(function () {
-      var mymodal = $('#popup');
+      var mymodal = $('#popup2');
 
       $.getJSON('/data/type.json', function (data) {
          console.log(data.other_alarm);
@@ -41,7 +41,7 @@ $(document).ready(function () {
             var showText = "";
             other_alarm.map(function (other_alarm) {
 
-               showText += "<input type='checkbox' id='alarm_type' name='alarm_type' value='" + other_alarm + "'>" + other_alarm + "<br>";
+               showText += "<input type='checkbox' id='alarm_type2' name='alarm_type' value='" + other_alarm + "'>" + other_alarm + "<br>";
 
             });
             mymodal.find('.modal-body').html(showText);
@@ -52,7 +52,7 @@ $(document).ready(function () {
    });
 
    $('.custom-modal3').click(function () {
-      var mymodal = $('#popup');
+      var mymodal = $('#popup3');
 
       $.getJSON('/data/type.json', function (data) {
          console.log(data.civil_defence);
@@ -66,7 +66,7 @@ $(document).ready(function () {
             var showText = "";
             civil_defence.map(function (civil_defence) {
 
-               showText += "<input type='checkbox' id='alarm_type' name='alarm_type' value='" + civil_defence + "'>" + civil_defence + "<br>";
+               showText += "<input type='checkbox' id='alarm_type3' name='alarm_type' value='" + civil_defence + "'>" + civil_defence + "<br>";
 
             });
             mymodal.find('.modal-body').html(showText);
@@ -77,7 +77,7 @@ $(document).ready(function () {
    });
 
    $('.custom-modal4').click(function () {
-      var mymodal = $('#popup');
+      var mymodal = $('#popup4');
 
       $.getJSON('/data/type.json', function (data) {
          console.log(data.national);
@@ -91,7 +91,7 @@ $(document).ready(function () {
             var showText = "";
             national.map(function (national) {
 
-               showText += "<input type='checkbox' id='alarm_type' name='alarm_type' value='" + national + "'>" + national + "<br>";
+               showText += "<input type='checkbox' id='alarm_type4' name='alarm_type' value='" + national + "'>" + national + "<br>";
 
             });
             mymodal.find('.modal-body').html(showText);
@@ -102,7 +102,7 @@ $(document).ready(function () {
    });
 
    $('.custom-modal5').click(function () {
-      var mymodal = $('#popup');
+      var mymodal = $('#popup5');
 
       $.getJSON('/data/type.json', function (data) {
          console.log(data.local);
@@ -116,7 +116,7 @@ $(document).ready(function () {
             var showText = "";
             local.map(function (local) {
 
-               showText += "<input type='checkbox' id='alarm_type' name='alarm_type' value='" + local + "'>" + local + "<br>";
+               showText += "<input type='checkbox' id='alarm_type5' name='alarm_type' value='" + local + "'>" + local + "<br>";
 
             });
             mymodal.find('.modal-body').html(showText);
@@ -127,7 +127,7 @@ $(document).ready(function () {
    });
 
    $('.custom-modal6').click(function () {
-      var mymodal = $('#popup');
+      var mymodal = $('#popup6');
 
       $.getJSON('/data/type.json', function (data) {
          console.log(data.test);
@@ -141,7 +141,7 @@ $(document).ready(function () {
             var showText = "";
             test.map(function (test) {
 
-               showText += "<input type='checkbox' id='alarm_type' name='alarm_type' value='" + test + "'>" + test + "<br>";
+               showText += "<input type='checkbox' id='alarm_type6' name='alarm_type' value='" + test + "'>" + test + "<br>";
 
             });
             mymodal.find('.modal-body').html(showText);
@@ -152,7 +152,7 @@ $(document).ready(function () {
    });
 
    $('.custom-modal7').click(function () {
-      var mymodal = $('#popup');
+      var mymodal = $('#popup7');
 
       $.getJSON('/data/type.json', function (data) {
          console.log(data.weather);
@@ -166,7 +166,7 @@ $(document).ready(function () {
             var showText = "";
             weather.map(function (weather) {
 
-               showText += "<input type='checkbox' id='alarm_type' name='alarm_type' value='" + weather + "'>" + weather + "<br>";
+               showText += "<input type='checkbox' id='alarm_type7' name='alarm_type' value='" + weather + "'>" + weather + "<br>";
 
             });
             mymodal.find('.modal-body').html(showText);
@@ -175,8 +175,8 @@ $(document).ready(function () {
    });
 
    $('.custom-modal8').click(function () {
-      var mymodal = $('#popup2');
-      var mymodal2 = $('#popup3');
+      var mymodal = $('#popup8');
+      var mymodal2 = $('#popup9');
       var showText = "";
       var ayear = $('select#year').val();
       var amonth = $('select#amonth').val();
@@ -192,7 +192,7 @@ $(document).ready(function () {
          var month = dt.getUTCMonth() + 1;
          var hour = dt.getUTCHours() + 9;
          var time = (dt.getUTCFullYear() + "." + month + "." + dt.getUTCDate() + " " + hour + ":" + dt.getUTCMinutes() + ":" + dt.getUTCSeconds());
-         showText += '발령 시간 : ' + time + " <br/> ";
+         showText += '발령  : ' + time + " <br/> ";
       }
 
       if (ayear != null) {
@@ -204,36 +204,27 @@ $(document).ready(function () {
       }
 
       if (aday != null) {
-         showText += aday + ' '
+         showText += aday + '. '
       }
-      
+
       if (ahour != null) {
          showText += ahour + ':'
       }
 
       if (aminute != null) {
-         showText += aminute + ':00<br/>'
+         showText += aminute + '<br/>'
       }
 
-      // 재난 종류, 기상특보/기타경보/민방위/전국/지역/테스트/기상추가 및 세부 재난 종류
       for (var a = 1; a <= 7; a++) {
-         var type = $('#popup_show' + a + ':checked').val();
-         if (type != undefined) {
-            if ('#popup_show' + a + ':checked') {
-               var val2 = [];
-               $('#alarm_type:checked').each(function (i) {
-                  val2[i] = $(this).val();
-                  showText += type + ' : ' + val2[i] + '<br/>';
-               });
-            }
+         var type = $('#popup_show'+a+':checked').val();
+         if ('#popup_show' + a + ':checked') {
+            var val2 = [];
+            $('#alarm_type'+a+':checked').each(function (i) {
+               val2[i] = $(this).val();
+               showText += type + " : " + val2[i] + '<br/>';
+            });
          }
       }
-
-      // var val2 = [];
-      // $('#alarm_type:checked').each(function (i) {
-      //    val2[i] = $(this).val();
-      //    showText += val2[i] + '<br/>';
-      // });
 
       var val = [];
       $('#communication:checked').each(function (i) {
@@ -249,13 +240,17 @@ $(document).ready(function () {
          showText += '저장 메시지 종류 : ' + message + '<br/>';
       }
 
+      if (siren != null) {
+         showText += '사이렌 종류 : ' + siren + '번<br/>';
+      }
+
       mymodal.find('.modal-body').html(showText);
       mymodal2.find('.modal-body').html(showText);
 
    });
 
 
-   $("#popup").modal({
+   $("#popup1").modal({
       show: false,
       backdrop: 'static'
    });
@@ -266,32 +261,30 @@ $(document).ready(function () {
    });
 
    $("#popup_show1").click(function () {
-      $("#popup").modal("show");
+      $("#popup1").modal("show");
    });
    $("#popup_show2").click(function () {
-      $("#popup").modal("show");
+      $("#popup2").modal("show");
    });
    $("#popup_show3").click(function () {
-      $("#popup").modal("show");
+      $("#popup3").modal("show");
    });
    $("#popup_show4").click(function () {
-      $("#popup").modal("show");
+      $("#popup4").modal("show");
    });
    $("#popup_show5").click(function () {
-      $("#popup").modal("show");
+      $("#popup5").modal("show");
    });
    $("#popup_show6").click(function () {
-      $("#popup").modal("show");
+      $("#popup6").modal("show");
    });
    $("#popup_show7").click(function () {
-      $("#popup").modal("show");
+      $("#popup7").modal("show");
    });
    $("#warning").click(function () {
-      $("#popup2").modal('show');
+      $("#popup8").modal('show');
    })
-
    $("#confirm").click(function () {
-      $("#popup3").modal('show');
+      $("#popup9").modal('show');
    })
-
 });

@@ -140,3 +140,136 @@ function openTab(evt, select) {
         .display = "block";
     evt.currentTarget.className += " active";
 }
+
+var content1 = '<div class="modal" id="popup1" role="dialog">' +
+    ' <div class="modal-dialog" role="document">' +
+    '<form id="myForm">' +
+    '<div class="modal-content">' +
+    '<div class="modal-header">' +
+    '<h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>' +
+    '</div>' +
+    '<div class = "modal-body">' +
+    '<p > < /p>' +
+    '</div>' +
+    '<div class = "modal-footer">' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
+    '</div>' +
+    '</div>' +
+    '</form>' +
+    '</div>' +
+    '</div>';
+
+var content2 = '<div class="modal" id="popup2" role="dialog">' +
+    ' <div class="modal-dialog" role="document">' +
+    '<form id="myForm">' +
+    '<div class="modal-content">' +
+    '<div class="modal-header">' +
+    '<h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>' +
+    '</div>' +
+    '<div class = "modal-body">' +
+    '<p > < /p>' +
+    '</div>' +
+    '<div class = "modal-footer">' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
+    '</div>' +
+    '</div>' +
+    '</form>' +
+    '</div>' +
+    '</div>';
+
+var content3 = '<div class="modal" id="popup3" role="dialog">' +
+    ' <div class="modal-dialog" role="document">' +
+    '<form id="myForm">' +
+    '<div class="modal-content">' +
+    '<div class="modal-header">' +
+    '<h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>' +
+    '</div>' +
+    '<div class = "modal-body">' +
+    '<p > < /p>' +
+    '</div>' +
+    '<div class = "modal-footer">' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
+    '</div>' +
+    '</div>' +
+    '</form>' +
+    '</div>' +
+    '</div>';
+
+var content4 = '<div class="modal" id="popup4" role="dialog">' +
+    ' <div class="modal-dialog" role="document">' +
+    '<form id="myForm">' +
+    '<div class="modal-content">' +
+    '<div class="modal-header">' +
+    '<h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>' +
+    '</div>' +
+    '<div class = "modal-body">' +
+    '<p > < /p>' +
+    '</div>' +
+    '<div class = "modal-footer">' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
+    '</div>' +
+    '</div>' +
+    '</form>' +
+    '</div>' +
+    '</div>';
+
+var content5 = '<div class="modal" id="popup5" role="dialog">' +
+    ' <div class="modal-dialog" role="document">' +
+    '<form id="myForm">' +
+    '<div class="modal-content">' +
+    '<div class="modal-header">' +
+    '<h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>' +
+    '</div>' +
+    '<div class = "modal-body">' +
+    '<p > < /p>' +
+    '</div>' +
+    '<div class = "modal-footer">' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
+    '</div>' +
+    '</div>' +
+    '</form>' +
+    '</div>' +
+    '</div>';
+
+var content6 = '<div class="modal" id="popup6" role="dialog">' +
+    ' <div class="modal-dialog" role="document">' +
+    '<form id="myForm">' +
+    '<div class="modal-content">' +
+    '<div class="modal-header">' +
+    '<h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>' +
+    '</div>' +
+    '<div class = "modal-body">' +
+    '<p > < /p>' +
+    '</div>' +
+    '<div class = "modal-footer">' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
+    '</div>' +
+    '</div>' +
+    '</form>' +
+    '</div>' +
+    '</div>';
+
+var content7 = '<div class="modal" id="popup7" role="dialog">' +
+    ' <div class="modal-dialog" role="document">' +
+    '<form id="myForm">' +
+    '<div class="modal-content">' +
+    '<div class="modal-header">' +
+    '<h5 class="modal-title" id="modal_title">재난 종류 상세 선택</h5>' +
+    '</div>' +
+    '<div class = "modal-body">' +
+    '<p > < /p>' +
+    '</div>' +
+    '<div class = "modal-footer">' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
+    '</div>' +
+    '</div>' +
+    '</form>' +
+    '</div>' +
+    '</div>';
