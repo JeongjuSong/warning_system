@@ -32,11 +32,10 @@
 
     <!--     Custom styles for this template-->
     <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
-    
+
     <script language="javascript">
             var user_area = <%=user.area%>;
         </script>
-
 </head>
 
 <body id="page-top">
@@ -94,14 +93,14 @@
                         <span>그룹 추가</span>
                     </a>
                 </li>
-                <li class="nav-item" style="border-left: 5px solid #4e73df; background-color:#eff1f2">
+                <li class="nav-item">
                     <a class="nav-link" href="/edit_tts" style="text-align: center;">
                         <i class="fas fa-fw fa-microphone"></i>
                         <span>TTS 편집</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="/edit_message" style="text-align: center;">
+                        <a class="nav-link" href="/edit_message" style="border-left: 5px solid #4e73df; background-color:#eff1f2">
                             <i class="fas fa-fw fa-microphone"></i>
                             <span>메시지 편집</span>
                         </a>
@@ -190,11 +189,11 @@
                     <!-- Content Row -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary"
-                                style="float: left;">TTS
+                                style="float: left;">저장 메시지
                                 추가/수정/삭제</span>
                         </div>
                         <div class="card-body">
-                            <div ng-app="myapp" ng-controller="myCtrl2" style="margin-top: -1.25rem;">
+                            <div ng-app="myapp" ng-controller="myCtrl4" style="margin-top: -1.25rem;">
                                 <div class="container">
                                     <p> </p>
                                     <div class="text-right">

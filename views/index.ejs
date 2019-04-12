@@ -10,6 +10,7 @@
     <title>다중이용시설 긴급경보방송시스템</title>
     <!-- Bootstrap -->
     <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="../public/css/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="../public/css/map_info_close.css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -34,34 +35,13 @@
     <script src="/javascripts/function_modal.js"></script>
     <script src="/javascripts/table.js"></script>
     <script src="/javascripts/option.js"></script>
-    <script data-require="angular.js@1.2.16" data-semver="1.2.16" src="https://code.angularjs.org/1.2.16/angular.js">
-    </script>
-    <script data-require="angular-ui-bootstrap@*" data-semver="0.10.0"
-        src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.min.js"></script>
+    <script type="text/javascript" src="../public/javascripts/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../public/javascripts/jquery.ztree.core-3.5.js"></script>
+    <script type="text/javascript" src="../public/javascripts/jquery.ztree.excheck-3.5.js"></script>
+    <script type="text/javascript" src="../public/javascripts/jquery.ztree.exedit-3.5.js"></script>
 
     <script language="javascript">
         var user_area = <%=user.area%>;
-
-        function logo_info() {
-            /*   접속 지역에 따라 달라지는 CI 표현 */
-            var img_src;
-            for (var i = 0; i <= 17; i++) {
-                if (user_area == i) {
-                    img_src = '../public/img/' + i + '_logo.png';
-                }
-            }
-            return img_src;
-        }
-
-        function title_info() {
-            var img_src;
-            for (var i = 0; i <= 17; i++) {
-                if (user_area == i) {
-                    img_src = '../public/img/' + i + '_title.png';
-                }
-            }
-            return img_src;
-        }
     </script>
 </head>
 
@@ -123,6 +103,12 @@
                     <a class="nav-link" href="/edit_tts" style="text-align: center;">
                         <i class="fas fa-fw fa-microphone"></i>
                         <span>TTS 편집</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit_message" style="text-align: center;">
+                        <i class="fas fa-fw fa-envelope-open-text"></i>
+                        <span>메시지편집</span>
                     </a>
                 </li>
                 <!-- Divider -->
@@ -245,29 +231,21 @@
                                         </div>
 
                                         <div class="tabcontent" id="location">
-                                            <tree-view checkbox model="region"></tree-view>
-                                            {{region}}
-                                            <script>
-                                                for (i = 0; i <= 100; i++) {
-                                                    for (a = 0; a <= 100; a++) {
-                                                        if ('{{region[0].children[' + i + '].children[' + a +
-                                                            '].name}}' == '서울역(한국공항철도)') {
-                                                            document.write('{{region[0].children[' + i + '].children[' +
-                                                                a + '].name}}')
-                                                        }
-                                                    }
-                                                }
-                                            </script>
-                                        </div>
+                                            <ul id="treeDemo" class="ztree"></ul>
 
+                                            <input id="checktest" type="text" style="width : 200px; height: 100px;">
+                                        </div>
+    
                                         <!-- 분류별 -->
                                         <div class="tabcontent" id="devide">
-                                            <tree-view checkbox model="facility"></tree-view>
+                                            <ul id="treeDemo2" class="ztree"></ul>
                                         </div>
-
+    
                                         <!-- 그룹별 -->
                                         <div class="tabcontent" id="group">
+                                            <ul id="treeDemo3" class="ztree"></ul>
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -276,7 +254,7 @@
                                         <span class="m-0 font-weight-bold text-primary">재난 종류</span>
                                     </div>
                                     <div class="col-12" id="checkboxTest" style="margin-top:15px;">
-                                        <table style="margin-left: -14px; width: 100%;">
+                                        <table style="margin-left: -18px; width: 100%;">
                                             <tr>
                                                 <td>
                                                     <label class="btn btn-default" style="width: 94px">
@@ -401,21 +379,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="col-12 card shadow mb-4" style="margin-top:-10px; float:left;">
-                                    <div class="card-header py-3">
-                                        <span class="m-0 font-weight-bold text-primary" style="float: left;">발령
-                                            확인</span>
-                                    </div>
-                                    <div class="col-12" style="text-align:center; padding: 10px;">
-                                        <button class="btn btn-primary" type="button" name="checkCancel"
-                                            onclick="clear_onclick()" style="width:150px;">조작 초기화</button>
-                                        <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
-                                            ng-click='confirm()' id='confirm'>선택 내용 확인</button>
-                                        <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
-                                        <button type="button" class="btn btn-danger custom-modal8" style="width:150px;"
-                                            id='warning'>실제 방송 전송</button>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <div class="col-6" style="float: right;">
                                 <!-- Project Card Example -->
@@ -424,10 +388,25 @@
                                         <span class="m-0 font-weight-bold text-primary">GIS로
                                             선택</span>
                                     </div>
-                                    <div id="map" style="width:100%;height:692px;"></div>
+                                    <div id="map" style="width:100%;height:570px;"></div>
                                     <p>
                                         <button type="button" onclick="selectOverlay('CIRCLE')">원</button>
                                     </p>
+                                </div>
+                            </div>
+
+                            <div class="col-12 card shadow mb-4" style="margin-top:-10px; float:left;">
+                                <div class="card-header py-3">
+                                    <span class="m-0 font-weight-bold text-primary" style="float: left;">발령</span>
+                                </div>
+                                <div class="col-12" style="text-align:center; padding: 10px;">
+                                    <button class="btn btn-primary" type="button" id="checkCancel"
+                                        onclick="window.location.reload()" style="width:150px;">조작 초기화</button>
+                                    <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
+                                        ng-click='confirm()' id='confirm'>선택 내용 확인</button>
+                                    <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
+                                    <button type="button" class="btn btn-danger custom-modal8" style="width:150px;"
+                                        id='warning'>실제 방송 전송</button>
                                 </div>
                             </div>
                         </div>
@@ -449,9 +428,9 @@
             </script>
 
             <!-- 실제 방송 전송 -->
-            <div class="modal" id="popup8" role="dialog">
+            <div class="modal" id="popup9" role="dialog">
                 <div class="modal-dialog" role="document">
-                    <form id="myForm">
+                    <form id="myForm" method="GET" action="/warning">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modal_title">실제 방송 전송</h5>
@@ -462,7 +441,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal"
-                                    onclick="clear_onclick()">닫기</button>
+                                    onclick="window.location.reload()">닫기</button>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal">선택 완료</button>
                             </div>
                         </div>
@@ -471,7 +450,7 @@
             </div>
 
             <!-- 선택 내용 확인 -->
-            <div class="modal" id="popup9" role="dialog">
+            <div class="modal" id="popup8" role="dialog">
                 <div class="modal-dialog" role="document">
                     <form id="myForm">
                         <div class="modal-content">
@@ -490,7 +469,6 @@
                     </form>
                 </div>
             </div>
-
 
             <!-- modal2 : TTS 선택 시 발동 -->
             <div class="modal fade" id="Modal2">
@@ -619,6 +597,7 @@
     </script>
 
     <!-- Bootstrap core JavaScript-->
+    <script src="/javascripts/test_ztree.js"></script>
     <script src="/javascripts/map_read.js"></script>
     <script src="../public/vendor/jquery/jquery.min.js"></script>
     <!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->

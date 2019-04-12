@@ -1,429 +1,433 @@
 {
-    "seoul": [
-        {
-            "basic":"한자리기본(1)",
+    "seoul": [{
             "id": 1,
-            "checked": false,
+            "pId": "0",
             "name": "전 체",
-            "children": [
-                {
-                    "id": 11,
-                    "checked": false,
-                    "name": "중구",
-                    "children": [
-                        {
-                            "id": 111,
-                            "checked": false,
-                            "name": "서울역(한국공항철도)"
-                        },
-                        {
-                            "id": 112,
-                            "checked": false,
-                            "name": "서울역(서울교통공사)"
-                        }
-                    ]
-                },
-                {
-                    "id": 12,
-                    "checked": false,
-                    "name": "구로구",
-                    "children": [
-                        {
-                            "id": 121,
-                            "checked": false,
-                            "name": "신도림역"
-                        },
-                        {
-                            "id": 122,
-                            "checked": false,
-                            "name": "(구로)롯데마트 구로점"
-                        },
-                        {
-                            "id": 123,
-                            "checked": false,
-                            "name": "(구로)현대백화점 디큐브시티"
-                        },
-                        {
-                            "id": 124,
-                            "checked": false,
-                            "name": "(구로)CGV"
-                        }
-                    ]
-                },
-                {
-                    "id": 13,
-                    "checked": false,
-                    "name": "영등포구",
-                    "children": [
-                        {
-                            "id": 131,
-                            "checked": false,
-                            "name": "(영등포)로데오 왁"
-                        },
-                        {
-                            "id": 132,
-                            "checked": false,
-                            "name": "(영등포)아이에프씨몰(IFC Mall)"
-                        }
-                    ]
-                },
-                {
-                    "id": 14,
-                    "checked": false,
-                    "name": "서초구",
-                    "children": [
-                        {
-                            "id": 141,
-                            "checked": false,
-                            "name": "서울남부터미널"
-                        },
-                        {
-                            "id": 142,
-                            "checked": false,
-                            "name": "서울고속버스터미널"
-                        }
-                    ]
-                }
-            ]
+            "open": true
+        },
+        {
+            "id": 11,
+            "pId": "1",
+            "name": "중구"
+        },
+        {
+            "id": 111,
+            "pId": "11",
+            "name": "서울역(한국공항철도)",
+            "num": "3"
+        },
+        {
+            "id": 112,
+            "pId": 11,
+            "name": "서울역(서울교통공사)",
+            "num": "4"
+        },
+        {
+            "id": 12,
+            "pId": 1,
+            "name": "구로구"
+        },
+        {
+            "id": 121,
+            "pId": 12,
+            "name": "신도림역",
+            "num": "5"
+        },
+        {
+            "id": 122,
+            "pId": 12,
+            "name": "(구로)롯데마트 구로점",
+            "num": "6"
+        },
+        {
+            "id": 123,
+            "pId": 12,
+            "name": "(구로)현대백화점 디큐브시티",
+            "num": "8"
+        },
+        {
+            "id": 124,
+            "pId": 12,
+            "name": "(구로)CGV",
+            "num": "10"
+        },
+        {
+            "id": 13,
+            "pId": 1,
+            "name": "영등포구"
+        },
+        {
+            "id": 131,
+            "pId": 13,
+            "name": "(영등포)로데오 왁",
+            "num": "7"
+        },
+        {
+            "id": 132,
+            "pId": 13,
+            "name": "(영등포)아이에프씨몰(IFC Mall)",
+            "num": "9"
+        },
+        {
+            "id": 14,
+            "pId": 1,
+            "name": "서초구"
+        },
+        {
+            "id": 141,
+            "pId": 14,
+            "name": "서울남부터미널",
+            "num": "1"
+        },
+        {
+            "id": 142,
+            "pId": 14,
+            "name": "서울고속버스터미널",
+            "num": "2"
         }
     ],
-    "incheon": [
-        {
-            "id": 2,
-            "checked": false,
+
+    "incheon": [{
+            "id": 1,
+            "pId": 0,
             "name": "전 체",
-            "children": [
-                {
-                    "id": 21,
-                    "checked": false,
-                    "name": "중구",
-                    "children": [
-                        {
-                            "id": 211,
-                            "checked": false,
-                            "name": "KTX 인천국제공항역"
-                        },
-                        {
-                            "id": 212,
-                            "checked": false,
-                            "name": "인천역 1호선"
-                        },
-                        {
-                            "id": 213,
-                            "checked": false,
-                            "name": "인천국제공항"
-                        },
-                        {
-                            "id": 214,
-                            "checked": false,
-                            "name": "인천항 여객터미널"
-                        },
-                        {
-                            "id": 215,
-                            "checked": false,
-                            "name": "이마트(동인천점)"
-                        },
-                        {
-                            "id": 216,
-                            "checked": false,
-                            "name": "미추홀구(남구)"
-                        },
-                        {
-                            "id": 217,
-                            "checked": false,
-                            "name": "인천종합터미널"
-                        },
-                        {
-                            "id": 218,
-                            "checked": false,
-                            "name": "롯데백화점(인천터미널점)"
-                        }
-                    ]
-                },
-                {
-                    "id": 22,
-                    "checked": false,
-                    "name": "연수구",
-                    "children": [
-                        {
-                            "id": 221,
-                            "checked": false,
-                            "name": "(연수구)LF네트웍스"
-                        },
-                        {
-                            "id": 222,
-                            "checked": false,
-                            "name": "(연수구)스퀘어원"
-                        }
-                    ]
-                },
-                {
-                    "id": 23,
-                    "checked": false,
-                    "name": "남동구",
-                    "children": [
-                        {
-                            "id": 231,
-                            "checked": false,
-                            "name": "(인천)롯데시네마"
-                        }
-                    ]
-                }
-            ]
+            "open": true
+        },
+        {
+            "id": 11,
+            "pId": 1,
+            "name": "중구"
+        },
+        {
+            "id": 111,
+            "pId": 11,
+            "name": "KTX 인천국제공항역",
+            "num": "12"
+        },
+        {
+            "id": 112,
+            "pId": 11,
+            "name": "인천역 1호선",
+            "num": "13"
+        },
+        {
+            "id": 113,
+            "pId": 11,
+            "name": "인천국제공항",
+            "num": "14"
+        },
+        {
+            "id": 114,
+            "pId": 11,
+            "name": "인천항 여객터미널",
+            "num": "15"
+        },
+        {
+            "id": 115,
+            "pId": 11,
+            "name": "이마트(동인천점)",
+            "num": "16"
+        },
+        {
+            "id": 12,
+            "pId": 1,
+            "name": "미추홀구(남구)"
+        },
+        {
+            "id": 121,
+            "pId": 12,
+            "name": "인천종합터미널",
+            "num": "11"
+        },
+        {
+            "id": 122,
+            "pId": 12,
+            "name": "롯데백화점(인천터미널점)",
+            "num" : "18"
+        },
+        {
+            "id": 13,
+            "pId": 1,
+            "name": "연수구"
+        },
+        {
+            "id": 131,
+            "pId": 13,
+            "name": "(연수구)LF네트웍스",
+            "num": "17"
+        },
+        {
+            "id": 132,
+            "pId": 13,
+            "name": "(연수구)스퀘어원",
+            "num": "19"
+        },
+        {
+            "id": 14,
+            "pId": 1,
+            "name": "남동구"
+        },
+        {
+            "id": 141,
+            "pId": 14,
+            "name": "(인천)롯데시네마",
+            "num": "20"
         }
     ],
-    "gyeongbuk": [
-        {
-            "id": 3,
-            "checked": false,
+    "gyeongbuk": [{
+            "id": 1,
+            "pId": 0,
             "name": "전 체",
-            "children": [
-                {
-                    "id": 31,
-                    "checked": false,
-                    "name": "포항시",
-                    "children": [
-                        {
-                            "id": 311,
-                            "checked": false,
-                            "name": "포항 여객선터미널"
-                        },
-                        {
-                            "id": 312,
-                            "checked": false,
-                            "name": "이마트 포항점"
-                        },
-                        {
-                            "id": 313,
-                            "checked": false,
-                            "name": "롯데백화점 포항점"
-                        },
-                        {
-                            "id": 314,
-                            "checked": false,
-                            "name": "효자프라자 웰빙아울렛"
-                        }
-                    ]
-                },
-                {
-                    "id": 32,
-                    "checked": false,
-                    "name": "김천시",
-                    "children": [
-                        {
-                            "id": 321,
-                            "checked": false,
-                            "name": "김천시외버스터미널"
-                        },
-                        {
-                            "id": 322,
-                            "checked": false,
-                            "name": "KTX 김천(구미)"
-                        },
-                        {
-                            "id": 323,
-                            "checked": false,
-                            "name": "모다아울렛 김천구미점"
-                        }
-                    ]
-                },
-                {
-                    "id": 33,
-                    "checked": false,
-                    "name": "구미시",
-                    "children": [
-                        {
-                            "id": 331,
-                            "checked": false,
-                            "name": "구미종합터미널"
-                        },
-                        {
-                            "id": 332,
-                            "checked": false,
-                            "name": "동아백화점 구미점"
-                        },
-                        {
-                            "id": 333,
-                            "checked": false,
-                            "name": "롯데시네마 구미점"
-                        }
-                    ]
-                }
-            ]
+            "open": true
+        },
+        {
+            "id": 11,
+            "pId": 1,
+            "name": "포항시"
+        },
+        {
+            "id": 111,
+            "pId": 11,
+            "name": "포항 여객선터미널",
+            "num" : "24"
+        },
+        {
+            "id": 112,
+            "pId": 11,
+            "name": "이마트 포항점",
+            "num" : "25"
+        },
+        {
+            "id": 113,
+            "pId": 11,
+            "name": "롯데백화점 포항점",
+            "num" : "27"
+        },
+        {
+            "id": 114,
+            "pId": 11,
+            "name": "효자프라자 웰빙아울렛",
+            "num" : "29"
+        },
+        {
+            "id": 12,
+            "pId": 1,
+            "name": "김천시"
+        },
+        {
+            "id": 121,
+            "pId": 12,
+            "name": "김천시외버스터미널",
+            "num" : "22"
+        },
+        {
+            "id": 122,
+            "pId": 12,
+            "name": "KTX 김천(구미)",
+            "num" : "23"
+        },
+        {
+            "id": 123,
+            "pId": 12,
+            "name": "모다아울렛 김천구미점",
+            "num" : "26"
+        },
+        {
+            "id": 13,
+            "pId": 1,
+            "name": "구미시"
+        },
+        {
+            "id": 131,
+            "pId": 13,
+            "name": "구미종합터미널",
+            "num" : "21"
+        },
+        {
+            "id": 132,
+            "pId": 13,
+            "name": "동아백화점 구미점",
+            "num" : "28"
+        },
+        {
+            "id": 133,
+            "pId": 13,
+            "name": "롯데시네마 구미점",
+            "num" : "30"
         }
     ],
-    "gangwon": [
-        {
-            "id": 4,
-            "checked": false,
+    "gangwon": [{
+            "id": 1,
+            "pId": 0,
             "name": "전 체",
-            "children": [
-                {
-                    "id": 41,
-                    "checked": false,
-                    "name": "원주시",
-                    "children": [
-                        {
-                            "id": 411,
-                            "checked": false,
-                            "name": "(남원주)롯데시네마"
-                        }
-                    ]
-                },
-                {
-                    "id": 42,
-                    "checked": false,
-                    "name": "춘천시",
-                    "children": [
-                        {
-                            "id": 421,
-                            "checked": false,
-                            "name": "춘천시외버스터미널"
-                        },
-                        {
-                            "id": 422,
-                            "checked": false,
-                            "name": "(춘천)이마트"
-                        },
-                        {
-                            "id": 423,
-                            "checked": false,
-                            "name": "(춘천)CGV"
-                        },
-                        {
-                            "id": 424,
-                            "checked": false,
-                            "name": "(남춘천)메가박스"
-                        }
-                    ]
-                },
-                {
-                    "id": 43,
-                    "checked": false,
-                    "name": "동해시",
-                    "children": [
-                        {
-                            "id": 431,
-                            "checked": false,
-                            "name": "동해항 국제여객터미널"
-                        },
-                        {
-                            "id": 432,
-                            "checked": false,
-                            "name": "(동해)이마트"
-                        }
-                    ]
-                },
-                {
-                    "id": 44,
-                    "checked": false,
-                    "name": "속초시",
-                    "children": [
-                        {
-                            "id": 441,
-                            "checked": false,
-                            "name": "속초항 국제크루즈터미널"
-                        }
-                    ]
-                },
-                {
-                    "id": 45,
-                    "checked": false,
-                    "name": "횡성군",
-                    "children": [
-                        {
-                            "id": 451,
-                            "checked": false,
-                            "name": "원주공항"
-                        }
-                    ]
-                },
-                {
-                    "id": 46,
-                    "checked": false,
-                    "name": "평창군",
-                    "children": [
-                        {
-                            "id": 461,
-                            "checked": false,
-                            "name": "KTX 평창역"
-                        }
-                    ]
-                }
-            ]
+            "open": true
+        },
+        {
+            "id": 11,
+            "pId": 1,
+            "name": "원주시"
+        },
+        {
+            "id": 111,
+            "pId": 11,
+            "name": "(남원주)롯데시네마",
+            "num" : "39"
+        },
+        {
+            "id": 12,
+            "pId": 1,
+            "name": "춘천시"
+        },
+        {
+            "id": 121,
+            "pId": 12,
+            "name": "춘천시외버스터미널",
+            "num" : "31"
+        },
+        {
+            "id": 122,
+            "pId": 12,
+            "name": "(춘천)이마트",
+            "num" : "36"
+        },
+        {
+            "id": 123,
+            "pId": 12,
+            "name": "(춘천)CGV",
+            "num" : "38"
+        },
+        {
+            "id": 124,
+            "pId": 12,
+            "name": "(남춘천)메가박스",
+            "num" : "40"
+        },
+        {
+            "id": 13,
+            "pId": 1,
+            "name": "동해시"
+        },
+        {
+            "id": 131,
+            "pId": 13,
+            "name": "동해항 국제여객터미널",
+            "num" : "35"
+        },
+        {
+            "id": 132,
+            "pId": 13,
+            "name": "(동해)이마트",
+            "num" : "37"
+        },
+        {
+            "id": 14,
+            "pId": 1,
+            "name": "속초시"
+        },
+        {
+            "id": 141,
+            "pId": 14,
+            "name": "속초항 국제크루즈터미널",
+            "num": "34"
+        },
+        {
+            "id": 15,
+            "pId": 1,
+            "name": "횡성군"
+        },
+        {
+            "id": 151,
+            "pId": 15,
+            "name": "원주공항",
+            "num": "33"
+        },
+        {
+            "id": 16,
+            "pId": 1,
+            "name": "평창군"
+        },
+        {
+            "id": 161,
+            "pId": 16,
+            "name": "KTX 평창역",
+            "num": "32"
         }
     ],
-    "jeju": [
-        {
-            "id": 5,
-            "checked": false,
+    "jeju": [{
+            "id": 1,
+            "pId": 0,
             "name": "전 체",
-            "children": [
-                {
-                    "id": 51,
-                    "checked": false,
-                    "name": "제주시",
-                    "children": [
-                        {
-                            "id": 511,
-                            "checked": false,
-                            "name": "제주시외버스터미널"
-                        },
-                        {
-                            "id": 512,
-                            "checked": false,
-                            "name": "제주국제공항"
-                        },
-                        {
-                            "id": 513,
-                            "checked": false,
-                            "name": "제주항 연안 여객터미널"
-                        },
-                        {
-                            "id": 514,
-                            "checked": false,
-                            "name": "제주항 국제 여객터미널"
-                        },
-                        {
-                            "id": 515,
-                            "checked": false,
-                            "name": "이마트 제주점"
-                        },
-                        {
-                            "id": 516,
-                            "checked": false,
-                            "name": "이마트 신제주점"
-                        },
-                        {
-                            "id": 517,
-                            "checked": false,
-                            "name": "(제주시)롯데마트"
-                        },
-                        {
-                            "id": 518,
-                            "checked": false,
-                            "name": "(제주)CGV"
-                        }
-                    ]
-                },
-                {
-                    "id": 52,
-                    "checked": false,
-                    "name": "서귀포시",
-                    "children": [
-                        {
-                            "id": 521,
-                            "checked": false,
-                            "name": "홈플러스 서귀포점"
-                        },
-                        {
-                            "id": 522,
-                            "checked": false,
-                            "name": "이마트 서귀포점"
-                        }
-                    ]
-                }
-            ]
+            "open": true
+        },
+        {
+            "id": 11,
+            "pId": 1,
+            "name": "제주시"
+        },
+        {
+            "id": 111,
+            "pId": 11,
+            "name": "제주시외버스터미널",
+            "num": "41"
+        },
+        {
+            "id": 112,
+            "pId": 11,
+            "name": "제주국제공항",
+            "num": "42"
+        },
+        {
+            "id": 113,
+            "pId": 11,
+            "name": "제주항 연안 여객터미널",
+            "num": "43"
+        },
+        {
+            "id": 114,
+            "pId": 11,
+            "name": "제주항 국제 여객터미널",
+            "num": "44"
+        },
+        {
+            "id": 115,
+            "pId": 11,
+            "name": "이마트 제주점",
+            "num": "45"
+        },
+        {
+            "id": 116,
+            "pId": 11,
+            "name": "이마트 신제주점",
+            "num": "46"
+        },
+        {
+            "id": 117,
+            "pId": 11,
+            "name": "(제주시)롯데마트",
+            "num": "47"
+        },
+        {
+            "id": 118,
+            "pId": 11,
+            "name": "(제주)CGV",
+            "num": "50"
+        },
+        {
+            "id": 12,
+            "pId": 1,
+            "name": "서귀포시"
+        },
+        {
+            "id": 121,
+            "pId": 12,
+            "name": "홈플러스 서귀포점",
+            "num": "48"
+        },
+        {
+            "id": 122,
+            "pId": 12,
+            "name": "이마트 서귀포점",
+            "num": "49"
         }
     ]
 }

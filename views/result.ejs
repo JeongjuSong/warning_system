@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -23,29 +21,7 @@
     <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
 
     <script language="javascript">
-        /*   접속 지역에 따라 달라지는 CI 표현 */
-        function logo_info() {
             var user_area = <%=user.area%>;
-            var img_src;
-            for (var i = 1; i <= 18; i++) {
-                if (user_area == i) {
-                    img_src = '../public/img/' + i + '_logo.png';
-                }
-            }
-            return img_src;
-        }
-
-        function title_info() {
-            var user_area = <%=user.area%>;
-            var img_src;
-            for (var i = 1; i <= 18; i++) {
-                if (user_area == i) {
-                    img_src = '../public/img/' + i + '_title.png';
-                }
-            }
-            return img_src;
-        }
-
         google.charts.load('current', {
             'packages': ['corechart']
         });
@@ -135,6 +111,12 @@
                         <span>TTS 편집</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/edit_message" style="text-align: center;">
+                            <i class="fas fa-fw fa-microphone"></i>
+                            <span>메시지 편집</span>
+                        </a>
+                    </li>
                 <!-- Divider -->
                 <hr class="sidebar-divider d-none d-md-block" style="margin-top: 30px;">
                 <!-- Sidebar Toggler (Sidebar) -->
@@ -270,8 +252,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-
     <!-- Bootstrap core JavaScript-->
     <script src="../public/vendor/jquery/jquery.min.js"></script>
     <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -282,7 +262,5 @@
     <!-- Custom scripts for all pages-->
     <script src="../public/javascripts/sb-admin-2.min.js"></script>
 
-
 </body>
-
 </html>

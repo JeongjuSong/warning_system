@@ -57,6 +57,27 @@ window.onload = function () {
     document.getElementById("repeat_num").innerHTML = strNum;
 }
 
+function logo_info() {
+    /*   접속 지역에 따라 달라지는 CI 표현 */
+    var img_src;
+    for (var i = 0; i <= 17; i++) {
+        if (user_area == i) {
+            img_src = '../public/img/' + i + '_logo.png';
+        }
+    }
+    return img_src;
+}
+
+function title_info() {
+    var img_src;
+    for (var i = 0; i <= 17; i++) {
+        if (user_area == i) {
+            img_src = '../public/img/' + i + '_title.png';
+        }
+    }
+    return img_src;
+}
+
 
 // 나머지 항목들 따로 선택 
 function CheckFunc(obj) {
@@ -100,6 +121,7 @@ function clear_onclick() {
     document.getElementById("tts_title").selectedIndex = -1;
     document.getElementById("message_title").selectedIndex = -1;
     document.getElementById("siren").selectedIndex = -1;
+    
 }
 
 // 방송 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
@@ -141,6 +163,7 @@ function openTab(evt, select) {
     evt.currentTarget.className += " active";
 }
 
+// 세부 재난 종류 modal 7개 생성
 var content1 = '<div class="modal" id="popup1" role="dialog">' +
     ' <div class="modal-dialog" role="document">' +
     '<form id="myForm">' +

@@ -84,7 +84,7 @@ router.post('/login', function(req, res, next) {
     });
 });
 
-
+// edit_message db
 router.get('/message', function(req, res, next) {
     connection.query('SELECT * from message', function(err, rows) {
         if (err) throw err;
@@ -93,6 +93,56 @@ router.get('/message', function(req, res, next) {
 
         res.send(rows);
     });
+});
+
+
+router.get('/message/all', function(req, res, next) {
+
+    connection.query('SELECT * from message', function(err, rows) {
+        if (err) throw err;
+
+        // console.log('The solution is: ', rows);
+        res.send(rows);
+    });
+});
+
+router.all('/messageinsert', function(req, res, next) {
+
+
+    /* insert 쿼리문수정 */
+    connection.query('INSERT INTO message(no, title, text) ' + 'values("' + req.body.no + '","' + req.body.title + '","' + req.body.text + '")',
+        function(err, results, fiels) {
+            // console.log(arguments);
+        });
+
+    res.send("okay");
+});
+
+router.all('/messageupdate', function(req, res, next) {
+
+    /* update 쿼리문수정 */
+    connection.query(
+            "UPDATE message SET title='" + req.body.title + "'" +
+            ", text='" + req.body.text+ "' where no=" + req.body.no),
+        function(err, results, fiels) {
+            // console.log(arguments);
+        };
+
+    res.send("okay");
+});
+
+router.all('/messagedelete', function(req, res, next) {
+
+    // console.log("req"+req.body.No);
+    // console.log("req"+req.body);
+
+
+    var sql = 'DELETE FROM message WHERE no=' + req.body.no;
+    connection.query(sql, ['no'], function(err, results) {
+        // console.log(arguments);
+    });
+
+    res.send("okay");
 });
 
 
@@ -219,6 +269,10 @@ router.all('/terminaldelete', function(req, res, next) {
 
     res.send("okay");
 });
+
+router.post('/warning', function(req, res, next) {
+    
+})
 
 // router.post('/index', function(req, res, next) {
         

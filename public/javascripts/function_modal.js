@@ -174,9 +174,10 @@ $(document).ready(function () {
       });
    });
 
+   // 선택 내용 확인은 popup8, 실제 방송 전송은 popup9
    $('.custom-modal8').click(function () {
-      var mymodal = $('#popup8');
-      var mymodal2 = $('#popup9');
+      var mymodal = $('#popup9');
+      var mymodal2 = $('#popup8');
       var showText = "";
       var ayear = $('select#year').val();
       var amonth = $('select#amonth').val();
@@ -212,14 +213,19 @@ $(document).ready(function () {
       }
 
       if (aminute != null) {
-         showText += aminute + '<br/>'
+         showText += aminute + ':00<br/>'
+      }
+
+      var location = $('#checktest').val();
+      if (location.length >= 1) {
+         showText += '지역 선택 : ' + location;
       }
 
       for (var a = 1; a <= 7; a++) {
-         var type = $('#popup_show'+a+':checked').val();
+         var type = $('#popup_show' + a + ':checked').val();
          if ('#popup_show' + a + ':checked') {
             var val2 = [];
-            $('#alarm_type'+a+':checked').each(function (i) {
+            $('#alarm_type' + a + ':checked').each(function (i) {
                val2[i] = $(this).val();
                showText += type + " : " + val2[i] + '<br/>';
             });
@@ -250,15 +256,12 @@ $(document).ready(function () {
    });
 
 
-   $("#popup1").modal({
-      show: false,
-      backdrop: 'static'
-   });
-
-   $("#popup2").modal({
-      show: false,
-      backdrop: 'static'
-   });
+   for (var i = 1; i <= 9; i++) {
+      $("#popup"+i).modal({
+         show: false,
+         backdrop: 'static'
+      });
+   }
 
    $("#popup_show1").click(function () {
       $("#popup1").modal("show");
@@ -281,10 +284,12 @@ $(document).ready(function () {
    $("#popup_show7").click(function () {
       $("#popup7").modal("show");
    });
-   $("#warning").click(function () {
-      $("#popup8").modal('show');
-   })
    $("#confirm").click(function () {
+      $("#popup8").modal('show');
+   });
+   $("#warning").click(function () {
       $("#popup9").modal('show');
-   })
+   });
+
+
 });

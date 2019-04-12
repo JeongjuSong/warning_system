@@ -103,8 +103,18 @@ module.exports = function (app, passport) {
 			user: req.user
 		});
 	})
+	
+	app.get('/edit_message', isLoggedIn, function (req, res) {
+		res.render('edit_message.ejs', {
+			user: req.user
+		});
+	})
 
-
+	app.post('/warning', isLoggedIn, function (req, res) {
+		res.render('warning.ejs', {
+			user: req.user
+		});
+	})
 
 	app.use(function (err, req, res, next) {
 		console.log(err);
