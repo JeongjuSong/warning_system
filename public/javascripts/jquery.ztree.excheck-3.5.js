@@ -56,7 +56,8 @@
 		},
 		callback: {
 			beforeCheck:null,
-			onCheck:null
+			onCheck:null,
+			onCheck2:null
 		}
 	},
 	//default root of excheck

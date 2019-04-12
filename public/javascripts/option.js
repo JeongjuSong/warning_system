@@ -121,7 +121,7 @@ function clear_onclick() {
     document.getElementById("tts_title").selectedIndex = -1;
     document.getElementById("message_title").selectedIndex = -1;
     document.getElementById("siren").selectedIndex = -1;
-    
+
 }
 
 // 방송 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
@@ -296,3 +296,21 @@ var content7 = '<div class="modal" id="popup7" role="dialog">' +
     '</form>' +
     '</div>' +
     '</div>';
+
+
+    function zTreeOnCheck2(event, treeId, treeNode) {
+        var treeObj = newJquery.fn.zTree.getZTreeObj("treeDemo2");
+        var nodes = treeObj.getCheckedNodes(true);
+        var checkedArray = new Array();
+        
+        for (var i = 0; i <= 100; i++) {
+            var checkednode = nodes[i].name;
+            if (checkednode != '운수시설' && checkednode != '대규모점포' && checkednode != '영화상영관' && checkednode != '여객자동차터미널' && checkednode != '철도 역 시설' && checkednode != '도시철도 역 시설' && checkednode != '공항 여객 시설' && checkednode != '항만 여객 시설' && checkednode != '대형마트' && checkednode != '전문점' && checkednode != '백화점' && checkednode != '복합 쇼핑몰') {
+                checkedArray.push(checkednode);
+                $(document).ready(function () {
+                    $('#checktest').val(checkedArray);
+                });
+            }
+        }
+    };
+    
