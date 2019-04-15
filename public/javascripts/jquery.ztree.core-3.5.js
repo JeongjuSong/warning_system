@@ -380,14 +380,14 @@
 				parentNode.isParent = true;
 				parentNode[childKey] = parentNode[childKey].concat(nodes);
 				$("#addnode").click(function () {
-					var sendData = nodes[0];
-					console.log(sendData);
+					console.log(nodes[0].id);
 					$.ajax({
 						type: "POST",
 						url: "/groupinsert",
 						async: true,
+						contentType: "application/json",
 						data: {
-						   id: sendData.id,
+						   id: nodes.id,
 						   pId: sendData.pId,
 						   name: sendData.name
 						},
