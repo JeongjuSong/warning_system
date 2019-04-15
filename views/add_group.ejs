@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>다중이용시설 긴급경보방송시스템</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="../public/css/demo.css" type="text/css"> -->
+    <link rel="stylesheet" href="../public/css/zTreeStyle.css" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <script src="/javascripts/option.js"></script>
+    <script type="text/javascript" src="../public/javascripts/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="../public/javascripts/jquery.ztree.core-3.5.js"></script>
+    <script type="text/javascript" src="../public/javascripts/jquery.ztree.excheck-3.5.js"></script>
+    <script type="text/javascript" src="../public/javascripts/jquery.ztree.exedit-3.5.js"></script>
+    <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="/javascripts/option.js"></script>
+
+    <script language="javascript">
+        var user_area = <%=user.area%>;
+    </script>
+
+    <style>
+        ul.ztree {
+            margin-top: 10px;
+            border: 1px solid #617775;
+            background: #f0f6e4;
+            width: 300px;
+            height: 300px;
+            overflow-y: scroll;
+            overflow-x: auto;
+        }
+    </style>
+
+</head>
+
+<body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <div class="navbar-default sidebar toggled" role="navigation">
+            <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
+                    <div class="sidebar-brand-icon">
+                        <img id="logo" src="" style="height: 50px;">
+                        <script>
+                            document.getElementById('logo').src = logo_info()
+                        </script>
+                    </div>
+                    <div class="sidebar-brand-text mx-3">
+                        <img id="title" src="" style="height: 40px; margin-left:-10px;">
+                        <script>
+                            document.getElementById('title').src = title_info()
+                        </script>
+                    </div>
+                </a>
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item" style="margin-top:30px;">
+                    <a class="nav-link" href="/index" style="text-align: center;">
+                        <i class="fas fa-fw fa-exclamation-triangle"></i>
+                        <span>경보 발령</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="/result" style="text-align: center;">
+                        <i class="fas fa-fw fa-chart-bar"></i>
+                        <span>발령 결과</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/check_terminal" style="text-align: center;">
+                        <i class="fas fa-fw fa-wrench"></i>
+                        <span>장비 관리</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="history" style="text-align: center;">
+                        <i class="fas fa-fw fa-history"></i>
+                        <span>이력 조회</span>
+                    </a>
+                </li>
+                <li class="nav-item" style="border-left: 5px solid #4e73df; background-color:#eff1f2">
+                    <a class="nav-link" href="/add_group" style="text-align: center;">
+                        <i class="fas fa-fw fa-folder-plus"></i>
+                        <span>그룹 추가</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit_tts" style="text-align: center;">
+                        <i class="fas fa-fw fa-microphone"></i>
+                        <span>TTS 편집</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/edit_message" style="text-align: center;">
+                        <i class="fas fa-envelope-open-text"></i>
+                        <span>메시지 편집</span>
+                    </a>
+                </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block" style="margin-top: 30px;">
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+            </ul>
+        </div>
+        <!-- End of Sidebar -->
+        <!-- Content Wrapper -->
+        <div class="d-flex flex-column" id="content-wrapper">
+            <!-- Main Content -->
+            <div id="content">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold; margin-left:10px;">다중이용시설
+                        긴급경보방송시스템</h1>
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                                data-toggle="dropdown" href="#" id="searchDropdown" role="button">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div aria-labelledby="searchDropdown"
+                                class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input aria-describedby="basic-addon2" aria-label="Search"
+                                            class="form-control bg-light border-0 small" placeholder="Search for..."
+                                            type="text">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                                data-toggle="dropdown" href="#" id="searchDropdown" role="button">
+                                <span class="text-s font-weight-bold text-primary text-uppercase mb-1"
+                                    id="clock"></span>
+                            </a>
+                        </li>
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
+                                data-toggle="dropdown" href="#" id="userDropdown" role="button">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" style="font-size:inherit;">
+                                    접속자:
+                                    <%=user.username%>
+                                    님
+                                    <i class="fas fa-fw fa-chevron-down"></i>
+                                </span>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div aria-labelledby="userDropdown"
+                                class="dropdown-menu dropdown-menu-right shadow animated--grow-in">
+                                <a class="dropdown-item" href="/logout">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <br />
+                    <!-- Content Row -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary"
+                                style="float: left;">그룹 추가/수정/삭제</span>
+                        </div>
+                        <div class="card-body">
+                            <button id="addParent" onclick="return false;" class="btn-sm btn-primary">부모 노드 추가</button>
+                            <button id="addLeaf" onclick="return false;" class="btn-sm btn-primary">자식 노드 추가</button>
+                            <button id="edit" onclick="return false;" class="btn-sm btn-primary">이름 변경</button>
+                            <button id="remove" onclick="return false;" class="btn-sm btn-primary">노드 삭제</button>
+                            <button id="clearChildren" onclick="return false;" class="btn-sm btn-primary">하위 모든 노드
+                                삭제</button>
+                            <ul id="treeDemo3" class="ztree"></ul>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- End of Main Content -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/javascripts/test_ztree.js"></script>
+    <script src="../public/vendor/jquery/jquery.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <!-- <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> -->
+    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../public/javascripts/sb-admin-2.min.js"></script>
+</body>
+
+</html>

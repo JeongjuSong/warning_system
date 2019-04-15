@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>다중이용시설 긴급경보방송시스템</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../public/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <script type="text/javascript">
+        function tocheckpw2() {
+            var pw = document.getElementById("password").value;
+            var pwck = document.getElementById("password2").value;
+
+            if (pw != pwck) {
+                document.getElementById('pwsame').innerHTML = '비밀번호를 다르게 입력하였습니다.';
+                return false;
+            }
+        }
+    </script>
+
+
+
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('../public/img/background_img.jpg');">
+
+            <div class="col-4" style="background-color: #fff; border-radius: 3rem;">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h2 text-gray-700 mb-4">Sign Up</h1><br />
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <form action="/register" class="register" method="post"
+                                            onsubmit="return tocheckpw2()">
+                                            <div class="form-group">
+                                                <label>회원이름 : </label>
+                                                <input type="text" class="form-control form-control-user"
+                                                    placeholder="Enter your name" id="username" name="username" style="margin-left: 42px;"
+                                                    required />
+                                            </div>
+
+                                            <div class="form-group">
+                                                    <label>접속지역 : </label>
+                                                <select class="form-control2"
+                                                    style="border-radius: 10rem; font-size: .8rem; height: 50px; margin-left: 42px;"
+                                                    name="area" id="area" required>
+                                                    <option value="" disabled selected>Select your area</option>
+                                                    <option value="0">전 국</option>
+                                                    <option value="1">서울특별시</option>
+                                                    <option value="2">부산광역시</option>
+                                                    <option value="3">대구광역시</option>
+                                                    <option value="4">인천광역시</option>
+                                                    <option value="5">광주광역시</option>
+                                                    <option value="6">대전광역시</option>
+                                                    <option value="7">울산광역시</option>
+                                                    <option value="8">세종특별자치시</option>
+                                                    <option value="9">경기도</option>
+                                                    <option value="10">강원도</option>
+                                                    <option value="11">충청북도</option>
+                                                    <option value="12">충청남도</option>
+                                                    <option value="13">전라북도</option>
+                                                    <option value="14">전라남도</option>
+                                                    <option value="15">경상북도</option>
+                                                    <option value="16">경상남도</option>
+                                                    <option value="17">제주특별자치도</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                    <label>비밀번호 : </label>
+                                                <input type="password" class="form-control form-control-user"
+                                                    placeholder="Enter your password" id="password" name="password" style="margin-left: 42px;"
+                                                    required />
+                                            </div>
+
+                                            <div class="form-group">
+                                                    <label>비밀번호 확인 : </label>
+                                                <input type="password" class="form-control form-control-user"
+                                                    placeholder="Check your password" id="password2" name="password2"
+                                                    required />
+                                            </div>
+                                            <p id="pwsame" style="color:red; text-align: center;"></p>
+                                            <% if (message.length > 0) { %>
+                                            <div class="alert alert-danger" style="text-align: center;">
+                                                <%= message %>
+                                            </div>
+                                            <% } %>
+
+
+                                            <div style="width:50%; float: none; margin: auto;">
+                                                <button type="submit"
+                                                    class="btn btn-primary btn-user btn-block">Register</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="/login">Back to Login</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../public/vendor/jquery/jquery.min.js"></script>
+    <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../public/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../public/javascripts/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>
