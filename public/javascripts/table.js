@@ -797,23 +797,28 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     rowHeight: 40,
     modifierKeysToMultiSelectCells: true,
     columnDefs: [{
+        name: 'no',
+        aggregationType: uiGridConstants.aggregationTypes.count,
+        width: 60
+      },
+      {
         name: 'time',
         width: 150,
         enableCellEdit: true
       },
       {
         name: 'location',
-        width: 250,
+        width: 220,
         enableCellEdit: true
       },
       {
         name: 'alarm_type',
-        width: 200,
+        width: 220,
         enableCellEdit: true
       },
       {
         name: 'communication',
-        width: 200,
+        width: 100,
         enableCellEdit: true
       },
       {
@@ -858,40 +863,45 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     rowHeight: 40,
     modifierKeysToMultiSelectCells: false,
     columnDefs: [{
-      name: 'time',
-      width: 150,
-      enableCellEdit: true
-    },
-    {
-      name: 'location',
-      width: 200,
-      enableCellEdit: true
-    },
-    {
-      name: 'alarm_type',
-      width: 200,
-      enableCellEdit: true
-    },
-    {
-      name: 'communication',
-      width: 200,
-      enableCellEdit: true
-    },
-    {
-      name: 'tts',
-      width: 100,
-      enableCellEdit: true
-    },
-    {
-      name: 'message',
-      width: 100,
-      enableCellEdit: true
-    },
-    {
-      name: 'siren',
-      width: 100,
-      enableCellEdit: true
-    },
+        name: 'no',
+        aggregationType: uiGridConstants.aggregationTypes.count,
+        width: 60
+      },
+      {
+        name: 'time',
+        width: 150,
+        enableCellEdit: true
+      },
+      {
+        name: 'location',
+        width: 220,
+        enableCellEdit: true
+      },
+      {
+        name: 'alarm_type',
+        width: 220,
+        enableCellEdit: true
+      },
+      {
+        name: 'communication',
+        width: 100,
+        enableCellEdit: true
+      },
+      {
+        name: 'tts',
+        width: 100,
+        enableCellEdit: true
+      },
+      {
+        name: 'message',
+        width: 100,
+        enableCellEdit: true
+      },
+      {
+        name: 'siren',
+        width: 100,
+        enableCellEdit: true
+      },
     ],
     onRegisterApi: function (gridApi) {
       $scope.gridApi = gridApi;
