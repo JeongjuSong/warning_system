@@ -111,18 +111,11 @@ module.exports = function (app, passport) {
 		});
 	})
 
-	// app.post('/warning', isLoggedIn, function (req, res) {
-	// 	res.render('warning.ejs', {
-	// 		user: req.user
-	// 	});
-	// })
-
 	app.use(function (err, req, res, next) {
 		console.log(err);
 		// res.send(err.message);
 		res.render('error.ejs');
 	})
-
 
 
 	// =====================================

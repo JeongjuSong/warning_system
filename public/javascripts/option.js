@@ -100,7 +100,7 @@ function CheckFunc(obj) {
     }
 }
 
-// 체크박스 선택 시, CheckFucn() 함수 실행
+// 체크박스 선택 시, CheckFunc() 함수 실행
 $(function () {
     $("input[type=checkbox]").each(function () {
         $(this).click(function () {

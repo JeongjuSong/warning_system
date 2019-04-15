@@ -10,10 +10,6 @@ var connection = mysql.createConnection(dbconfig);
 /* get db*/
 
 
-
-
-
-// //수정부분 
 var connection;
 
 function handleDisconnect() {
@@ -38,8 +34,6 @@ function handleDisconnect() {
 }
 
 handleDisconnect();
-// //수정완료 부분
-
 
 var app = express();
 var bodyParser = require('body-parser')
@@ -84,6 +78,34 @@ router.post('/login', function (req, res, next) {
     });
 });
 
+router.get('/group', function (req, res, next) {
+    connection.query('SELECT * from groupdata', function (err, rows) {
+        if (err) throw err;
+
+        // console.log('The solution is: ', rows);
+
+        res.send(rows);
+    });
+});
+
+
+router.post('/groupinsert', function (req, res, next) {
+    console.log('group data insert 됨')
+    var id = req.body.id;
+    var pId = req.body.pId;
+    var name = req.body.name;
+
+    var datas = [id, pId, name];
+
+    connection.query('INSERT INTO groupdata(id, pId, name) ' + 'values("' + req.body.id + '","' + req.body.pId + '","' + req.body.name + '")',
+        function (err, results, fiels) {
+            // console.log(arguments);
+        });
+
+    res.send("okay");
+});
+
+
 // edit_message db
 router.get('/message', function (req, res, next) {
     connection.query('SELECT * from message', function (err, rows) {
@@ -94,7 +116,6 @@ router.get('/message', function (req, res, next) {
         res.send(rows);
     });
 });
-
 
 router.get('/message/all', function (req, res, next) {
 
@@ -144,7 +165,6 @@ router.all('/messagedelete', function (req, res, next) {
 
     res.send("okay");
 });
-
 
 // edit_tts db insert
 router.get('/tts', function (req, res, next) {
@@ -270,17 +290,6 @@ router.all('/terminaldelete', function (req, res, next) {
     res.send("okay");
 });
 
-// router.all('/warninginsert', function (req, res, next) {
-//     console.log(req.body.time);
-//     /* insert 쿼리문수정 */
-//     connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, message, siren) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' + req.body.message + '","' + req.body.siren + '")',
-//         function (err, results, fiels) {
-//             // console.log(arguments);
-//         });
-
-//     res.send("okay");
-// });
-
 router.post('/warninginsert', function (req, res, next) {
     console.log('insert 됨')
     var time = req.body.time;
@@ -294,11 +303,11 @@ router.post('/warninginsert', function (req, res, next) {
     var datas = [time, location, alarm_type, communication, tts, message, siren];
 
     connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, message, siren) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' + req.body.message + '","' + req.body.siren + '")',
-            function (err, results, fiels) {
-                // console.log(arguments);
-            });
-    
-        res.send("okay");
+        function (err, results, fiels) {
+            // console.log(arguments);
+        });
+
+    res.send("okay");
 });
 
 router.get('/historydata', function (req, res, next) {

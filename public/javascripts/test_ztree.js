@@ -56,10 +56,11 @@ newJquery(document).ready(function (data) {
 
 // ztree3 그룹별 데이터 가져오기
 newJquery(document).ready(function () {
-    var url = '/data/group.json';
+    var url = '/group';
     newJquery.ajax({
         type: "GET",
         url: url,
+        contentType: "application/json",
         async: false,
         success: function (data) {
             zNodes3 = data;
@@ -152,16 +153,17 @@ var newCount = 1;
 function add(e) {
     var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo3"),
         isParent = e.data.isParent,
-        nodes = zTree.getSelectedNodes(),
-        treeNode = nodes[0];
-    if (treeNode) {
+        nodes = zTree.getSelectedNodes(), // 선택한 노드
+        treeNode = nodes[0]; // treeNode는 부모 노드
+    if (treeNode) { // 자식 노드 추가를 눌렀을 경우
         treeNode = zTree.addNodes(treeNode, {
             id: (100 + newCount),
             pId: treeNode.id,
             isParent: isParent,
             name: "new node" + (newCount++)
         })
-    } else {
+    } else { // 부모 노드 추가를 눌렀을 경우
+        // console.log(treeNode)
         treeNode = zTree.addNodes(null, {
             id: (100 + newCount),
             pId: 0,

@@ -766,7 +766,7 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
 
 // 이력 조회
 myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editableOptions', function ($scope, $http, $q, uiGridConstants, editableOptions) {
-  console.log('myCtrl5 Open');
+  // console.log('myCtrl5 Open');
   editableOptions.theme = 'bs3'
   var canceler = $q.defer();
 
