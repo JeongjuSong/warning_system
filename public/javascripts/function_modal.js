@@ -254,6 +254,9 @@ $(document).ready(function () {
       if (tts != null) {
          showText += 'TTS 방송 종류 : ' + tts + '<br/>';
       }
+      if(tts == 'writetts') {
+         showText += ''
+      }
 
       if (repeat_num != null) {
          showText += 'TTS 방송 반복 횟수 : ' + repeat_num + '<br/>';

@@ -376,7 +376,9 @@
 				if (parentNode[childKey].length > 0) {
 					parentNode[childKey][parentNode[childKey].length - 1].isLastNode = false;
 					view.setNodeLineIcos(setting, parentNode[childKey][parentNode[childKey].length - 1]);
+					console.log()
 				}
+				console.log(nodes)
 				parentNode.isParent = true;
 				parentNode[childKey] = parentNode[childKey].concat(nodes);
 				$("#addnode").click(function () {
@@ -384,23 +386,25 @@
 					$.ajax({
 						type: "POST",
 						url: "/groupinsert",
-						async: true,
-						contentType: "application/json",
+						async: false,
 						data: {
-						   id: nodes.id,
-						   pId: sendData.pId,
-						   name: sendData.name
+							id: nodes[0].id,
+							pId: nodes[0].pId,
+							name: nodes[0].name
 						},
 						dataType: "json",
 						cache: false,
 						success: function (data) {
-						   alert('저장되었다');
+							alert('저장되었습니다');
+							console.log(data);
+							return window.location.reload();
 						},
 						error: function (data) { // error인데도 발령이 되는 부분 수정
-						   alert('추가 성공');
-						   return window.location.reload();
+							alert('저장되었습니다');
+							return window.location.reload();
+
 						}
-					 });
+					});
 				})
 
 			},
@@ -595,9 +599,30 @@
 				var root = data.getRoot(setting);
 				for (var i = 0, j = root.curSelectedList.length; i < j; i++) {
 					if (node === root.curSelectedList[i] || !data.getNodeCache(setting, root.curSelectedList[i].tId)) {
+						console.log(root.curSelectedList[0].name);
+						var selectedname = '"' + root.curSelectedList[0].name + '"';
 						root.curSelectedList.splice(i, 1);
 						i--;
 						j--;
+						$("#removenode").click(function () {
+							$.ajax({
+								type: "POST",
+								url: "/groupdelete",
+								async: true,
+								data: {
+									name: selectedname
+								},
+								dataType: "json",
+								cache: false,
+								success: function (data) {
+									alert('삭제되었습니다.');
+								},
+								error: function (data) {
+									alert('삭제되었습니다.');
+									return window.location.reload();
+								}
+							})
+						});
 					}
 				}
 			},

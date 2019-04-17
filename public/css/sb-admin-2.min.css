@@ -1980,7 +1980,7 @@ pre code {
     float: left;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
-    width: 20%;
+    width: 22%;
     height: 230px;
 }
 
@@ -1989,14 +1989,14 @@ pre code {
     display: block;
     background-color: inherit;
     color: black;
-    padding: 22px 16px;
+    padding: 12px 13px;
     width: 100%;
     border: none;
     outline: none;
     text-align: left;
     cursor: pointer;
     transition: 0.3s;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 /* Change background color of buttons on hover */
@@ -2015,7 +2015,7 @@ pre code {
     padding: 0 12px;
     border: 1px solid #ccc;
     overflow: scroll;
-    width: 80%;
+    width: 78%;
     border-left: none;
     height: 230px;
 }

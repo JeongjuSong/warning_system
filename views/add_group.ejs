@@ -31,9 +31,10 @@
 
     <style>
         ul.ztree {
-            margin-top: 10px;
+            margin-top: 20px;
+            margin-left: 7px;
             border: 1px solid #617775;
-            background: #f0f6e4;
+            background: #f6f9fd;
             width: 300px;
             height: 300px;
             overflow-y: scroll;
@@ -192,21 +193,21 @@
                     <br />
                     <!-- Content Row -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary"
-                                style="float: left;">그룹 추가/수정/삭제</span>
-                        </div>
-                        <div class="card-body">
-                            <button id="addParent" onclick="return false;" class="btn-sm btn-primary">부모 노드 추가</button>
-                            <button id="addLeaf" onclick="return false;" class="btn-sm btn-primary">자식 노드 추가</button>
-                            <button id="edit" onclick="return false;" class="btn-sm btn-primary">이름 변경</button>
-                            <button id="remove" onclick="return false;" class="btn-sm btn-primary">노드 삭제</button>
-                            <button id="clearChildren" onclick="return false;" class="btn-sm btn-primary">하위 모든 노드
-                                삭제</button>
-                            <button id="addnode" onclick="return false;" class="btn-sm btn-danger">확인</button>
-                            <ul id="treeDemo3" class="ztree"></ul>
-                        </div>
-                    </div>
 
+                            <div class="card-header py-3"><span class="m-0 font-weight-bold text-primary"
+                                    style="float: left;">그룹 추가/수정/삭제</span>
+                            </div>
+                            <div class="card-body">
+                                
+                        <div class="col-6">
+                                <button id="addParent" onclick="return false;" class="btn-sm btn-primary">그룹 추가</button>
+                                <button id="addLeaf" onclick="return false;" class="btn-sm btn-primary">단말기 추가</button>
+                                <button id="remove" onclick="return false;" class="btn-sm btn-primary">그룹/단말기 삭제</button>
+                                <button id="addnode" onclick="return false;" class="btn-sm btn-danger">추가확인</button>
+                                <button id="removenode" onclick="return false;" class="btn-sm btn-danger">삭제확인</button>
+                                <ul id="treeDemo3" class="ztree"></ul>
+                            </div>
+                        </div>
                 </div>
                 <!-- /.container-fluid -->
             </div>

@@ -78,6 +78,87 @@ router.post('/login', function (req, res, next) {
     });
 });
 
+router.get('/regionseoul', function (req, res, next) {
+    connection.query('SELECT * FROM region WHERE location="seoul";', function (err, rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
+
+router.get('/regionincheon', function (req, res, next) {
+    connection.query('SELECT * FROM region WHERE location="incheon";', function (err, rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
+
+router.get('/regiongangwon', function (req, res, next) {
+    connection.query('SELECT * FROM region WHERE location="gangwon";', function (err, rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
+
+router.get('/regiongyeongbuk', function (req, res, next) {
+    connection.query('SELECT * FROM region WHERE location="gyeongbuk";', function (err, rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
+
+router.get('/regionjeju', function (req, res, next) {
+    connection.query('SELECT * FROM region WHERE location="jeju";', function (err, rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
+
+router.get('/facilityseoul', function (req, res, next) {
+    connection.query('SELECT * FROM facility WHERE location="seoul";', function (err, rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
+
+router.get('/facilityincheon', function (req, res, next) {
+    connection.query('SELECT * FROM facility WHERE location="incheon";', function (err, rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
+
+router.get('/facilitygangwon', function (req, res, next) {
+    connection.query('SELECT * FROM facility WHERE location="gangwon";', function (err, rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
+
+router.get('/facilitygyeongbuk', function (req, res, next) {
+    connection.query('SELECT * FROM facility WHERE location="gyeongbuk";', function (err, rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
+
+router.get('/facilityjeju', function (req, res, next) {
+    connection.query('SELECT * FROM facility WHERE location="jeju";', function (err, rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
+
+
 router.get('/group', function (req, res, next) {
     connection.query('SELECT * from groupdata', function (err, rows) {
         if (err) throw err;
@@ -99,6 +180,19 @@ router.post('/groupinsert', function (req, res, next) {
 
     connection.query('INSERT INTO groupdata(id, pId, name) ' + 'values("' + req.body.id + '","' + req.body.pId + '","' + req.body.name + '")',
         function (err, results, fiels) {
+            // console.log(arguments);
+        });
+
+    res.send("okay");
+});
+
+router.post('/groupdelete', function (req, res, next) {
+    console.log('group data delete 됨')
+    var name = req.body.name;
+    console.log(req.body.name);
+
+    var sql = 'DELETE FROM groupdata WHERE name=' + req.body.name;
+    connection.query(sql, ['name'], function (err, results, fiels) {
             // console.log(arguments);
         });
 

@@ -214,36 +214,47 @@
                                     </div>
                                 </div>
 
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
-                                        <span class="m-0 font-weight-bold text-primary" style="float: left;">지역
-                                            선택</span>
+                                <div class="col-12"
+                                    style="display: -webkit-box; margin-left: -0.75rem; max-height: 330px;">
+                                    <div class="col-7 card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary" style="float: left;">지역
+                                                선택</span>
+                                        </div>
+                                        <div class="col-12" style="padding: 10px;" id="checkboxTest"
+                                            name="checkboxTest">
+                                            <div class="tab">
+                                                <button class="tablinks" id="defaultOpen"
+                                                    onclick="openTab(event, 'location')" style="width: 94%;"
+                                                    type="button">지역별</button>
+                                                <button class="tablinks" onclick="openTab(event, 'devide')"
+                                                    style="width: 94%;" type="button">분류별</button>
+                                                <button class="tablinks" onclick="openTab(event, 'group')"
+                                                    style="width: 94%;" type="button">그룹별</button>
+                                            </div>
+
+                                            <div class="tabcontent" id="location">
+                                                <ul id="treeDemo" class="ztree"></ul>
+                                            </div>
+
+                                            <!-- 분류별 -->
+                                            <div class="tabcontent" id="devide">
+                                                <ul id="treeDemo2" class="ztree"></ul>
+                                            </div>
+
+                                            <!-- 그룹별 -->
+                                            <div class="tabcontent" id="group">
+                                                <ul id="treeDemo3" class="ztree"></ul>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-12" style="padding: 10px;" id="checkboxTest" name="checkboxTest">
-                                        <div class="tab">
-                                            <button class="tablinks" id="defaultOpen"
-                                                onclick="openTab(event, 'location')" style="width: 94%;"
-                                                type="button">지역별</button>
-                                            <button class="tablinks" onclick="openTab(event, 'devide')"
-                                                style="width: 94%;" type="button">분류별</button>
-                                            <button class="tablinks" onclick="openTab(event, 'group')"
-                                                style="width: 94%;" type="button">그룹별</button>
-                                        </div>
 
-                                        <div class="tabcontent" id="location">
-                                            <ul id="treeDemo" class="ztree"></ul>
+                                    <div class="col-5 card shadow mb-4" style="float:left;">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">현황</span>
                                         </div>
-
-                                        <!-- 분류별 -->
-                                        <div class="tabcontent" id="devide">
-                                            <ul id="treeDemo2" class="ztree"></ul>
+                                        <div class="col-12" id="checkboxTest" style="margin-top:15px;">
                                         </div>
-
-                                        <!-- 그룹별 -->
-                                        <div class="tabcontent" id="group">
-                                            <ul id="treeDemo3" class="ztree"></ul>
-                                        </div>
-
                                     </div>
                                 </div>
 
@@ -252,7 +263,7 @@
                                         <span class="m-0 font-weight-bold text-primary">재난 종류</span>
                                     </div>
                                     <div class="col-12" id="checkboxTest" style="margin-top:15px;">
-                                        <table style="margin-left: -18px; width: 100%;">
+                                        <table style="margin: auto; width: 100%;">
                                             <input id="checktest" type="text" style="display: none">
                                             <tr>
                                                 <td>
@@ -394,18 +405,17 @@
                                 </div>
                             </div>
 
-                            <div class="col-12 card shadow mb-4" style="margin-top:-10px; float:left;">
-                                <div class="card-header py-3">
-                                    <span class="m-0 font-weight-bold text-primary" style="float: left;">발령</span>
-                                </div>
-                                <div class="col-12" style="text-align:center; padding: 10px;">
-                                    <button class="btn btn-primary" type="button" id="checkCancel"
-                                        onclick="window.location.reload()" style="width:150px;">조작 초기화</button>
-                                    <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
-                                        ng-click='confirm()' id='confirm'>선택 내용 확인</button>
-                                    <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
-                                    <button type="button" class="btn btn-danger custom-modal8" style="width:150px;"
-                                        id='warning'>실제 방송 전송</button>
+                            <div class="col-12" style="float:left;">
+                                <div class="card shadow mb-4" style="text-align:center; padding: 10px;">
+                                    <div>
+                                        <button class="btn btn-primary" type="button" id="checkCancel"
+                                            onclick="window.location.reload()" style="width:150px;">조작 초기화</button>
+                                        <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
+                                            ng-click='confirm()' id='confirm'>선택 내용 확인</button>
+                                        <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
+                                        <button type="button" class="btn btn-danger custom-modal8" style="width:150px;"
+                                            id='warning'>실제 방송 전송</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -441,7 +451,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal"
-                                    onclick="window.location.reload()">닫기</button>                                    
+                                    onclick="window.location.reload()">닫기</button>
                                 <button type="button" class="btn btn-primary" id="postwarning">방송하기</button>
                             </div>
                         </div>
@@ -480,6 +490,7 @@
                         <div class='modal-body'>
                             TTS 방송 설정 <select id="tts_title">
                                 <option value="" disabled selected>방송 선택</option>
+                                <option value="writetts">직접 입력</option>
                                 <script>
                                     for (var i = 0; i <= '{{gridOption1}}'.length; i++) {
                                         document.write("<option value=" + '{{gridOption1[' + i + '].title}}' +
@@ -516,6 +527,7 @@
                         <div class='modal-body'>
                             저장 메시지 설정 <select id="message_title">
                                 <option value="" disabled selected>저장 메시지 선택</option>
+                                <option value="writemessage">직접 입력</option>
                                 <script>
                                     for (var i = 0; i <= '{{gridOption3}}'.length; i++) {
                                         document.write("<option value=" + '{{gridOption3[' + i + '].title}}' +
@@ -594,6 +606,15 @@
 
     <script>
         document.getElementById("defaultOpen").click();
+        $('#tts_title').change(function () {
+            $('select#tts_title').each(function () {
+                if ($(this).val() == 'writetts') { //직접 입력 선택한 경우
+                    $('#tts_text').val(''); //값 초기화
+                    $('#tts_text').attr("disabled", false);
+                } else { //직접 입력이 아닌 경우
+                }
+            });
+        });
     </script>
 
     <!-- Bootstrap core JavaScript-->

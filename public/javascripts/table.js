@@ -129,7 +129,7 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
       contentType: "application/json",
     }).then(function data(response) {
       for (var i = 0; i <= 10; i++) {
-        if (index == i + 1) {
+        if (index == i + 2) {
           // console.log(response.data[i].text);
           $scope.gridOption2 = response.data[i].text;
         }
@@ -157,70 +157,13 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
       contentType: "application/json",
     }).then(function data(response) {
       for (var i = 0; i <= 10; i++) {
-        if (index == i + 1) {
+        if (index == i + 2) {
           // console.log(response.data[i].text);
           $scope.gridOption4 = response.data[i].text;
         }
       }
     });
   }
-
-  // 지역별 탭 데이터
-  // $http({
-  //   method: "GET",
-  //   url: "/data/region.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-
-  //   if (user_area == 1) {
-  //     $scope.region = response.data.seoul;
-  //     if (response.data.seoul[0].checked != false) {
-  //       console.log(response.data.seoul[0].checked)
-  //     }
-  //     // console.log(response.data.seoul)
-  //   } else if (user_area == 4) {
-  //     $scope.region = response.data.incheon;
-  //     // console.log(response.data.incheon);
-  //   } else if (user_area == 10) {
-  //     $scope.region = response.data.gyeongbuk;
-  //     // console.log(response.data.gyeongbuk);
-  //   } else if (user_area == 15) {
-  //     $scope.region = response.data.gangwon;
-  //     // console.log(response.data.gangwon);
-  //   } else if (user_area == 17) {
-  //     $scope.region = response.data.jeju;
-  //     // console.log(response.data.jeju);
-  //   } else {
-  //     alert("Please Check user_area Value");
-  //   }
-  // });
-
-  // 분류별 탭 데이터
-  // $http({
-  //   method: "GET",
-  //   url: "/data/facility.json",
-  //   contentType: "application/json",
-  // }).then(function data(response) {
-
-  //   if (user_area == 1) {
-  //     $scope.facility = response.data.seoul;
-  //     // console.log(response.data.seoul)
-  //   } else if (user_area == 4) {
-  //     $scope.facility = response.data.incheon;
-  //     // console.log(response.data.incheon);
-  //   } else if (user_area == 10) {
-  //     $scope.facility = response.data.gyeongbuk;
-  //     // console.log(response.data.gyeongbuk);
-  //   } else if (user_area == 15) {
-  //     $scope.facility = response.data.gangwon;
-  //     // console.log(response.data.gangwon);
-  //   } else if (user_area == 17) {
-  //     $scope.facility = response.data.jeju;
-  //     // console.log(response.data.jeju);
-  //   } else {
-  //     alert("Please Check user_area Value");
-  //   }
-  // });
 
 }]);
 
@@ -803,38 +746,31 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       },
       {
         name: 'time',
-        width: 150,
-        enableCellEdit: true
+        width: 150
       },
       {
         name: 'location',
-        width: 220,
-        enableCellEdit: true
+        width: 250
       },
       {
         name: 'alarm_type',
-        width: 220,
-        enableCellEdit: true
+        width: 250
       },
       {
         name: 'communication',
-        width: 100,
-        enableCellEdit: true
+        width: 100
       },
       {
         name: 'tts',
-        width: 100,
-        enableCellEdit: true
+        width: 100
       },
       {
         name: 'message',
-        width: 100,
-        enableCellEdit: true
+        width: 100
       },
       {
         name: 'siren',
-        width: 100,
-        enableCellEdit: true
+        width: 100
       },
 
     ],
@@ -869,38 +805,31 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       },
       {
         name: 'time',
-        width: 150,
-        enableCellEdit: true
+        width: 150
       },
       {
         name: 'location',
-        width: 220,
-        enableCellEdit: true
+        width: 250
       },
       {
         name: 'alarm_type',
-        width: 220,
-        enableCellEdit: true
+        width: 250
       },
       {
         name: 'communication',
-        width: 100,
-        enableCellEdit: true
+        width: 100
       },
       {
         name: 'tts',
-        width: 100,
-        enableCellEdit: true
+        width: 100
       },
       {
         name: 'message',
-        width: 100,
-        enableCellEdit: true
+        width: 100
       },
       {
         name: 'siren',
-        width: 100,
-        enableCellEdit: true
+        width: 100
       },
     ],
     onRegisterApi: function (gridApi) {

@@ -5,50 +5,64 @@ var zNodes2;
 var zNodes3;
 
 // ztree 지역별 데이터 가져오기
-newJquery(document).ready(function (data) {
-    var url = '/data/region.json';
+newJquery(document).ready(function() {
+    var url = '';
+    if(user_area == 1) {
+        url ='/regionseoul'
+    }
+    else if(user_area == 4) {
+        url = '/regionincheon'
+    }
+    else if(user_area == 10) {
+        url = '/regiongangwon'
+    }
+    else if(user_area == 15) {
+        url = '/regiongyeongbuk'
+    }
+    else if(user_area == 17) {
+        url = '/regionjeju'
+    }
     newJquery.ajax({
         type: "GET",
         url: url,
+        contentType: "application/json",
         async: false,
         success: function (data) {
-            if (user_area == 1)
-                zNodes = data.seoul;
-            if (user_area == 4)
-                zNodes = data.incheon;
-            if (user_area == 10)
-                zNodes = data.gangwon;
-            if (user_area == 15)
-                zNodes = data.gyeongbuk;
-            if (user_area == 17)
-                zNodes = data.jeju;
+            zNodes = data;
         },
-        error: function (e) {
+        error: function(e) {
             console.log(e.responseText);
         }
     })
 });
 
 // ztree2 분류별 데이터 가져오기
-newJquery(document).ready(function (data) {
-    var url = '/data/facility.json';
+newJquery(document).ready(function() {
+    var url = '';
+    if(user_area == 1) {
+        url ='/facilityseoul'
+    }
+    else if(user_area == 4) {
+        url = '/facilityincheon'
+    }
+    else if(user_area == 10) {
+        url = '/facilitygangwon'
+    }
+    else if(user_area == 15) {
+        url = '/facilitygyeongbuk'
+    }
+    else if(user_area == 17) {
+        url = '/facilityjeju'
+    }
     newJquery.ajax({
         type: "GET",
         url: url,
+        contentType: "application/json",
         async: false,
         success: function (data) {
-            if (user_area == 1)
-                zNodes2 = data.seoul;
-            if (user_area == 4)
-                zNodes2 = data.incheon;
-            if (user_area == 10)
-                zNodes2 = data.gangwon;
-            if (user_area == 15)
-                zNodes2 = data.gyeongbuk;
-            if (user_area == 17)
-                zNodes2 = data.jeju;
+            zNodes2 = data;
         },
-        error: function (e) {
+        error: function(e) {
             console.log(e.responseText);
         }
     })
@@ -174,7 +188,7 @@ function add(e) {
     if (treeNode) {
         zTree.editName(treeNode[0]);
     } else {
-        alert("하위 노드를 추가할 수 없습니다.");
+        zTree.editName(treeNode[0]);
     }
 };
 
@@ -239,20 +253,23 @@ function beforeDrop(treeId, treeNodes, targetNode, moveType) {
 }
 
 // 지역별 selected value 값 받기
+// 지역별, 분류별, 그룹별 if문 7개
 
 function zTreeOnCheck(event, treeId, treeNode) {
     var treeObj = newJquery.fn.zTree.getZTreeObj("treeDemo"); //treeDemo(지역별)에서 노드 가져오기
     var treeObj2 = newJquery.fn.zTree.getZTreeObj("treeDemo2"); //treeDemo2(그룹별)에서 노드 가져오기
+    var treeObj3 = newJquery.fn.zTree.getZTreeObj("treeDemo3");
     var nodes = treeObj.getCheckedNodes(true);
     var nodes2 = treeObj2.getCheckedNodes(true);
+    var nodes3 = treeObj3.getCheckedNodes(true);
     var checkedArray = new Array();
 
-    if (nodes.length != 0 && nodes2.length == 0) { // 지역별 탭에서만 선택 하는 경우
+    if (nodes.length != 0 && nodes2.length == 0 && nodes3.length == 0) { // 지역별 탭에서만 선택 하는 경우
         for (var i = 0; i <= 100; i++) {
             var checkednode = nodes[i].name; //체크한 노드의 이름
-            if (checkednode != '전 체' && checkednode != '중구' && checkednode != '구로구' && checkednode != '영등포구' && checkednode != '서초구') {
+            var checkednodepid = nodes[i].pId;
+            if (checkednodepid != 1 && checkednodepid != 0) {
                 checkedArray.push(checkednode);
-
                 $(document).ready(function () {
                     $('#checktest').val(checkedArray);
                 });
@@ -260,10 +277,12 @@ function zTreeOnCheck(event, treeId, treeNode) {
         }
     }
 
-    if (nodes.length == 0 && nodes2.length != 0) { // 분류별 탭에서만 선택 하는 경우
-        for (var i = 0; i <= 100; i++) {
+    if (nodes.length == 0 && nodes2.length != 0 && nodes3.length == 0) { // 분류별 탭에서만 선택 하는 경우
+        for (var i = 0; i <= nodes2.length; i++) {
             var checkednode = nodes2[i].name;
-            if (checkednode != '전 체' && checkednode != '운수시설' && checkednode != '여객자동차터미널' && checkednode != '철도 역 시설' && checkednode != '도시철도 역 시설' && checkednode != '대규모점포' && checkednode != '대형마트' && checkednode != '전문점' && checkednode != '백화점' && checkednode != '복합 쇼핑몰' && checkednode != '영화상영관' && checkednode != '공항 여객 시설' && checkednode != '항만 여객 시설') {
+            var checkednodepid = nodes2[i].pId;
+            console.log(checkednode);
+            if (checkednodepid != 0 && checkednodepid != 1 && checkednodepid != 11 && checkednodepid != 12) {
                 checkedArray.push(checkednode);
                 $(document).ready(function () {
                     $('#checktest').val(checkedArray);
@@ -272,11 +291,13 @@ function zTreeOnCheck(event, treeId, treeNode) {
         }
     }
 
-    if (nodes.length != 0 && nodes2.length != 0) { // 지역별, 분류별 탭 둘 다 선택 하는 경우
-        for (var i = 0; i <= 100; i++) {
+    if (nodes.length != 0 && nodes2.length != 0 && nodes3.length == 0) { // 지역별, 분류별 탭 둘 다 선택 하는 경우
+        for (var i = 0; i <= nodes.length; i++) {
             var checkednode = nodes[i].name;
             var checkednode2 = nodes2[i].name;
-            if (checkednode != '전 체' && checkednode != '중구' && checkednode != '구로구' && checkednode != '영등포구' && checkednode != '서초구' && checkednode != '운수시설' && checkednode != '여객자동차터미널' && checkednode != '철도 역 시설' && checkednode != '도시철도 역 시설' && checkednode != '대규모점포' && checkednode != '대형마트' && checkednode != '전문점' && checkednode != '백화점' && checkednode != '복합 쇼핑몰' && checkednode != '영화상영관' && checkednode != '공항 여객 시설' && checkednode != '항만 여객 시설') {
+            var checkednodepid = nodes[i].pId;
+            var checkednodepid2 = nodes2[i].pId;
+            if (checkednodepid != 0 && checknodepid2 != 0 && checkednodepid != 1 && checkednodepid2 != 1 && checkednodepid2 != 11 && checkednodepid2 != 12) {
                 checkedArray.push(checkednode);
                 checkedArray.push(checkednode2);
                 $(document).ready(function () {
@@ -286,11 +307,42 @@ function zTreeOnCheck(event, treeId, treeNode) {
         }
     }
 
-    if (nodes.length == 0 && nodes2.length == 0) { // 둘 다 선택 안한 경우
-        var none = '단말기를 선택하지 않았습니다.'
-        $(document).ready(function () {
-            $('#checktest').val(none);
-        });
+    if (nodes.length == 0 && nodes2.length == 0 && nodes3.length != 0) { // 그룹별만 선택하는 경우
+        for (var i = 0; i <= nodes3.length; i++) {
+            var checkednode = nodes3[i].name;
+            var checkednodepid = nodes3[i].pId;
+            console.log(checkednode);
+            if (checkednodepid != 0 && checkednodepid != 1) {
+                checkedArray.push(checkednode);
+                $(document).ready(function () {
+                    $('#checktest').val(checkedArray);
+                });
+            }
+        }
     }
+
+    // if (nodes.length != 0 && nodes2.length == 0 && nodes3.length != 0) { // 지역별, 그룹별 탭 둘 다 선택 하는 경우
+    //     for (var i = 1; i <= nodes.length; i++) {
+    //         var checkednode = nodes[i].name;
+    //         console.log(checkednode);
+    //         var checkednode2 = nodes3[i].name;
+    //         console.log(checkednode2)
+    //         if (checkednode != '전 체' && checkednode != '중구' && checkednode != '구로구' && checkednode != '영등포구' && checkednode != '서초구') {
+    //             checkedArray.push(checkednode);
+    //             checkedArray.push(checkednode2);
+    //             checkedArray.push(checkednode);
+    //             $(document).ready(function () {
+    //                 $('#checktest').val(checkedArray);
+    //             });
+    //         }
+    //     }
+    // }
+
+    // if (nodes.length == 0 && nodes2.length == 0 && zNodes3.length == 0) { // 둘 다 선택 안한 경우
+    //     var none = '단말기를 선택하지 않았습니다.'
+    //     $(document).ready(function () {
+    //         $('#checktest').val(none);
+    //     });
+    // }
 
 };
