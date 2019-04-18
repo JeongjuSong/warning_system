@@ -158,7 +158,7 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     }).then(function data(response) {
       for (var i = 0; i <= 10; i++) {
         if (index == i + 2) {
-          // console.log(response.data[i].text);
+          console.log(response.data[i].text);
           $scope.gridOption4 = response.data[i].text;
         }
       }
@@ -266,7 +266,7 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       },
       {
         name: 'text',
-        width: 600,
+        width: 900,
         enableCellEdit: true
       },
       {
@@ -634,7 +634,7 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       },
       {
         name: 'text',
-        width: 600,
+        width: 900,
         enableCellEdit: true
       },
       {

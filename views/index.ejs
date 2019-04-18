@@ -226,12 +226,12 @@
                                             name="checkboxTest">
                                             <div class="tab">
                                                 <button class="tablinks" id="defaultOpen"
-                                                    onclick="openTab(event, 'location')" style="width: 94%;"
+                                                    onclick="openTab(event, 'location')" style="width: 93%;"
                                                     type="button">지역별</button>
                                                 <button class="tablinks" onclick="openTab(event, 'devide')"
-                                                    style="width: 94%;" type="button">분류별</button>
+                                                    style="width: 93%;" type="button">분류별</button>
                                                 <button class="tablinks" onclick="openTab(event, 'group')"
-                                                    style="width: 94%;" type="button">그룹별</button>
+                                                    style="width: 93%;" type="button">그룹별</button>
                                             </div>
 
                                             <div class="tabcontent" id="location">
@@ -250,7 +250,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-5 card shadow mb-4" style="float:left;">
+                                    <div class="col-5 card shadow mb-4" style="float:left; margin-left: 25px;">
                                         <div class="card-header py-3">
                                             <span class="m-0 font-weight-bold text-primary">현황</span>
                                         </div>
@@ -614,6 +614,7 @@
                     $('#tts_text').val(''); //값 초기화
                     $('#tts_text').attr("disabled", false);
                 } else { //직접 입력이 아닌 경우
+                    $('#tts_text').attr("disabled", true);
                 }
             });
         });
@@ -624,6 +625,7 @@
                     $('#message_text').val(''); //값 초기화
                     $('#message_text').attr("disabled", false);
                 } else { //직접 입력이 아닌 경우
+                    $('#message_text').attr("disabled", true);
                 }
             });
         });

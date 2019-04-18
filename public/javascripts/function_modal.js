@@ -256,6 +256,11 @@ $(document).ready(function () {
       if (tts != null) {
          showText += 'TTS 방송 종류 : ' + tts + '<br/>TTS 방송 문안 : ' + tts_text + '<br/>';
       }
+      
+      if (tts == null) {
+         tts = 'NULL';
+         tts_text = 'NULL';
+      }
 
       if (repeat_num != null) {
          showText += 'TTS 방송 반복 횟수 : ' + repeat_num + '<br/>';
@@ -265,8 +270,17 @@ $(document).ready(function () {
          showText += '저장 메시지 종류 : ' + message + '<br/>저장 메시지 문안 : ' + message_text + '<br/>';
       }
 
+      if (message == null) {
+         message = 'NULL';
+         message_text = 'NULL';
+      }
+
       if (siren != null) {
          showText += '사이렌 종류 : ' + siren + '번<br/>';
+      }
+
+      if (siren == null) {
+         siren = 'NULL';
       }
 
       mymodal.find('.modal-body').html(showText);

@@ -672,9 +672,19 @@ pre code {
 @media (min-width:1200px) {
     .container2 {
         max-width: 1700px
-        /* max-width: 1140px */
+            /* max-width: 1140px */
     }
 }
+
+@media (min-width:1200px) {
+    .container3 {
+        max-width: 1400px;
+        margin-right: auto;
+        margin-left: auto
+            /* max-width: 1140px */
+    }
+}
+
 
 .container-fluid {
     width: 100%;
@@ -13780,18 +13790,38 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 /* angular tree css 부분 */
-.tree-view-wrapper, .tree-view-wrapper ul { 
-    list-style:none;
+.tree-view-wrapper,
+.tree-view-wrapper ul {
+    list-style: none;
     margin-top: 10px;
 }
-.show-hide, .edit{cursor:pointer;}
-.tree-checkbox{margin: 6px !important;}
-.edit{margin-right: 6px !important;}
 
-.edit i {color: #D77105;}
-.hide{display:none;}
-.show{display:block;}
-.ng-binding{
+.show-hide,
+.edit {
+    cursor: pointer;
+}
+
+.tree-checkbox {
+    margin: 6px !important;
+}
+
+.edit {
+    margin-right: 6px !important;
+}
+
+.edit i {
+    color: #D77105;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.ng-binding {
     font-size: 14px !important;
     text-transform: uppercase;
 }
