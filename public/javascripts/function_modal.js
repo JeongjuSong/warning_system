@@ -185,8 +185,10 @@ $(document).ready(function () {
       var ahour = $('select#ahour').val();
       var aminute = $('select#aminute').val();
       var tts = $("select#tts_title").val();
+      var tts_text = $('#tts_text').val();
       var repeat_num = $('select#repeat_num').val();
       var message = $("select#message_title").val();
+      var message_text = $('#message_text').val();
       var siren = $("select#siren").val();
       var time = '';
 
@@ -252,10 +254,7 @@ $(document).ready(function () {
       });
 
       if (tts != null) {
-         showText += 'TTS 방송 종류 : ' + tts + '<br/>';
-      }
-      if(tts == 'writetts') {
-         showText += ''
+         showText += 'TTS 방송 종류 : ' + tts + '<br/>TTS 방송 문안 : ' + tts_text + '<br/>';
       }
 
       if (repeat_num != null) {
@@ -263,7 +262,7 @@ $(document).ready(function () {
       }
 
       if (message != null) {
-         showText += '저장 메시지 종류 : ' + message + '<br/>';
+         showText += '저장 메시지 종류 : ' + message + '<br/>저장 메시지 문안 : ' + message_text + '<br/>';
       }
 
       if (siren != null) {
@@ -274,7 +273,6 @@ $(document).ready(function () {
       mymodal2.find('.modal-body').html(showText);
 
       $("#postwarning").click(function () {
-         console.log('버튼은 눌러짐');
          if (time != 'null.null.null null:null:00' && location != null && alarm_typeArray != undefined && communicationArray != undefined) {
             $.ajax({
                type: "POST",
@@ -286,23 +284,23 @@ $(document).ready(function () {
                   alarm_type: alarm_typeArray,
                   communication: communicationArray,
                   tts: tts,
+                  tts_text: tts_text,
                   message: message,
+                  message_text: message_text,
                   siren: siren
                },
                dataType: "json",
                cache: false,
                success: function (data) {
-                  alert('저장되었다');
+                 return sweetalert();
                },
                error: function (data) { // error인데도 발령이 되는 부분 수정
-                  alert('발령 성공');
-                  return window.location.reload();
+                  return sweetalert();
                }
             });
-         }
-         else {
-            alert('선택하지 않은 항목이 있는지 확인하세요.');
-            return window.location.reload();
+         } else {
+            // alert('선택하지 않은 항목이 있는지 확인하세요.');
+            return sweetalert2();
          }
 
       });
@@ -343,6 +341,5 @@ $(document).ready(function () {
    $("#warning").click(function () {
       $("#popup9").modal('show');
    });
-
 
 });

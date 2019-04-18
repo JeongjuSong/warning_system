@@ -395,14 +395,11 @@
 						dataType: "json",
 						cache: false,
 						success: function (data) {
-							alert('저장되었습니다');
 							console.log(data);
-							return window.location.reload();
+							return insertalert();
 						},
 						error: function (data) { // error인데도 발령이 되는 부분 수정
-							alert('저장되었습니다');
-							return window.location.reload();
-
+							return insertalert();
 						}
 					});
 				})
@@ -615,11 +612,10 @@
 								dataType: "json",
 								cache: false,
 								success: function (data) {
-									alert('삭제되었습니다.');
+									return deletealert();
 								},
 								error: function (data) {
-									alert('삭제되었습니다.');
-									return window.location.reload();
+									return deletealert();
 								}
 							})
 						});

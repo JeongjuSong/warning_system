@@ -5,21 +5,17 @@ var zNodes2;
 var zNodes3;
 
 // ztree 지역별 데이터 가져오기
-newJquery(document).ready(function() {
+newJquery(document).ready(function () {
     var url = '';
-    if(user_area == 1) {
-        url ='/regionseoul'
-    }
-    else if(user_area == 4) {
+    if (user_area == 1) {
+        url = '/regionseoul'
+    } else if (user_area == 4) {
         url = '/regionincheon'
-    }
-    else if(user_area == 10) {
+    } else if (user_area == 10) {
         url = '/regiongangwon'
-    }
-    else if(user_area == 15) {
+    } else if (user_area == 15) {
         url = '/regiongyeongbuk'
-    }
-    else if(user_area == 17) {
+    } else if (user_area == 17) {
         url = '/regionjeju'
     }
     newJquery.ajax({
@@ -30,28 +26,24 @@ newJquery(document).ready(function() {
         success: function (data) {
             zNodes = data;
         },
-        error: function(e) {
+        error: function (e) {
             console.log(e.responseText);
         }
     })
 });
 
 // ztree2 분류별 데이터 가져오기
-newJquery(document).ready(function() {
+newJquery(document).ready(function () {
     var url = '';
-    if(user_area == 1) {
-        url ='/facilityseoul'
-    }
-    else if(user_area == 4) {
+    if (user_area == 1) {
+        url = '/facilityseoul'
+    } else if (user_area == 4) {
         url = '/facilityincheon'
-    }
-    else if(user_area == 10) {
+    } else if (user_area == 10) {
         url = '/facilitygangwon'
-    }
-    else if(user_area == 15) {
+    } else if (user_area == 15) {
         url = '/facilitygyeongbuk'
-    }
-    else if(user_area == 17) {
+    } else if (user_area == 17) {
         url = '/facilityjeju'
     }
     newJquery.ajax({
@@ -62,7 +54,7 @@ newJquery(document).ready(function() {
         success: function (data) {
             zNodes2 = data;
         },
-        error: function(e) {
+        error: function (e) {
             console.log(e.responseText);
         }
     })
@@ -169,20 +161,34 @@ function add(e) {
         isParent = e.data.isParent,
         nodes = zTree.getSelectedNodes(), // 선택한 노드
         treeNode = nodes[0]; // treeNode는 부모 노드
-    if (treeNode) { // 자식 노드 추가를 눌렀을 경우
-        treeNode = zTree.addNodes(treeNode, {
-            id: (100 + newCount),
-            pId: treeNode.id,
-            isParent: isParent,
-            name: "new node" + (newCount++)
-        })
-    } else { // 부모 노드 추가를 눌렀을 경우
+    if (treeNode) { // 노드 추가를 눌렀을 경우
+        if (isParent == true) { // 그룹 추가를 선택한 경우
+            console.log('그룹 추가');
+            console.log('newCount : ' + newCount);
+            treeNode = zTree.addNodes(treeNode, {
+                id: (10 + newCount),
+                pId: treeNode.id,
+                isParent: isParent,
+                name: "그룹명"
+            })
+        } else { //단말기 추가를 선택한 경우
+            console.log('단말기 추가');
+            console.log('newCount : ' + newCount);
+            newCount++;
+            treeNode = zTree.addNodes(treeNode, {
+                id: (100 + newCount),
+                pId: treeNode.id,
+                isParent: isParent,
+                name: "단말기명"
+            })
+        }
+    } else {
         // console.log(treeNode)
         treeNode = zTree.addNodes(null, {
-            id: (100 + newCount),
+            id: (1000 + newCount),
             pId: 0,
             isParent: isParent,
-            name: "new node" + (newCount++)
+            name: "입력하세요"
         });
     }
     if (treeNode) {

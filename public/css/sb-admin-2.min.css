@@ -669,6 +669,13 @@ pre code {
     }
 }
 
+@media (min-width:1200px) {
+    .container2 {
+        max-width: 1700px
+        /* max-width: 1140px */
+    }
+}
+
 .container-fluid {
     width: 100%;
     padding-right: .75rem;
@@ -13786,6 +13793,7 @@ body.sidebar-toggled footer.sticky-footer {
 .show{display:block;}
 .ng-binding{
     font-size: 14px !important;
+    text-transform: uppercase;
 }
 
 /* angular tree css 종료 */

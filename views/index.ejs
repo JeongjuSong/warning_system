@@ -35,6 +35,7 @@
     <script src="/javascripts/function_modal.js"></script>
     <script src="/javascripts/table.js"></script>
     <script src="/javascripts/option.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="../public/javascripts/jquery-1.4.4.min.js"></script>
     <script type="text/javascript" src="../public/javascripts/jquery.ztree.core-3.5.js"></script>
     <script type="text/javascript" src="../public/javascripts/jquery.ztree.excheck-3.5.js"></script>
@@ -412,7 +413,8 @@
                                             onclick="window.location.reload()" style="width:150px;">조작 초기화</button>
                                         <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
                                             ng-click='confirm()' id='confirm'>선택 내용 확인</button>
-                                        <button class="btn btn-primary" style="width:150px;">시험 방송 전송</button>
+                                        <button class="btn btn-primary" style="width:150px;" onclick="sweetalert()">시험
+                                            방송 전송</button>
                                         <button type="button" class="btn btn-danger custom-modal8" style="width:150px;"
                                             id='warning'>실제 방송 전송</button>
                                     </div>
@@ -490,7 +492,7 @@
                         <div class='modal-body'>
                             TTS 방송 설정 <select id="tts_title">
                                 <option value="" disabled selected>방송 선택</option>
-                                <option value="writetts">직접 입력</option>
+                                <option value="직접 입력">직접 입력</option>
                                 <script>
                                     for (var i = 0; i <= '{{gridOption1}}'.length; i++) {
                                         document.write("<option value=" + '{{gridOption1[' + i + '].title}}' +
@@ -527,7 +529,7 @@
                         <div class='modal-body'>
                             저장 메시지 설정 <select id="message_title">
                                 <option value="" disabled selected>저장 메시지 선택</option>
-                                <option value="writemessage">직접 입력</option>
+                                <option value="직접 입력">직접 입력</option>
                                 <script>
                                     for (var i = 0; i <= '{{gridOption3}}'.length; i++) {
                                         document.write("<option value=" + '{{gridOption3[' + i + '].title}}' +
@@ -608,9 +610,19 @@
         document.getElementById("defaultOpen").click();
         $('#tts_title').change(function () {
             $('select#tts_title').each(function () {
-                if ($(this).val() == 'writetts') { //직접 입력 선택한 경우
+                if ($(this).val() == '직접 입력') { //직접 입력 선택한 경우
                     $('#tts_text').val(''); //값 초기화
                     $('#tts_text').attr("disabled", false);
+                } else { //직접 입력이 아닌 경우
+                }
+            });
+        });
+
+        $('#message_title').change(function () {
+            $('select#message_title').each(function () {
+                if ($(this).val() == '직접 입력') { //직접 입력 선택한 경우
+                    $('#message_text').val(''); //값 초기화
+                    $('#message_text').attr("disabled", false);
                 } else { //직접 입력이 아닌 경우
                 }
             });

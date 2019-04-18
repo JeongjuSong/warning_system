@@ -205,7 +205,7 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       tmp = false;
       alert("update fail");
     });
-    if (tmp) alert("Success");
+    if (tmp)  return success();
   }
   $scope.remove = function (row) {
     // console.log(row);
@@ -218,9 +218,9 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         no: row.no,
       }
     }).success(function (data, status, headers, config) {
-      alert("success");
+      return success();
     }).error(function (data, status, headers, config) {
-      alert("fail");
+      return fail();
     });
   }
   var tableData = [];
@@ -552,7 +552,7 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         text: row.text
       }
     }).success(function (data, status, headers, config) {
-      // alert("insert success");
+      return success();
     }).error(function (data, status, headers, config) {
       tmp = false;
       alert("insert fail");
@@ -568,12 +568,12 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         text: row.text
       }
     }).success(function (data, status, headers, config) {
-      // alert('update success');
+      return success();
     }).error(function (data, status, headers, config) {
       tmp = false;
-      alert("update fail");
+      return fail();
     });
-    if (tmp) alert("Success");
+    if (tmp) return success();
   }
   $scope.remove = function (row) {
     // console.log(row);
@@ -586,9 +586,9 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         no: row.no,
       }
     }).success(function (data, status, headers, config) {
-      alert("success");
+      return success();
     }).error(function (data, status, headers, config) {
-      alert("fail");
+      return fail();
     });
   }
   var tableData = [];
@@ -750,23 +750,31 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       },
       {
         name: 'location',
-        width: 250
+        width: 330
       },
       {
         name: 'alarm_type',
-        width: 250
+        width: 270
       },
       {
         name: 'communication',
-        width: 100
+        width: 150
       },
       {
         name: 'tts',
-        width: 100
+        width: 130
+      },      
+      {
+        name: 'tts_text',
+        width: 170
       },
       {
         name: 'message',
-        width: 100
+        width: 130
+      },      
+      {
+        name: 'message_text',
+        width: 170
       },
       {
         name: 'siren',

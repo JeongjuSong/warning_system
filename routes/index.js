@@ -391,12 +391,14 @@ router.post('/warninginsert', function (req, res, next) {
     var alarm_type = req.body.alarm_type;
     var communication = req.body.communication;
     var tts = req.body.tts;
+    var tts_text = req.body.tts_text;
     var message = req.body.message;
+    var message_text = req.body.message_text;
     var siren = req.body.siren;
 
-    var datas = [time, location, alarm_type, communication, tts, message, siren];
+    var datas = [time, location, alarm_type, communication, tts, tts_text, message, message_text, siren];
 
-    connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, message, siren) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' + req.body.message + '","' + req.body.siren + '")',
+    connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, tts_text, message, message_text, siren) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' +  req.body.tts_text + '","' + req.body.message + '","' +  req.body.message_text + '","' + req.body.siren + '")',
         function (err, results, fiels) {
             // console.log(arguments);
         });
