@@ -43,6 +43,7 @@
 
     <script language="javascript">
         var user_area = <%=user.area%>;
+
     </script>
 </head>
 
@@ -145,8 +146,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle"
                                 data-toggle="dropdown" href="#" id="searchDropdown" role="button">
-                                <span class="text-s font-weight-bold text-primary text-uppercase mb-1"
-                                    id="clock"></span>
+                                <span class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                    <script>
+                                        moment().format();
+                                        </script></span>
                             </a>
                         </li>
                         <div class="topbar-divider d-none d-sm-block"></div>

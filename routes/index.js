@@ -9,7 +9,6 @@ var dbconfig = require('./database.js');
 var connection = mysql.createConnection(dbconfig);
 /* get db*/
 
-
 var connection;
 
 function handleDisconnect() {

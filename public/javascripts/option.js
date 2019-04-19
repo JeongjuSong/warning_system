@@ -1,16 +1,17 @@
-function printTime() {
-    var clock = document.getElementById("clock"); // 출력할 장소 선택
-    var now = new Date(); // 현재시간
-    var nowTime = now.getFullYear() + "-" + (
-        now.getMonth() + 1
-    ) + "-" + now.getDate() + "&nbsp;&nbsp;" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-    clock.innerHTML = nowTime; // 현재시간을 출력
-    setTimeout("printTime()", 1000); // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
-}
+// function printTime() {
+//     var clock = document.getElementById("clock"); // 출력할 장소 선택
+//     var now = new Date(); // 현재시간
+//     var nowTime = now.getFullYear() + "-" + (
+//         now.getMonth() + 1
+//     ) + "-" + now.getDate() + "&nbsp;&nbsp;" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+//     clock.innerHTML = nowTime; // 현재시간을 출력
+//     setTimeout("printTime()", 1000); // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
+// }
+
 
 // select의 년/월/일 시간 선택
 window.onload = function () {
-    printTime();
+    // printTime();
     var sMonth = 1
     var eMonth = 12
     var sDay = 1
