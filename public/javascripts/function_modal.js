@@ -193,10 +193,7 @@ $(document).ready(function () {
       var time = '';
 
       if ($('#time:checked').val() == 'right_now') {
-         var dt = new Date();
-         var month = dt.getUTCMonth() + 1;
-         var hour = dt.getUTCHours() + 9;
-         time = (dt.getUTCFullYear() + "." + month + "." + dt.getUTCDate() + " " + hour + ":" + dt.getUTCMinutes() + ":" + dt.getUTCSeconds());
+         time = $('#servertime').html();
          showText += '발령 시간 : ' + time + '<br/>';
       }
 
@@ -301,7 +298,8 @@ $(document).ready(function () {
                   tts_text: tts_text,
                   message: message,
                   message_text: message_text,
-                  siren: siren
+                  siren: siren,
+                  area: user_area
                },
                dataType: "json",
                cache: false,

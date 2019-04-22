@@ -8,7 +8,6 @@
 //     setTimeout("printTime()", 1000); // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
 // }
 
-
 // select의 년/월/일 시간 선택
 window.onload = function () {
     // printTime();
@@ -334,4 +333,27 @@ function fail() {
     swal('실패하였습니다.').then(function () {
         location.reload();
     })
+}
+
+// tts, 저장메시지 직접 입력
+function tts_select() {
+    $('select#tts_title').each(function () {
+        if ($(this).val() == '직접 입력') { //직접 입력 선택한 경우
+            $('#tts_text').val(''); //값 초기화
+            $('#tts_text').attr("disabled", false);
+        } else { //직접 입력이 아닌 경우
+            $('#tts_text').attr("disabled", true);
+        }
+    });
+}
+
+function message_select() {
+    $('select#message_title').each(function () {
+        if ($(this).val() == '직접 입력') { //직접 입력 선택한 경우
+            $('#message_text').val(''); //값 초기화
+            $('#message_text').attr("disabled", false);
+        } else { //직접 입력이 아닌 경우
+            $('#message_text').attr("disabled", true);
+        }
+    });
 }

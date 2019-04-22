@@ -41,15 +41,15 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 
-router.get('/user_area', function (req, res, next) {
+// router.get('/user_area', function (req, res, next) {
 
-    connection.query('SELECT area FROM users', function (err, rows) {
-        if (err) throw err;
-        req.
+//     connection.query('SELECT area FROM users', function (err, rows) {
+//         if (err) throw err;
+//         req.
 
-        res.send(rows);
-    });
-});
+//         res.send(rows);
+//     });
+// });
 
 router.get('/', function (req, res, next) {
     connection.query('SELECT area FROM users', function (err, rows) {
@@ -394,10 +394,11 @@ router.post('/warninginsert', function (req, res, next) {
     var message = req.body.message;
     var message_text = req.body.message_text;
     var siren = req.body.siren;
+    var area = req.body.area;
 
-    var datas = [time, location, alarm_type, communication, tts, tts_text, message, message_text, siren];
+    var datas = [time, location, alarm_type, communication, tts, tts_text, message, message_text, siren, area];
 
-    connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, tts_text, message, message_text, siren) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' +  req.body.tts_text + '","' + req.body.message + '","' +  req.body.message_text + '","' + req.body.siren + '")',
+    connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, tts_text, message, message_text, siren, area) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' +  req.body.tts_text + '","' + req.body.message + '","' +  req.body.message_text + '","' + req.body.siren + '","' + req.body.area+ '")',
         function (err, results, fiels) {
             // console.log(arguments);
         });
@@ -405,9 +406,9 @@ router.post('/warninginsert', function (req, res, next) {
     res.send("okay");
 });
 
-router.get('/historydata', function (req, res, next) {
+router.get('/historyincheon', function (req, res, next) {
 
-    connection.query('SELECT * from history', function (err, rows) {
+    connection.query('SELECT * from history WHERE area="4";', function (err, rows) {
         if (err) throw err;
 
         // console.log('The solution is: ', rows);
@@ -416,7 +417,49 @@ router.get('/historydata', function (req, res, next) {
     });
 });
 
-router.get('/historydata/all', function (req, res, next) {
+router.get('/historyincheon/all', function (req, res, next) {
+
+    connection.query('SELECT * from history', function (err, rows) {
+        if (err) throw err;
+
+        // console.log('The solution is: ', rows);
+        res.send(rows);
+    });
+});
+
+router.get('/historygangwon', function (req, res, next) {
+
+    connection.query('SELECT * from history WHERE area="10";', function (err, rows) {
+        if (err) throw err;
+
+        // console.log('The solution is: ', rows);
+
+        res.send(rows);
+    });
+});
+
+router.get('/historygangwon/all', function (req, res, next) {
+
+    connection.query('SELECT * from history', function (err, rows) {
+        if (err) throw err;
+
+        // console.log('The solution is: ', rows);
+        res.send(rows);
+    });
+});
+
+router.get('/historyjeju', function (req, res, next) {
+
+    connection.query('SELECT * from history WHERE area="17";', function (err, rows) {
+        if (err) throw err;
+
+        // console.log('The solution is: ', rows);
+
+        res.send(rows);
+    });
+});
+
+router.get('/historyjeju/all', function (req, res, next) {
 
     connection.query('SELECT * from history', function (err, rows) {
         if (err) throw err;

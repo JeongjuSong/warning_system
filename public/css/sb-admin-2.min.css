@@ -791,7 +791,7 @@ pre code {
     position: relative;
     width: 100%;
     padding-right: .75rem;
-    padding-left: .75rem
+    /* padding-left: .75rem */
 }
 
 .col {
@@ -3113,7 +3113,8 @@ textarea.form-control.is-invalid {
     background-color: transparent;
     border: 1px solid transparent;
     padding: .375rem .75rem;
-    font-size: 1rem;
+    font-size: 15px;
+    /* font-size: 1rem; */
     line-height: 1.5;
     border-radius: .35rem;
     -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;

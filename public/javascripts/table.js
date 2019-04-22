@@ -205,7 +205,7 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       tmp = false;
       alert("update fail");
     });
-    if (tmp)  return success();
+    if (tmp) return success();
   }
   $scope.remove = function (row) {
     // console.log(row);
@@ -715,16 +715,44 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
 
   var tableData = [];
   var getData = function () {
-    $http({
-      method: 'GET',
-      url: '/historydata',
-      contentType: "application/json",
-      data: {}
-    }).success(function (data, status, headers, config) {
-      // console.log(data);
-      $scope.virtualGridOptions.data = data;
-      $scope.paginationGridOptions.data = data;
-    }).error(function (data, status, headers, config) {});
+    if (user_area == 4) {
+      $http({
+        method: 'GET',
+        url: '/historyincheon',
+        contentType: "application/json",
+        data: {}
+      }).success(function (data, status, headers, config) {
+        // console.log(data);
+        $scope.virtualGridOptions.data = data;
+        $scope.paginationGridOptions.data = data;
+      }).error(function (data, status, headers, config) {});
+    }
+
+    if (user_area == 10) {
+      $http({
+        method: 'GET',
+        url: '/historygangwon',
+        contentType: "application/json",
+        data: {}
+      }).success(function (data, status, headers, config) {
+        // console.log(data);
+        $scope.virtualGridOptions.data = data;
+        $scope.paginationGridOptions.data = data;
+      }).error(function (data, status, headers, config) {});
+    }
+
+    if (user_area == 17) {
+      $http({
+        method: 'GET',
+        url: '/historyjeju',
+        contentType: "application/json",
+        data: {}
+      }).success(function (data, status, headers, config) {
+        // console.log(data);
+        $scope.virtualGridOptions.data = data;
+        $scope.paginationGridOptions.data = data;
+      }).error(function (data, status, headers, config) {});
+    }
   }
   // { name: 'shape', enableFiltering: true, width: 200, enableCellEdit: false },
   getData();
@@ -740,11 +768,6 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     rowHeight: 40,
     modifierKeysToMultiSelectCells: true,
     columnDefs: [{
-        name: 'no',
-        aggregationType: uiGridConstants.aggregationTypes.count,
-        width: 60
-      },
-      {
         name: 'time',
         width: 150
       },
@@ -763,7 +786,7 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       {
         name: 'tts',
         width: 130
-      },      
+      },
       {
         name: 'tts_text',
         width: 170
@@ -771,7 +794,7 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       {
         name: 'message',
         width: 130
-      },      
+      },
       {
         name: 'message_text',
         width: 170
@@ -807,11 +830,6 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     rowHeight: 40,
     modifierKeysToMultiSelectCells: false,
     columnDefs: [{
-        name: 'no',
-        aggregationType: uiGridConstants.aggregationTypes.count,
-        width: 60
-      },
-      {
         name: 'time',
         width: 150
       },
