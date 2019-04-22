@@ -378,7 +378,7 @@
 					view.setNodeLineIcos(setting, parentNode[childKey][parentNode[childKey].length - 1]);
 					console.log()
 				}
-				console.log(nodes)
+				// console.log(nodes)
 				parentNode.isParent = true;
 				parentNode[childKey] = parentNode[childKey].concat(nodes);
 				$("#addnode").click(function () {

@@ -318,7 +318,7 @@ function deletealert() {
 }
 
 function insertalert() {
-    swal('삭제되었습니다.').then(function () {
+    swal('추가되었습니다.').then(function () {
         location.reload();
     })
 }

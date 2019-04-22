@@ -162,21 +162,69 @@ function add(e) {
         nodes = zTree.getSelectedNodes(), // 선택한 노드
         treeNode = nodes[0]; // treeNode는 부모 노드
     if (treeNode) { // 노드 추가를 눌렀을 경우
-        if (isParent == true) { // 그룹 추가를 선택한 경우
-            console.log('그룹 추가');
-            console.log('newCount : ' + newCount);
+        var idArray = new Array();
+
+        // ajax db호출하여 id 중복 확인, 중복이라면 +1 처리
+        // $.ajax({
+        //     type: "GET",
+        //     url : "/group",
+        //     contentType: "application/json",
+        //     success: function(data) {
+        //         var data_id = [];
+        //         for(var i=0; i<=data.length; i++) {
+        //             console.log(data[i].id);
+        //         }
+        //         // console.log(idArray);
+        //     },
+        //     error: function(error) {
+        //         console.log(error);
+        //     }
+        // })
+
+        //////////////////////////////////////////////////////////////
+
+        if (isParent == true) {  //이 부분 수정!!!!!!
+
+            $.ajax({
+                type: "GET",
+                url: "/group",
+                contentType: "application/json",
+                success: function (data) {
+                    for (var i = 0; i <= data.length; i++) {
+                        console.log(data[i].id);
+                        idArray.push(data[i].id);
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        
             treeNode = zTree.addNodes(treeNode, {
-                id: (10 + newCount),
+                id: 1 + treeNode.id + newCount,
                 pId: treeNode.id,
                 isParent: isParent,
                 name: "그룹명"
             })
-        } else { //단말기 추가를 선택한 경우
+
+        }
+        ////////////////////////////////////////////////////////////////////////////
+
+        // if (isParent == true) { // 그룹 추가를 선택한 경우
+        //     console.log('그룹 추가');
+        //     newCount++;
+        //     treeNode = zTree.addNodes(treeNode, {
+        //         id: 1 + treeNode.id + newCount,
+        //         pId: treeNode.id,
+        //         isParent: isParent,
+        //         name: "그룹명"
+        //     })
+        // }
+         else { //단말기 추가를 선택한 경우
             console.log('단말기 추가');
-            console.log('newCount : ' + newCount);
             newCount++;
             treeNode = zTree.addNodes(treeNode, {
-                id: (100 + newCount),
+                id: (treeNode.id * 10) + newCount,
                 pId: treeNode.id,
                 isParent: isParent,
                 name: "단말기명"
