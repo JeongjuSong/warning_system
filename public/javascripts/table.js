@@ -165,6 +165,15 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     });
   }
 
+    // 사이렌 종류 불러오기 gridOption5
+    $http({
+      method: "GET",
+      url: '/siren',
+      contentType: "application/json",
+    }).then(function data(response) {
+      $scope.gridOption5 = response.data;
+    });
+
 }]);
 
 // tts 추가/수정/삭제 

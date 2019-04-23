@@ -162,24 +162,6 @@ function add(e) {
         nodes = zTree.getSelectedNodes(), // 선택한 노드
         treeNode = nodes[0]; // treeNode는 부모 노드
     if (treeNode) { // 노드 추가를 눌렀을 경우
-        // ajax db호출하여 id 중복 확인, 중복이라면 +1 처리
-        // $.ajax({
-        //     type: "GET",
-        //     url : "/group",
-        //     contentType: "application/json",
-        //     success: function(data) {
-        //         var data_id = [];
-        //         for(var i=0; i<=data.length; i++) {
-        //             console.log(data[i].id);
-        //         }
-        //         // console.log(idArray);
-        //     },
-        //     error: function(error) {
-        //         console.log(error);
-        //     }
-        // })
-
-        //////////////////////////////////////////////////////////////
 
         // 그룹 추가를 누른 경우
         if (isParent == true) {
@@ -199,9 +181,12 @@ function add(e) {
                     console.log(error);
                 }
             })
-            console.log(idArray); //idArray에 id값 잘 들어오는 것 확인 !
-
-
+            // console.log(idArray); //idArray에 id값 잘 들어오는 것 확인 !
+            for (var i = 0; i <= idArray.length; i++) {
+                if (newId <= idArray[i]) {
+                    newId++;
+                }
+            }
             treeNode = zTree.addNodes(treeNode, {
                 id: newId + 1,
                 pId: treeNode.id,
@@ -210,32 +195,22 @@ function add(e) {
             })
 
         }
-        ////////////////////////////////////////////////////////////////////////////
 
-        // if (isParent == true) { // 그룹 추가를 선택한 경우
-        //     console.log('그룹 추가');
-        //     newCount++;
-        //     treeNode = zTree.addNodes(treeNode, {
-        //         id: 1 + treeNode.id + newCount,
-        //         pId: treeNode.id,
-        //         isParent: isParent,
-        //         name: "그룹명"
-        //     })
-        // }
         else { //단말기 추가를 선택한 경우
             console.log('단말기 추가');
-            newCount++;
+            console.log(newId);
             treeNode = zTree.addNodes(treeNode, {
-                id: (treeNode.id * 10) + newCount,
+                id: (treeNode.id * 10) + newId,
                 pId: treeNode.id,
                 isParent: isParent,
                 name: "단말기명"
             })
         }
-    } else {
+    } 
+    else {
         // console.log(treeNode)
         treeNode = zTree.addNodes(null, {
-            id: (1000 + newCount),
+            id: (100 + newCount),
             pId: 0,
             isParent: isParent,
             name: "입력하세요"

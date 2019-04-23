@@ -21,9 +21,7 @@ $(document).ready(function () {
             });
             mymodal.find('.modal-body').html(showText);
          }
-
       });
-
    });
 
    $('.custom-modal2').click(function () {
@@ -198,27 +196,11 @@ $(document).ready(function () {
       }
 
       if (ayear != null) {
-         showText += '발령 시간 : ' + ayear + '.';
-      }
-
-      if (amonth != null) {
-         showText += amonth + '.'
-      }
-
-      if (aday != null) {
-         showText += aday + '. '
-      }
-
-      if (ahour != null) {
-         showText += ahour + ':'
-      }
-
-      if (aminute != null) {
-         showText += aminute + ':00<br/>'
+         showText += ayear + '-' + amonth + '-' + aday + 'T' + ahour + ':' + aminute + ':00+09:00';
       }
 
       if ($('#time:checked').val() != 'right_now') {
-         time = ayear + '.' + amonth + '.' + aday + ' ' + ahour + ':' + aminute + ':00';
+         time = ayear + '-' + amonth + '-' + aday + 'T' + ahour + ':' + aminute + ':00+09:00';
       }
 
       var location = $('#checktest').val();
@@ -246,14 +228,17 @@ $(document).ready(function () {
       $('#communication:checked').each(function (i) {
          val[i] = $(this).val();
          communicationArray.push(val[i]);
-         showText += '통신 종류 : ' + val[i] + '<br/>';
          // console.log(communicationArray)
       });
+
+      if (communicationArray.length != 0) {
+         showText += '통신 종류 : ' + communicationArray + '<br/>';
+      }
 
       if (tts != null) {
          showText += 'TTS 방송 종류 : ' + tts + '<br/>TTS 방송 문안 : ' + tts_text + '<br/>';
       }
-      
+
       if (tts == null) {
          tts = 'NULL';
          tts_text = 'NULL';
@@ -273,7 +258,7 @@ $(document).ready(function () {
       }
 
       if (siren != null) {
-         showText += '사이렌 종류 : ' + siren + '번<br/>';
+         showText += '사이렌 종류 : ' + siren + '<br/>';
       }
 
       if (siren == null) {
@@ -304,7 +289,7 @@ $(document).ready(function () {
                dataType: "json",
                cache: false,
                success: function (data) {
-                 return sweetalert();
+                  return sweetalert();
                },
                error: function (data) { // error인데도 발령이 되는 부분 수정
                   return sweetalert();

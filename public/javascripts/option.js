@@ -357,3 +357,29 @@ function message_select() {
         }
     });
 }
+
+// 구글 차트
+google.charts.load('current', {
+    'packages': ['corechart']
+});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Result', 'All Result Record'],
+        ['중구', 5],
+        ['미추홀구', 2],
+        ['연수구', 2],
+        ['남동구', 2]
+    ]);
+
+    // Optional; add a title and set the width and height of the chart
+    var options = {
+        'width': 300,
+        'height': 250
+    };
+    // Display the chart inside the <div> element with id="piechart"
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    chart.draw(data, options);
+}

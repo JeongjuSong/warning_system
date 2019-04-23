@@ -20,7 +20,7 @@ function handleDisconnect() {
             console.log('error when connecting to db:', err);
             setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
         } // to avoid a hot loop, and to allow our node script to
-    }); // process asynchronous requests in the meantime.
+    }); // process asynchronous requests in  meantime.
     // If you're also serving http, display a 503 error.
     connection.on('error', function (err) {
         console.log('db error', err);
@@ -197,6 +197,14 @@ router.post('/groupdelete', function (req, res, next) {
     res.send("okay");
 });
 
+// 재난 종류 db
+router.get('/weather_special', function (req, res, next) {
+    connection.query('SELECT situation from type WHERE category=1;', function (err,rows) {
+        if(err) throw err;
+
+        res.send(rows);
+    })
+})
 
 // edit_message db
 router.get('/message', function (req, res, next) {
@@ -317,6 +325,18 @@ router.all('/ttsdelete', function (req, res, next) {
     });
 
     res.send("okay");
+});
+
+// siren db
+router.get('/siren', function (req, res, next) {
+
+    connection.query('SELECT * from siren', function (err, rows) {
+        if (err) throw err;
+
+        // console.log('The solution is: ', rows);
+
+        res.send(rows);
+    });
 });
 
 // check_terminal db insert

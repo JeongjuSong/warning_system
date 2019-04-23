@@ -131,6 +131,16 @@
         "num" : 13
       },
       {
+        "content": "인천시청역",
+        "new_add": "인천광역시 남동구 예술로 264",
+        "old_add": "인천광역시 남동구 간석동 927",
+        "img_src": "https://img-wishbeen.akamaized.net/spot/1470229935301_image_view.jpg",
+        "homepage": "http://info.korail.com/mbs/www/index.jsp",
+        "lat": 37.457607, 
+        "lng": 126.702205,
+        "num" : 14
+      },
+      {
         "content": "인천국제공항",
         "new_add": "인천광역시 중구 공항로 271 인천국제공항역",
         "old_add": "인천광역시 중구 운서동 2851",
@@ -138,7 +148,7 @@
         "homepage": "https://www.airport.kr/ap/ko/index.do",
         "lat": 37.460455, 
         "lng": 126.440674,
-        "num" : 14
+        "num" : 15
       },
       {
         "content": "인천항 여객터미널",
@@ -148,7 +158,7 @@
         "homepage": "http://www.icferry.or.kr/index.do",
         "lat": 37.454182,
         "lng": 126.598375,
-        "num" : 15
+        "num" : 16
       },
       {
         "content": "이마트(동인천점)",
@@ -158,7 +168,7 @@
         "homepage": "http://store.emart.com/branch/list.do?id=1035",
         "lat": 37.466790, 
         "lng": 126.629036,
-        "num" : 16
+        "num" : 17
       },
       {
         "content": "LF네트웍스(연수점)",
@@ -168,7 +178,7 @@
         "homepage": "http://www.lfsquare.co.kr/",
         "lat": 37.420844, 
         "lng": 126.668562,
-        "num" : 17
+        "num" : 18
       },
       {
         "content": "롯데백화점(인천터미널점)",
@@ -178,7 +188,7 @@
         "homepage": "https://www.lotteshopping.com/branchShopGuide/floorGuideSub?cstr=0344",
         "lat": 37.443304, 
         "lng": 126.701508,
-        "num" : 18
+        "num" : 19
       },
       {
         "content": "스퀘어원(연수구)",
@@ -188,7 +198,7 @@
         "homepage": "http://square1.co.kr/",
         "lat": 37.406214, 
         "lng": 126.683314,
-        "num" : 19
+        "num" : 20
       },
       {
         "content": "롯데시네마(인천)",
@@ -198,7 +208,7 @@
         "homepage": "http://www.lottecinema.co.kr/",
         "lat": 37.451354,
         "lng":  126.700749,
-        "num" : 20 
+        "num" : 21
       },
       {
         "content": "구미종합터미널",
@@ -208,7 +218,7 @@
         "homepage": "about:blank",
         "lat": 36.123051, 
         "lng": 128.351982,
-        "num" : 21
+        "num" : 22
       },
       {
         "content": "김천시외버스터미널",
@@ -218,7 +228,7 @@
         "homepage": "about:blank",
         "lat": 36.123422, 
         "lng": 128.118448,
-        "num" : 22
+        "num" : 23
       },
       {
         "content": "KTX(김천구미)",
@@ -228,7 +238,7 @@
         "homepage": "http://www.letskorail.com/",
         "lat": 36.114262,
         "lng": 128.180726,
-        "num" : 23
+        "num" : 24
       },
       {
         "content": "포항 여객선터미널",
@@ -238,7 +248,7 @@
         "homepage": "http://daezer.com/",
         "lat":36.051797,
         "lng":  129.378490,
-        "num" : 24
+        "num" : 25
       },
       {
         "content": "이마트(포항점)",
@@ -248,7 +258,7 @@
         "homepage": "http://store.emart.com/branch/list.do?id=1050",
         "lat": 35.991594, 
         "lng": 129.399009,
-        "num" : 25
+        "num" : 26
       },
       {
         "content": "모다아울렛(김천구미점)",
@@ -258,7 +268,7 @@
         "homepage": "http://www.modaoutlet.com/agency/?control=agency&method=main&BranchCode=13",
         "lat": 36.155476,
         "lng": 128.281769,
-        "num" : 26
+        "num" : 27
       },
       {
         "content": "롯데백화점(포항점)",
@@ -268,7 +278,7 @@
         "homepage": "https://www.lotteshopping.com/branchShopGuide/floorGuideSub?cstr=0014",
         "lat": 36.049912,
         "lng": 129.369362,
-        "num" : 27
+        "num" : 28
       },
       {
         "content": "동아백화점(구미점)",
@@ -278,7 +288,7 @@
         "homepage": "http://www.dong100.com/store/Newstore_info.aspx?BranchCode=1004",
         "lat": 36.120056, 
         "lng": 128.348564,
-        "num" : 28
+        "num" : 29
       },
       {
         "content": "효자프라자 웰빙아울렛(포항)",
@@ -288,7 +298,7 @@
         "homepage": "https://www.poswel.co.kr/",
         "lat": 36.011087, 
         "lng": 129.335312,
-        "num" : 29
+        "num" : 30
       },
       {
         "content": "롯데시네마(구미)",
@@ -298,7 +308,7 @@
         "homepage": "http://www.lottecinema.co.kr/LCHS/index.aspx",
         "lat": 36.128068, 
         "lng": 128.336097,
-        "num" : 30
+        "num" : 31
       },
       {
         "content": "춘천시외버스터미널",
@@ -308,7 +318,7 @@
         "homepage": "http://www.kjbus.com/",
         "lat": 37.863404, 
         "lng": 127.718625,
-        "num" : 31
+        "num" : 32
       },
       {
         "content": "KTX 평창역",
@@ -318,7 +328,7 @@
         "homepage": "http://www.letskorail.com/",
         "lat": 37.573148, 
         "lng": 128.433085,
-        "num" : 32
+        "num" : 33
       },
       {
         "content": "원주 공항",
@@ -328,7 +338,7 @@
         "homepage": "http://www.airport.co.kr/wonju/main.do",
         "lat": 37.459496, 
         "lng": 127.977143,
-        "num" : 33
+        "num" : 34
       },
       {
         "content": "속초항 국제크루즈터미널",
@@ -338,7 +348,7 @@
         "homepage": "https://www.aferry.kr/sokcho-ferry-kr.htm",
         "lat": 38.212060, 
         "lng": 128.597108,
-        "num" : 34
+        "num" : 35
       },
       {
         "content": "동해항 국제여객터미널",
@@ -348,7 +358,7 @@
         "homepage": "https://www.dbsferry.com/main/main.asp",
         "lat": 37.492014, 
         "lng": 129.125287,
-        "num" : 35
+        "num" : 36
       },
       {
         "content": "이마트(춘천점)",
@@ -358,7 +368,7 @@
         "homepage": "http://store.emart.com/branch/list.do?id=1093",
         "lat": 37.864024, 
         "lng": 127.718595,
-        "num" : 36
+        "num" : 37
       },
       {
         "content": "이마트(동해점)",
@@ -368,7 +378,7 @@
         "homepage": "http://store.emart.com/branch/list.do?id=1075",
         "lat": 37.524051,
         "lng": 129.117117,
-        "num" : 37
+        "num" : 38
       },
       {
         "content": "CGV(춘천점)",
@@ -378,7 +388,7 @@
         "homepage": "http://www.cgv.co.kr/theaters/?areacode=12&theaterCode=0070&date=20140707",
         "lat": 37.850654, 
         "lng": 127.743902,
-        "num" : 38
+        "num" : 39
       },
       {
         "content": "롯데시네마(남원주점)",
@@ -388,7 +398,7 @@
         "homepage": "www.lottecinema.co.kr/",
         "lat": 37.330245, 
         "lng": 127.948805,
-        "num" : 39
+        "num" : 40
       },
       {
         "content": "메가박스(남춘천점)",
@@ -398,7 +408,7 @@
         "homepage": "http://www.megabox.co.kr/?menuId=theater-detail&region=70&cinema=2001",
         "lat": 37.866675, 
         "lng": 127.720273,
-        "num" : 40
+        "num" : 41
       },
       {
         "content": "제주시외버스터미널",
@@ -408,7 +418,7 @@
         "homepage": "http://bus.jeju.go.kr/",
         "lat": 33.500065, 
         "lng": 126.514843,
-        "num" : 41
+        "num" : 42
       },
       {
         "content": "제주국제공항",
@@ -418,7 +428,7 @@
         "homepage": "www.airport.co.kr/jeju/main.do",
         "lat": 33.510700, 
         "lng": 126.491364,
-        "num" : 42
+        "num" : 43
       },
       {
         "content": "제주항 연안 여객터미널",
@@ -428,7 +438,7 @@
         "homepage": "jeju.ferry.or.kr",
         "lat": 33.525720, 
         "lng": 126.543935,
-        "num" : 43
+        "num" : 44
       },
       {
         "content": "제주항 국제 여객 터미널",
@@ -438,7 +448,7 @@
         "homepage": "jeju.ferry.or.kr",
         "lat": 33.525586, 
         "lng": 126.543918,
-        "num" : 44
+        "num" : 45
       },
       {
         "content": "이마트 제주점",
@@ -448,7 +458,7 @@
         "homepage": "store.emart.com/branch/list.do?id=1006",
         "lat": 33.518206, 
         "lng": 126.521249,
-        "num" : 45
+        "num" : 46
       },
       {
         "content": "이마트 신제주점",
@@ -458,7 +468,7 @@
         "homepage": "store.emart.com/branch/list.do?id=1071",
         "lat": 33.485172, 
         "lng": 126.480581,
-        "num" : 46
+        "num" : 47
       },
       {
         "content": "롯데마트(제주시)",
@@ -468,7 +478,7 @@
         "homepage": "company.lottemart.com/jeju.mart",
         "lat": 33.482708, 
         "lng": 126.481921,
-        "num" : 47
+        "num" : 48
       },
       {
         "content": "홈플러스(서귀포점)",
@@ -478,7 +488,7 @@
         "homepage": "http://corporate.homeplus.co.kr/STORE/HyperMarket_view.aspx?sn=0055&ind=HOMEPLUS",
         "lat": 33.260702, 
         "lng": 126.559896,
-        "num" : 48
+        "num" : 49
       },
       {
         "content": "이마트(서귀포점)",
@@ -488,7 +498,7 @@
         "homepage": "store.emart.com/branch/list.do?id=1097",
         "lat": 33.248584, 
         "lng": 126.509231,
-        "num" : 49
+        "num" : 50
       },
       {
         "content": "CGV(제주)",
@@ -498,7 +508,7 @@
         "homepage": "http://www.cgv.co.kr/theaters/?areacode=06&theaterCode=0121&date=20140707",
         "lat": 33.500347,
         "lng": 126.527359,
-        "num" : 50
+        "num" : 51
       }
       
     ]
