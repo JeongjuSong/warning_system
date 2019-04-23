@@ -162,8 +162,6 @@ function add(e) {
         nodes = zTree.getSelectedNodes(), // 선택한 노드
         treeNode = nodes[0]; // treeNode는 부모 노드
     if (treeNode) { // 노드 추가를 눌렀을 경우
-        var idArray = new Array();
-
         // ajax db호출하여 id 중복 확인, 중복이라면 +1 처리
         // $.ajax({
         //     type: "GET",
@@ -183,15 +181,17 @@ function add(e) {
 
         //////////////////////////////////////////////////////////////
 
-        if (isParent == true) {  //이 부분 수정!!!!!!
-
+        // 그룹 추가를 누른 경우
+        if (isParent == true) {
+            var newId = 0;
+            var idArray = new Array();
             $.ajax({
                 type: "GET",
                 url: "/group",
+                async: false,
                 contentType: "application/json",
                 success: function (data) {
                     for (var i = 0; i <= data.length; i++) {
-                        console.log(data[i].id);
                         idArray.push(data[i].id);
                     }
                 },
@@ -199,9 +199,11 @@ function add(e) {
                     console.log(error);
                 }
             })
-        
+            console.log(idArray); //idArray에 id값 잘 들어오는 것 확인 !
+
+
             treeNode = zTree.addNodes(treeNode, {
-                id: 1 + treeNode.id + newCount,
+                id: newId + 1,
                 pId: treeNode.id,
                 isParent: isParent,
                 name: "그룹명"
@@ -220,7 +222,7 @@ function add(e) {
         //         name: "그룹명"
         //     })
         // }
-         else { //단말기 추가를 선택한 경우
+        else { //단말기 추가를 선택한 경우
             console.log('단말기 추가');
             newCount++;
             treeNode = zTree.addNodes(treeNode, {

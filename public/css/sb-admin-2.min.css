@@ -791,7 +791,11 @@ pre code {
     position: relative;
     width: 100%;
     padding-right: .75rem;
-    /* padding-left: .75rem */
+    padding-left: .75rem
+}
+
+.col-6-user {
+    padding-left: -0.75rem !important;
 }
 
 .col {

@@ -188,7 +188,6 @@ router.post('/groupinsert', function (req, res, next) {
 router.post('/groupdelete', function (req, res, next) {
     console.log('group data delete 됨')
     var name = req.body.name;
-    console.log(req.body.name);
 
     var sql = 'DELETE FROM groupdata WHERE name=' + req.body.name;
     connection.query(sql, ['name'], function (err, results, fiels) {
