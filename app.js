@@ -12,7 +12,6 @@ var tz = moment.tz;
 
 var index = require('./routes/index');
 
-
 var app = express();
 var passport = require('passport');
 var flash = require('connect-flash');
@@ -25,10 +24,6 @@ app.set('view engine', 'ejs');
 // connect to our database
 
 require('./config/passport')(passport); // pass passport for configuration
-
-
-
-
 
 // uncomment after placing your favicon in /public
 

@@ -10,6 +10,7 @@ $(document).ready(function () {
             return weather_special.situation;
          });
 
+
          //  mymodal.empty();
          if (weather_special.length) {
             // console.log(weather_special);
@@ -17,7 +18,7 @@ $(document).ready(function () {
             weather_special.map(function (weather_special) {
 
                showText += "<input type='checkbox' id='alarm_type1' name='alarm_type' value='" + weather_special + "'>" + weather_special + "<br>";
-
+               
             });
             mymodal.find('.modal-body').html(showText);
          }

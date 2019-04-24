@@ -778,11 +778,11 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     modifierKeysToMultiSelectCells: true,
     columnDefs: [{
         name: 'time',
-        width: 150
+        width: 200
       },
       {
         name: 'location',
-        width: 330
+        width: 360
       },
       {
         name: 'alarm_type',
