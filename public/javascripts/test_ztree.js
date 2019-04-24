@@ -302,7 +302,7 @@ function zTreeOnCheck(event, treeId, treeNode) {
             if (checkednodepid != 1 && checkednodepid != 0) {
                 checkedArray.push(checkednode);
                 $(document).ready(function () {
-                    $('#checktest').val(checkedArray);
+                    $('#checklocation').val(checkedArray);
                 });
             }
         }
@@ -316,7 +316,7 @@ function zTreeOnCheck(event, treeId, treeNode) {
             if (checkednodepid != 0 && checkednodepid != 1 && checkednodepid != 11 && checkednodepid != 12) {
                 checkedArray.push(checkednode);
                 $(document).ready(function () {
-                    $('#checktest').val(checkedArray);
+                    $('#checklocation').val(checkedArray);
                 });
             }
         }
@@ -332,7 +332,7 @@ function zTreeOnCheck(event, treeId, treeNode) {
                 checkedArray.push(checkednode);
                 checkedArray.push(checkednode2);
                 $(document).ready(function () {
-                    $('#checktest').val(checkedArray);
+                    $('#checklocation').val(checkedArray);
                 });
             }
         }
@@ -346,7 +346,7 @@ function zTreeOnCheck(event, treeId, treeNode) {
             if (checkednodepid != 0 && checkednodepid != 1) {
                 checkedArray.push(checkednode);
                 $(document).ready(function () {
-                    $('#checktest').val(checkedArray);
+                    $('#checklocation').val(checkedArray);
                 });
             }
         }
@@ -363,7 +363,7 @@ function zTreeOnCheck(event, treeId, treeNode) {
     //             checkedArray.push(checkednode2);
     //             checkedArray.push(checkednode);
     //             $(document).ready(function () {
-    //                 $('#checktest').val(checkedArray);
+    //                 $('#checklocation').val(checkedArray);
     //             });
     //         }
     //     }
@@ -372,7 +372,7 @@ function zTreeOnCheck(event, treeId, treeNode) {
     // if (nodes.length == 0 && nodes2.length == 0 && zNodes3.length == 0) { // 둘 다 선택 안한 경우
     //     var none = '단말기를 선택하지 않았습니다.'
     //     $(document).ready(function () {
-    //         $('#checktest').val(none);
+    //         $('#checklocation').val(none);
     //     });
     // }
 

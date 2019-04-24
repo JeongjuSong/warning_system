@@ -1,39 +1,36 @@
-// function printTime() {
-//     var clock = document.getElementById("clock"); // 출력할 장소 선택
-//     var now = new Date(); // 현재시간
-//     var nowTime = now.getFullYear() + "-" + (
-//         now.getMonth() + 1
-//     ) + "-" + now.getDate() + "&nbsp;&nbsp;" + now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
-//     clock.innerHTML = nowTime; // 현재시간을 출력
-//     setTimeout("printTime()", 1000); // setTimeout(“실행할함수”,시간) 시간은1초의 경우 1000
-// }
-
 // select의 년/월/일 시간 선택
 window.onload = function () {
     // printTime();
-    var sMonth = 1
+    var sYear = 2019
+    var eYear = 2025
+    var sMonth = 01
     var eMonth = 12
-    var sDay = 1
+    var sDay = 01
     var eDay = 31
-    var sHour = 0
+    var sHour = 00
     var eHour = 23
     var sMinute = 00
     var eMinute = 59
     var sNum = 1
     var eNum = 10
 
+    var strYear = "";
     var strMonth = "";
     var strDay = "";
     var strHour = "";
     var strMinute = "";
     var strNum = "";
 
+    strYear += "<option value='' disabled selected>년</option>"
     strMonth += "<option value='' disabled selected>월</option>"
     strDay += "<option value='' disabled selected>일</option>"
     strHour += "<option value='' disabled selected>시</option>"
     strMinute += "<option value='' disabled selected>분</option>"
     strNum += "<option value = '' disabled selected>횟수</option>"
 
+    for (var i = sYear; i <= eYear; i++) {
+        strYear += "<option value=" + i + ">" + i + "</option>";
+    }
     for (var i = sMonth; i <= eMonth; i++) {
         strMonth += "<option value=" + i + ">" + i + "</option>";
     }
@@ -51,6 +48,7 @@ window.onload = function () {
         strNum += "<option value=" + i + ">" + i + "</option>";
     }
 
+    document.getElementById("ayear").innerHTML = strYear;
     document.getElementById("amonth").innerHTML = strMonth;
     document.getElementById("aday").innerHTML = strDay;
     document.getElementById("ahour").innerHTML = strHour;
@@ -135,12 +133,46 @@ function closecheck() {
 }
 
 // 재난 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
+function closecheck1() {
+    $("[id=alarm_type1]").prop("checked", false);
+    $("[id=popup_show1]").prop("checked", false);
+    $("[id=popup_show1]").parent().removeClass('selected');
+}
+
 function closecheck2() {
-    $("[id=alarm_type]").prop("checked", false);
-    for (var i = 1; i <= 7; i++) {
-        $("[id=popup_show" + i + "]").prop("checked", false);
-        $("[id=popup_show" + i + "]").parent().removeClass('selected');
-    }
+    $("[id=alarm_type2]").prop("checked", false);
+    $("[id=popup_show2]").prop("checked", false);
+    $("[id=popup_show2]").parent().removeClass('selected');
+}
+
+function closecheck3() {
+    $("[id=alarm_type3]").prop("checked", false);
+    $("[id=popup_show3]").prop("checked", false);
+    $("[id=popup_show3]").parent().removeClass('selected');
+}
+
+function closecheck4() {
+    $("[id=alarm_type4]").prop("checked", false);
+    $("[id=popup_show4]").prop("checked", false);
+    $("[id=popup_show4]").parent().removeClass('selected');
+}
+
+function closecheck5() {
+    $("[id=alarm_type5]").prop("checked", false);
+    $("[id=popup_show5]").prop("checked", false);
+    $("[id=popup_show5]").parent().removeClass('selected');
+}
+
+function closecheck6() {
+    $("[id=alarm_type6]").prop("checked", false);
+    $("[id=popup_show6]").prop("checked", false);
+    $("[id=popup_show6]").parent().removeClass('selected');
+}
+
+function closecheck7() {
+    $("[id=alarm_type7]").prop("checked", false);
+    $("[id=popup_show7]").prop("checked", false);
+    $("[id=popup_show7]").parent().removeClass('selected');
 }
 
 
@@ -176,7 +208,7 @@ var content1 = '<div class="modal" id="popup1" role="dialog">' +
     '<p > < /p>' +
     '</div>' +
     '<div class = "modal-footer">' +
-    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck1() data-dismiss = "modal" > 닫기 </button>' +
     '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
     '</div>' +
     '</div>' +
@@ -214,7 +246,7 @@ var content3 = '<div class="modal" id="popup3" role="dialog">' +
     '<p > < /p>' +
     '</div>' +
     '<div class = "modal-footer">' +
-    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck3() data-dismiss = "modal" > 닫기 </button>' +
     '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
     '</div>' +
     '</div>' +
@@ -233,7 +265,7 @@ var content4 = '<div class="modal" id="popup4" role="dialog">' +
     '<p > < /p>' +
     '</div>' +
     '<div class = "modal-footer">' +
-    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck4() data-dismiss = "modal" > 닫기 </button>' +
     '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
     '</div>' +
     '</div>' +
@@ -252,7 +284,7 @@ var content5 = '<div class="modal" id="popup5" role="dialog">' +
     '<p > < /p>' +
     '</div>' +
     '<div class = "modal-footer">' +
-    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck5() data-dismiss = "modal" > 닫기 </button>' +
     '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
     '</div>' +
     '</div>' +
@@ -271,7 +303,7 @@ var content6 = '<div class="modal" id="popup6" role="dialog">' +
     '<p > < /p>' +
     '</div>' +
     '<div class = "modal-footer">' +
-    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck6() data-dismiss = "modal" > 닫기 </button>' +
     '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
     '</div>' +
     '</div>' +
@@ -290,7 +322,7 @@ var content7 = '<div class="modal" id="popup7" role="dialog">' +
     '<p > < /p>' +
     '</div>' +
     '<div class = "modal-footer">' +
-    '<button type = "button" class = "btn btn-default" onclick=closecheck2() data-dismiss = "modal" > 닫기 </button>' +
+    '<button type = "button" class = "btn btn-default" onclick=closecheck7() data-dismiss = "modal" > 닫기 </button>' +
     '<button type = "button" class = "btn btn-primary" data-dismiss = "modal" > 선택 완료 </button>' +
     '</div>' +
     '</div>' +
@@ -383,3 +415,55 @@ function drawChart() {
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
     chart.draw(data, options);
 }
+
+function SendData() { // post rasData
+    var postData = { //postData 타입 정의
+         "time": "",
+         "location": "",
+         "alarm_type": "",
+         "communication": "",
+         "message_text": "",
+         "siren": ""
+      };
+
+      var time = document.getElementById('checktime').value; //시간
+      var location = document.getElementById('checklocation').value; //단말기
+      var alarm_type = document.getElementById('checkalarm').value; //재난 종류
+      var communication = document.getElementById('checkcommunication').value; //통신 종류
+    //   var tts = document.getElementById('checktts').value; //tts 종류
+    //   var tts_text = document.getElementById('checkttst').value; //tts 방송문안
+    //   var message = document.getElementById('checkmessage').value; //저장메시지 종류
+      var message_text = document.getElementById('checkmessaget').value; //저장메시지 방송문안
+      var siren = document.getElementById('siren').value; //사이렌 종류
+    
+
+      postData.time = time;
+      postData.location = location;
+      postData.alarm_type = alarm_type;
+      postData.communication = communication;
+    //   postData.tts = tts;
+    //   postData.tts_text = tts_text;
+    //   postData.message = message;
+      postData.message_text = message_text;
+      postData.siren = siren;
+
+      var getTest = function (data) {
+         var result;
+         $.ajax({
+            type: "POST",
+            url: '/rasData',
+            data: data,
+            // async: false,
+            async: true,
+            success: function (data) {
+               result = data.result;
+            },
+            error: function (e) {}
+         });
+         return result;
+      }
+      var run = function (postData) {
+         getTest(postData);
+      }
+      run(postData);
+   }

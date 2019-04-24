@@ -206,11 +206,7 @@
                                                 <input type="checkbox" id="time" value="right_now">즉시 발령
                                             </label>
                                             <label class="btn btn-default"> 예약 발령 :
-                                                <select id="year">
-                                                    <option value="" disabled selected>년</option>
-                                                    <option value="2019">2019</option>
-                                                    <option value="2020">2020</option>
-                                                </select>년
+                                                <select id="ayear"></select>년
                                                 <select id="amonth"></select>월
                                                 <select id="aday"></select>일
                                                 <select id="ahour"> </select>시
@@ -227,8 +223,7 @@
                                                 <span class="m-0 font-weight-bold text-primary" style="float: left;">단말기
                                                     선택</span>
                                             </div>
-                                            <div style="padding: 10px;" id="checkboxTest"
-                                                name="checkboxTest">
+                                            <div style="padding: 10px;" id="checkboxTest" name="checkboxTest">
                                                 <div class="tab">
                                                     <button class="tablinks" id="defaultOpen"
                                                         onclick="openTab(event, 'location')" style="width: 93%;"
@@ -275,9 +270,9 @@
                                             <div class="card-header py-3">
                                                 <span class="m-0 font-weight-bold text-primary">재난 종류</span>
                                             </div>
-                                            <div class="col-12" id="checkboxTest" style="margin-top:15px; height:150px;">
+                                            <div class="col-12" id="checkboxTest"
+                                                style="margin-top:15px; height:150px;">
                                                 <table style="margin:auto;">
-                                                    <input id="checktest" type="text" style="display: none">
                                                     <tr>
                                                         <td>
                                                             <label class="btn btn-default" style="width: 90px">
@@ -347,7 +342,8 @@
                                             <div class="card-header py-3">
                                                 <span class="m-0 font-weight-bold text-primary">통신 종류</span>
                                             </div>
-                                            <div class="col-12" id="checkboxTest" style="margin-top:15px; height:150px;">
+                                            <div class="col-12" id="checkboxTest"
+                                                style="margin-top:15px; height:150px;">
                                                 <table style="margin:auto;">
                                                     <tr>
                                                         <td>
@@ -386,7 +382,8 @@
                                             <div class="card-header py-3">
                                                 <span class="m-0 font-weight-bold text-primary">방송 종류</span>
                                             </div>
-                                            <div class="col-12" id="checkboxTest" style="margin-top: 15px; height:150px;">
+                                            <div class="col-12" id="checkboxTest"
+                                                style="margin-top: 15px; height:150px;">
                                                 <table style="margin:auto;">
                                                     <tr>
                                                         <td>
@@ -434,6 +431,17 @@
                                     </p>
                                 </div>
                             </div>
+
+                            <!-- 이 부분에 선택값들 value 처리 후 block 처리 -->
+                            <input id="checktime" type="text" style="display: none;">
+                            <input id="checklocation" type="text" style="display: none;">
+                            <input id="checkalarm" type="text" style="display: none;">
+                            <input id="checkcommunication" type="text" style="display: none;">
+                            <input id="checktts" type="text" style="display: none;">
+                            <input id="checkttst" type="text" style="display: none;">
+                            <input id="checkmessage" type="text" style="display: none;">
+                            <input id="checkmessaget" type="text" style="display: none;">
+                            <input id="checksiren" type="text" style="display: none;">
 
                             <div class="col-12" style="float:left;">
                                 <div class="card shadow mb-4" style="text-align:center; padding: 10px;">
@@ -483,7 +491,8 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal"
                                     onclick="window.location.reload()">닫기</button>
-                                <button type="button" class="btn btn-primary" id="postwarning">방송하기</button>
+                                <button type="button" class="btn btn-primary" id="postwarning"
+                                    onclick="SendData()">방송하기</button>
                             </div>
                         </div>
                     </form>
@@ -591,15 +600,15 @@
                         </div>
                         <div class='modal-body'>
                             사이렌 선택 : <select id="siren">
-                                    <option value="" disabled selected>사이렌 선택</option>
-                                    <script>
-                                        for (var i = 0; i <= '{{gridOption5}}'.length; i++) {
-                                            document.write("<option value=" + '{{gridOption5[' + i + '].name}}' +
-                                                "> {{gridOption5[" + i +
-                                                "].name}} </option>");
-                                        }
-                                    </script>
-                                </select>
+                                <option value="" disabled selected>사이렌 선택</option>
+                                <script>
+                                    for (var i = 0; i <= '{{gridOption5}}'.length; i++) {
+                                        document.write("<option value=" + '{{gridOption5[' + i + '].name}}' +
+                                            "> {{gridOption5[" + i +
+                                            "].name}} </option>");
+                                    }
+                                </script>
+                            </select>
                             <i class="fas fa-play-circle" style="color:#4e73df;"></i>
                             <br /><br />
                         </div>

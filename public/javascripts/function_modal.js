@@ -177,7 +177,7 @@ $(document).ready(function () {
       var mymodal = $('#popup9');
       var mymodal2 = $('#popup8');
       var showText = "";
-      var ayear = $('select#year').val();
+      var ayear = $('select#ayear').val();
       var amonth = $('select#amonth').val();
       var aday = $('select#aday').val();
       var ahour = $('select#ahour').val();
@@ -203,7 +203,7 @@ $(document).ready(function () {
          time = ayear + '-' + amonth + '-' + aday + 'T' + ahour + ':' + aminute + ':00+09:00';
       }
 
-      var location = $('#checktest').val();
+      var location = $('#checklocation').val();
       if (location.length >= 1) {
          showText += '지역 선택 : ' + location + '<br/>';
       }
@@ -268,41 +268,53 @@ $(document).ready(function () {
       mymodal.find('.modal-body').html(showText);
       mymodal2.find('.modal-body').html(showText);
 
-      $("#postwarning").click(function () {
-         if (time != 'null.null.null null:null:00' && location != null && alarm_typeArray != undefined && communicationArray != undefined) {
-            $.ajax({
-               type: "POST",
-               url: "/warninginsert",
-               async: true,
-               data: {
-                  time: time,
-                  location: location,
-                  alarm_type: alarm_typeArray,
-                  communication: communicationArray,
-                  tts: tts,
-                  tts_text: tts_text,
-                  message: message,
-                  message_text: message_text,
-                  siren: siren,
-                  area: user_area
-               },
-               dataType: "json",
-               cache: false,
-               success: function (data) {
-                  return sweetalert();
-               },
-               error: function (data) { // error인데도 발령이 되는 부분 수정
-                  return sweetalert();
-               }
-            });
-         } else {
-            // alert('선택하지 않은 항목이 있는지 확인하세요.');
-            return sweetalert2();
-         }
+      if (time != 'null-null-nullTnull:null:00+09:00' && location != null && alarm_typeArray != undefined && communicationArray != undefined) {
+         $(document).ready(function() {
+            $('#checktime').val(time); //시간
+            $('#checkalarm').val(alarm_typeArray); //재난 종류
+            $('#checkcommunication').val(communicationArray); //통신 종류
+            $('#checktts').val(tts); //tts 종류
+            $('#checkttst').val(tts_text); //tts 방송문안
+            $('#checkmessage').val(message); //저장메시지 종류
+            $('#checkmessaget').val(message_text); //저장메시지 문안
+            $('#checksiren').val(siren); //사이렌
+         })
+      }
 
-      });
+      // $("#postwarning").click(function () {
+      //    if (time != 'null-null-nullTnull:null:00+09:00' && location != null && alarm_typeArray != undefined && communicationArray != undefined) {
+      //       $.ajax({
+      //          type: "POST",
+      //          url: "/warninginsert",
+      //          async: true,
+      //          data: {
+      //             time: time,
+      //             location: location,
+      //             alarm_type: alarm_typeArray,
+      //             communication: communicationArray,
+      //             tts: tts,
+      //             tts_text: tts_text,
+      //             message: message,
+      //             message_text: message_text,
+      //             siren: siren,
+      //             area: user_area
+      //          },
+      //          dataType: "json",
+      //          cache: false,
+      //          success: function (data) {
+      //             return sweetalert();
+      //          },
+      //          error: function (data) { // error인데도 발령이 되는 부분 수정
+      //             return sweetalert();
+      //          }
+      //       });
+
+      //    } else {
+      //       // alert('선택하지 않은 항목이 있는지 확인하세요.');
+      //       return sweetalert2();
+      //    }
+      // });
    });
-
 
    for (var i = 1; i <= 9; i++) {
       $("#popup" + i).modal({

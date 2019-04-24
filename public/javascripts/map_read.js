@@ -116,8 +116,6 @@ $.get("/map/location.json", function (data) {
 
     manager.addListener('drawend', function (e) {
         markersInCircle.length = 0; // 기존 결과 초기화
-
-
         if (e.overlayType === daum.maps.drawing.OverlayType.CIRCLE) {
 
             var circle = e.target;
@@ -143,13 +141,9 @@ $.get("/map/location.json", function (data) {
             // for(var i=0; i <= 50; i++)
             // {
             console.log('result2: ', markersInCircle); // 결과  
-    
             // }
             // console.log('result2: ', markersInCircle[0].k); // 결과  
-
-
             // console.log('result: ',); // 결과  
-
 
         }
 
@@ -172,21 +166,22 @@ function makeOverListener(map, markers, infowindow, coordinate_data, store_name,
         infowindow.open(map, markers);
         // alert(coordinate_data);
         // console.log(coordinate_data);
-        console.log(store_name);
-        var checkedArray = new Array();
-        if(store_name != null) {
+        console.log(store_name); //마크 선택 시
+        var checkedArray = new Array(); // checkedArray에 선택한 마크 저장
+        if(store_name != null) { 
             checkedArray.push(store_name);
-            $(document).ready(function() {
+            console.log('checkedArray는 : ' + checkedArray)
+            $(document).ready(function() { 
                 $("#checktest").val(checkedArray);
             })
         }
-        // console.log(store_num);
     };
 }
 
 // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-function makeOutListener(infowindow) {
+function makeOutListener(map, markers, infowindow, store_name) {
     return function () {
-        infowindow.close();
+        infowindow.close(map, markers);
+        console.log(store_name);
     };
 }
