@@ -427,7 +427,7 @@ router.post('/warninginsert', function (req, res, next) {
 
 router.get('/historyincheon', function (req, res, next) {
 
-    connection.query('SELECT * from history WHERE area="4";', function (err, rows) {
+    connection.query('SELECT * from history WHERE area="23";', function (err, rows) {
         if (err) throw err;
 
         // console.log('The solution is: ', rows);
@@ -448,7 +448,7 @@ router.get('/historyincheon/all', function (req, res, next) {
 
 router.get('/historygangwon', function (req, res, next) {
 
-    connection.query('SELECT * from history WHERE area="10";', function (err, rows) {
+    connection.query('SELECT * from history WHERE area="32";', function (err, rows) {
         if (err) throw err;
 
         // console.log('The solution is: ', rows);
@@ -469,7 +469,7 @@ router.get('/historygangwon/all', function (req, res, next) {
 
 router.get('/historyjeju', function (req, res, next) {
 
-    connection.query('SELECT * from history WHERE area="17";', function (err, rows) {
+    connection.query('SELECT * from history WHERE area="39";', function (err, rows) {
         if (err) throw err;
 
         // console.log('The solution is: ', rows);

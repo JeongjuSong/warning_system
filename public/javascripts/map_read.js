@@ -172,7 +172,7 @@ function makeOverListener(map, markers, infowindow, coordinate_data, store_name,
             checkedArray.push(store_name);
             console.log('checkedArray는 : ' + checkedArray)
             $(document).ready(function() { 
-                $("#checktest").val(checkedArray);
+                $("#checklocation").val(checkedArray);
             })
         }
     };

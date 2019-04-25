@@ -7,15 +7,15 @@ var zNodes3;
 // ztree 지역별 데이터 가져오기
 newJquery(document).ready(function () {
     var url = '';
-    if (user_area == 1) {
+    if (user_area == 11) {
         url = '/regionseoul'
-    } else if (user_area == 4) {
+    } else if (user_area == 23) {
         url = '/regionincheon'
-    } else if (user_area == 10) {
+    } else if (user_area == 32) {
         url = '/regiongangwon'
-    } else if (user_area == 15) {
+    } else if (user_area == 37) {
         url = '/regiongyeongbuk'
-    } else if (user_area == 17) {
+    } else if (user_area == 39) {
         url = '/regionjeju'
     }
     newJquery.ajax({
@@ -35,15 +35,15 @@ newJquery(document).ready(function () {
 // ztree2 분류별 데이터 가져오기
 newJquery(document).ready(function () {
     var url = '';
-    if (user_area == 1) {
+    if (user_area == 11) {
         url = '/facilityseoul'
-    } else if (user_area == 4) {
+    } else if (user_area == 23) {
         url = '/facilityincheon'
-    } else if (user_area == 10) {
+    } else if (user_area == 32) {
         url = '/facilitygangwon'
-    } else if (user_area == 15) {
+    } else if (user_area == 37) {
         url = '/facilitygyeongbuk'
-    } else if (user_area == 17) {
+    } else if (user_area == 39) {
         url = '/facilityjeju'
     }
     newJquery.ajax({
@@ -294,15 +294,24 @@ function zTreeOnCheck(event, treeId, treeNode) {
     var nodes2 = treeObj2.getCheckedNodes(true);
     var nodes3 = treeObj3.getCheckedNodes(true);
     var checkedArray = new Array();
+    var codeArray = new Array();
+    var numArray = new Array();
+
 
     if (nodes.length != 0 && nodes2.length == 0 && nodes3.length == 0) { // 지역별 탭에서만 선택 하는 경우
         for (var i = 0; i <= 100; i++) {
             var checkednode = nodes[i].name; //체크한 노드의 이름
             var checkednodepid = nodes[i].pId;
+            var checkednodecode = nodes[i].code; //체크한 노드의 행정코드
+            var checkednodenum = nodes[i].num;
             if (checkednodepid != 1 && checkednodepid != 0) {
                 checkedArray.push(checkednode);
+                codeArray.push(checkednodecode)
+                numArray.push(checkednodenum);
                 $(document).ready(function () {
                     $('#checklocation').val(checkedArray);
+                    $('#checkcode').val(codeArray);
+                    $('#checknum').val(numArray);
                 });
             }
         }

@@ -158,7 +158,7 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     }).then(function data(response) {
       for (var i = 0; i <= 10; i++) {
         if (index == i + 2) {
-          console.log(response.data[i].text);
+          // console.log(response.data[i].text);
           $scope.gridOption4 = response.data[i].text;
         }
       }
@@ -724,7 +724,7 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
 
   var tableData = [];
   var getData = function () {
-    if (user_area == 4) {
+    if (user_area == 23) {
       $http({
         method: 'GET',
         url: '/historyincheon',
@@ -737,7 +737,7 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       }).error(function (data, status, headers, config) {});
     }
 
-    if (user_area == 10) {
+    if (user_area == 32) {
       $http({
         method: 'GET',
         url: '/historygangwon',
@@ -750,7 +750,7 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       }).error(function (data, status, headers, config) {});
     }
 
-    if (user_area == 17) {
+    if (user_area == 39) {
       $http({
         method: 'GET',
         url: '/historyjeju',

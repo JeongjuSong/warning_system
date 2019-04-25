@@ -257,7 +257,7 @@
                                                 <span class="m-0 font-weight-bold text-primary">단말기 갯수 현황</span>
                                             </div>
                                             <div class="col-12">
-                                                <div id="piechart" style="width:100%;"></div>
+                                                <div id="piechart" style="width:100%; margin-left:-0.75rem;"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -349,13 +349,13 @@
                                                         <td>
                                                             <label class="btn btn-default" style="width:94px;">
                                                                 <input type="checkbox" class="btn-group-toggle"
-                                                                    id="communication" value="인터넷">인터넷
+                                                                    id="communication" value="인터넷" name="1">인터넷
                                                             </label>
                                                         </td>
                                                         <td>
                                                             <label class="btn btn-default" style="width:94px;">
                                                                 <input type="checkbox" class="btn-group-toggle"
-                                                                    id="communication" value="위성">위성
+                                                                    id="communication" value="위성" name="2">위성
                                                             </label>
                                                         </td>
                                                     </tr>
@@ -363,13 +363,13 @@
                                                         <td>
                                                             <label class="btn btn-default" style="width:94px;">
                                                                 <input type="checkbox" class="btn-group-toggle"
-                                                                    id="communication" value="DMB">DMB
+                                                                    id="communication" value="DMB" name="3">DMB
                                                             </label>
                                                         </td>
                                                         <td>
                                                             <label class="btn btn-default" style="width:94px;">
                                                                 <input type="checkbox" class="btn-group-toggle"
-                                                                    id="communication" value="CDMA">CDMA
+                                                                    id="communication" value="CDMA" name="4">CDMA
                                                             </label>
                                                         </td>
                                                     </tr>
@@ -433,8 +433,10 @@
                             </div>
 
                             <!-- 이 부분에 선택값들 value 처리 후 block 처리 -->
-                            <input id="checktime" type="text" style="display: none;">
+                            <input id="checktime" type="text" style="display: none;"> <!-- 시간 -->
+                            <input id="checkcode" type="text" style="display: none;">
                             <input id="checklocation" type="text" style="display: none;">
+                            <input id="checknum" type="text" style="display: none;">
                             <input id="checkalarm" type="text" style="display: none;">
                             <input id="checkcommunication" type="text" style="display: none;">
                             <input id="checktts" type="text" style="display: none;">
@@ -602,8 +604,8 @@
                                 <option value="" disabled selected>사이렌 선택</option>
                                 <script>
                                     for (var i = 0; i <= '{{gridOption5}}'.length; i++) {
-                                        document.write("<option value=" + '{{gridOption5[' + i + '].name}}' +
-                                            "> {{gridOption5[" + i +
+                                        document.write("<option name=" + '{{gridOption5[' + i + '].no}}' +
+                                            " value=" + '{{gridOption5[' + i + '].name}}' +"> {{gridOption5[" + i +
                                             "].name}} </option>");
                                     }
                                 </script>

@@ -59,7 +59,7 @@ window.onload = function () {
 function logo_info() {
     /*   접속 지역에 따라 달라지는 CI 표현 */
     var img_src;
-    for (var i = 0; i <= 17; i++) {
+    for (var i = 0; i <= 39; i++) {
         if (user_area == i) {
             img_src = '../public/img/' + i + '_logo.png';
         }
@@ -69,7 +69,7 @@ function logo_info() {
 
 function title_info() {
     var img_src;
-    for (var i = 0; i <= 17; i++) {
+    for (var i = 0; i <= 39; i++) {
         if (user_area == i) {
             img_src = '../public/img/' + i + '_title.png';
         }
@@ -408,7 +408,7 @@ function drawChart() {
 
     // Optional; add a title and set the width and height of the chart
     var options = {
-        'width': 300,
+        'width': 320,
         'height': 250
     };
     // Display the chart inside the <div> element with id="piechart"
@@ -423,11 +423,13 @@ function SendData() { // post rasData
          "alarm_type": "",
          "communication": "",
          "message_text": "",
-         "siren": ""
+         "siren": "",
+         "user_area" : 0,
       };
 
       var time = document.getElementById('checktime').value; //시간
-      var location = document.getElementById('checklocation').value; //단말기
+      var code = document.getElementById('checkcode').value; //행정구역코드
+      var location_num = document.getElementById('checknum').value; //단말기 num
       var alarm_type = document.getElementById('checkalarm').value; //재난 종류
       var communication = document.getElementById('checkcommunication').value; //통신 종류
     //   var tts = document.getElementById('checktts').value; //tts 종류
@@ -436,16 +438,17 @@ function SendData() { // post rasData
       var message_text = document.getElementById('checkmessaget').value; //저장메시지 방송문안
       var siren = document.getElementById('siren').value; //사이렌 종류
     
-
-      postData.time = time;
-      postData.location = location;
-      postData.alarm_type = alarm_type;
-      postData.communication = communication;
+      postData.user_area = user_area; // 인천
+      postData.time = time; // 즉시
+      postData.code = code; // 남동구
+      postData.location_num = location_num; // 인천시청역
+      postData.alarm_type = alarm_type; // 지진 경보
+      postData.communication = communication; // 인터넷
     //   postData.tts = tts;
     //   postData.tts_text = tts_text;
     //   postData.message = message;
-      postData.message_text = message_text;
-      postData.siren = siren;
+      postData.message_text = message_text; // 메시지 문안
+      postData.siren = siren; // 사이렌
 
       var getTest = function (data) {
          var result;

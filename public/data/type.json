@@ -1,351 +1,435 @@
 {
     "weather_special": [{
             "id": 1,
-            "situation": "강풍 경보"
+            "situation": "강풍 경보",
+            "num": 2
         },
         {
             "id": 1,
-            "situation": "강풍 주의보"
+            "situation": "강풍 주의보",
+            "num": 1
         },
         {
             "id": 1,
-            "situation": "건조 경보"
+            "situation": "건조 경보",
+            "num": 8
         },
         {
             "id": 3,
-            "situation": "대설 경보"
+            "situation": "대설 경보",
+            "num": 7
         },
         {
             "id": 3,
-            "situation": "대설 주의보"
+            "situation": "대설 주의보",
+            "num": 6
         },
         {
             "id": 9,
-            "situation": "지진 해일 주의보"
+            "situation": "지진 해일 주의보",
+            "num": 11
         },
         {
             "id": 12,
-            "situation": "태풍 경보"
+            "situation": "태풍 경보",
+            "num": 16
         },
         {
             "id": 12,
-            "situation": "태풍 정보"
+            "situation": "태풍 정보",
+            "num": 17
         },
         {
             "id": 12,
-            "situation": "태풍 주의보"
+            "situation": "태풍 주의보",
+            "num": 15
         },
         {
             "id": 13,
-            "situation": "폭염 경보"
+            "situation": "폭염 경보",
+            "num": 20
         },
         {
             "id": 13,
-            "situation": "폭염 주의보"
+            "situation": "폭염 주의보",
+            "num": 19
         },
         {
             "id": 13,
-            "situation": "폭풍 해일 경보"
+            "situation": "폭풍 해일 경보",
+            "num": 10
         },
         {
             "id": 13,
-            "situation": "폭풍 해일 주의보"
+            "situation": "폭풍 해일 주의보",
+            "num": 9
         },
         {
             "id": 13,
-            "situation": "풍량 경보"
+            "situation": "풍량 경보",
+            "num": 3
         },
         {
             "id": 14,
-            "situation": "한파 경보"
+            "situation": "한파 경보",
+            "num": 14
         },
         {
             "id": 14,
-            "situation": "한파 주의보"
+            "situation": "한파 주의보",
+            "num": 13
         },
         {
             "id": 14,
-            "situation": "호우 경보"
+            "situation": "호우 경보",
+            "num": 5
         },
         {
             "id": 14,
-            "situation": "호우 주의보"
+            "situation": "호우 주의보",
+            "num": 4
         },
         {
             "id": 14,
-            "situation": "황사 경보"
+            "situation": "황사 경보",
+            "num": 18
         }
     ],
 
     "other_alarm": [{
             "id": 1,
-            "situation": "긴급 홍수 경보"
+            "situation": "긴급 홍수 경보",
+            "num": 33
         },
         {
             "id": 1,
-            "situation": "긴급 홍수 상황"
+            "situation": "긴급 홍수 상황",
+            "num": 34
         },
         {
             "id": 1,
-            "situation": "긴급 홍수 주의보"
+            "situation": "긴급 홍수 주의보",
+            "num": 32
         },
         {
             "id": 2,
-            "situation": "뇌우 경보"
+            "situation": "뇌우 경보",
+            "num": 39
         },
         {
             "id": 2,
-            "situation": "뇌우 주의보"
+            "situation": "뇌우 주의보",
+            "num": 38
         },
         {
             "id": 2,
-            "situation": "눈 폭풍 경보"
+            "situation": "눈 폭풍 경보",
+            "num": 49
         },
         {
             "id": 2,
-            "situation": "눈 폭풍 주의보"
+            "situation": "눈 폭풍 주의보",
+            "num": 48
         },
         {
             "id": 5,
-            "situation": "모래 폭풍 경보"
+            "situation": "모래 폭풍 경보",
+            "num": 29
         },
         {
             "id": 6,
-            "situation": "방사능 위험 경보"
+            "situation": "방사능 위험 경보",
+            "num": 50
         },
         {
             "id": 7,
-            "situation": "산간계곡 경보"
+            "situation": "산간계곡 경보",
+            "num": 54
         },
         {
             "id": 7,
-            "situation": "산간계곡 주의보"
+            "situation": "산간계곡 주의보",
+            "num": 53
         },
         {
             "id": 8,
-            "situation": "악기상 정보"
+            "situation": "악기상 정보",
+            "num": 40
         },
         {
             "id": 8,
-            "situation": "안개 경보"
+            "situation": "안개 경보",
+            "num": 22
         },
         {
             "id": 8,
-            "situation": "안개 주의보"
+            "situation": "안개 주의보",
+            "num": 21
         },
         {
             "id": 8,
-            "situation": "열대 폭풍(태풍) 경보"
+            "situation": "열대 폭풍(태풍) 경보",
+            "num": 46
         },
         {
             "id": 8,
-            "situation": "열대 폭풍(태풍) 주의보"
+            "situation": "열대 폭풍(태풍) 주의보",
+            "num": 45
         },
         {
             "id": 8,
-            "situation": "위험 물질 경보"
+            "situation": "위험 물질 경보",
+            "num": 51
         },
         {
             "id": 9,
-            "situation": "지진 경보"
+            "situation": "지진 경보",
+            "num": 30
         },
         {
             "id": 12,
-            "situation": "토네이도 경보"
+            "situation": "토네이도 경보",
+            "num": 44
         },
         {
             "id": 12,
-            "situation": "토네이도 주의보"
+            "situation": "토네이도 주의보",
+            "num": 43
         },
         {
             "id": 12,
-            "situation": "특수 해양 경보"
+            "situation": "특수 해양 경보",
+            "num": 41
         },
         {
             "id": 12,
-            "situation": "특이 기상 정보"
+            "situation": "특이 기상 정보",
+            "num": 42
         },
         {
             "id": 13,
-            "situation": "폭풍설경보"
+            "situation": "폭풍설경보",
+            "num": 26
         },
         {
             "id": 14,
-            "situation": "해안 침수 경보"
+            "situation": "해안 침수 경보",
+            "num": 28
         },
         {
             "id": 14,
-            "situation": "해안 침수 주의보"
+            "situation": "해안 침수 주의보",
+            "num": 27
         },
         {
             "id": 14,
-            "situation": "핵 발전소 관련 경보"
+            "situation": "핵 발전소 관련 경보",
+            "num": 52
         },
         {
             "id": 14,
-            "situation": "홍수 경보"
+            "situation": "홍수 경보",
+            "num": 36
         },
         {
             "id": 14,
-            "situation": "홍수 상황"
+            "situation": "홍수 상황",
+            "num": 37
         },
         {
             "id": 14,
-            "situation": "홍수 주의보"
+            "situation": "홍수 주의보",
+            "num": 35
         },
         {
             "id": 14,
-            "situation": "화산 경보"
+            "situation": "화산 경보",
+            "num": 47
         },
         {
             "id": 14,
-            "situation": "화재 경보"
+            "situation": "화재 경보",
+            "num": 31
         }
     ],
 
     "civil_defence": [{
             "id": 5,
-            "situation": "모든 경보의 중단"
+            "situation": "모든 경보의 중단",
+            "num": 61
         },
         {
             "id": 5,
-            "situation": "민방위 경계경보"
+            "situation": "민방위 경계경보",
+            "num": 56
         },
         {
             "id": 5,
-            "situation": "민방위 경보 해제"
+            "situation": "민방위 경보 해제",
+            "num": 60
         },
         {
             "id": 5,
-            "situation": "민방위 공습 경보"
+            "situation": "민방위 공습 경보",
+            "num": 55
         },
         {
             "id": 5,
-            "situation": "민방위 재난 경계경보"
+            "situation": "민방위 재난 경계경보",
+            "num": 58
         },
         {
             "id": 5,
-            "situation": "민방위 재난 위험경보"
+            "situation": "민방위 재난 위험경보",
+            "num": 57
         },
         {
             "id": 5,
-            "situation": "민방위 화생방 경보"
+            "situation": "민방위 화생방 경보",
+            "num": 59
         },
         {
             "id": 10,
-            "situation": "추모 사이렌"
+            "situation": "추모 사이렌",
+            "num": 62
         }
     ],
 
     "national": [{
             "id": 1,
-            "situation": "국가 비상 상황 발생"
+            "situation": "국가 비상 상황 발생",
+            "num": 63
         },
         {
             "id": 1,
-            "situation": "국가 비상 상황 종료"
+            "situation": "국가 비상 상황 종료",
+            "num": 64
         },
         {
             "id": 9,
-            "situation": "중앙 재난 안전 대책 본부"
+            "situation": "중앙 재난 안전 대책 본부",
+            "num": 65
         }
     ],
 
     "local": [{
             "id": "0",
-            "situation": "119 전화 불통 응급 상황"
+            "situation": "119 전화 불통 응급 상황",
+            "num": 75
         },
         {
             "id": 1,
-            "situation": "교통 통제"
+            "situation": "교통 통제",
+            "num": 67
         },
         {
             "id": 6,
-            "situation": "법 집행 경고"
+            "situation": "법 집행 경고",
+            "num": 72
         },
         {
             "id": 7,
-            "situation": "시민 위험 상황 경보"
+            "situation": "시민 위험 상황 경보",
+            "num": 69
         },
         {
             "id": 7,
-            "situation": "시민 응급 상황 메시지"
+            "situation": "시민 응급 상황 메시지",
+            "num": 70
         },
         {
             "id": 8,
-            "situation": "어린이 유괴 긴급 상황"
+            "situation": "어린이 유괴 긴급 상황",
+            "num": 68
         },
         {
             "id": 9,
-            "situation": "지역 긴급 상황"
+            "situation": "지역 긴급 상황",
+            "num": 73
         },
         {
             "id": 12,
-            "situation": "통신 메시지 알림"
+            "situation": "통신 메시지 알림",
+            "num": 74
         },
         {
             "id": 14,
-            "situation": "행정 메시지"
+            "situation": "행정 메시지",
+            "num": 66
         }
     ],
 
     "test": [{
             "id": 8,
-            "situation": "연습/시연 경보"
+            "situation": "연습/시연 경보",
+            "num": 80
         },
         {
             "id": 9,
-            "situation": "전국적 월별 의무 테스트"
+            "situation": "전국적 월별 의무 테스트",
+            "num": 77
         },
         {
             "id": 9,
-            "situation": "전국적 주간별 의무 테스트"
+            "situation": "전국적 주간별 의무 테스트",
+            "num": 78
         },
         {
             "id": 9,
-            "situation": "전국적 주기 테스트"
+            "situation": "전국적 주기 테스트",
+            "num": 76
         },
         {
             "id": 12,
-            "situation": "특수 수신기 테스트"
+            "situation": "특수 수신기 테스트",
+            "num": 79
         }
     ],
 
     "weather": [{
             "id": 5,
-            "situation": "미세먼지 경보"
+            "situation": "미세먼지 경보",
+            "num": 82
         },
         {
             "id": 5,
-            "situation": "미세먼지 주의보"
+            "situation": "미세먼지 주의보",
+            "num": 81
         },
         {
             "id": 8,
-            "situation": "오존 경보"
+            "situation": "오존 경보",
+            "num": 89
         },
         {
             "id": 8,
-            "situation": "오존 주의보"
+            "situation": "오존 주의보",
+            "num": 88
         },
         {
             "id": 9,
-            "situation": "자외선 경보"
+            "situation": "자외선 경보",
+            "num": 87
         },
         {
             "id": 9,
-            "situation": "자외선 주의보"
+            "situation": "자외선 주의보",
+            "num": 86
         },
         {
             "id": 10,
-            "situation": "초미세먼지 경보"
+            "situation": "초미세먼지 경보",
+            "num": 85
         },
         {
             "id": 10,
-            "situation": "초미세먼지 주의보"
+            "situation": "초미세먼지 주의보",
+            "num": 84
         },
         {
             "id": 14,
-            "situation": "황사 주의보"
+            "situation": "황사 주의보",
+            "num": 83
         }
     ]
 

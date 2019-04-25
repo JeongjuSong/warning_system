@@ -7,9 +7,8 @@ $(document).ready(function () {
          console.log(data.weather_special);
 
          var weather_special = data.weather_special.map(function (weather_special) {
-            return weather_special.situation;
+            return weather_special;
          });
-
 
          //  mymodal.empty();
          if (weather_special.length) {
@@ -17,8 +16,8 @@ $(document).ready(function () {
             var showText = "";
             weather_special.map(function (weather_special) {
 
-               showText += "<input type='checkbox' id='alarm_type1' name='alarm_type' value='" + weather_special + "'>" + weather_special + "<br>";
-               
+               showText += "<input type='checkbox' id='alarm_type1' name= '" + weather_special.num + "' value='" + weather_special.situation + "'>" + weather_special.situation + "<br>";
+
             });
             mymodal.find('.modal-body').html(showText);
          }
@@ -206,10 +205,11 @@ $(document).ready(function () {
 
       var location = $('#checklocation').val();
       if (location.length >= 1) {
-         showText += '지역 선택 : ' + location + '<br/>';
+         showText += '단말기 선택 : ' + location + '<br/>';
       }
 
       var alarm_typeArray = new Array();
+      var alarm_code = 0;
 
       for (var a = 1; a <= 7; a++) {
          var type = $('#popup_show' + a + ':checked').val();
@@ -217,17 +217,22 @@ $(document).ready(function () {
             var val2 = [];
             $('#alarm_type' + a + ':checked').each(function (i) {
                val2[i] = $(this).val();
+               alarm_code = (this.name);
                alarm_typeArray.push(val2[i]);
-               showText += type + " : " + val2[i] + '<br/>';
+               showText += "재난종류 : (" + type + ") " + val2[i] + '<br/>';
                // console.log(alarm_typeArray)
             });
          }
       }
 
       var communicationArray = new Array();
+      var communicationcode = new Array();
       var val = [];
+      var val3 = [];
       $('#communication:checked').each(function (i) {
          val[i] = $(this).val();
+         val3[i]= (this.name);
+         communicationcode.push(val3[i]);
          communicationArray.push(val[i]);
          // console.log(communicationArray)
       });
@@ -261,7 +266,13 @@ $(document).ready(function () {
       if (siren != null) {
          showText += '사이렌 종류 : ' + siren + '<br/>';
       }
-
+      
+      var sirencode;
+      $("select#siren").each(function () {
+         sirencode = $(this).find('option:selected').attr("name");
+         // console.log(sirencode);
+      });
+      
       if (siren == null) {
          siren = 'NULL';
       }
@@ -270,51 +281,45 @@ $(document).ready(function () {
       mymodal2.find('.modal-body').html(showText);
 
       if (time != 'null-null-nullTnull:null:00+09:00' && location != null && alarm_typeArray != undefined && communicationArray != undefined) {
-         $(document).ready(function() {
-            $('#checktime').val(time); //시간
-            $('#checkalarm').val(alarm_typeArray); //재난 종류
-            $('#checkcommunication').val(communicationArray); //통신 종류
-            $('#checktts').val(tts); //tts 종류
-            $('#checkttst').val(tts_text); //tts 방송문안
-            $('#checkmessage').val(message); //저장메시지 종류
-            $('#checkmessaget').val(message_text); //저장메시지 문안
-            $('#checksiren').val(siren); //사이렌
-         })
+      $(document).ready(function () {
+         $('#checktime').val(time); //시간
+         $('#checkalarm').val(alarm_code); //재난 종류
+         $('#checkcommunication').val(communicationcode); //통신 종류
+         $('#checkmessaget').val(message_text); //저장메시지 문안
+         $('#checksiren').val(sirencode); //사이렌
+      })
       }
 
-      // $("#postwarning").click(function () {
-      //    if (time != 'null-null-nullTnull:null:00+09:00' && location != null && alarm_typeArray != undefined && communicationArray != undefined) {
-      //       $.ajax({
-      //          type: "POST",
-      //          url: "/warninginsert",
-      //          async: true,
-      //          data: {
-      //             time: time,
-      //             location: location,
-      //             alarm_type: alarm_typeArray,
-      //             communication: communicationArray,
-      //             tts: tts,
-      //             tts_text: tts_text,
-      //             message: message,
-      //             message_text: message_text,
-      //             siren: siren,
-      //             area: user_area
-      //          },
-      //          dataType: "json",
-      //          cache: false,
-      //          success: function (data) {
-      //             return sweetalert();
-      //          },
-      //          error: function (data) { // error인데도 발령이 되는 부분 수정
-      //             return sweetalert();
-      //          }
-      //       });
+      $("#postwarning").click(function () {
+         if (time != 'null-null-nullTnull:null:00+09:00' && location != null && alarm_typeArray != undefined && communicationArray != undefined) {
+            $.ajax({
+               type: "POST",
+               url: "/warninginsert",
+               async: true,
+               data: {
+                  time: time,
+                  location: location,
+                  alarm_type: alarm_typeArray,
+                  communication: communicationArray,
+                  message_text: message_text,
+                  siren: siren,
+                  area: user_area
+               },
+               dataType: "json",
+               cache: false,
+               success: function (data) {
+                  return sweetalert();
+               },
+               error: function (data) { // error인데도 발령이 되는 부분 수정
+                  return sweetalert();
+               }
+            });
 
-      //    } else {
-      //       // alert('선택하지 않은 항목이 있는지 확인하세요.');
-      //       return sweetalert2();
-      //    }
-      // });
+         } else {
+            // alert('선택하지 않은 항목이 있는지 확인하세요.');
+            return sweetalert2();
+         }
+      });
    });
 
    for (var i = 1; i <= 9; i++) {
