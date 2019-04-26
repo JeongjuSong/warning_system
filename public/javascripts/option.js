@@ -118,7 +118,7 @@ function clear_onclick() {
     document.getElementById("ahour").selectedIndex = -1;
     document.getElementById("aminute").selectedIndex = -1;
     document.getElementById("tts_title").selectedIndex = -1;
-    document.getElementById("message_title").selectedIndex = -1;
+    document.getElementById("headline").selectedIndex = -1;
     document.getElementById("siren").selectedIndex = -1;
 
 }
@@ -128,7 +128,7 @@ function closecheck() {
     $("[id=broadcast]").parent().removeClass('selected');
     $("[id=broadcast]").prop("checked", false);
     document.getElementById("tts_title").selectedIndex = -1;
-    document.getElementById("message_title").selectedIndex = -1;
+    document.getElementById("headline").selectedIndex = -1;
     document.getElementById("siren").selectedIndex = -1;
 }
 
@@ -390,6 +390,22 @@ function message_select() {
     });
 }
 
+// 경보 메세지 설명, 행동 요령 직접 입력
+function subject_select() {
+    $('select#headline').each(function () {
+        if ($(this).val() == '직접 입력') { //직접 입력 선택한 경우
+            $('#description').val(''); //값 초기화
+            $('#instruction').val(''); //값 초기화
+            $('#description').attr("disabled", false);
+            $('#instruction').attr("disabled", false);
+        } else { //직접 입력이 아닌 경우
+            $('#description').attr("disabled", true);
+            $('#instruction').attr("disabled", true);
+        }
+    });
+}
+
+
 // 구글 차트
 google.charts.load('current', {
     'packages': ['corechart']
@@ -418,55 +434,66 @@ function drawChart() {
 
 function SendData() { // post rasData
     var postData = { //postData 타입 정의
-         "time": "",
-         "location": "",
-         "alarm_type": "",
-         "communication": "",
-         "message_text": "",
-         "siren": "",
-         "user_area" : 0,
-      };
+        "identifier": 0,
+        "sender": "", //추가
+        "sent": "",
+        "status": "",
+        "msgType": "",
+        "scope": "",
+        "category": "",
+        "event" : "", //추가
+        "responseType" : "",
+        "urgency" : "",
+        "severity": "",
+        "certainty": "", //추가,
+        "eventcode" : "", //SAME/EWK 추가
+        "headline": "", //추가
+        "description": "",//추가
+        "instruction" : "", //추가
+        "contact": "", //추가 default
+        "location": ""
+    };
 
-      var time = document.getElementById('checktime').value; //시간
-      var code = document.getElementById('checkcode').value; //행정구역코드
-      var location_num = document.getElementById('checknum').value; //단말기 num
-      var alarm_type = document.getElementById('checkalarm').value; //재난 종류
-      var communication = document.getElementById('checkcommunication').value; //통신 종류
-    //   var tts = document.getElementById('checktts').value; //tts 종류
-    //   var tts_text = document.getElementById('checkttst').value; //tts 방송문안
-    //   var message = document.getElementById('checkmessage').value; //저장메시지 종류
-      var message_text = document.getElementById('checkmessaget').value; //저장메시지 방송문안
-      var siren = document.getElementById('siren').value; //사이렌 종류
-    
-      postData.user_area = user_area; // 인천
-      postData.time = time; // 즉시
-      postData.code = code; // 남동구
-      postData.location_num = location_num; // 인천시청역
-      postData.alarm_type = alarm_type; // 지진 경보
-      postData.communication = communication; // 인터넷
-    //   postData.tts = tts;
-    //   postData.tts_text = tts_text;
-    //   postData.message = message;
-      postData.message_text = message_text; // 메시지 문안
-      postData.siren = siren; // 사이렌
+    var time = document.getElementById('checktime').value; //시간
+    var code = document.getElementById('checkcode').value; //행정구역코드
+    var location_num = document.getElementById('checknum').value; //단말기 num
+    var alarm_type = document.getElementById('checkalarm').value; //재난 종류 num
+    var severity = $('select#severity').val(); // 경보 발령 원인 사건의 피해규모
+    var communication = document.getElementById('checkcommunication').value; //통신 종류
+    var headline = document.getElementById('checkheadline').value;
+    var siren = document.getElementById('siren').value; //사이렌 종류
 
-      var getTest = function (data) {
-         var result;
-         $.ajax({
+    postData.identifier = user_area; // 인천
+    postData.sender = //장치의 식별자
+    postData.sent = time; // 즉시
+    postData.status = "Actual";
+    postData.msgType = "Alert";
+    postData.scope = "Public";
+    postData.category= //재난 카테고리
+    postData.responseType = "Shelter";
+    postData.urgency = "Immediate";
+    postData.severity = severity;
+    postData.code = code; // 남동구
+    postData.location_num = location_num; // 인천시청역
+    postData.siren = siren; // 사이렌
+
+    var getTest = function (data) {
+        var result;
+        $.ajax({
             type: "POST",
             url: '/rasData',
             data: data,
             // async: false,
             async: true,
             success: function (data) {
-               result = data.result;
+                result = data.result;
             },
             error: function (e) {}
-         });
-         return result;
-      }
-      var run = function (postData) {
-         getTest(postData);
-      }
-      run(postData);
-   }
+        });
+        return result;
+    }
+    var run = function (postData) {
+        getTest(postData);
+    }
+    run(postData);
+}

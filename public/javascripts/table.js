@@ -128,7 +128,7 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
       url: '/tts',
       contentType: "application/json",
     }).then(function data(response) {
-      for (var i = 0; i <= 10; i++) {
+      for (var i = 0; i <= 50; i++) {
         if (index == i + 2) {
           // console.log(response.data[i].text);
           $scope.gridOption2 = response.data[i].text;
@@ -156,7 +156,7 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
       url: '/message',
       contentType: "application/json",
     }).then(function data(response) {
-      for (var i = 0; i <= 10; i++) {
+      for (var i = 0; i <= 50; i++) {
         if (index == i + 2) {
           // console.log(response.data[i].text);
           $scope.gridOption4 = response.data[i].text;
@@ -165,14 +165,43 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     });
   }
 
-    // 사이렌 종류 불러오기 gridOption5
+  // 사이렌 종류 불러오기 gridOption5
+  $http({
+    method: "GET",
+    url: '/siren',
+    contentType: "application/json",
+  }).then(function data(response) {
+    $scope.gridOption5 = response.data;
+  });
+
+  // 경보의 주제 gridOption6
+  $http({
+    method: "GET",
+    url: '/subject',
+    contentType: "application/json",
+  }).then(function data(response) {
+    $scope.gridOption6 = response.data;
+    // console.log("option6 : "+response.data);
+    // console.log(response.data[0].headline);
+  });
+
+  // 경보의 설명, 행동 요령 불러오기 gridOption7
+  $scope.subject_event = function () {
+    var index = $("#headline option").index($("#headline option:selected"));
     $http({
       method: "GET",
-      url: '/siren',
+      url: '/subject',
       contentType: "application/json",
     }).then(function data(response) {
-      $scope.gridOption5 = response.data;
+      for (var i = 0; i <= 50; i++) {
+        if (index == i + 2) {
+          // console.log(response.data[i].text);
+          $scope.gridOption7 = response.data[i].description;
+          $scope.gridOption8 = response.data[i].instruction;
+        }
+      }
     });
+  }
 
 }]);
 
@@ -544,7 +573,7 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
 //   }]
 // }]);
 
-// 저장메시지 추가/수정/삭제 
+// 발령 메시지 추가/수정/삭제 
 myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editableOptions', function ($scope, $http, $q, uiGridConstants, editableOptions) {
   console.log('myCtrl4 Open');
   editableOptions.theme = 'bs3'
@@ -553,12 +582,12 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     var tmp = true;
     $http({
       method: 'POST',
-      url: '/messageinsert',
+      url: '/subjectinsert',
       contentType: "application/json",
       data: {
         no: row.no,
-        title: row.title,
-        text: row.text
+        headline: row.headline,
+        description: row.description
       }
     }).success(function (data, status, headers, config) {
       return success();
@@ -569,12 +598,12 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
 
     $http({
       method: 'POST',
-      url: '/messageupdate',
+      url: '/subjecteupdate',
       contentType: "application/json",
       data: {
         no: row.no,
-        title: row.title,
-        text: row.text
+        headline: row.headline,
+        description: row.description
       }
     }).success(function (data, status, headers, config) {
       return success();
@@ -589,7 +618,7 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     //TODO
     $http({
       method: 'POST',
-      url: '/messagedelete',
+      url: '/subjectdelete',
       contentType: "application/json",
       data: {
         no: row.no,
@@ -604,7 +633,7 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
   var getData = function () {
     $http({
       method: 'GET',
-      url: '/message',
+      url: '/subject',
       contentType: "application/json",
       data: {}
     }).success(function (data, status, headers, config) {
@@ -637,13 +666,18 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         width: 70
       },
       {
-        name: 'title',
+        name: 'headline',
         width: 200,
         enableCellEdit: true
       },
       {
-        name: 'text',
-        width: 900,
+        name: 'description',
+        width: 300,
+        enableCellEdit: true
+      },
+       {
+        name: 'instruction',
+        width: 600,
         enableCellEdit: true
       },
       {
@@ -684,12 +718,17 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         width: 70
       },
       {
-        name: 'title',
+        name: 'headline',
         width: 200,
         enableCellEdit: true
       },
       {
-        name: 'Text',
+        name: 'description',
+        width: 300,
+        enableCellEdit: true
+      },
+       {
+        name: 'instruction',
         width: 600,
         enableCellEdit: true
       },

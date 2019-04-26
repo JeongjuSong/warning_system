@@ -172,10 +172,12 @@ $(document).ready(function () {
       });
    });
 
-   // 선택 내용 확인은 popup8, 실제 방송 전송은 popup9
+   // 선택 내용 확인은 popup8, 테스트 popup9, 훈련 popup10 실제 방송 전송은 popup11
    $('.custom-modal8').click(function () {
-      var mymodal = $('#popup9');
-      var mymodal2 = $('#popup8');
+      var mymodal = $('#popup8');
+      var mymodal2 = $('#popup9');
+      var mymodal3 = $('#popup10');
+      var mymodal4 = $('#popup11');
       var showText = "";
       var ayear = $('select#ayear').val();
       var amonth = $('select#amonth').val();
@@ -185,8 +187,9 @@ $(document).ready(function () {
       var tts = $("select#tts_title").val();
       var tts_text = $('#tts_text').val();
       var repeat_num = $('select#repeat_num').val();
-      var message = $("select#message_title").val();
-      var message_text = $('#message_text').val();
+      var headline = $("select#headline").val();
+      var description = $('#description').val();
+      var instruction = $('#instruction').val();
       var siren = $("select#siren").val();
       var time = '';
 
@@ -254,13 +257,12 @@ $(document).ready(function () {
          showText += 'TTS 방송 반복 횟수 : ' + repeat_num + '<br/>';
       }
 
-      if (message != null) {
-         showText += '저장 메시지 종류 : ' + message + '<br/>저장 메시지 문안 : ' + message_text + '<br/>';
+      if (headline != null) {
+         showText += '메시지 종류 : ' + headline + '<br/>경보 위험요인 : ' + description + '<br/>행동 요령 : ' + instruction + '<br/>';
       }
 
-      if (message == null) {
-         message = 'NULL';
-         message_text = 'NULL';
+      if (headline == null) {
+         headline = 'NULL';
       }
 
       if (siren != null) {
@@ -279,13 +281,17 @@ $(document).ready(function () {
 
       mymodal.find('.modal-body').html(showText);
       mymodal2.find('.modal-body').html(showText);
+      mymodal3.find('.modal-body').html(showText);
+      mymodal4.find('.modal-body').html(showText);
 
       if (time != 'null-null-nullTnull:null:00+09:00' && location != null && alarm_typeArray != undefined && communicationArray != undefined) {
       $(document).ready(function () {
          $('#checktime').val(time); //시간
          $('#checkalarm').val(alarm_code); //재난 종류
          $('#checkcommunication').val(communicationcode); //통신 종류
-         $('#checkmessaget').val(message_text); //저장메시지 문안
+         $('#checkheadline').val(headline); //저장메시지 주제
+         $('#checkdescription').val(description); // 위험 요인 설명
+         $('#checkinstruction').val(instruction); // 행동 요령
          $('#checksiren').val(sirencode); //사이렌
       })
       }
@@ -301,7 +307,7 @@ $(document).ready(function () {
                   location: location,
                   alarm_type: alarm_typeArray,
                   communication: communicationArray,
-                  message_text: message_text,
+                  headline : headline,
                   siren: siren,
                   area: user_area
                },
@@ -322,7 +328,7 @@ $(document).ready(function () {
       });
    });
 
-   for (var i = 1; i <= 9; i++) {
+   for (var i = 1; i <= 11; i++) {
       $("#popup" + i).modal({
          show: false,
          backdrop: 'static'
@@ -353,8 +359,14 @@ $(document).ready(function () {
    $("#confirm").click(function () {
       $("#popup8").modal('show');
    });
-   $("#warning").click(function () {
+   $("#testwarning").click(function () {
       $("#popup9").modal('show');
+   });
+   $("#exercisewarning").click(function () {
+      $("#popup10").modal('show');
+   });
+   $("#warning").click(function () {
+      $("#popup11").modal('show');
    });
 
 });

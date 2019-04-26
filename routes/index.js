@@ -207,8 +207,8 @@ router.get('/weather_special', function (req, res, next) {
 })
 
 // edit_message db
-router.get('/message', function (req, res, next) {
-    connection.query('SELECT * from message', function (err, rows) {
+router.get('/subject', function (req, res, next) {
+    connection.query('SELECT * from subject', function (err, rows) {
         if (err) throw err;
 
         // console.log('The solution is: ', rows);
@@ -217,9 +217,9 @@ router.get('/message', function (req, res, next) {
     });
 });
 
-router.get('/message/all', function (req, res, next) {
+router.get('/subject/all', function (req, res, next) {
 
-    connection.query('SELECT * from message', function (err, rows) {
+    connection.query('SELECT * from subject', function (err, rows) {
         if (err) throw err;
 
         // console.log('The solution is: ', rows);
@@ -227,11 +227,11 @@ router.get('/message/all', function (req, res, next) {
     });
 });
 
-router.all('/messageinsert', function (req, res, next) {
+router.all('/subjectinsert', function (req, res, next) {
 
 
     /* insert 쿼리문수정 */
-    connection.query('INSERT INTO message(no, title, text) ' + 'values("' + req.body.no + '","' + req.body.title + '","' + req.body.text + '")',
+    connection.query('INSERT INTO subject(no, headline, description, instruction) ' + 'values("' + req.body.no + '","' + req.body.headline + '","' + req.body.description+ '","' + req.body.instruction + '")',
         function (err, results, fiels) {
             // console.log(arguments);
         });
@@ -239,12 +239,13 @@ router.all('/messageinsert', function (req, res, next) {
     res.send("okay");
 });
 
-router.all('/messageupdate', function (req, res, next) {
+router.all('/subjectupdate', function (req, res, next) {
 
     /* update 쿼리문수정 */
     connection.query(
-            "UPDATE message SET title='" + req.body.title + "'" +
-            ", text='" + req.body.text + "' where no=" + req.body.no),
+            "UPDATE subject SET headline='" + req.body.headline + "'" +
+            ", description='" + req.body.description + "'" +
+            ", instruction='" + req.body.instruction + "' where no=" + req.body.no),
         function (err, results, fiels) {
             // console.log(arguments);
         };
@@ -252,13 +253,13 @@ router.all('/messageupdate', function (req, res, next) {
     res.send("okay");
 });
 
-router.all('/messagedelete', function (req, res, next) {
+router.all('/sbjectdelete', function (req, res, next) {
 
     // console.log("req"+req.body.No);
     // console.log("req"+req.body);
 
 
-    var sql = 'DELETE FROM message WHERE no=' + req.body.no;
+    var sql = 'DELETE FROM subject WHERE no=' + req.body.no;
     connection.query(sql, ['no'], function (err, results) {
         // console.log(arguments);
     });
@@ -339,6 +340,7 @@ router.get('/siren', function (req, res, next) {
     });
 });
 
+
 // check_terminal db insert
 router.get('/terminal', function (req, res, next) {
 
@@ -410,14 +412,13 @@ router.post('/warninginsert', function (req, res, next) {
     var communication = req.body.communication;
     var tts = req.body.tts;
     var tts_text = req.body.tts_text;
-    var message = req.body.message;
-    var message_text = req.body.message_text;
+    var headline = req.body.headline;
     var siren = req.body.siren;
     var area = req.body.area;
 
     var datas = [time, location, alarm_type, communication, tts, tts_text, message, message_text, siren, area];
 
-    connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, tts_text, message, message_text, siren, area) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' + req.body.tts_text + '","' + req.body.message + '","' + req.body.message_text + '","' + req.body.siren + '","' + req.body.area + '")',
+    connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, tts_text, headline, siren, area) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' + req.body.tts_text + '","' + req.body.headline + '","' + req.body.siren + '","' + req.body.area + '")',
         function (err, results, fiels) {
             // console.log(arguments);
         });
@@ -488,7 +489,8 @@ router.get('/historyjeju/all', function (req, res, next) {
     });
 });
 
-// 실제 발령 시 ras에 전송
+////////////////////////////////////수정
+// 실제 발령 시 ras에 전송 
 router.post('/rasData', function (req, res, next) {
 
     console.log("++++++++++++++++++++rasData++++++++++++++++++++");
