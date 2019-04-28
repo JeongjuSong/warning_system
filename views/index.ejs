@@ -135,6 +135,11 @@
                     </button>
                     <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold; margin-left:10px;">다중이용시설
                         긴급경보방송시스템</h1>
+                    <div style="margin-left: 50px;">
+                        <input type="radio" name="status" value="Test">테스트 방송
+                        <input type="radio" name="status" value="Exercise">훈련 방송
+                        <input type="radio" name="status" value="Actual">실제 방송
+                    </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -193,7 +198,7 @@
                         <div class="col-12">
                             <div class="col-sm-6" style="float:left; margin-left: -0.75rem;">
                                 <!-- 화면 반 나누기 -->
-                                <div class="col-sm-9" style="float:left;">
+                                <div class="col-sm-8" style="float:left;">
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <span class="m-0 font-weight-bold text-primary">발령 시간</span>
@@ -203,9 +208,8 @@
                                             id="checkboxTest">
                                             <label class="btn btn-default"
                                                 style="height: 53px; line-height: 35px; margin-right: 10px;">
-                                                <input type="checkbox" id="time" value="right_now">즉시 발령
-                                            </label>
-                                            <label class="btn btn-default"> 예약 발령 :
+                                                <input type="checkbox" id="time" value="right_now">즉시 </label>
+                                            <label class="btn btn-default"> 예약 :
                                                 <select id="ayear"></select>년
                                                 <select id="amonth"></select>월
                                                 <select id="aday"></select>일
@@ -215,12 +219,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3" style="float:left;">
+                                <div class="col-sm-4" style="float:left;">
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
-                                            <span class="m-0 font-weight-bold text-primary">피해 규모</span>
+                                            <span class="m-0 font-weight-bold text-primary">사건/규모</span>
                                         </div>
-                                        <div class="col-12" style="padding:23px; height:75px">
+                                        <div class="col-12" style="padding: 10px;">
+                                            기준 사건 :
+                                            <input type="text" id="event">
+                                            <hr />
+                                            피해 규모 :
                                             <select id="severity">
                                                 <option value="Severe">심각한 피해</option>
                                                 <option value="Extreme">이례적인 피혜</option>
@@ -448,18 +456,18 @@
                             </div>
 
                             <!-- 이 부분에 선택값들 value 처리 후 block 처리 -->
-                            <input id="checktime" type="text" style="display: none;"> <!-- 시간 -->
+                            <input id="checktime" type="text" style="display: none;">
                             <input id="checkcode" type="text" style="display: none;">
                             <input id="checklocation" type="text" style="display: none;">
                             <input id="checknum" type="text" style="display: none;">
                             <input id="checkalarm" type="text" style="display: none;">
-                            <input id="checkcommunication" type="text" style="display: none;">
+                            <input id="checkcategory" type="text" style="display: none;">
                             <input id="checktts" type="text" style="display: none;">
                             <input id="checkttst" type="text" style="display: none;">
                             <input id="checkheadline" type="text" style="display: none;">
                             <input id="checkdescription" type="text" style="display: none;">
                             <input id="checkinstruction" type="text" style="display: none;">
-                            <input id="checksiren" type="text" style="display: none;">
+                            <input id="checkstatus" type="text" style="display: none;">
 
                             <div class="col-12" style="float:left;">
                                 <div class="card shadow mb-4" style="text-align:center; padding: 10px;">
@@ -468,12 +476,8 @@
                                             onclick="window.location.reload()" style="width:150px;">조작 초기화</button>
                                         <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
                                             id='confirm'>선택 내용 확인</button>
-                                        <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
-                                            id='testwarning'>시험 방송 전송</button>
-                                        <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
-                                            id='exercisewarning'>훈련 방송 전송</button>
                                         <button type="button" class="btn btn-danger custom-modal8" style="width:150px;"
-                                            id='warning'>실제 방송 전송</button>
+                                            id='warning'>경보 발령 전송</button>
                                     </div>
                                 </div>
                             </div>
@@ -516,61 +520,14 @@
                 </div>
             </div>
 
-            <!-- 시험 방송 전송 -->
-            <div class="modal" id="popup9" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <form id="myForm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_title">시험 방송 전송</h5>
-                            </div>
-                            <div class='modal-body'>
-                                <p>
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal"
-                                    onclick="window.location.reload()">닫기</button>
-                                <button type="button" class="btn btn-primary" id="postwarning"
-                                    onclick="testSendData()">시험
-                                    방송하기</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- 훈련 방송 전송 -->
-            <div class="modal" id="popup10" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <form id="myForm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_title">훈련 방송 전송</h5>
-                            </div>
-                            <div class='modal-body'>
-                                <p>
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal"
-                                    onclick="window.location.reload()">닫기</button>
-                                <button type="button" class="btn btn-primary" id="postwarning"
-                                    onclick="exerciseSendData()">훈련
-                                    방송하기</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- 실제 방송 전송 -->
+            <!-- 방송 전송 -->
             <div class="modal" id="popup11" role="dialog">
                 <div class="modal-dialog" role="document">
                     <form id="myForm">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modal_title">실제 방송 전송</h5>
+                                <h5 class="modal-title" id="modal_title">경보 발령 전송</h5>
+
                             </div>
                             <div class='modal-body'>
                                 <p>
@@ -579,8 +536,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal"
                                     onclick="window.location.reload()">닫기</button>
-                                <button type="button" class="btn btn-primary" id="postwarning" onclick="SendData()">실제
-                                    방송하기</button>
+                                <button type="button" class="btn btn-primary" id="postwarning" onclick="SendData()">방송하기</button>
                             </div>
                         </div>
                     </form>
@@ -636,10 +592,10 @@
                                 <option value="" disabled selected>제목 선택</option>
                                 <option value="직접 입력">직접 입력</option>
                                 <script>
-                                    for (var i = 0; i <= '{{gridOption6}}'.length; i++) {
-                                        document.write("<option value=" + '{{gridOption6[' + i +
+                                    for (var i = 0; i <= '{{gridOption3}}'.length; i++) {
+                                        document.write("<option value=" + '{{gridOption3[' + i +
                                             '].headline}}' +
-                                            "> {{gridOption6[" + i +
+                                            "> {{gridOption3[" + i +
                                             "].headline}} </option>");
                                     }
                                 </script>
@@ -648,11 +604,11 @@
                             <br /><br />
                             경보 위험요인 설명 : <br />
                             <textarea id="description"
-                                style="width: 400px; height: 100px; padding:10px;">{{gridOption7}}</textarea>
+                                style="width: 400px; height: 100px; padding:10px;">{{gridOption4}}</textarea>
                             <br /><br />
                             행동 요령 : <br />
                             <textarea id="instruction"
-                                style="width: 400px; height: 150px; padding:10px;">{{gridOption8}}</textarea>
+                                style="width: 400px; height: 150px; padding:10px;">{{gridOption5}}</textarea>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"
@@ -674,9 +630,9 @@
                             사이렌 선택 : <select id="siren">
                                 <option value="" disabled selected>사이렌 선택</option>
                                 <script>
-                                    for (var i = 0; i <= '{{gridOption5}}'.length; i++) {
-                                        document.write("<option name=" + '{{gridOption5[' + i + '].no}}' +
-                                            " value=" + '{{gridOption5[' + i + '].name}}' + "> {{gridOption5[" + i +
+                                    for (var i = 0; i <= '{{gridOption6}}'.length; i++) {
+                                        document.write("<option name=" + '{{gridOption6[' + i + '].no}}' +
+                                            " value=" + '{{gridOption6[' + i + '].name}}' + "> {{gridOption6[" + i +
                                             "].name}} </option>");
                                     }
                                 </script>

@@ -231,7 +231,7 @@ router.all('/subjectinsert', function (req, res, next) {
 
 
     /* insert 쿼리문수정 */
-    connection.query('INSERT INTO subject(no, headline, description, instruction) ' + 'values("' + req.body.no + '","' + req.body.headline + '","' + req.body.description+ '","' + req.body.instruction + '")',
+    connection.query('INSERT INTO subject(no, headline, description, instruction) ' + 'values("' + req.body.no + '","' + req.body.headline + '","' + req.body.description + '","' + req.body.instruction + '")',
         function (err, results, fiels) {
             // console.log(arguments);
         });
@@ -413,12 +413,15 @@ router.post('/warninginsert', function (req, res, next) {
     var tts = req.body.tts;
     var tts_text = req.body.tts_text;
     var headline = req.body.headline;
+    var description = req.body.description;
+    var instruction = req.body.instruction;
     var siren = req.body.siren;
     var area = req.body.area;
+    var status = req.body.status;
 
-    var datas = [time, location, alarm_type, communication, tts, tts_text, message, message_text, siren, area];
+    var datas = [time, location, alarm_type, communication, tts, tts_text, headline, description, instruction, siren, area, status];
 
-    connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, tts_text, headline, siren, area) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' + req.body.tts_text + '","' + req.body.headline + '","' + req.body.siren + '","' + req.body.area + '")',
+    connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, tts_text, headline, description, instruction, siren, area, status) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' + req.body.tts_text + '","' + req.body.headline + '","' + req.body.description + '","' + req.body.instruction + '","' + req.body.siren + '","' + req.body.area + '","' + req.body.status + '")',
         function (err, results, fiels) {
             // console.log(arguments);
         });
@@ -496,25 +499,53 @@ router.post('/rasData', function (req, res, next) {
     console.log("++++++++++++++++++++rasData++++++++++++++++++++");
 
     var postData = { //postData 타입 정의
-        "time": "",
-        "location": "",
-        "alarm_type": "",
-        "communication": "",
-        "message_text": "",
-        "siren": ""
+        "identifier": 0,
+        "sender": "",
+        "sent": "",
+        "status": "",
+        "msgType": "",
+        "scope": "",
+        "category": "",
+        "event": "",
+        "responseType": "",
+        "urgency": "",
+        "severity": "",
+        "certainty": "",
+        "eventcode_valuename": "",
+        "eventcode_value": "",
+        "headline": "",
+        "description": "",
+        "instruction": "",
+        "contact": "",
+        "area": "",
+        "areaDesc": ""
     };
 
     //set Val     
-    postData.time = time;
-    postData.location = location;
-    postData.alarm_type = alarm_type;
-    postData.communication = communication;
-    postData.message_text = message_text;
-    postData.siren = siren;
+    postData.identifier = user_area; // 인천
+    postData.sender = "INCHEON@WS.GOV"; //장치의 식별자
+    postData.sent = time; // 즉시
+    postData.status = "Actual";
+    postData.msgType = "Alert";
+    postData.scope = "Public";
+    postData.category = category; //재난 카테고리
+    postData.event = event; //기준이 되는 사건
+    postData.responseType = "Shelter";
+    postData.urgency = "Immediate";
+    postData.severity = severity;
+    postData.certainty = "Observed";
+    postData.eventcode_valuename = "SAME";
+    postData.eventcode_value = alarm_type;
+    postData.headline = headline;
+    postData.description = description;
+    postData.instruction = instruction;
+    postData.contact = "MANAGER OF INCHEON CITY HALL CENTRAL CONTROL STATION"; //연락 담당자
+    postData.area = area; // 남동구
+    postData.areaDesc = location_num; // 인천시청역
 
     //TODO 데이터 받아와서 재정의
     // console.log("send_data: " + postData.time);
-    var url = 'http://192.168.12.29:8000/'+ postData.time;
+    var url = 'http://192.168.12.29:8000/' + postData.time;
 
     // console.log("url >>"+url)
     request({

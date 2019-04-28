@@ -432,50 +432,64 @@ function drawChart() {
     chart.draw(data, options);
 }
 
+// 실제 방송 전송
 function SendData() { // post rasData
     var postData = { //postData 타입 정의
         "identifier": 0,
-        "sender": "", //추가
+        "sender": "",
         "sent": "",
         "status": "",
         "msgType": "",
         "scope": "",
         "category": "",
-        "event" : "", //추가
+        "event" : "",
         "responseType" : "",
         "urgency" : "",
         "severity": "",
-        "certainty": "", //추가,
-        "eventcode" : "", //SAME/EWK 추가
-        "headline": "", //추가
-        "description": "",//추가
-        "instruction" : "", //추가
-        "contact": "", //추가 default
-        "location": ""
+        "certainty": "",
+        "eventcode_valuename" : "",
+        "eventcode_value": "",
+        "headline": "",
+        "description": "",
+        "instruction" : "",
+        "contact": "",
+        "area": "",
+        "areaDesc" : ""
     };
 
     var time = document.getElementById('checktime').value; //시간
-    var code = document.getElementById('checkcode').value; //행정구역코드
+    var status = document.getElementById('checkstatus').value; // 실제/훈련/시험
+    var area = document.getElementById('checkcode').value; //행정구역코드
     var location_num = document.getElementById('checknum').value; //단말기 num
-    var alarm_type = document.getElementById('checkalarm').value; //재난 종류 num
+    var category = document.getElementById('checkcategory').value; //재난 카테고리
+    var event = document.getElementById('event').value;
+    var alarm_type = document.getElementById('checkalarm').value; //재난 종류 약어
     var severity = $('select#severity').val(); // 경보 발령 원인 사건의 피해규모
-    var communication = document.getElementById('checkcommunication').value; //통신 종류
-    var headline = document.getElementById('checkheadline').value;
-    var siren = document.getElementById('siren').value; //사이렌 종류
+    var headline = document.getElementById('checkheadline').value; //경보 주제
+    var description = document.getElementById('checkdescription').value; //사건 설명
+    var instruction = document.getElementById('checkinstruction').value; //행동 요령
 
     postData.identifier = user_area; // 인천
-    postData.sender = //장치의 식별자
+    postData.sender = "INCHEON@WS.GOV";//장치의 식별자
     postData.sent = time; // 즉시
-    postData.status = "Actual";
+    postData.status = status;
     postData.msgType = "Alert";
     postData.scope = "Public";
-    postData.category= //재난 카테고리
+    postData.category= category;//재난 카테고리
+    postData.event = event; //기준이 되는 사건
     postData.responseType = "Shelter";
     postData.urgency = "Immediate";
     postData.severity = severity;
-    postData.code = code; // 남동구
-    postData.location_num = location_num; // 인천시청역
-    postData.siren = siren; // 사이렌
+    postData.certainty = "Observed";
+    postData.eventcode_valuename = "SAME";
+    postData.eventcode_value = alarm_type;
+    postData.headline = headline;
+    postData.description = description;
+    postData.instruction = instruction;
+    postData.contact = "MANAGER OF INCHEON CITY HALL CENTRAL CONTROL STATION"; //연락 담당자
+    postData.area = area; // 남동구
+    postData.areaDesc = location_num; // 인천시청역
+    // postData.siren = siren; // 사이렌
 
     var getTest = function (data) {
         var result;
