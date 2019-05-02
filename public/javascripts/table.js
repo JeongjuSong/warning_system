@@ -137,57 +137,20 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     });
   }
 
-  // 저장 메시지 title 불러오기 gridOption3
-  $http({
-    method: "GET",
-    url: '/message',
-    contentType: "application/json",
-  }).then(function data(response) {
-    $scope.gridOption3 = response.data;
-    // console.log("option3 : "+response.data);
-    // console.log(response.data[0].title);
-  });
-
-  // 저장 메시지 text 불러오기 gridOption4
-  $scope.message_event = function () {
-    var index = $("#message_title option").index($("#message_title option:selected"));
-    $http({
-      method: "GET",
-      url: '/message',
-      contentType: "application/json",
-    }).then(function data(response) {
-      for (var i = 0; i <= 50; i++) {
-        if (index == i + 2) {
-          // console.log(response.data[i].text);
-          $scope.gridOption4 = response.data[i].text;
-        }
-      }
-    });
-  }
-
-  // 사이렌 종류 불러오기 gridOption5
-  $http({
-    method: "GET",
-    url: '/siren',
-    contentType: "application/json",
-  }).then(function data(response) {
-    $scope.gridOption5 = response.data;
-  });
-
-  // 경보의 주제 gridOption6
+  // 경보의 주제 gridOption3
   $http({
     method: "GET",
     url: '/subject',
     contentType: "application/json",
   }).then(function data(response) {
-    $scope.gridOption6 = response.data;
-    // console.log("option6 : "+response.data);
+    $scope.gridOption3 = response.data;
+    // console.log("option3 : "+response.data);
     // console.log(response.data[0].headline);
   });
 
-  // 경보의 설명, 행동 요령 불러오기 gridOption7
+  // 경보의 발령 제목, 위험요인, 요령 불러오기
   $scope.subject_event = function () {
-    var index = $("#headline option").index($("#headline option:selected"));
+    var index = $("#headlineselect option").index($("#headlineselect option:selected"));
     $http({
       method: "GET",
       url: '/subject',
@@ -196,12 +159,24 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
       for (var i = 0; i <= 50; i++) {
         if (index == i + 2) {
           // console.log(response.data[i].text);
-          $scope.gridOption7 = response.data[i].description;
-          $scope.gridOption8 = response.data[i].instruction;
+          $scope.gridOption4 = response.data[i].headline;
+          $scope.gridOption5 = response.data[i].description;
+          $scope.gridOption6 = response.data[i].instruction;
         }
       }
     });
   }
+
+  // 사이렌 종류 불러오기 gridOption6
+  $http({
+    method: "GET",
+    url: '/siren',
+    contentType: "application/json",
+  }).then(function data(response) {
+    $scope.gridOption7 = response.data;
+  });
+
+
 
 }]);
 
@@ -376,202 +351,6 @@ myapp.controller('myCtrl2', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
   }]
 }]);
 
-// 단말기 관리 및 추가/수정/삭제
-// myapp.controller('myCtrl3', ['$scope', '$http', '$q', 'uiGridConstants', 'editableOptions', function ($scope, $http, $q, uiGridConstants, editableOptions) {
-//   console.log('myCtrl3 Open');
-//   editableOptions.theme = 'bs3'
-//   var canceler = $q.defer();
-//   $scope.submit = function (row) {
-//     var tmp = true;
-//     $http({
-//       method: 'POST',
-//       url: '/terminalinsert',
-//       contentType: "application/json",
-//       data: {
-//         no: row.no,
-//         location: row.location,
-//         detail_location: row.detail_location,
-//         ip_address: row.ip_address,
-//         status: row.status
-//       }
-//     }).success(function (data, status, headers, config) {
-//       // alert("insert success");
-//     }).error(function (data, status, headers, config) {
-//       tmp = false;
-//       alert("insert fail");
-//     });
-
-//     $http({
-//       method: 'POST',
-//       url: '/terminalupdate',
-//       contentType: "application/json",
-//       data: {
-//         no: row.no,
-//         location: row.location,
-//         detail_location: row.detail_location,
-//         ip_address: row.ip_address,
-//         status: row.status
-//       }
-//     }).success(function (data, status, headers, config) {
-//       // alert('update success');
-//     }).error(function (data, status, headers, config) {
-//       tmp = false;
-//       alert("update fail");
-//     });
-//     if (tmp) alert("Success");
-//   }
-//   $scope.remove = function (row) {
-//     // console.log(row);
-//     //TODO
-//     $http({
-//       method: 'POST',
-//       url: '/terminaldelete',
-//       contentType: "application/json",
-//       data: {
-//         no: row.no,
-//       }
-//     }).success(function (data, status, headers, config) {
-//       alert("success");
-//     }).error(function (data, status, headers, config) {
-//       alert("fail");
-//     });
-//   }
-//   var tableData = [];
-//   var getData = function () {
-//     $http({
-//       method: 'GET',
-//       url: '/terminal',
-//       contentType: "application/json",
-//       data: {}
-//     }).success(function (data, status, headers, config) {
-//       // console.log(data);
-//       $scope.virtualGridOptions.data = data;
-//       $scope.paginationGridOptions.data = data;
-//     }).error(function (data, status, headers, config) {});
-//   }
-//   $scope.pushData = function () {
-//     // console.log("pushData");
-//     $scope.virtualGridOptions.data.push(tmpData);
-//     // $scope.paginationGridOptions.data.push(tmpData);
-//   }
-//   // { name: 'shape', enableFiltering: true, width: 200, enableCellEdit: false },
-//   getData();
-//   $scope.paginationGridOptions = {
-//     paginationPageSizes: [10, 25, 50, 75],
-//     paginationPageSize: 10,
-//   };
-//   angular.extend($scope.paginationGridOptions, $scope.gridOptionsComplex);
-//   $scope.virtualGridOptions = {
-//     enableSorting: true,
-//     showGridFooter: true,
-//     enableFiltering: true,
-//     rowHeight: 40,
-//     modifierKeysToMultiSelectCells: true,
-//     columnDefs: [{
-//         name: 'no',
-//         aggregationType: uiGridConstants.aggregationTypes.count,
-//         width: 70
-//       },
-//       {
-//         name: 'location',
-//         width: 150,
-//         enableCellEdit: true
-//       },
-//       {
-//         name: 'detail_location',
-//         width: 250,
-//         enableCellEdit: true
-//       },
-//       {
-//         name: 'ip_address',
-//         width: 250,
-//         enableCellEdit: true
-//       },
-//       {
-//         name: 'status',
-//         width: 150,
-//         enableCellEdit: true
-//       },
-//       {
-//         name: 'buttons',
-//         width: 200,
-//         enableCellEdit: false,
-//         cellTemplate: '<button type="submit" class="btn-sm btn-primary" style ="width:80px;" ng-click="grid.appScope.submit(row.entity)">Save</button><button type="button" type="remove" class="btn-sm btn-danger"style ="width:80px;" ng-click="grid.appScope.remove(row.entity)">Delete</button>'
-//       },
-
-//     ],
-//     onRegisterApi: function (gridApi) {
-//       $scope.gridApi = gridApi;
-//       $scope.gridApi.core.on.sortChanged($scope, function (grid, sort) {
-//         $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
-//       })
-//     }
-//   };
-//   $scope.paginationGridOptions = {
-//     enablePaging: true,
-//     paginationPageSizes: [10, 25, 50, 75],
-//     paginationPageSize: 10,
-//   };
-//   angular.extend($scope.paginationGridOptions, $scope.virtualGridOptions);
-//   $scope.updategrid = {
-//     toolbar: [{
-//       text: "Add new record",
-//       name: "popup",
-//       iconClass: "k-icon k-add"
-//     }],
-//     enableSorting: false,
-//     showGridFooter: false,
-//     enableFiltering: false,
-//     rowHeight: 40,
-//     modifierKeysToMultiSelectCells: false,
-//     columnDefs: [{
-//         name: 'no',
-//         aggregationType: uiGridConstants.aggregationTypes.count,
-//         width: 70
-//       },
-//       {
-//         name: 'location',
-//         width: 150,
-//         enableCellEdit: true
-//       },
-//       {
-//         name: 'detail_location',
-//         width: 250,
-//         enableCellEdit: true
-//       },
-//       {
-//         name: 'ip_address',
-//         width: 250,
-//         enableCellEdit: true
-//       },
-//       {
-//         name: 'status',
-//         width: 150,
-//         enableCellEdit: true
-//       },
-//       {
-//         name: 'Buttons',
-//         width: 200,
-//         enableCellEdit: false,
-//         cellTemplate: '<button type="submit" class="btn-sm btn-primary" style ="width:80px;" ng-click="grid.appScope.submit(row.entity)">Save</button><button type="button" type="remove" class="btn-sm btn-danger"style ="width:80px;" ng-click="grid.appScope.remove(row.entity)">Delete</button>'
-//       },
-
-//     ],
-//     onRegisterApi: function (gridApi) {
-//       $scope.gridApi = gridApi;
-//       $scope.gridApi.core.on.sortChanged($scope, function (grid, sort) {
-//         $scope.gridApi.core.notifyDataChange(uiGridConstants.dataChange.COLUMN);
-//       })
-//     }
-//   };
-//   var tmpData = [{
-//     no: '',
-//     location: '',
-//     detail_location: '',
-//     ip_address: '',
-//     status: ''
-//   }]
-// }]);
 
 // 발령 메시지 추가/수정/삭제 
 myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editableOptions', function ($scope, $http, $q, uiGridConstants, editableOptions) {
@@ -821,11 +600,11 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
       },
       {
         name: 'location',
-        width: 360
+        width: 340
       },
       {
         name: 'alarm_type',
-        width: 270
+        width: 130
       },
       {
         name: 'communication',
@@ -840,18 +619,25 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
         width: 170
       },
       {
-        name: 'message',
+        name: 'headline',
         width: 130
       },
       {
-        name: 'message_text',
-        width: 170
+        name: 'description',
+        width: 150
+      },
+      {
+        name: 'instruction',
+        width: 160
       },
       {
         name: 'siren',
         width: 100
       },
-
+      {
+        name: 'status',
+        width: 100
+      }
     ],
     onRegisterApi: function (gridApi) {
       $scope.gridApi = gridApi;
@@ -878,34 +664,50 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     rowHeight: 40,
     modifierKeysToMultiSelectCells: false,
     columnDefs: [{
-        name: 'time',
-        width: 150
-      },
-      {
-        name: 'location',
-        width: 250
-      },
-      {
-        name: 'alarm_type',
-        width: 250
-      },
-      {
-        name: 'communication',
-        width: 100
-      },
-      {
-        name: 'tts',
-        width: 100
-      },
-      {
-        name: 'message',
-        width: 100
-      },
-      {
-        name: 'siren',
-        width: 100
-      },
-    ],
+      name: 'time',
+      width: 200
+    },
+    {
+      name: 'location',
+      width: 340
+    },
+    {
+      name: 'alarm_type',
+      width: 130
+    },
+    {
+      name: 'communication',
+      width: 150
+    },
+    {
+      name: 'tts',
+      width: 130
+    },
+    {
+      name: 'tts_text',
+      width: 170
+    },
+    {
+      name: 'headline',
+      width: 130
+    },
+    {
+      name: 'description',
+      width: 150
+    },
+    {
+      name: 'instruction',
+      width: 160
+    },
+    {
+      name: 'siren',
+      width: 100
+    },
+    {
+      name: 'status',
+      width: 100
+    }
+  ],
     onRegisterApi: function (gridApi) {
       $scope.gridApi = gridApi;
       $scope.gridApi.core.on.sortChanged($scope, function (grid, sort) {
@@ -919,7 +721,10 @@ myapp.controller('myCtrl5', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     alarm_type: '',
     communication: '',
     tts: '',
-    message: '',
+    tts_text: '',
+    headline: '',
+    description: '',
+    instruction: '',
     siren: ''
   }]
 }]);

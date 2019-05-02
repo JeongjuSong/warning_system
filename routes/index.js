@@ -59,6 +59,14 @@ router.get('/', function (req, res, next) {
     });
 });
 
+router.get('/index', function (req, res, next) {
+    connection.query('SELECT username FROM users', function (err, rows) {
+        if (err) throw err;
+
+        res.send(rows);
+    });
+});
+
 router.get('/login', function (req, res, next) {
     connection.query('SELECT area FROM users', function (err, rows) {
         if (err) throw err;
@@ -231,7 +239,7 @@ router.all('/subjectinsert', function (req, res, next) {
 
 
     /* insert 쿼리문수정 */
-    connection.query('INSERT INTO subject(no, headline, description, instruction) ' + 'values("' + req.body.no + '","' + req.body.headline + '","' + req.body.description+ '","' + req.body.instruction + '")',
+    connection.query('INSERT INTO subject(no, headline, description, instruction) ' + 'values("' + req.body.no + '","' + req.body.headline + '","' + req.body.description + '","' + req.body.instruction + '")',
         function (err, results, fiels) {
             // console.log(arguments);
         });
@@ -413,12 +421,15 @@ router.post('/warninginsert', function (req, res, next) {
     var tts = req.body.tts;
     var tts_text = req.body.tts_text;
     var headline = req.body.headline;
+    var description = req.body.description;
+    var instruction = req.body.instruction;
     var siren = req.body.siren;
     var area = req.body.area;
+    var status = req.body.status;
 
-    var datas = [time, location, alarm_type, communication, tts, tts_text, message, message_text, siren, area];
+    var datas = [time, location, alarm_type, communication, tts, tts_text, headline, description, instruction, siren, area, status];
 
-    connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, tts_text, headline, siren, area) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' + req.body.tts_text + '","' + req.body.headline + '","' + req.body.siren + '","' + req.body.area + '")',
+    connection.query('INSERT INTO history(time, location, alarm_type, communication, tts, tts_text, headline, description, instruction, siren, area, status) ' + 'values("' + req.body.time + '","' + req.body.location + '","' + req.body.alarm_type + '","' + req.body.communication + '","' + req.body.tts + '","' + req.body.tts_text + '","' + req.body.headline + '","' + req.body.description + '","' + req.body.instruction + '","' + req.body.siren + '","' + req.body.area + '","' + req.body.status + '")',
         function (err, results, fiels) {
             // console.log(arguments);
         });
@@ -491,36 +502,79 @@ router.get('/historyjeju/all', function (req, res, next) {
 
 ////////////////////////////////////수정
 // 실제 발령 시 ras에 전송 
-router.post('/rasData', function (req, res, next) {
-
-    console.log("++++++++++++++++++++rasData++++++++++++++++++++");
-
-    var postData = { //postData 타입 정의
-        "time": "",
-        "location": "",
-        "alarm_type": "",
-        "communication": "",
-        "message_text": "",
-        "siren": ""
-    };
-
-    //set Val     
-    postData.time = time;
-    postData.location = location;
-    postData.alarm_type = alarm_type;
-    postData.communication = communication;
-    postData.message_text = message_text;
-    postData.siren = siren;
-
-    //TODO 데이터 받아와서 재정의
-    // console.log("send_data: " + postData.time);
-    var url = 'http://192.168.12.29:8000/'+ postData.time;
-
-    // console.log("url >>"+url)
-    request({
-        uri: url,
-        method: "GET"
-    }).pipe(res);
-});
+router.post('/rasData', function(req, res, next) {
+    console.log("++++++++++++++++++++rasData++++++++++++++++++++");   
+   var postData = {
+        "cap": "",
+        "identifier": 0,
+        "sender": "",
+        "sent": "",
+        "status": "",
+        "msgType": "",
+        "scope": "",
+        "category": "",
+        "event" : "",
+        "responseType" : "",
+        "urgency" : "",
+        "severity": "",
+        "certainty": "",
+        "eventcode_valuename" : "",
+        "eventcode_value": "",
+        "headline": "",
+        "description": "",
+        "instruction" : "",
+        "contact": "",
+        "areaDesc" : 0
+   };
+   //set Val  
+   postData.cap = req.body.cap;   
+   postData.identifier = req.body.identifier;
+   postData.sender = req.body.sender;
+   postData.sent = req.body.sent;
+   postData.status = req.body.status;
+   postData.msgType = req.body.msgType;
+   postData.scope = req.body.scope;
+   postData.category = req.body.category;
+   postData.event = req.body.event;
+   postData.responseType = req.body.responseType;
+   postData.urgency = req.body.urgency;
+   postData.severity = req.body.severity;
+   postData.certainty = req.body.certainty;
+   postData.eventcode_valuename = req.body.eventcode_valuename;
+   postData.eventcode_value = req.body.eventcode_value;
+   postData.headline = req.body.headline;
+   postData.description = req.body.description;
+   postData.instruction = req.body.instruction;
+   postData.contact = req.body.contact;
+   postData.areaDesc = req.body.areaDesc;
+   // TODO 데이터 받아와서 재정의
+   console.log("1send_data: " + postData.cap);
+   console.log("2send_data: " + postData.identifier);
+   console.log("3send_data: " + postData.sender);
+   console.log("4send_data: " + postData.sent);
+   console.log("5send_data: " + postData.status);
+   console.log("6send_data: " + postData.msgType);
+   console.log("7send_data: " + postData.scope);
+   console.log("8send_data: " + postData.category);
+   console.log("9send_data: " + postData.event);
+   console.log("10send_data: " + postData.responseType);
+   console.log("11send_data: " + postData.urgency);
+   console.log("12send_data: " + postData.severity);
+   console.log("13send_data: " + postData.certainty);
+   console.log("14send_data: " + postData.eventcode_valuename);
+   console.log("15send_data: " + postData.eventcode_value);
+   console.log("16send_data: " + postData.headline);
+   console.log("17send_data: " + postData.description);
+   console.log("18send_data: " + postData.instruction);
+   console.log("19send_data: " + postData.contact);
+   console.log("20send_data: " + postData.areaDesc);
+   // var url = 'http://192.168.12.29:8000/'+ postData.test_value +'/'+urlencode(postData.test_value2);
+ 
+   // console.log("url >>"+url)
+   // request({
+   //     uri: url,
+   //     method: "GET"
+   // }).pipe(res);
+ });
 
 module.exports = router;

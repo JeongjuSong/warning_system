@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>다중이용시설 긴급경보방송시스템</title>
     <!-- Bootstrap -->
     <link href="../public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -135,6 +135,11 @@
                     </button>
                     <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold; margin-left:10px;">다중이용시설
                         긴급경보방송시스템</h1>
+                    <div style="margin-left: 50px;">
+                        <input type="radio" name="status" value="Test" class="테스트 방송">테스트 방송
+                        <input type="radio" name="status" value="Exercise" class="훈련 방송">훈련 방송
+                        <input type="radio" name="status" value="Actual" class="실제 방송">실제 방송
+                    </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -191,9 +196,103 @@
 
                     <div class="row">
                         <div class="col-12">
+                            <div class="col-sm-12" style="display: contents;">
+                                <div class="col-sm-2" style="float:left;">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">경보 종류</span>
+                                        </div>
+                                        <div class="col-12" style="padding:5px;">
+                                            <select id="msgType" style="width: 95%;">
+                                                <option value="Alert" name="신규 경보">신규 경보</option>
+                                                <option value="Update" name="경보 메시지 갱신">경보 메시지 갱신</option>
+                                                <option value="Cancel" name="경보 메시지 취소">경보 메시지 취소</option>
+                                                <option value="Ack" name="메시지 수신 확인">메시지 수신 확인</option>
+                                                <option value="Error" name="메시지 수신 거부">오류</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2" style="float:left;">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">수신 범위</span>
+                                        </div>
+                                        <div class="col-12" style="padding:5px;">
+                                            <select id="scope" style="width: 95%;">
+                                                <option value="Public" name="일반인">일반인</option>
+                                                <option value="Restricted" name="제한된 범위">제한된 범위</option>
+                                                <option value="Private" name="특정 주소">특정 주소</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2" style="float:left;">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">대응 안내</span>
+                                        </div>
+                                        <div class="col-12" style="padding:5px;">
+                                            <select id="urgency" style="width: 95%;">
+                                                <option value="Immediate" name="즉각적인 대응">즉각적인 대응</option>
+                                                <option value="Expected" name="한시간 내의 빠른 대응">한시간 내의 빠른 대응</option>
+                                                <option value="Future" name="근시일 내의 대응">근시일 내의 대응</option>
+                                                <option value="Past" name="대응 필요 없음">대응 필요 없음</option>
+                                                <option value="Unknown" name="미상">미상</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2" style="float:left;">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">피해 규모</span>
+                                        </div>
+                                        <div class="col-12" style="padding:5px;">
+                                            <select id="severity" style="width: 95%;">
+                                                <option value="Severe" name="심각한 피해">심각한 피해</option>
+                                                <option value="Extreme" name="이례적인 피해">이례적인 피혜</option>
+                                                <option value="Moderate" name="피해 가능성 존재">피해 가능성 존재</option>
+                                                <option value="Unknown" name="미상">미상</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2" style="float:left;">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">기준 사건</span>
+                                        </div>
+                                        <div class="col-12" style="padding: 3px;">
+                                            <input type="text" id="event" style="width: 95%;">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-2" style="float:left;">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">발생 확률</span>
+                                        </div>
+                                        <div class="col-12" style="padding: 5px;">
+                                            <select id="certainty" style="width: 95%;">
+                                                <option value="Observed" name="이미 발생하여 진행">이미 발생하여 진행</option>
+                                                <option value="Likely" name="50% 초과 가능성">50% 초과 가능성</option>
+                                                <option value="Possible" name="50% 이하 가능성">50% 이하 가능성</option>
+                                                <option value="Unlikely" name="희박한 가능성">희박한 가능성</option>
+                                                <option value="Unknown" name="미상">미상</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 화면 반 나누기 -->
                             <div class="col-sm-6" style="float:left; margin-left: -0.75rem;">
-                                <!-- 화면 반 나누기 -->
-                                <div class="col-sm-9" style="float:left;">
+                                <div class="col-sm-12" style="float:left;">
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <span class="m-0 font-weight-bold text-primary">발령 시간</span>
@@ -202,10 +301,9 @@
                                             style="padding: 7px;  text-align: center; margin-top:3px; "
                                             id="checkboxTest">
                                             <label class="btn btn-default"
-                                                style="height: 53px; line-height: 35px; margin-right: 10px;">
-                                                <input type="checkbox" id="time" value="right_now">즉시 발령
-                                            </label>
-                                            <label class="btn btn-default"> 예약 발령 :
+                                                style="height: 50px; line-height: 35px; margin-right: 10px;">
+                                                <input type="checkbox" id="time" value="right_now">즉시 </label>
+                                            <label class="btn btn-default"> 예약 :
                                                 <select id="ayear"></select>년
                                                 <select id="amonth"></select>월
                                                 <select id="aday"></select>일
@@ -215,21 +313,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3" style="float:left;">
-                                    <div class="card shadow mb-4">
-                                        <div class="card-header py-3">
-                                            <span class="m-0 font-weight-bold text-primary">피해 규모</span>
-                                        </div>
-                                        <div class="col-12" style="padding:23px; height:75px">
-                                            <select id="severity">
-                                                <option value="Severe">심각한 피해</option>
-                                                <option value="Extreme">이례적인 피혜</option>
-                                                <option value="Moderate">피해 가능성 존재</option>
-                                                <option value="Unknown">미상</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+
 
                                 <div class="col-sm-12" style="display: contents">
                                     <div class="col-sm-7" style="float:left;">
@@ -238,8 +322,8 @@
                                                 <span class="m-0 font-weight-bold text-primary" style="float: left;">단말기
                                                     선택</span>
                                             </div>
-                                            <div style="padding: 10px;" id="checkboxTest" name="checkboxTest">
-                                                <div class="tab">
+                                            <div style="padding: 10px;">
+                                                <div class="tab" style="overflow-y: auto;">
                                                     <button class="tablinks" id="defaultOpen"
                                                         onclick="openTab(event, 'location')" style="width: 93%;"
                                                         type="button">지역별</button>
@@ -248,7 +332,6 @@
                                                     <button class="tablinks" onclick="openTab(event, 'group')"
                                                         style="width: 93%;" type="button">그룹별</button>
                                                 </div>
-
                                                 <div class="tabcontent" id="location">
                                                     <ul id="treeDemo" class="ztree"></ul>
                                                 </div>
@@ -271,84 +354,59 @@
                                             <div class="card-header py-3">
                                                 <span class="m-0 font-weight-bold text-primary">단말기 갯수 현황</span>
                                             </div>
-                                            <div class="col-12">
-                                                <div id="piechart" style="width:100%; margin-left:-0.75rem;"></div>
+                                            <div class="col-12" style="height: 220px;">
+                                                <div id="chart_wrap" style="position: relative; padding-bottom: 100%; height: 0; overflow:hidden;">
+                                                    <div id="piechart" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; max-height:220px;">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <div class="col-12" style="display: contents; height: 350px;">
+                                <div class="col-sm-12" style="display: contents">
                                     <div class="col-5" style="float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
                                                 <span class="m-0 font-weight-bold text-primary">재난 종류</span>
                                             </div>
                                             <div class="col-12" id="checkboxTest"
-                                                style="margin-top:15px; height:150px;">
-                                                <table style="margin:auto;">
-                                                    <tr>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width: 90px">
-                                                                <input type="checkbox"
-                                                                    class="btn-group-toggle custom-modal1"
-                                                                    id="popup_show1" value='기상특보'
-                                                                    data-target="#modal">기상특보
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width: 90px">
-                                                                <input type="checkbox"
-                                                                    class="btn-group-toggle custom-modal2"
-                                                                    id="popup_show2" value='기타경보'
-                                                                    data-target="#modal">기타경보
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width: 90px">
-                                                                <input type="checkbox"
-                                                                    class="btn-group-toggle custom-modal3"
-                                                                    id="popup_show3" value='민방위'
-                                                                    data-target="#modal">민방위
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width: 90px">
-                                                                <input type="checkbox"
-                                                                    class="btn-group-toggle custom-modal4"
-                                                                    id="popup_show4" value='전국' data-target="#modal">전국
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width: 90px">
-                                                                <input type="checkbox"
-                                                                    class="btn-group-toggle custom-modal5"
-                                                                    id="popup_show5" value='지역' data-target="#modal">지역
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width: 90px">
-                                                                <input type="checkbox"
-                                                                    class="btn-group-toggle custom-modal6"
-                                                                    id="popup_show6" value='테스트'
-                                                                    data-target="#modal">테스트
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width: 90px">
-                                                                <input type="checkbox"
-                                                                    class="btn-group-toggle custom-modal7"
-                                                                    id="popup_show7" value='기상추가'
-                                                                    data-target="#modal">기상추가
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                style="margin-top:10px; text-align: center;">
+                                                <label class="btn btn-default" style="width: 32%;">
+                                                    <input type="checkbox" class="btn-group-toggle custom-modal1"
+                                                        id="popup_show1" value='기상특보' data-target="#modal">기상특보
+                                                </label>
+                                                <label class="btn btn-default" style="width: 32%;">
+                                                    <input type="checkbox" class="btn-group-toggle custom-modal2"
+                                                        id="popup_show2" value='기타경보' data-target="#modal">기타경보
+                                                </label>
+                                                <label class="btn btn-default" style="width: 32%;">
+                                                    <input type="checkbox" class="btn-group-toggle custom-modal3"
+                                                        id="popup_show3" value='민방위' data-target="#modal">민방위
+                                                </label>
+                                                <label class="btn btn-default" style="width: 32%;">
+                                                    <input type="checkbox" class="btn-group-toggle custom-modal4"
+                                                        id="popup_show4" value='전국' data-target="#modal">전국
+                                                </label>
+                                                <label class="btn btn-default" style="width: 32%;">
+                                                    <input type="checkbox" class="btn-group-toggle custom-modal5"
+                                                        id="popup_show5" value='지역' data-target="#modal">지역
+                                                </label>
+                                                <label class="btn btn-default" style="width: 32%;">
+                                                    <input type="checkbox" class="btn-group-toggle custom-modal6"
+                                                        id="popup_show6" value='테스트' data-target="#modal">테스트
+                                                </label>
+                                                <label class="btn btn-default" style="width: 32%">
+                                                    <input type="checkbox" class="btn-group-toggle custom-modal7"
+                                                        id="popup_show7" value='기상추가' data-target="#modal">기상추가
+                                                </label>
+                                                <label class="btn btn-default" style="visibility: hidden; width: 32%;">
+                                                    <input type="checkbox">blank
+                                                </label>
+                                                <label class="btn btn-default" style="visibility: hidden; width: 32%;">
+                                                    <input type="checkbox">blank
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -358,37 +416,26 @@
                                                 <span class="m-0 font-weight-bold text-primary">통신 종류</span>
                                             </div>
                                             <div class="col-12" id="checkboxTest"
-                                                style="margin-top:15px; height:150px;">
-                                                <table style="margin:auto;">
-                                                    <tr>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width:94px;">
-                                                                <input type="checkbox" class="btn-group-toggle"
-                                                                    id="communication" value="인터넷" name="1">인터넷
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width:94px;">
-                                                                <input type="checkbox" class="btn-group-toggle"
-                                                                    id="communication" value="위성" name="2">위성
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width:94px;">
-                                                                <input type="checkbox" class="btn-group-toggle"
-                                                                    id="communication" value="DMB" name="3">DMB
-                                                            </label>
-                                                        </td>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width:94px;">
-                                                                <input type="checkbox" class="btn-group-toggle"
-                                                                    id="communication" value="CDMA" name="4">CDMA
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-                                                </table>
+                                                style="margin-top:10px; text-align: center;">
+                                                <label class="btn btn-default" style="width:43%;">
+                                                    <input type="checkbox" class="btn-group-toggle" id="communication"
+                                                        value="인터넷" name="1">인터넷
+                                                </label>
+                                                <label class="btn btn-default" style="width:43%;">
+                                                    <input type="checkbox" class="btn-group-toggle" id="communication"
+                                                        value="위성" name="2">위성
+                                                </label>
+                                                <label class="btn btn-default" style="width:43%;">
+                                                    <input type="checkbox" class="btn-group-toggle" id="communication"
+                                                        value="DMB" name="3">DMB
+                                                </label>
+                                                <label class="btn btn-default" style="width:43%;">
+                                                    <input type="checkbox" class="btn-group-toggle" id="communication"
+                                                        value="CDMA" name="4">CDMA
+                                                </label>
+                                                <label class="btn btn-default" style="visibility: hidden;">
+                                                    <input type="checkbox">blank
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -398,35 +445,22 @@
                                                 <span class="m-0 font-weight-bold text-primary">방송 종류</span>
                                             </div>
                                             <div class="col-12" id="checkboxTest"
-                                                style="margin-top: 15px; height:150px;">
-                                                <table style="margin:auto;">
-                                                    <tr>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width:100px;">
-                                                                <input type="checkbox" id="broadcast"
-                                                                    data-toggle="modal" data-target="#Modal2"
-                                                                    class="btn-group-toggle" data-backdrop="static">TTS
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width:100px;">
-                                                                <input type="checkbox" id="broadcast"
-                                                                    data-toggle="modal" data-target="#Modal3"
-                                                                    class="btn-group-toggle" data-backdrop="static">메시지
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <label class="btn btn-default" style="width:100px;">
-                                                                <input type="checkbox" data-toggle="modal"
-                                                                    data-target="#Modal4" class="btn-group-toggle"
-                                                                    id="broadcast" data-backdrop="static">사이렌
-                                                            </label></td>
-                                                    </tr>
-                                                </table>
+                                                style="margin-top:10px; text-align: center;">
+                                                <label class="btn btn-default" style="width:65%;">
+                                                    <input type="checkbox" id="broadcast" data-toggle="modal"
+                                                        data-target="#Modal2" class="btn-group-toggle"
+                                                        data-backdrop="static">TTS
+                                                </label>
+                                                <label class="btn btn-default" style="width:65%;">
+                                                    <input type="checkbox" id="broadcast" data-toggle="modal"
+                                                        data-target="#Modal3" class="btn-group-toggle"
+                                                        data-backdrop="static">메시지
+                                                </label>
+                                                <label class="btn btn-default" style="width:65%;">
+                                                    <input type="checkbox" data-toggle="modal" data-target="#Modal4"
+                                                        class="btn-group-toggle" id="broadcast"
+                                                        data-backdrop="static">사이렌
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -440,7 +474,7 @@
                                         <span class="m-0 font-weight-bold text-primary">GIS로
                                             선택</span>
                                     </div>
-                                    <div id="map" style="width:100%;height:570px;"></div>
+                                    <div id="map" style="width:100%;height:510px;"></div>
                                     <p>
                                         <button type="button" onclick="selectOverlay('CIRCLE')">원형</button>
                                     </p>
@@ -448,18 +482,14 @@
                             </div>
 
                             <!-- 이 부분에 선택값들 value 처리 후 block 처리 -->
-                            <input id="checktime" type="text" style="display: none;"> <!-- 시간 -->
-                            <input id="checkcode" type="text" style="display: none;">
+                            <input id="checktime" type="text" style="display: none;">
                             <input id="checklocation" type="text" style="display: none;">
-                            <input id="checknum" type="text" style="display: none;">
                             <input id="checkalarm" type="text" style="display: none;">
-                            <input id="checkcommunication" type="text" style="display: none;">
+                            <input id="checkevent" type="text" style="display: none;">
                             <input id="checktts" type="text" style="display: none;">
                             <input id="checkttst" type="text" style="display: none;">
-                            <input id="checkheadline" type="text" style="display: none;">
-                            <input id="checkdescription" type="text" style="display: none;">
-                            <input id="checkinstruction" type="text" style="display: none;">
-                            <input id="checksiren" type="text" style="display: none;">
+                            <input id="checkcategory" type="text" style="display: none;">
+                            <input id="checkcode" type="text" style="display:none;">
 
                             <div class="col-12" style="float:left;">
                                 <div class="card shadow mb-4" style="text-align:center; padding: 10px;">
@@ -468,12 +498,8 @@
                                             onclick="window.location.reload()" style="width:150px;">조작 초기화</button>
                                         <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
                                             id='confirm'>선택 내용 확인</button>
-                                        <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
-                                            id='testwarning'>시험 방송 전송</button>
-                                        <button class="btn btn-primary custom-modal8" type="button" style="width:150px;"
-                                            id='exercisewarning'>훈련 방송 전송</button>
                                         <button type="button" class="btn btn-danger custom-modal8" style="width:150px;"
-                                            id='warning'>실제 방송 전송</button>
+                                            id='warning'>경보 발령 전송</button>
                                     </div>
                                 </div>
                             </div>
@@ -497,15 +523,18 @@
 
             <!-- 선택 내용 확인 -->
             <div class="modal" id="popup8" role="dialog">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <form id="myForm">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modal_title">선택 내용 확인</h5>
+
                             </div>
-                            <div class='modal-body'>
-                                <p>
-                                </p>
+                            <div class="col-12">
+                                <div class='col-5 modal-body' style="float:left; margin-top:15px;">
+                                </div>
+                                <div class='col-7 modal-body2' style="float:left; margin-top:15px;">
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
@@ -516,71 +545,28 @@
                 </div>
             </div>
 
-            <!-- 시험 방송 전송 -->
+            <!-- 방송 전송 -->
             <div class="modal" id="popup9" role="dialog">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <form id="myForm">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="modal_title">시험 방송 전송</h5>
+                                <h5 class="modal-title" id="modal_title">경보 발령 전송</h5>
+
                             </div>
-                            <div class='modal-body'>
-                                <p>
-                                </p>
+                            <div class="col-12">
+                                <div class='col-5 modal-body' style="float:left; margin-top:15px;">
+                                </div>
+                                <div class='col-7 modal-body2' style="float:left; margin-top:15px;">
+                                </div>
                             </div>
                             <div class="modal-footer">
+                                <div style="flex: auto;">
+                                    경보 전달의 확인을 위한 연락담당자 : <input type="text" id="contact"></div>
                                 <button type="button" class="btn btn-default" data-dismiss="modal"
                                     onclick="window.location.reload()">닫기</button>
                                 <button type="button" class="btn btn-primary" id="postwarning"
-                                    onclick="testSendData()">시험
-                                    방송하기</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- 훈련 방송 전송 -->
-            <div class="modal" id="popup10" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <form id="myForm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_title">훈련 방송 전송</h5>
-                            </div>
-                            <div class='modal-body'>
-                                <p>
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal"
-                                    onclick="window.location.reload()">닫기</button>
-                                <button type="button" class="btn btn-primary" id="postwarning"
-                                    onclick="exerciseSendData()">훈련
-                                    방송하기</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- 실제 방송 전송 -->
-            <div class="modal" id="popup11" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <form id="myForm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modal_title">실제 방송 전송</h5>
-                            </div>
-                            <div class='modal-body'>
-                                <p>
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal"
-                                    onclick="window.location.reload()">닫기</button>
-                                <button type="button" class="btn btn-primary" id="postwarning" onclick="SendData()">실제
-                                    방송하기</button>
+                                    onclick="SendData()">방송하기</button>
                             </div>
                         </div>
                     </form>
@@ -632,27 +618,44 @@
                             <h5 class="modal-title" id="exampleModalLable">경보 메시지 선택</h5>
                         </div>
                         <div class='modal-body'>
-                            경보 발령 제목 : <select id="headline">
+                            경보 발령 선택 : <select id="headlineselect">
                                 <option value="" disabled selected>제목 선택</option>
                                 <option value="직접 입력">직접 입력</option>
                                 <script>
-                                    for (var i = 0; i <= '{{gridOption6}}'.length; i++) {
-                                        document.write("<option value=" + '{{gridOption6[' + i +
+                                    for (var i = 0; i <= '{{gridOption3}}'.length; i++) {
+                                        document.write("<option value=" + '{{gridOption3[' + i +
                                             '].headline}}' +
-                                            "> {{gridOption6[" + i +
+                                            "> {{gridOption3[" + i +
                                             "].headline}} </option>");
                                     }
                                 </script>
                             </select>
                             <button type="button" ng-click='subject_event()' onclick="subject_select()">선택하기</button>
-                            <br /><br />
+                            <hr />
+                            경보 발령 제목 : <br />
+                            <textarea id="headline"
+                                style="width: 300px; height: 40px; padding:10px;">{{gridOption4}}</textarea>
+                            <hr />
                             경보 위험요인 설명 : <br />
                             <textarea id="description"
-                                style="width: 400px; height: 100px; padding:10px;">{{gridOption7}}</textarea>
-                            <br /><br />
+                                style="width: 400px; height: 100px; padding:5px;">{{gridOption5}}</textarea>
+                            <hr />
                             행동 요령 : <br />
                             <textarea id="instruction"
-                                style="width: 400px; height: 150px; padding:10px;">{{gridOption8}}</textarea>
+                                style="width: 400px; height: 150px; padding:10px;">{{gridOption6}}</textarea>
+                            <hr />
+                            행동 요령 선택 :
+                            <select id="responseType">
+                                <option value="Shelter" name="행동 요령의 대피소로 대피">행동 요령의 대피소로 대피</option>
+                                <option value="Evacuation" name="행동 요령에 따라 대피">행동 요령에 따라 대피</option>
+                                <option value="Prepare" name="행동 요령에 따라 대비">행동 요령에 따라 대비</option>
+                                <option value="Execute" name="사전에 작성된 계획을 수행">사전에 작성된 계획을 수행</option>
+                                <option value="Avoid" name="행동요령에 따라 사건을 피함">행동요령에 따라 사건을 피함</option>
+                                <option value="Monitor" name="정보 제공자로부터 정보에 주의를 기울일 것">정보 제공자로부터 정보에 주의를 기울일 것</option>
+                                <option value="Assess" name="경보메시지에 있는 정보를 평가">경보메시지에 있는 정보를 평가</option>
+                                <option value="AllClear" name="본 사건은 더 이상 위험하지 않음">본 사건은 더 이상 위험하지 않음</option>
+                                <option value="None" name="특별한 대응이 필요 없음">특별한 대응이 필요 없음</option>
+                            </select>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"
@@ -674,9 +677,9 @@
                             사이렌 선택 : <select id="siren">
                                 <option value="" disabled selected>사이렌 선택</option>
                                 <script>
-                                    for (var i = 0; i <= '{{gridOption5}}'.length; i++) {
-                                        document.write("<option name=" + '{{gridOption5[' + i + '].no}}' +
-                                            " value=" + '{{gridOption5[' + i + '].name}}' + "> {{gridOption5[" + i +
+                                    for (var i = 0; i <= '{{gridOption6}}'.length; i++) {
+                                        document.write("<option name=" + '{{gridOption6[' + i + '].no}}' +
+                                            " value=" + '{{gridOption6[' + i + '].name}}' + "> {{gridOption6[" + i +
                                             "].name}} </option>");
                                     }
                                 </script>
@@ -693,23 +696,6 @@
                 </div>
             </div>
 
-            <!--modal5 : 선택내용확인 버튼 클릭 시 발동-->
-            <div class="modal fade" id="Modal5">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLable">선택 내용 확인</h5>
-                        </div>
-                        <div class='modal-body'>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">확인</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <!-- End of Content Wrapper -->
     </div>
@@ -726,8 +712,8 @@
     <!-- Bootstrap core JavaScript-->
     <script src="/javascripts/test_ztree.js"></script>
     <script src="/javascripts/map_read.js"></script>
-    <script src="../public/vendor/jquery/jquery.min.js"></script>
-    <!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <!-- <script src="../public/vendor/jquery/jquery.min.js"></script> -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <!-- <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> -->
     <script src="../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->

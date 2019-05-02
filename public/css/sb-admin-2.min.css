@@ -2002,7 +2002,7 @@ pre code {
     border: 1px solid #ccc;
     background-color: #f1f1f1;
     width: 22%;
-    height: 230px;
+    height: 200px;
 }
 
 /* Style the buttons inside the tab */
@@ -2038,7 +2038,7 @@ pre code {
     overflow: scroll;
     width: 78%;
     border-left: none;
-    height: 230px;
+    height: 200px;
 }
 
 
@@ -6947,6 +6947,10 @@ a.close.disabled {
     overflow-y: auto
 }
 
+.modal-dialog-scrollable .modal-body2 {
+    overflow-y: auto
+}
+
 .modal-dialog-centered {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -7045,6 +7049,14 @@ a.close.disabled {
 }
 
 .modal-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1rem
+}
+
+.modal-body2 {
     position: relative;
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
@@ -9677,7 +9689,7 @@ button.bg-dark:hover {
 
 .pt-3,
 .py-3 {
-    padding-top: 1rem !important
+    /* padding-top: 1rem !important */
 }
 
 .pr-3,
@@ -9687,7 +9699,7 @@ button.bg-dark:hover {
 
 .pb-3,
 .py-3 {
-    padding-bottom: 0.5rem !important
+    padding-bottom: 0.3rem !important
 }
 
 .pl-3,

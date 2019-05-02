@@ -128,7 +128,7 @@ function closecheck() {
     $("[id=broadcast]").parent().removeClass('selected');
     $("[id=broadcast]").prop("checked", false);
     document.getElementById("tts_title").selectedIndex = -1;
-    document.getElementById("headline").selectedIndex = -1;
+    document.getElementById("headlineselect").selectedIndex = -1;
     document.getElementById("siren").selectedIndex = -1;
 }
 
@@ -392,13 +392,16 @@ function message_select() {
 
 // 경보 메세지 설명, 행동 요령 직접 입력
 function subject_select() {
-    $('select#headline').each(function () {
+    $('select#headlineselect').each(function () {
         if ($(this).val() == '직접 입력') { //직접 입력 선택한 경우
+            $('#headline').val(''); //값 초기화
             $('#description').val(''); //값 초기화
             $('#instruction').val(''); //값 초기화
+            $('#headline').attr("disabled", false);
             $('#description').attr("disabled", false);
             $('#instruction').attr("disabled", false);
         } else { //직접 입력이 아닌 경우
+            $('#headline').attr("disabled", true);
             $('#description').attr("disabled", true);
             $('#instruction').attr("disabled", true);
         }
@@ -424,74 +427,116 @@ function drawChart() {
 
     // Optional; add a title and set the width and height of the chart
     var options = {
-        'width': 320,
-        'height': 250
+        width: '100%',
+        height: '100%'
     };
     // Display the chart inside the <div> element with id="piechart"
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
     chart.draw(data, options);
 }
 
+// 실제 방송 전송
 function SendData() { // post rasData
     var postData = { //postData 타입 정의
+        "cap": "",
         "identifier": 0,
-        "sender": "", //추가
+        "sender": "",
         "sent": "",
         "status": "",
         "msgType": "",
         "scope": "",
         "category": "",
-        "event" : "", //추가
-        "responseType" : "",
-        "urgency" : "",
+        "event": "",
+        "responseType": "",
+        "urgency": "",
         "severity": "",
-        "certainty": "", //추가,
-        "eventcode" : "", //SAME/EWK 추가
-        "headline": "", //추가
-        "description": "",//추가
-        "instruction" : "", //추가
-        "contact": "", //추가 default
-        "location": ""
+        "certainty": "",
+        "eventcode_valuename": "",
+        "eventcode_value": "",
+        "headline": "",
+        "description": "",
+        "instruction": "",
+        "contact": "",
+        "areaDesc": 0
     };
 
-    var time = document.getElementById('checktime').value; //시간
-    var code = document.getElementById('checkcode').value; //행정구역코드
-    var location_num = document.getElementById('checknum').value; //단말기 num
-    var alarm_type = document.getElementById('checkalarm').value; //재난 종류 num
+    var sent = document.getElementById('checktime').value; //시간
+    var status = $('input[name="status"]:checked').val(); // 실제/훈련/시험
+    var msgType = $('select#msgType').val(); // 경보 종류 (신규, 갱신, 취소)
+    var scope = $('select#scope').val(); // 수신자범위 (public,restriced)
+    var category = document.getElementById('checkcategory').value; //재난 카테고리
+    var event = document.getElementById('event').value; //기준 사건
+    var responseType = $('select#responseType').val(); //행동요령 코드
+    var urgency = $('select#urgency').val(); //대응 긴급성
+    var alarm_type = document.getElementById('checkalarm').value; //재난 종류 약어
     var severity = $('select#severity').val(); // 경보 발령 원인 사건의 피해규모
-    var communication = document.getElementById('checkcommunication').value; //통신 종류
-    var headline = document.getElementById('checkheadline').value;
-    var siren = document.getElementById('siren').value; //사이렌 종류
+    var certainty = $('select#certainty').val(); // 사건의 발생 확률
+    var headline = $("#headline").val(); //경보 주제
+    var description = $('#description').val(); //사건 설명
+    var instruction = $('#instruction').val(); //행동 요령
+    var contact = document.getElementById('contact').value;
+    var areaDesc = document.getElementById('checklocation').value; //보내는 지역
+    // var location_num = document.getElementById('checknum').value; //단말기 num
 
+    postData.cap = "cap" // 시작한다는 안내
     postData.identifier = user_area; // 인천
-    postData.sender = //장치의 식별자
-    postData.sent = time; // 즉시
-    postData.status = "Actual";
-    postData.msgType = "Alert";
-    postData.scope = "Public";
-    postData.category= //재난 카테고리
-    postData.responseType = "Shelter";
-    postData.urgency = "Immediate";
-    postData.severity = severity;
-    postData.code = code; // 남동구
-    postData.location_num = location_num; // 인천시청역
-    postData.siren = siren; // 사이렌
+    postData.sender = user_area + "000@WS.GOV"; //장치의 식별자
+    postData.sent = sent; // 시간
+    postData.status = status; // 실제/훈련/테스트 방송 선택
+    postData.msgType = msgType; //경보 종류 (신규, 갱신, 취소)
+    postData.scope = scope; //수신자 범위
+    postData.category = category; //재난 카테고리
+    postData.event = event; //기준이 되는 사건
+    postData.responseType = responseType; //행동요령 코드
+    postData.urgency = urgency; //대응 긴급성
+    postData.severity = severity; // 경보 발령 원인 사건의 피해 규모
+    postData.certainty = certainty; //사건의 발생 확률
+    postData.eventcode_valuename = "SAME";
+    postData.eventcode_value = alarm_type; //재난 종류 (지진 경보, 민방위 경계경보)
+    postData.headline = headline; //메시지 주제
+    postData.description = description; //
+    postData.instruction = instruction;
+    postData.contact = contact; //연락 담당자
+    postData.areaDesc = areaDesc; // 남동구
+    // postData.areaDesc = location_num; // 인천시청역
+    // postData.siren = siren; // 사이렌
 
     var getTest = function (data) {
+        // console.log("1 data: " + postData.cap);
+        // console.log("2 data: " + postData.identifier);
+        // console.log("3 data: " + postData.sender);
+        // console.log("4 data: " + postData.sent);
+        // console.log("5 data: " + postData.status);
+        // console.log("6 data: " + postData.msgType);
+        // console.log("7 data: " + postData.scope);
+        // console.log("8 data: " + postData.category);
+        // console.log("9 data: " + postData.event);
+        // console.log("10 data: " + postData.responseType);
+        // console.log("11 data: " + postData.urgency);
+        // console.log("12 data: " + postData.severity);
+        // console.log("13 data: " + postData.certainty);
+        // console.log("14 data: " + postData.eventcode_valuename);
+        // console.log("15 data: " + postData.eventcode_value);
+        // console.log("16 data: " + postData.headline);
+        // console.log("17 data: " + postData.description);
+        // console.log("18 data: " + postData.instruction);
+        // console.log("19 data: " + postData.contact);
+        // console.log("20 data: " + postData.areaDesc);
         var result;
         $.ajax({
             type: "POST",
             url: '/rasData',
             data: data,
-            // async: false,
             async: true,
             success: function (data) {
                 result = data.result;
             },
-            error: function (e) {}
+            error: function (request, status, error) {}
         });
         return result;
     }
+
+
     var run = function (postData) {
         getTest(postData);
     }

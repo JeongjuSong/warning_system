@@ -164,6 +164,7 @@ function add(e) {
     if (treeNode) { // 노드 추가를 눌렀을 경우
 
         // 그룹 추가를 누른 경우
+        console.log('그룹 추가');
         if (isParent == true) {
             var newId = 0;
             var idArray = new Array();
@@ -185,6 +186,7 @@ function add(e) {
             for (var i = 0; i <= idArray.length; i++) {
                 if (newId <= idArray[i]) {
                     newId++;
+                    console.log('그룹 ID : ' + newId);
                 }
             }
             treeNode = zTree.addNodes(treeNode, {
@@ -194,20 +196,39 @@ function add(e) {
                 name: "그룹명"
             })
 
-        }
-
-        else { //단말기 추가를 선택한 경우
+        } else { //단말기 추가를 선택한 경우
             console.log('단말기 추가');
-            console.log(newId);
+            var newId = 0;
+            var idArray2 = new Array();
+            $.ajax({
+                type: "GET",
+                url: "/group",
+                async: false,
+                contentType: "application/json",
+                success: function (data) {
+                    for (var i = 0; i <= data.length; i++) {
+                        idArray2.push(data[i].id);
+                    }
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+            // console.log(idArray); //idArray에 id값 잘 들어오는 것 확인 !
+            for (var i = 0; i <= idArray2.length; i++) {
+                if (newId <= idArray2[i]) {
+                    newId++;
+                    console.log('단말기 ID : ' + newId);
+                }
+            }
             treeNode = zTree.addNodes(treeNode, {
-                id: (treeNode.id * 10) + newId,
+                id: (treeNode.id * 10) + newId + 1,
                 pId: treeNode.id,
                 isParent: isParent,
                 name: "단말기명"
             })
         }
-    } 
-    else {
+    } else {
         // console.log(treeNode)
         treeNode = zTree.addNodes(null, {
             id: (100 + newCount),
@@ -302,15 +323,18 @@ function zTreeOnCheck(event, treeId, treeNode) {
         for (var i = 0; i <= 100; i++) {
             var checkednode = nodes[i].name; //체크한 노드의 이름
             var checkednodepid = nodes[i].pId;
-            var checkednodecode = nodes[i].code; //체크한 노드의 행정코드
+            // var checkednodecode = nodes[i].code; //체크한 노드의 행정코드
             var checkednodenum = nodes[i].num;
             if (checkednodepid != 1 && checkednodepid != 0) {
                 checkedArray.push(checkednode);
-                codeArray.push(checkednodecode)
+                // codeArray.push(checkednodecode)
                 numArray.push(checkednodenum);
+                let single = checkedArray.reduce((a, b) => {
+                    if (a.indexOf(b) < 0) a.push(b);
+                    return a;
+                }, []);
                 $(document).ready(function () {
-                    $('#checklocation').val(checkedArray);
-                    $('#checkcode').val(codeArray);
+                    $('#checklocation').val(single);
                     $('#checknum').val(numArray);
                 });
             }
