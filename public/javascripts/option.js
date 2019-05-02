@@ -446,6 +446,7 @@ function SendData() { // post rasData
         "msgType": "",
         "scope": "",
         "category": "",
+<<<<<<< HEAD
         "event": "",
         "responseType": "",
         "urgency": "",
@@ -499,6 +500,55 @@ function SendData() { // post rasData
     postData.contact = contact; //연락 담당자
     postData.areaDesc = areaDesc; // 남동구
     // postData.areaDesc = location_num; // 인천시청역
+=======
+        "event" : "",
+        "responseType" : "",
+        "urgency" : "",
+        "severity": "",
+        "certainty": "",
+        "eventcode_valuename" : "",
+        "eventcode_value": "",
+        "headline": "",
+        "description": "",
+        "instruction" : "",
+        "contact": "",
+        "area": "",
+        "areaDesc" : ""
+    };
+
+    var time = document.getElementById('checktime').value; //시간
+    var status = document.getElementById('checkstatus').value; // 실제/훈련/시험
+    var area = document.getElementById('checkcode').value; //행정구역코드
+    var location_num = document.getElementById('checknum').value; //단말기 num
+    var category = document.getElementById('checkcategory').value; //재난 카테고리
+    var event = document.getElementById('event').value;
+    var alarm_type = document.getElementById('checkalarm').value; //재난 종류 약어
+    var severity = $('select#severity').val(); // 경보 발령 원인 사건의 피해규모
+    var headline = document.getElementById('checkheadline').value; //경보 주제
+    var description = document.getElementById('checkdescription').value; //사건 설명
+    var instruction = document.getElementById('checkinstruction').value; //행동 요령
+
+    postData.identifier = user_area; // 인천
+    postData.sender = "INCHEON@WS.GOV";//장치의 식별자
+    postData.sent = time; // 즉시
+    postData.status = status;
+    postData.msgType = "Alert";
+    postData.scope = "Public";
+    postData.category= category;//재난 카테고리
+    postData.event = event; //기준이 되는 사건
+    postData.responseType = "Shelter";
+    postData.urgency = "Immediate";
+    postData.severity = severity;
+    postData.certainty = "Observed";
+    postData.eventcode_valuename = "SAME";
+    postData.eventcode_value = alarm_type;
+    postData.headline = headline;
+    postData.description = description;
+    postData.instruction = instruction;
+    postData.contact = "MANAGER OF INCHEON CITY HALL CENTRAL CONTROL STATION"; //연락 담당자
+    postData.area = area; // 남동구
+    postData.areaDesc = location_num; // 인천시청역
+>>>>>>> origin/master
     // postData.siren = siren; // 사이렌
 
     var getTest = function (data) {

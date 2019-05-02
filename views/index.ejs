@@ -136,9 +136,15 @@
                     <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold; margin-left:10px;">다중이용시설
                         긴급경보방송시스템</h1>
                     <div style="margin-left: 50px;">
+<<<<<<< HEAD
                         <input type="radio" name="status" value="Test" class="테스트 방송">테스트 방송
                         <input type="radio" name="status" value="Exercise" class="훈련 방송">훈련 방송
                         <input type="radio" name="status" value="Actual" class="실제 방송">실제 방송
+=======
+                        <input type="radio" name="status" value="Test">테스트 방송
+                        <input type="radio" name="status" value="Exercise">훈련 방송
+                        <input type="radio" name="status" value="Actual">실제 방송
+>>>>>>> origin/master
                     </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -292,7 +298,12 @@
                             </div>
                             <!-- 화면 반 나누기 -->
                             <div class="col-sm-6" style="float:left; margin-left: -0.75rem;">
+<<<<<<< HEAD
                                 <div class="col-sm-12" style="float:left;">
+=======
+                                <!-- 화면 반 나누기 -->
+                                <div class="col-sm-8" style="float:left;">
+>>>>>>> origin/master
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
                                             <span class="m-0 font-weight-bold text-primary">발령 시간</span>
@@ -301,7 +312,11 @@
                                             style="padding: 7px;  text-align: center; margin-top:3px; "
                                             id="checkboxTest">
                                             <label class="btn btn-default"
+<<<<<<< HEAD
                                                 style="height: 50px; line-height: 35px; margin-right: 10px;">
+=======
+                                                style="height: 53px; line-height: 35px; margin-right: 10px;">
+>>>>>>> origin/master
                                                 <input type="checkbox" id="time" value="right_now">즉시 </label>
                                             <label class="btn btn-default"> 예약 :
                                                 <select id="ayear"></select>년
@@ -313,7 +328,29 @@
                                         </div>
                                     </div>
                                 </div>
+<<<<<<< HEAD
 
+=======
+                                <div class="col-sm-4" style="float:left;">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <span class="m-0 font-weight-bold text-primary">사건/규모</span>
+                                        </div>
+                                        <div class="col-12" style="padding: 10px;">
+                                            기준 사건 :
+                                            <input type="text" id="event">
+                                            <hr />
+                                            피해 규모 :
+                                            <select id="severity">
+                                                <option value="Severe">심각한 피해</option>
+                                                <option value="Extreme">이례적인 피혜</option>
+                                                <option value="Moderate">피해 가능성 존재</option>
+                                                <option value="Unknown">미상</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+>>>>>>> origin/master
 
                                 <div class="col-sm-12" style="display: contents">
                                     <div class="col-sm-7" style="float:left;">
@@ -483,13 +520,27 @@
 
                             <!-- 이 부분에 선택값들 value 처리 후 block 처리 -->
                             <input id="checktime" type="text" style="display: none;">
+<<<<<<< HEAD
+=======
+                            <input id="checkcode" type="text" style="display: none;">
+>>>>>>> origin/master
                             <input id="checklocation" type="text" style="display: none;">
                             <input id="checkalarm" type="text" style="display: none;">
+<<<<<<< HEAD
                             <input id="checkevent" type="text" style="display: none;">
                             <input id="checktts" type="text" style="display: none;">
                             <input id="checkttst" type="text" style="display: none;">
                             <input id="checkcategory" type="text" style="display: none;">
                             <input id="checkcode" type="text" style="display:none;">
+=======
+                            <input id="checkcategory" type="text" style="display: none;">
+                            <input id="checktts" type="text" style="display: none;">
+                            <input id="checkttst" type="text" style="display: none;">
+                            <input id="checkheadline" type="text" style="display: none;">
+                            <input id="checkdescription" type="text" style="display: none;">
+                            <input id="checkinstruction" type="text" style="display: none;">
+                            <input id="checkstatus" type="text" style="display: none;">
+>>>>>>> origin/master
 
                             <div class="col-12" style="float:left;">
                                 <div class="card shadow mb-4" style="text-align:center; padding: 10px;">
@@ -546,14 +597,20 @@
             </div>
 
             <!-- 방송 전송 -->
+<<<<<<< HEAD
             <div class="modal" id="popup9" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
+=======
+            <div class="modal" id="popup11" role="dialog">
+                <div class="modal-dialog" role="document">
+>>>>>>> origin/master
                     <form id="myForm">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="modal_title">경보 발령 전송</h5>
 
                             </div>
+<<<<<<< HEAD
                             <div class="col-12">
                                 <div class='col-5 modal-body' style="float:left; margin-top:15px;">
                                 </div>
@@ -567,6 +624,16 @@
                                     onclick="window.location.reload()">닫기</button>
                                 <button type="button" class="btn btn-primary" id="postwarning"
                                     onclick="SendData()">방송하기</button>
+=======
+                            <div class='modal-body'>
+                                <p>
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                    onclick="window.location.reload()">닫기</button>
+                                <button type="button" class="btn btn-primary" id="postwarning" onclick="SendData()">방송하기</button>
+>>>>>>> origin/master
                             </div>
                         </div>
                     </form>
@@ -638,6 +705,7 @@
                             <hr />
                             경보 위험요인 설명 : <br />
                             <textarea id="description"
+<<<<<<< HEAD
                                 style="width: 400px; height: 100px; padding:5px;">{{gridOption5}}</textarea>
                             <hr />
                             행동 요령 : <br />
@@ -656,6 +724,13 @@
                                 <option value="AllClear" name="본 사건은 더 이상 위험하지 않음">본 사건은 더 이상 위험하지 않음</option>
                                 <option value="None" name="특별한 대응이 필요 없음">특별한 대응이 필요 없음</option>
                             </select>
+=======
+                                style="width: 400px; height: 100px; padding:10px;">{{gridOption4}}</textarea>
+                            <br /><br />
+                            행동 요령 : <br />
+                            <textarea id="instruction"
+                                style="width: 400px; height: 150px; padding:10px;">{{gridOption5}}</textarea>
+>>>>>>> origin/master
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"

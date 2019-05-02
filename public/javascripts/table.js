@@ -148,9 +148,15 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     // console.log(response.data[0].headline);
   });
 
+<<<<<<< HEAD
   // 경보의 발령 제목, 위험요인, 요령 불러오기
   $scope.subject_event = function () {
     var index = $("#headlineselect option").index($("#headlineselect option:selected"));
+=======
+  // 경보의 설명, 행동 요령 불러오기 gridOption4, 5
+  $scope.subject_event = function () {
+    var index = $("#headline option").index($("#headline option:selected"));
+>>>>>>> origin/master
     $http({
       method: "GET",
       url: '/subject',
@@ -159,9 +165,14 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
       for (var i = 0; i <= 50; i++) {
         if (index == i + 2) {
           // console.log(response.data[i].text);
+<<<<<<< HEAD
           $scope.gridOption4 = response.data[i].headline;
           $scope.gridOption5 = response.data[i].description;
           $scope.gridOption6 = response.data[i].instruction;
+=======
+          $scope.gridOption4 = response.data[i].description;
+          $scope.gridOption5 = response.data[i].instruction;
+>>>>>>> origin/master
         }
       }
     });
@@ -173,10 +184,17 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
     url: '/siren',
     contentType: "application/json",
   }).then(function data(response) {
+<<<<<<< HEAD
     $scope.gridOption7 = response.data;
   });
 
 
+=======
+    $scope.gridOption6 = response.data;
+  });
+
+
+>>>>>>> origin/master
 
 }]);
 

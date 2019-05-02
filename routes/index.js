@@ -502,10 +502,18 @@ router.get('/historyjeju/all', function (req, res, next) {
 
 ////////////////////////////////////수정
 // 실제 발령 시 ras에 전송 
+<<<<<<< HEAD
 router.post('/rasData', function(req, res, next) {
     console.log("++++++++++++++++++++rasData++++++++++++++++++++");   
    var postData = {
         "cap": "",
+=======
+router.post('/rasData', function (req, res, next) {
+
+    console.log("++++++++++++++++++++rasData++++++++++++++++++++");
+
+    var postData = { //postData 타입 정의
+>>>>>>> origin/master
         "identifier": 0,
         "sender": "",
         "sent": "",
@@ -513,6 +521,7 @@ router.post('/rasData', function(req, res, next) {
         "msgType": "",
         "scope": "",
         "category": "",
+<<<<<<< HEAD
         "event" : "",
         "responseType" : "",
         "urgency" : "",
@@ -576,5 +585,54 @@ router.post('/rasData', function(req, res, next) {
    //     method: "GET"
    // }).pipe(res);
  });
+=======
+        "event": "",
+        "responseType": "",
+        "urgency": "",
+        "severity": "",
+        "certainty": "",
+        "eventcode_valuename": "",
+        "eventcode_value": "",
+        "headline": "",
+        "description": "",
+        "instruction": "",
+        "contact": "",
+        "area": "",
+        "areaDesc": ""
+    };
+
+    //set Val     
+    postData.identifier = user_area; // 인천
+    postData.sender = "INCHEON@WS.GOV"; //장치의 식별자
+    postData.sent = time; // 즉시
+    postData.status = "Actual";
+    postData.msgType = "Alert";
+    postData.scope = "Public";
+    postData.category = category; //재난 카테고리
+    postData.event = event; //기준이 되는 사건
+    postData.responseType = "Shelter";
+    postData.urgency = "Immediate";
+    postData.severity = severity;
+    postData.certainty = "Observed";
+    postData.eventcode_valuename = "SAME";
+    postData.eventcode_value = alarm_type;
+    postData.headline = headline;
+    postData.description = description;
+    postData.instruction = instruction;
+    postData.contact = "MANAGER OF INCHEON CITY HALL CENTRAL CONTROL STATION"; //연락 담당자
+    postData.area = area; // 남동구
+    postData.areaDesc = location_num; // 인천시청역
+
+    //TODO 데이터 받아와서 재정의
+    // console.log("send_data: " + postData.time);
+    var url = 'http://192.168.12.29:8000/' + postData.time;
+
+    // console.log("url >>"+url)
+    request({
+        uri: url,
+        method: "GET"
+    }).pipe(res);
+});
+>>>>>>> origin/master
 
 module.exports = router;
