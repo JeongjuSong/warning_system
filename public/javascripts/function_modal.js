@@ -202,6 +202,7 @@ $(document).ready(function () {
       var responseType = $('#responseType').find('option:selected').attr('name');
       var siren = $("select#siren").val();
       var time = '';
+      var status =  $('input[name="status"]:checked').val();
 
       if(status != undefined) {
          showText += '방송 상황 : ' + status + '<br/>';
@@ -249,6 +250,13 @@ $(document).ready(function () {
          showText2 += '단말기 선택 : ' + location + '<br/>';
       }
 
+<<<<<<< HEAD
+=======
+      var alarm_typeArray = new Array();
+      var alarm_code = '';
+      var alarm_category = '';
+
+>>>>>>> origin/master
       for (var a = 1; a <= 7; a++) {
          var type = $('#popup_show' + a + ':checked').val();
          if ('#popup_show' + a + ':checked') {
@@ -281,7 +289,11 @@ $(document).ready(function () {
       }
 
       if (tts != undefined) {
+<<<<<<< HEAD
          showText2 += 'TTS 방송 종류 : ' + tts + '<br/>TTS 방송 문안 : ' + tts_text + '<br/>';
+=======
+         showText += 'TTS 방송 종류 : ' + tts + '<br/>TTS 방송 문안 : ' + tts_text + '<br/>';
+>>>>>>> origin/master
       }
 
       if (tts == undefined) {
@@ -327,6 +339,13 @@ $(document).ready(function () {
          $('#checktime').val(time); //시간
          $('#checkalarm').val(alarm_code); //재난 코드
          $('#checkcategory').val(alarm_category); //재난 카테고리
+<<<<<<< HEAD
+=======
+         $('#checkheadline').val(headline); //저장메시지 주제
+         $('#checkdescription').val(description); // 위험 요인 설명
+         $('#checkinstruction').val(instruction); // 행동 요령
+         $('#checkstatus').val(status);
+>>>>>>> origin/master
       })
       }
 
