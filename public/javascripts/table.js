@@ -3,108 +3,108 @@ var myapp = angular.module('myapp', [
 ]);
 
 // Angular.js treeView 생성
-myapp.directive('treeView', function ($compile) {
-  return {
-    restrict: 'E',
-    scope: {
-      localNodes: '=model',
-      localClick: '&click'
-    },
-    link: function (scope, tElement, tAttrs, transclude) {
+// myapp.directive('treeView', function ($compile) {
+//   return {
+//     restrict: 'E',
+//     scope: {
+//       localNodes: '=model',
+//       localClick: '&click'
+//     },
+//     link: function (scope, tElement, tAttrs, transclude) {
 
-      var maxLevels = (angular.isUndefined(tAttrs.maxlevels)) ? 10 : tAttrs.maxlevels;
-      var hasCheckBox = (angular.isUndefined(tAttrs.checkbox)) ? false : true;
-      scope.showItems = [];
-
-
-      scope.showHide = function (ulId) {
-        var hideThis = document.getElementById(ulId);
-        var showHide = angular.element(hideThis).attr('class');
-        angular.element(hideThis).attr('class', (showHide === 'show' ? 'hide' : 'show'));
-      }
-
-      scope.showIcon = function (node) {
-        if (!angular.isUndefined(node.children)) return true;
-      }
-
-      scope.checkIfChildren = function (node) {
-        if (!angular.isUndefined(node.children)) return true;
-      }
-
-      /////////////////////////////////////////////////
-      /// SELECT ALL CHILDRENS
-      // as seen at: http://jsfiddle.net/incutonez/D8vhb/5/
-      function parentCheckChange(item) {
-        for (var i in item.children) {
-          item.children[i].checked = item.checked;
-          var checknode = item.children[i].name;
-          if (item.children[i].checked == true) {
-            if (checknode != '중구' && checknode != '구로구' && checknode != '영등포구' && checknode != '서초구') {
-              console.log(checknode);
-              scope.checknode = checknode;
-            }
-          }
-          if (item.children[i].children) {
-            parentCheckChange(item.children[i]);
-          }
-        }
+//       var maxLevels = (angular.isUndefined(tAttrs.maxlevels)) ? 10 : tAttrs.maxlevels;
+//       var hasCheckBox = (angular.isUndefined(tAttrs.checkbox)) ? false : true;
+//       scope.showItems = [];
 
 
-      }
-      scope.parentCheckChange = function (node) {
+//       scope.showHide = function (ulId) {
+//         var hideThis = document.getElementById(ulId);
+//         var showHide = angular.element(hideThis).attr('class');
+//         angular.element(hideThis).attr('class', (showHide === 'show' ? 'hide' : 'show'));
+//       }
 
-      }
+//       scope.showIcon = function (node) {
+//         if (!angular.isUndefined(node.children)) return true;
+//       }
 
-      scope.checkChange = function (node) {
-        if (node.children) {
-          parentCheckChange(node);
-        }
-      }
-      /////////////////////////////////////////////////
+//       scope.checkIfChildren = function (node) {
+//         if (!angular.isUndefined(node.children)) return true;
+//       }
 
-      function renderTreeView(collection, level, max) {
-        var text = '';
-        text += '<li ng-repeat="n in ' + collection + '" >';
-        text += '<span ng-show=showIcon(n) class="show-hide" ng-click=showHide(n.id)><i class="fa fa-plus-square"></i></span>';
-        text += '<span ng-show=!showIcon(n) style="padding-right: 13px"></span>';
+//       /////////////////////////////////////////////////
+//       /// SELECT ALL CHILDRENS
+//       // as seen at: http://jsfiddle.net/incutonez/D8vhb/5/
+//       function parentCheckChange(item) {
+//         for (var i in item.children) {
+//           item.children[i].checked = item.checked;
+//           var checknode = item.children[i].name;
+//           if (item.children[i].checked == true) {
+//             if (checknode != '중구' && checknode != '구로구' && checknode != '영등포구' && checknode != '서초구') {
+//               console.log(checknode);
+//               scope.checknode = checknode;
+//             }
+//           }
+//           if (item.children[i].children) {
+//             parentCheckChange(item.children[i]);
+//           }
+//         }
 
-        if (hasCheckBox) {
-          text += '<input class="tree-checkbox" type=checkbox ng-model=n.checked ng-change=checkChange(n)>';
-        }
+
+//       }
+//       scope.parentCheckChange = function (node) {
+
+//       }
+
+//       scope.checkChange = function (node) {
+//         if (node.children) {
+//           parentCheckChange(node);
+//         }
+//       }
+//       /////////////////////////////////////////////////
+
+//       function renderTreeView(collection, level, max) {
+//         var text = '';
+//         text += '<li ng-repeat="n in ' + collection + '" >';
+//         text += '<span ng-show=showIcon(n) class="show-hide" ng-click=showHide(n.id)><i class="fa fa-plus-square"></i></span>';
+//         text += '<span ng-show=!showIcon(n) style="padding-right: 13px"></span>';
+
+//         if (hasCheckBox) {
+//           text += '<input class="tree-checkbox" type=checkbox ng-model=n.checked ng-change=checkChange(n)>';
+//         }
 
 
-        text += '<span class="edit" ng-click=localClick({node:n})></span>'
+//         text += '<span class="edit" ng-click=localClick({node:n})></span>'
 
 
-        text += '<label>{{n.name}}</label>';
-        if ('{{n.checked}}' == true) {
-          text += '<label>{{n.checked}}</label>';
-        }
+//         text += '<label>{{n.name}}</label>';
+//         if ('{{n.checked}}' == true) {
+//           text += '<label>{{n.checked}}</label>';
+//         }
 
-        if (level < max) {
-          text += '<ul id="{{n.id}}" class="hide" ng-if=checkIfChildren(n)>' + renderTreeView('n.children', level + 1, max) + '</ul></li>';
+//         if (level < max) {
+//           text += '<ul id="{{n.id}}" class="hide" ng-if=checkIfChildren(n)>' + renderTreeView('n.children', level + 1, max) + '</ul></li>';
 
-        } else {
-          text += '</li>';
-        }
+//         } else {
+//           text += '</li>';
+//         }
 
-        return text;
-      } // end renderTreeView();
+//         return text;
+//       } // end renderTreeView();
 
-      try {
-        var text = '<ul class="tree-view-wrapper">';
-        text += renderTreeView('localNodes', 1, maxLevels);
-        text += '</ul>';
-        // text += parentCheckChange(node);
-        tElement.html(text);
-        $compile(tElement.contents())(scope);
-      } catch (err) {
-        tElement.html('<b>ERROR!!!</b> - ' + err);
-        $compile(tElement.contents())(scope);
-      }
-    }
-  };
-});
+//       try {
+//         var text = '<ul class="tree-view-wrapper">';
+//         text += renderTreeView('localNodes', 1, maxLevels);
+//         text += '</ul>';
+//         // text += parentCheckChange(node);
+//         tElement.html(text);
+//         $compile(tElement.contents())(scope);
+//       } catch (err) {
+//         tElement.html('<b>ERROR!!!</b> - ' + err);
+//         $compile(tElement.contents())(scope);
+//       }
+//     }
+//   };
+// });
 
 myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($window, $scope, $http, $q) {
 
@@ -140,7 +140,7 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
   // 경보의 주제 gridOption3
   $http({
     method: "GET",
-    url: '/subject',
+    url: '/message',
     contentType: "application/json",
   }).then(function data(response) {
     $scope.gridOption3 = response.data;
@@ -149,11 +149,11 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
   });
 
   // 경보의 발령 제목, 위험요인, 요령 불러오기
-  $scope.subject_event = function () {
+  $scope.message_event = function () {
     var index = $("#headlineselect option").index($("#headlineselect option:selected"));
     $http({
       method: "GET",
-      url: '/subject',
+      url: '/message',
       contentType: "application/json",
     }).then(function data(response) {
       for (var i = 0; i <= 50; i++) {
@@ -175,8 +175,6 @@ myapp.controller('myCtrl', ['$window', '$scope', '$http', '$q', function ($windo
   }).then(function data(response) {
     $scope.gridOption7 = response.data;
   });
-
-
 
 }]);
 
@@ -361,7 +359,7 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     var tmp = true;
     $http({
       method: 'POST',
-      url: '/subjectinsert',
+      url: '/messageinsert',
       contentType: "application/json",
       data: {
         no: row.no,
@@ -377,7 +375,7 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
 
     $http({
       method: 'POST',
-      url: '/subjecteupdate',
+      url: '/messageeupdate',
       contentType: "application/json",
       data: {
         no: row.no,
@@ -397,7 +395,7 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
     //TODO
     $http({
       method: 'POST',
-      url: '/subjectdelete',
+      url: '/messagedelete',
       contentType: "application/json",
       data: {
         no: row.no,
@@ -412,7 +410,7 @@ myapp.controller('myCtrl4', ['$scope', '$http', '$q', 'uiGridConstants', 'editab
   var getData = function () {
     $http({
       method: 'GET',
-      url: '/subject',
+      url: '/message',
       contentType: "application/json",
       data: {}
     }).success(function (data, status, headers, config) {

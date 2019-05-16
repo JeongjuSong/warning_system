@@ -172,7 +172,7 @@ $(document).ready(function () {
       });
    });
 
-   // 선택 내용 확인은 popup8,실제 방송 전송은 popup9
+   // 선택 내용 확인은 popup8, 경보 발령 전송은 popup9
    $('.custom-modal8').click(function () {
       var mymodal = $('#popup8');
       var mymodal2 = $('#popup9');

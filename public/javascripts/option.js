@@ -112,15 +112,6 @@ function clear_onclick() {
     alert("모든 선택 내용이 초기화 됩니다.");
     $("input[type=checkbox]").parent().removeClass('selected');
     $("input[type=checkbox]").prop('checked', false);
-    document.getElementById("year").selectedIndex = -1;
-    document.getElementById("amonth").selectedIndex = -1;
-    document.getElementById("aday").selectedIndex = -1;
-    document.getElementById("ahour").selectedIndex = -1;
-    document.getElementById("aminute").selectedIndex = -1;
-    document.getElementById("tts_title").selectedIndex = -1;
-    document.getElementById("headline").selectedIndex = -1;
-    document.getElementById("siren").selectedIndex = -1;
-
 }
 
 // 방송 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
@@ -176,7 +167,7 @@ function closecheck7() {
 }
 
 
-// 지역 선택 3개 TAB 설정
+// 단말기 선택 3개 TAB 설정
 function openTab(evt, select) {
     var i,
         tabcontent,
@@ -367,7 +358,7 @@ function fail() {
     })
 }
 
-// tts, 저장메시지 직접 입력
+// tts 직접 입력
 function tts_select() {
     $('select#tts_title').each(function () {
         if ($(this).val() == '직접 입력') { //직접 입력 선택한 경우
@@ -379,19 +370,8 @@ function tts_select() {
     });
 }
 
-function message_select() {
-    $('select#message_title').each(function () {
-        if ($(this).val() == '직접 입력') { //직접 입력 선택한 경우
-            $('#message_text').val(''); //값 초기화
-            $('#message_text').attr("disabled", false);
-        } else { //직접 입력이 아닌 경우
-            $('#message_text').attr("disabled", true);
-        }
-    });
-}
-
 // 경보 메세지 설명, 행동 요령 직접 입력
-function subject_select() {
+function message_select() {
     $('select#headlineselect').each(function () {
         if ($(this).val() == '직접 입력') { //직접 입력 선택한 경우
             $('#headline').val(''); //값 초기화
@@ -434,6 +414,58 @@ function drawChart() {
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
     chart.draw(data, options);
 }
+// function drawChart() {
+//     $.ajax({
+//         url: "/chartdata",
+//         dataType: "json",
+//         success: function (jsonData) {
+//             var data = new google.visualization.DataTable();
+//             // assumes "word" is a string and "count" is a number
+//             data.addColumn('string', 'count');
+//             data.addColumn('"중구"', '1');
+//             data.addColumn('code', '미추홀구');
+//             data.addColumn('code', '연수구');
+//             data.addColumn('code', '남동구');
+
+//             for (var i = 0; i < jsonData.length; i++) {
+//                 data.addRow([jsonData[i].word, jsonData[i].count]);
+//             }
+
+//             var options = {
+//                 width: '100%',
+//                 height: '100%'
+//             };
+//             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+//             chart.draw(data, options);
+//         }
+//     });
+// }
+
+// function drawChart() {
+//     $.ajax({
+//         url: "/chartdata",
+//         dataType: "json",
+//         success: function (jsonData) {
+//             var data = new google.visualization.DataTable();
+//             // assumes "word" is a string and "count" is a number
+//             data.addColumn('string', 'word');
+//             data.addColumn('number', 'count');
+
+//             for (var i = 0; i < jsonData.length; i++) {
+//                 data.addRow([jsonData[i].word, jsonData[i].count]);
+//             }
+//         }
+//     });
+
+//     // Optional; add a title and set the width and height of the chart
+//     var options = {
+//         width: '100%',
+//         height: '100%'
+//     };
+//     // Display the chart inside the <div> element with id="piechart"
+//     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+//     chart.draw(data, options);
+// }
 
 // 실제 방송 전송
 function SendData() { // post rasData

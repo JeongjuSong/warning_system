@@ -41,16 +41,6 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
     extended: true
 }));
 
-// router.get('/user_area', function (req, res, next) {
-
-//     connection.query('SELECT area FROM users', function (err, rows) {
-//         if (err) throw err;
-//         req.
-
-//         res.send(rows);
-//     });
-// });
-
 router.get('/', function (req, res, next) {
     connection.query('SELECT area FROM users', function (err, rows) {
         if (err) throw err;
@@ -205,6 +195,29 @@ router.post('/groupdelete', function (req, res, next) {
     res.send("okay");
 });
 
+router.get('/singledata', function (req, res, next) {
+    connection.query('SELECT id, name FROM region WHERE location = "incheon" AND CHAR_LENGTH(id) = 3;',
+        function (err, rows) {
+            if (err) throw err;
+
+            // console.log('The solution is: ', rows);
+
+            res.send(rows);
+        });
+});
+
+router.get('/chartdata', function (req, res, next) {
+    connection.query('SELECT code FROM region WHERE location = "incheon" and code is not null;',
+        function (err, rows) {
+            if (err) throw err;
+
+            // console.log('The solution is: ', rows);
+
+            res.send(rows);
+        });
+});
+
+
 // 재난 종류 db
 router.get('/weather_special', function (req, res, next) {
     connection.query('SELECT situation from type WHERE category=1;', function (err, rows) {
@@ -215,8 +228,8 @@ router.get('/weather_special', function (req, res, next) {
 })
 
 // edit_message db
-router.get('/subject', function (req, res, next) {
-    connection.query('SELECT * from subject', function (err, rows) {
+router.get('/message', function (req, res, next) {
+    connection.query('SELECT * from message', function (err, rows) {
         if (err) throw err;
 
         // console.log('The solution is: ', rows);
@@ -225,9 +238,9 @@ router.get('/subject', function (req, res, next) {
     });
 });
 
-router.get('/subject/all', function (req, res, next) {
+router.get('/message/all', function (req, res, next) {
 
-    connection.query('SELECT * from subject', function (err, rows) {
+    connection.query('SELECT * from message', function (err, rows) {
         if (err) throw err;
 
         // console.log('The solution is: ', rows);
@@ -235,11 +248,11 @@ router.get('/subject/all', function (req, res, next) {
     });
 });
 
-router.all('/subjectinsert', function (req, res, next) {
+router.all('/messageinsert', function (req, res, next) {
 
 
     /* insert 쿼리문수정 */
-    connection.query('INSERT INTO subject(no, headline, description, instruction) ' + 'values("' + req.body.no + '","' + req.body.headline + '","' + req.body.description + '","' + req.body.instruction + '")',
+    connection.query('INSERT INTO message(no, headline, description, instruction) ' + 'values("' + req.body.no + '","' + req.body.headline + '","' + req.body.description + '","' + req.body.instruction + '")',
         function (err, results, fiels) {
             // console.log(arguments);
         });
@@ -247,11 +260,11 @@ router.all('/subjectinsert', function (req, res, next) {
     res.send("okay");
 });
 
-router.all('/subjectupdate', function (req, res, next) {
+router.all('/messageupdate', function (req, res, next) {
 
     /* update 쿼리문수정 */
     connection.query(
-            "UPDATE subject SET headline='" + req.body.headline + "'" +
+            "UPDATE message SET headline='" + req.body.headline + "'" +
             ", description='" + req.body.description + "'" +
             ", instruction='" + req.body.instruction + "' where no=" + req.body.no),
         function (err, results, fiels) {
@@ -261,13 +274,13 @@ router.all('/subjectupdate', function (req, res, next) {
     res.send("okay");
 });
 
-router.all('/sbjectdelete', function (req, res, next) {
+router.all('/messagedelete', function (req, res, next) {
 
     // console.log("req"+req.body.No);
     // console.log("req"+req.body);
 
 
-    var sql = 'DELETE FROM subject WHERE no=' + req.body.no;
+    var sql = 'DELETE FROM message WHERE no=' + req.body.no;
     connection.query(sql, ['no'], function (err, results) {
         // console.log(arguments);
     });
@@ -502,9 +515,9 @@ router.get('/historyjeju/all', function (req, res, next) {
 
 ////////////////////////////////////수정
 // 실제 발령 시 ras에 전송 
-router.post('/rasData', function(req, res, next) {
-    console.log("++++++++++++++++++++rasData++++++++++++++++++++");   
-   var postData = {
+router.post('/rasData', function (req, res, next) {
+    console.log("++++++++++++++++++++rasData++++++++++++++++++++");
+    var postData = {
         "cap": "",
         "identifier": 0,
         "sender": "",
@@ -513,68 +526,68 @@ router.post('/rasData', function(req, res, next) {
         "msgType": "",
         "scope": "",
         "category": "",
-        "event" : "",
-        "responseType" : "",
-        "urgency" : "",
+        "event": "",
+        "responseType": "",
+        "urgency": "",
         "severity": "",
         "certainty": "",
-        "eventcode_valuename" : "",
+        "eventcode_valuename": "",
         "eventcode_value": "",
         "headline": "",
         "description": "",
-        "instruction" : "",
+        "instruction": "",
         "contact": "",
-        "areaDesc" : 0
-   };
-   //set Val  
-   postData.cap = req.body.cap;   
-   postData.identifier = req.body.identifier;
-   postData.sender = req.body.sender;
-   postData.sent = req.body.sent;
-   postData.status = req.body.status;
-   postData.msgType = req.body.msgType;
-   postData.scope = req.body.scope;
-   postData.category = req.body.category;
-   postData.event = req.body.event;
-   postData.responseType = req.body.responseType;
-   postData.urgency = req.body.urgency;
-   postData.severity = req.body.severity;
-   postData.certainty = req.body.certainty;
-   postData.eventcode_valuename = req.body.eventcode_valuename;
-   postData.eventcode_value = req.body.eventcode_value;
-   postData.headline = req.body.headline;
-   postData.description = req.body.description;
-   postData.instruction = req.body.instruction;
-   postData.contact = req.body.contact;
-   postData.areaDesc = req.body.areaDesc;
-   // TODO 데이터 받아와서 재정의
-   console.log("1send_data: " + postData.cap);
-   console.log("2send_data: " + postData.identifier);
-   console.log("3send_data: " + postData.sender);
-   console.log("4send_data: " + postData.sent);
-   console.log("5send_data: " + postData.status);
-   console.log("6send_data: " + postData.msgType);
-   console.log("7send_data: " + postData.scope);
-   console.log("8send_data: " + postData.category);
-   console.log("9send_data: " + postData.event);
-   console.log("10send_data: " + postData.responseType);
-   console.log("11send_data: " + postData.urgency);
-   console.log("12send_data: " + postData.severity);
-   console.log("13send_data: " + postData.certainty);
-   console.log("14send_data: " + postData.eventcode_valuename);
-   console.log("15send_data: " + postData.eventcode_value);
-   console.log("16send_data: " + postData.headline);
-   console.log("17send_data: " + postData.description);
-   console.log("18send_data: " + postData.instruction);
-   console.log("19send_data: " + postData.contact);
-   console.log("20send_data: " + postData.areaDesc);
-   // var url = 'http://192.168.12.29:8000/'+ postData.test_value +'/'+urlencode(postData.test_value2);
- 
-   // console.log("url >>"+url)
-   // request({
-   //     uri: url,
-   //     method: "GET"
-   // }).pipe(res);
- });
+        "areaDesc": 0
+    };
+    //set Val  
+    postData.cap = req.body.cap;
+    postData.identifier = req.body.identifier;
+    postData.sender = req.body.sender;
+    postData.sent = req.body.sent;
+    postData.status = req.body.status;
+    postData.msgType = req.body.msgType;
+    postData.scope = req.body.scope;
+    postData.category = req.body.category;
+    postData.event = req.body.event;
+    postData.responseType = req.body.responseType;
+    postData.urgency = req.body.urgency;
+    postData.severity = req.body.severity;
+    postData.certainty = req.body.certainty;
+    postData.eventcode_valuename = req.body.eventcode_valuename;
+    postData.eventcode_value = req.body.eventcode_value;
+    postData.headline = req.body.headline;
+    postData.description = req.body.description;
+    postData.instruction = req.body.instruction;
+    postData.contact = req.body.contact;
+    postData.areaDesc = req.body.areaDesc;
+    // TODO 데이터 받아와서 재정의
+    console.log("1send_data: " + postData.cap);
+    console.log("2send_data: " + postData.identifier);
+    console.log("3send_data: " + postData.sender);
+    console.log("4send_data: " + postData.sent);
+    console.log("5send_data: " + postData.status);
+    console.log("6send_data: " + postData.msgType);
+    console.log("7send_data: " + postData.scope);
+    console.log("8send_data: " + postData.category);
+    console.log("9send_data: " + postData.event);
+    console.log("10send_data: " + postData.responseType);
+    console.log("11send_data: " + postData.urgency);
+    console.log("12send_data: " + postData.severity);
+    console.log("13send_data: " + postData.certainty);
+    console.log("14send_data: " + postData.eventcode_valuename);
+    console.log("15send_data: " + postData.eventcode_value);
+    console.log("16send_data: " + postData.headline);
+    console.log("17send_data: " + postData.description);
+    console.log("18send_data: " + postData.instruction);
+    console.log("19send_data: " + postData.contact);
+    console.log("20send_data: " + postData.areaDesc);
+    // var url = 'http://192.168.12.29:8000/'+ postData.test_value +'/'+urlencode(postData.test_value2);
+
+    // console.log("url >>"+url)
+    // request({
+    //     uri: url,
+    //     method: "GET"
+    // }).pipe(res);
+});
 
 module.exports = router;

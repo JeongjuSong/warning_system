@@ -3,6 +3,7 @@ var newJquery = $.noConflict(true);
 var zNodes;
 var zNodes2;
 var zNodes3;
+var zNodes4;
 
 // ztree 지역별 데이터 가져오기
 newJquery(document).ready(function () {
@@ -77,6 +78,22 @@ newJquery(document).ready(function () {
     })
 });
 
+newJquery(document).ready(function () {
+    var url = '/singledata';
+    newJquery.ajax({
+        type: "GET",
+        url: url,
+        contentType: "application/json",
+        async: false,
+        success: function (data) {
+            zNodes4 = data;
+        },
+        error: function (e) {
+            console.log(e.responseText);
+        }
+    })
+});
+
 
 var setting = {
     edit: {
@@ -118,6 +135,7 @@ newJquery(document).ready(function () {
     newJquery.fn.zTree.init(newJquery("#treeDemo"), setting, zNodes);
     newJquery.fn.zTree.init(newJquery("#treeDemo2"), setting, zNodes2);
     newJquery.fn.zTree.init(newJquery("#treeDemo3"), setting, zNodes3);
+    newJquery.fn.zTree.init(newJquery("#treeDemo4"), setting, zNodes4);
     newJquery("#addParent").bind("click", {
         isParent: true
     }, add);
@@ -154,7 +172,7 @@ function beforeRename(treeId, treeNode, newName) {
 }
 
 
-var newCount = 1;
+var newCount = 1; // 1로 초기값 설정
 
 function add(e) {
     var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo3"),
@@ -222,7 +240,7 @@ function add(e) {
                 }
             }
             treeNode = zTree.addNodes(treeNode, {
-                id: (treeNode.id * 10) + newId + 1,
+                id: (treeNode.id * 10) + newId + 1, //자신의 부모 노드x10 + newId + 1
                 pId: treeNode.id,
                 isParent: isParent,
                 name: "단말기명"
@@ -305,7 +323,6 @@ function beforeDrop(treeId, treeNodes, targetNode, moveType) {
 }
 
 // 지역별 selected value 값 받기
-// 지역별, 분류별, 그룹별 if문 7개
 
 function zTreeOnCheck(event, treeId, treeNode) {
     var treeObj = newJquery.fn.zTree.getZTreeObj("treeDemo"); //treeDemo(지역별)에서 노드 가져오기
@@ -315,7 +332,6 @@ function zTreeOnCheck(event, treeId, treeNode) {
     var nodes2 = treeObj2.getCheckedNodes(true);
     var nodes3 = treeObj3.getCheckedNodes(true);
     var checkedArray = new Array();
-    var codeArray = new Array();
     var numArray = new Array();
 
 
@@ -327,7 +343,6 @@ function zTreeOnCheck(event, treeId, treeNode) {
             var checkednodenum = nodes[i].num;
             if (checkednodepid != 1 && checkednodepid != 0) {
                 checkedArray.push(checkednode);
-                // codeArray.push(checkednodecode)
                 numArray.push(checkednodenum);
                 let single = checkedArray.reduce((a, b) => {
                     if (a.indexOf(b) < 0) a.push(b);
@@ -384,29 +399,4 @@ function zTreeOnCheck(event, treeId, treeNode) {
             }
         }
     }
-
-    // if (nodes.length != 0 && nodes2.length == 0 && nodes3.length != 0) { // 지역별, 그룹별 탭 둘 다 선택 하는 경우
-    //     for (var i = 1; i <= nodes.length; i++) {
-    //         var checkednode = nodes[i].name;
-    //         console.log(checkednode);
-    //         var checkednode2 = nodes3[i].name;
-    //         console.log(checkednode2)
-    //         if (checkednode != '전 체' && checkednode != '중구' && checkednode != '구로구' && checkednode != '영등포구' && checkednode != '서초구') {
-    //             checkedArray.push(checkednode);
-    //             checkedArray.push(checkednode2);
-    //             checkedArray.push(checkednode);
-    //             $(document).ready(function () {
-    //                 $('#checklocation').val(checkedArray);
-    //             });
-    //         }
-    //     }
-    // }
-
-    // if (nodes.length == 0 && nodes2.length == 0 && zNodes3.length == 0) { // 둘 다 선택 안한 경우
-    //     var none = '단말기를 선택하지 않았습니다.'
-    //     $(document).ready(function () {
-    //         $('#checklocation').val(none);
-    //     });
-    // }
-
 };

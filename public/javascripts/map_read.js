@@ -100,13 +100,35 @@ $.get("/map/location.json", function (data) {
 
 
 
+
+
+    // 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
+    function makeOverListener(map, markers, infowindow, coordinate_data, store_name, store_num) {
+        infowindow.close();
+        return function () {
+            infowindow.open(map, markers);
+            // alert(coordinate_data);
+            console.log(coordinate_data);
+            console.log(store_name);
+            console.log(store_num);
+        };
+    }
+
+    // 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+    function makeOutListener(infowindow) {
+        return function () {
+            infowindow.close();
+        };
+    }
+
+
     var range = null; // 반경 검색을 위해 그린 원 객체 참조
     var markersInCircle = []; // 결과를 담을 배열
 
     manager.addListener('select', function (e) {
         if (e.overlayType === daum.maps.drawing.OverlayType.CIRCLE) {
             if (range) {
-                console.log("1 :" + range);
+
                 manager.remove(range); // 기존에 지도위에 그려진 원은 삭제
             }
         }
@@ -114,15 +136,23 @@ $.get("/map/location.json", function (data) {
 
 
 
+
+
     manager.addListener('drawend', function (e) {
         markersInCircle.length = 0; // 기존 결과 초기화
+
+
         if (e.overlayType === daum.maps.drawing.OverlayType.CIRCLE) {
 
             var circle = e.target;
             var center = circle.getPosition();
             var radius = circle.getRadius(); // m 단위
 
+
+
             var line = new daum.maps.Polyline(); // for calculating length
+            var i = 0;
+            var chkData = new Array(data);
 
 
             markers.each(function (_, marker) { // jQuery.each 를 사용하는 방식으로 변경
@@ -131,19 +161,28 @@ $.get("/map/location.json", function (data) {
 
                 var dist = line.getLength();
 
+
+
                 if (dist < radius) {
-                    markersInCircle.push(marker);
+                    chkData[i] = 1;
                 }
+
+                i++;
             });
+            var newArray = new Array();
+
+            for (var j = 0; j < 50; j++) {
+                if (chkData[j] == 1)
+                    // console.log(data.positions[j].content);
+                    newArray.push(data.positions[j].content);
+            }
+            console.log(newArray);
+            $(document).ready(function () {
+                $('#checklocation').val(newArray);
+            })
 
             range = circle; // 다음 반경 선택시 지워주기 위해 참조 저장
-            console.log("2 :" + markers);
-            // for(var i=0; i <= 50; i++)
-            // {
-            console.log('result2: ', markersInCircle); // 결과  
-            // }
-            // console.log('result2: ', markersInCircle[0].k); // 결과  
-            // console.log('result: ',); // 결과  
+
 
         }
 
@@ -153,35 +192,6 @@ $.get("/map/location.json", function (data) {
 
     // 클러스터러에 마커들을 추가합니다
     clusterer.addMarkers(markers);
-    // console.log(markers[0]);
-    // console.log(data[0]);
+
 
 });
-
-
-// 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-function makeOverListener(map, markers, infowindow, coordinate_data, store_name, store_num) {
-    infowindow.close();
-    return function () {
-        infowindow.open(map, markers);
-        // alert(coordinate_data);
-        // console.log(coordinate_data);
-        console.log(store_name); //마크 선택 시
-        var checkedArray = new Array(); // checkedArray에 선택한 마크 저장
-        if(store_name != null) { 
-            checkedArray.push(store_name);
-            console.log('checkedArray는 : ' + checkedArray)
-            $(document).ready(function() { 
-                $("#checklocation").val(checkedArray);
-            })
-        }
-    };
-}
-
-// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-function makeOutListener(map, markers, infowindow, store_name) {
-    return function () {
-        infowindow.close(map, markers);
-        console.log(store_name);
-    };
-}

@@ -67,8 +67,6 @@ module.exports = function(passport) {
                         area: area // use the generateHash function in our user model
                     };
 
-                    console.log(req.body.username);
-                    console.log(req.body.area);
                     var insertQuery = "INSERT INTO users ( username, password, area) values (?,?,?)";
 
                     connection.query(insertQuery,[newUserMysql.username, newUserMysql.password,newUserMysql.area],function(err, rows) {
@@ -95,7 +93,6 @@ module.exports = function(passport) {
         },
         function(req, username, password, done) { // callback with email and password from our form
             connection.query("SELECT * FROM users WHERE username = ?",[username], function(err, rows){
-                console.log(rows[0].area);
                 if (err)
                     return done(err);
                 if (!rows.length) {

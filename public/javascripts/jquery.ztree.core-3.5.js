@@ -398,7 +398,7 @@
 							console.log(data);
 							return insertalert();
 						},
-						error: function (data) { // error인데도 발령이 되는 부분 수정
+						error: function (data) { // error인데도Y 되는 부분 수정
 							return insertalert();
 						}
 					});
