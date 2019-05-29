@@ -95,7 +95,7 @@ newJquery(document).ready(function () {
 });
 
 
-var setting = {
+var setting = { //setting 선언, 기본 library에서 변경한 내용 없음
     edit: {
         enable: true,
         showRemoveBtn: false,
@@ -200,7 +200,7 @@ function add(e) {
                     console.log(error);
                 }
             })
-            // console.log(idArray); //idArray에 id값 잘 들어오는 것 확인 !
+            // console.log(idArray); //idArray에 id값 잘 들어오는 것 확인 완료
             for (var i = 0; i <= idArray.length; i++) {
                 if (newId <= idArray[i]) {
                     newId++;
@@ -232,7 +232,7 @@ function add(e) {
                     console.log(error);
                 }
             })
-            // console.log(idArray); //idArray에 id값 잘 들어오는 것 확인 !
+            // console.log(idArray); //idArray에 id값 잘 들어오는 것 확인 완료
             for (var i = 0; i <= idArray2.length; i++) {
                 if (newId <= idArray2[i]) {
                     newId++;
@@ -262,7 +262,7 @@ function add(e) {
     }
 };
 
-function edit() {
+function edit() { //노드 이름 수정 시 발동
     var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo3"),
         nodes = zTree.getSelectedNodes(),
         treeNode = nodes[0];
@@ -273,7 +273,7 @@ function edit() {
     zTree.editName(treeNode);
 };
 
-function remove(e) {
+function remove(e) { //노드 삭제 시 발동
     var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo3"),
         nodes = zTree.getSelectedNodes(),
         treeNode = nodes[0];
@@ -285,7 +285,7 @@ function remove(e) {
     zTree.removeNode(treeNode, callbackFlag);
 };
 
-function clearChildren(e) {
+function clearChildren(e) { //하위 노드 모두 삭제 시 발동
     var zTree = newJquery.fn.zTree.getZTreeObj("treeDemo3"),
         nodes = zTree.getSelectedNodes(),
         treeNode = nodes[0];

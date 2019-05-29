@@ -44,7 +44,7 @@
     <script src="javascripts/time/server_time.js"></script>
 
     <script language="javascript">
-        var user_area = <%=user.area%>;
+        var user_area = <%=user.area%>; // db의 users 테이블의 area 정보를 객체 user_area에 저장
     </script>
 </head>
 
@@ -59,12 +59,14 @@
                     <div class="sidebar-brand-icon">
                         <img id="logo" src="" style="height: 50px;">
                         <script>
+                            // 접속한 지역의 CI 로고를 logo_info() 함수에서 선언
                             document.getElementById('logo').src = logo_info()
                         </script>
                     </div>
                     <div class="sidebar-brand-text mx-3">
                         <img id="title" src="" style="height: 40px; margin-left:-10px;">
                         <script>
+                            // 접속한 지역의 CI를 title_info() 함수에서 선언
                             document.getElementById('title').src = title_info()
                         </script>
                     </div>
@@ -136,6 +138,7 @@
                     <h1 class="h3 mb-0 text-gray-800" style="font-weight: bold; margin-left:10px;">다중이용시설
                         긴급경보방송시스템</h1>
                     <div style="margin-left: 50px;">
+                        <!--CAP의 status 선택-->
                         <input type="radio" name="status" value="Test" class="테스트 방송">테스트 방송
                         <input type="radio" name="status" value="Exercise" class="훈련 방송">훈련 방송
                         <input type="radio" name="status" value="Actual" class="실제 방송">실제 방송
@@ -182,15 +185,12 @@
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <script>
-                        <% if(locals.user){%>
-                        var userId =
-                            <%=user.id%>;
-                        var idDesc = document.getElementById("loginDesc");
-
-                        window.user = {};
-                        window.user.id = userId;
-                        <% }%>
+                    <script> //로그인 정보
+                        <% if (locals.user) {%>
+                            var userId = <%=user.id%>;
+                            var idDesc = document.getElementById("loginDesc");
+                            window.user = {};
+                            window.user.id = userId; <%} %>
                     </script>
                     <!-- Content Row -->
 
@@ -199,7 +199,7 @@
                             <!-- 화면 반 나누기 -->
                             <div class="col-sm-6" style="float:left; margin-left: -0.75rem;">
 
-                               
+                                <!--CAP의 msgType 선택-->
                                 <div class="col-sm-12" style="display: contents;">
                                     <div class="col-sm-4" style="float:left;">
                                         <div class="card shadow mb-4">
@@ -217,7 +217,8 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
+                                    <!--CAP의 scope 선택-->
                                     <div class="col-sm-4" style="float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -232,7 +233,8 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
+                                    <!--CAP의 urgency 선택-->
                                     <div class="col-sm-4" style="float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -249,7 +251,8 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
+                                    <!--CAP의 severity 선택-->
                                     <div class="col-sm-4" style="float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -265,7 +268,8 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
+                                    <!--CAP의 event 입력-->
                                     <div class="col-sm-4" style="float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -276,7 +280,8 @@
                                             </div>
                                         </div>
                                     </div>
-    
+
+                                    <!--CAP의 certainty 선택-->
                                     <div class="col-sm-4" style="float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -296,6 +301,7 @@
 
                                 </div>
 
+                                <!--CAP의 time 선택-->
                                 <div class="col-sm-12" style="float:left;">
                                     <div class="card shadow mb-4">
                                         <div class="card-header py-3">
@@ -319,6 +325,8 @@
                                 </div>
 
                                 <div class="col-sm-12" style="display: contents">
+
+                                    <!--CAP의 areaDesc 선택-->
                                     <div class="col-sm-7" style="float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -335,17 +343,17 @@
                                                     <button class="tablinks" onclick="openTab(event, 'group')"
                                                         style="width: 93%;" type="button">그룹별</button>
                                                 </div>
-                                                <!-- 지역별 -->
+                                                <!-- 지역별 ztree, treeDemo -->
                                                 <div class="tabcontent" id="location">
                                                     <ul id="treeDemo" class="ztree"></ul>
                                                 </div>
 
-                                                <!-- 분류별 -->
+                                                <!-- 분류별 ztree, treeDemo2 -->
                                                 <div class="tabcontent" id="devide">
                                                     <ul id="treeDemo2" class="ztree"></ul>
                                                 </div>
 
-                                                <!-- 그룹별 -->
+                                                <!-- 그룹별 ztree, treeDemo3 -->
                                                 <div class="tabcontent" id="group">
                                                     <ul id="treeDemo3" class="ztree"></ul>
                                                 </div>
@@ -353,22 +361,28 @@
                                         </div>
                                     </div>
 
+                                    <!-- google chart 사용하여 현황 확인 -->
                                     <div class="col-5" style=" float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
                                                 <span class="m-0 font-weight-bold text-primary">단말기 갯수 현황</span>
                                             </div>
                                             <div class="col-12" style="max-height: 220px;">
-                                                <div id="chart_wrap" style="position: relative; padding-bottom: 100%; height: 0; overflow:hidden;">
-                                                    <div id="piechart" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; max-height:220px;">
+                                                <div id="chart_wrap"
+                                                    style="position: relative; padding-bottom: 100%; height: 0; overflow:hidden;">
+                                                    <div id="piechart"
+                                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; max-height:220px;">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="col-sm-12" style="display: contents">
+                                    
+                                <!--CAP의 category, eventCode_value 선택-->
                                     <div class="col-5" style="float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -413,6 +427,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <!-- 통신 종류 선택 -->
                                     <div class="col-4" style="float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -442,6 +458,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                <!--방송 종류 선택-->
                                     <div class="col-3" style="float:left;">
                                         <div class="card shadow mb-4">
                                             <div class="card-header py-3">
@@ -467,11 +485,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
                             <div class="col-6" style="float: right;">
-                                <!-- Project Card Example -->
+                                <!-- GIS로 선택 -->
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <span class="m-0 font-weight-bold text-primary">GIS로
@@ -484,7 +502,7 @@
                                 </div>
                             </div>
 
-                            <!-- 이 부분에 선택값들 value 처리 후 block 처리 -->
+                            <!-- 선택한 값들을 확인할 수 있게끔 해놓음, none으로 보이지 않게 처리 -->
                             <input id="checktime" type="text" style="display: none;">
                             <input id="checklocation" type="text" style="display: none;">
                             <input id="checkalarm" type="text" style="display: none;">
@@ -493,6 +511,7 @@
                             <input id="checkcategory" type="text" style="display: none;">
                             <input id="checkcode" type="text" style="display:none;">
 
+                            <!-- 조작 초기화 / 선택 내용 확인 / 경보 발령 전송 버튼 -->
                             <div class="col-12" style="float:left;">
                                 <div class="card shadow mb-4" style="text-align:center; padding: 10px;">
                                     <div>
@@ -547,7 +566,7 @@
                 </div>
             </div>
 
-            <!-- 방송 전송 -->
+            <!-- 경보 발령 전송 -->
             <div class="modal" id="popup9" role="dialog">
                 <div class="modal-dialog modal-lg" role="document">
                     <form id="myForm">
@@ -646,6 +665,7 @@
                             <textarea id="instruction"
                                 style="width: 400px; height: 150px; padding:10px;">{{gridOption6}}</textarea>
                             <hr />
+                            <!--CAP의 responseType 선택-->
                             행동 요령 선택 :
                             <select id="responseType">
                                 <option value="Shelter" name="행동 요령의 대피소로 대피">행동 요령의 대피소로 대피</option>
@@ -708,7 +728,7 @@
     </a>
 
     <script>
-        document.getElementById("defaultOpen").click();
+        document.getElementById("defaultOpen").click(); // 지역별 탭을 default open으로 설정
     </script>
 
     <!-- Bootstrap core JavaScript-->

@@ -56,8 +56,8 @@ window.onload = function () {
     document.getElementById("repeat_num").innerHTML = strNum;
 }
 
+// 접속 지역에 따라 달라지는 CI logo 표현
 function logo_info() {
-    /*   접속 지역에 따라 달라지는 CI 표현 */
     var img_src;
     for (var i = 0; i <= 39; i++) {
         if (user_area == i) {
@@ -67,6 +67,7 @@ function logo_info() {
     return img_src;
 }
 
+// 접속 지역에 따라 달라지는 CI titleㄴ 표현
 function title_info() {
     var img_src;
     for (var i = 0; i <= 39; i++) {
@@ -76,7 +77,6 @@ function title_info() {
     }
     return img_src;
 }
-
 
 // 나머지 항목들 따로 선택 
 function CheckFunc(obj) {
@@ -107,14 +107,7 @@ $(function () {
     });
 });
 
-// 버튼 클릭 시 초기화
-function clear_onclick() {
-    alert("모든 선택 내용이 초기화 됩니다.");
-    $("input[type=checkbox]").parent().removeClass('selected');
-    $("input[type=checkbox]").prop('checked', false);
-}
-
-// 방송 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
+// 방송 종류에서 modal 창에서 세부 항목 선택 안할 시, 아래의 항목 체크 해제
 function closecheck() {
     $("[id=broadcast]").parent().removeClass('selected');
     $("[id=broadcast]").prop("checked", false);
@@ -123,7 +116,7 @@ function closecheck() {
     document.getElementById("siren").selectedIndex = -1;
 }
 
-// 재난 종류에서 modal 창에서 선택 안할 시 선택 표시 안되게 처리
+// 재난 종류에서 modal 창에서 세부 항목 선택 안할 시, 아래의 항목 체크 해제 (alarm_type1~7까지 동일)
 function closecheck1() {
     $("[id=alarm_type1]").prop("checked", false);
     $("[id=popup_show1]").prop("checked", false);
@@ -321,7 +314,7 @@ var content7 = '<div class="modal" id="popup7" role="dialog">' +
     '</div>' +
     '</div>';
 
-
+// sweetalert이라는 기존의 alert창과는 다르게 주소창이 보이지 않는 alert창 사용
 function sweetalert() {
     swal('발령되었습니다.').then(function () {
         location.reload();
@@ -395,7 +388,7 @@ google.charts.load('current', {
 });
 google.charts.setOnLoadCallback(drawChart);
 
-// Draw the chart and set the chart values
+// 차트 생성 및 value값 선언
 function drawChart() {
     var data = google.visualization.arrayToDataTable([
         ['Result', 'All Result Record'],
@@ -405,69 +398,18 @@ function drawChart() {
         ['남동구', 2]
     ]);
 
-    // Optional; add a title and set the width and height of the chart
+    // 차트의 크기 스타일 지정
     var options = {
         width: '100%',
         height: '100%'
     };
-    // Display the chart inside the <div> element with id="piechart"
+    // id가 piechart인 곳에 google PieChart 생성 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
     chart.draw(data, options);
 }
-// function drawChart() {
-//     $.ajax({
-//         url: "/chartdata",
-//         dataType: "json",
-//         success: function (jsonData) {
-//             var data = new google.visualization.DataTable();
-//             // assumes "word" is a string and "count" is a number
-//             data.addColumn('string', 'count');
-//             data.addColumn('"중구"', '1');
-//             data.addColumn('code', '미추홀구');
-//             data.addColumn('code', '연수구');
-//             data.addColumn('code', '남동구');
 
-//             for (var i = 0; i < jsonData.length; i++) {
-//                 data.addRow([jsonData[i].word, jsonData[i].count]);
-//             }
 
-//             var options = {
-//                 width: '100%',
-//                 height: '100%'
-//             };
-//             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-//             chart.draw(data, options);
-//         }
-//     });
-// }
-
-// function drawChart() {
-//     $.ajax({
-//         url: "/chartdata",
-//         dataType: "json",
-//         success: function (jsonData) {
-//             var data = new google.visualization.DataTable();
-//             // assumes "word" is a string and "count" is a number
-//             data.addColumn('string', 'word');
-//             data.addColumn('number', 'count');
-
-//             for (var i = 0; i < jsonData.length; i++) {
-//                 data.addRow([jsonData[i].word, jsonData[i].count]);
-//             }
-//         }
-//     });
-
-//     // Optional; add a title and set the width and height of the chart
-//     var options = {
-//         width: '100%',
-//         height: '100%'
-//     };
-//     // Display the chart inside the <div> element with id="piechart"
-//     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-//     chart.draw(data, options);
-// }
-
-// 실제 방송 전송
+// 경보 발령 전송
 function SendData() { // post rasData
     var postData = { //postData 타입 정의
         "cap": "",
@@ -508,7 +450,6 @@ function SendData() { // post rasData
     var instruction = $('#instruction').val(); //행동 요령
     var contact = document.getElementById('contact').value;
     var areaDesc = document.getElementById('checklocation').value; //보내는 지역
-    // var location_num = document.getElementById('checknum').value; //단말기 num
 
     postData.cap = "cap" // 시작한다는 안내
     postData.identifier = user_area; // 인천
@@ -530,8 +471,6 @@ function SendData() { // post rasData
     postData.instruction = instruction;
     postData.contact = contact; //연락 담당자
     postData.areaDesc = areaDesc; // 남동구
-    // postData.areaDesc = location_num; // 인천시청역
-    // postData.siren = siren; // 사이렌
 
     var getTest = function (data) {
         // console.log("1 data: " + postData.cap);
